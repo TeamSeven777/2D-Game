@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,6 +14,7 @@ namespace _2D_Game
         void MoveUp();
         void MoveDown();
 
+        void Update(GameTime gt);
 
 }
 }

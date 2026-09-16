@@ -35,3 +35,4 @@ C:\Users\edwei\source\repos\2D-Game\2D-Game\obj\Debug\net9.0\refint\2D-Game.dll
 C:\Users\edwei\source\repos\2D-Game\2D-Game\obj\Debug\net9.0\2D-Game.pdb
 C:\Users\edwei\source\repos\2D-Game\2D-Game\obj\Debug\net9.0\2D-Game.genruntimeconfig.cache
 C:\Users\edwei\source\repos\2D-Game\2D-Game\obj\Debug\net9.0\ref\2D-Game.dll
+C:\Users\edwei\source\repos\2D-Game\2D-Game\bin\Debug\net9.0\Content\images\logo.xnb

@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System.Diagnostics;
 
 namespace _2D_Game
 {
@@ -9,7 +10,9 @@ namespace _2D_Game
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
 
-        private IPlayer player;
+        public DefaultPlayer player;
+
+        private Texture2D spr;
 
         private IController controller;
 
@@ -23,6 +26,13 @@ namespace _2D_Game
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
+            player = new DefaultPlayer();
+            controller = new KeyboardController();
+            controller.RegisterCommand(Keys.W, new UpCommand(this));
+            controller.RegisterCommand(Keys.A, new LeftCommand(this));
+            controller.RegisterCommand(Keys.D, new RightCommand(this));
+            controller.RegisterCommand(Keys.S, new DownCommand(this));
+
 
             base.Initialize();
         }
@@ -30,6 +40,9 @@ namespace _2D_Game
         protected override void LoadContent()
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
+
+            spr = Content.Load<Texture2D>("images/logo");
+
 
             // TODO: use this.Content to load your game content here
         }
@@ -40,6 +53,8 @@ namespace _2D_Game
                 Exit();
 
             // TODO: Add your update logic here
+            player.Update(gameTime);
+            controller.Update();
 
             base.Update(gameTime);
         }
@@ -49,6 +64,11 @@ namespace _2D_Game
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             // TODO: Add your drawing code here
+            _spriteBatch.Begin();
+
+            _spriteBatch.Draw(spr, player.Position, Color.White);
+
+            _spriteBatch.End();
 
             base.Draw(gameTime);
         }
