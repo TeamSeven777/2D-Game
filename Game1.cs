@@ -1,6 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System.Runtime.InteropServices;
+using The_Fourest_Seven.lib.Objects;
 
 namespace The_Fourest_Seven
 {
@@ -8,6 +10,8 @@ namespace The_Fourest_Seven
     {
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
+        private IObstacle tree;
+        private Texture2D treeSprite;
 
         public Game1()
         {
@@ -19,6 +23,8 @@ namespace The_Fourest_Seven
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
+            tree = new Obstacle(new Rectangle(), new Vector2(200, 200));
+            
 
             base.Initialize();
         }
@@ -27,6 +33,7 @@ namespace The_Fourest_Seven
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
+            treeSprite = Content.Load<Texture2D>("Sprites/treesprite");
             // TODO: use this.Content to load your game content here
         }
 
@@ -44,7 +51,9 @@ namespace The_Fourest_Seven
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            // TODO: Add your drawing code here
+            _spriteBatch.Begin();
+
+            _spriteBatch.End();
 
             base.Draw(gameTime);
         }

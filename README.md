@@ -35,3 +35,28 @@ Designated Meeting Time @ 4:30 Fridays In Person or Online
 Nighttime Forest Explorem-up : The Fourest Seven  
 
 A top down perspective game where the protagonist will explore a dark and spooky forest in search of their friends. Facing enemies like spiders, wolves, and mosquitos, the goal is to collect enough goods to make smores with the pals back at the campfire, and make it out alive...
+
+---
+# Sprint 2
+
+### Start Date: 9/11/2026
+
+### Deadline: 10/05/2026
+
+## Planned Features
+
+ - Player Character
+	- The ability to move
+	- The ability to pick up items  
+	- The ability to attack  
+	- The ability to collide with walls and enemies  
+ - Enemy NPCs
+	- The ability to attack  
+	- The ability to move
+	- The ability to drop items on defeat (?)
+ - Item Class
+	- The ability to spawn on the map
+	- The ability to be picked up
+ - Wall / Block Class
+	- The ability to collide with the player or NPCs, preventing passage
+	  

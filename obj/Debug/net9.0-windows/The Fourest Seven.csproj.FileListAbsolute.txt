@@ -1,0 +1,29 @@
+C:\Users\jpfri\source\repos\TeamSeven777\2D-Game\bin\Debug\net9.0-windows\Content\Sprites\treesprite.xnb
+C:\Users\jpfri\source\repos\TeamSeven777\2D-Game\bin\Debug\net9.0-windows\The Fourest Seven.exe
+C:\Users\jpfri\source\repos\TeamSeven777\2D-Game\bin\Debug\net9.0-windows\The Fourest Seven.deps.json
+C:\Users\jpfri\source\repos\TeamSeven777\2D-Game\bin\Debug\net9.0-windows\The Fourest Seven.runtimeconfig.json
+C:\Users\jpfri\source\repos\TeamSeven777\2D-Game\bin\Debug\net9.0-windows\The Fourest Seven.dll
+C:\Users\jpfri\source\repos\TeamSeven777\2D-Game\bin\Debug\net9.0-windows\The Fourest Seven.pdb
+C:\Users\jpfri\source\repos\TeamSeven777\2D-Game\bin\Debug\net9.0-windows\MonoGame.Framework.dll
+C:\Users\jpfri\source\repos\TeamSeven777\2D-Game\bin\Debug\net9.0-windows\SharpDX.dll
+C:\Users\jpfri\source\repos\TeamSeven777\2D-Game\bin\Debug\net9.0-windows\SharpDX.Direct2D1.dll
+C:\Users\jpfri\source\repos\TeamSeven777\2D-Game\bin\Debug\net9.0-windows\SharpDX.Direct3D11.dll
+C:\Users\jpfri\source\repos\TeamSeven777\2D-Game\bin\Debug\net9.0-windows\SharpDX.Direct3D9.dll
+C:\Users\jpfri\source\repos\TeamSeven777\2D-Game\bin\Debug\net9.0-windows\SharpDX.DXGI.dll
+C:\Users\jpfri\source\repos\TeamSeven777\2D-Game\bin\Debug\net9.0-windows\SharpDX.Mathematics.dll
+C:\Users\jpfri\source\repos\TeamSeven777\2D-Game\bin\Debug\net9.0-windows\SharpDX.MediaFoundation.dll
+C:\Users\jpfri\source\repos\TeamSeven777\2D-Game\bin\Debug\net9.0-windows\SharpDX.XAudio2.dll
+C:\Users\jpfri\source\repos\TeamSeven777\2D-Game\bin\Debug\net9.0-windows\SharpDX.XInput.dll
+C:\Users\jpfri\source\repos\TeamSeven777\2D-Game\obj\Debug\net9.0-windows\mgcb.tool.restore
+C:\Users\jpfri\source\repos\TeamSeven777\2D-Game\obj\Debug\net9.0-windows\The Fourest Seven.csproj.AssemblyReference.cache
+C:\Users\jpfri\source\repos\TeamSeven777\2D-Game\obj\Debug\net9.0-windows\The Fourest Seven.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\jpfri\source\repos\TeamSeven777\2D-Game\obj\Debug\net9.0-windows\The Fourest Seven.AssemblyInfoInputs.cache
+C:\Users\jpfri\source\repos\TeamSeven777\2D-Game\obj\Debug\net9.0-windows\The Fourest Seven.AssemblyInfo.cs
+C:\Users\jpfri\source\repos\TeamSeven777\2D-Game\obj\Debug\net9.0-windows\The Fourest Seven.csproj.CoreCompileInputs.cache
+C:\Users\jpfri\source\repos\TeamSeven777\2D-Game\obj\Debug\net9.0-windows\The Fourest Seven.sourcelink.json
+C:\Users\jpfri\source\repos\TeamSeven777\2D-Game\obj\Debug\net9.0-windows\The Four.09F33956.Up2Date
+C:\Users\jpfri\source\repos\TeamSeven777\2D-Game\obj\Debug\net9.0-windows\The Fourest Seven.dll
+C:\Users\jpfri\source\repos\TeamSeven777\2D-Game\obj\Debug\net9.0-windows\refint\The Fourest Seven.dll
+C:\Users\jpfri\source\repos\TeamSeven777\2D-Game\obj\Debug\net9.0-windows\The Fourest Seven.pdb
+C:\Users\jpfri\source\repos\TeamSeven777\2D-Game\obj\Debug\net9.0-windows\The Fourest Seven.genruntimeconfig.cache
+C:\Users\jpfri\source\repos\TeamSeven777\2D-Game\obj\Debug\net9.0-windows\ref\The Fourest Seven.dll

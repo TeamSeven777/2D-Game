@@ -10,16 +10,14 @@ using Rectangle = Microsoft.Xna.Framework.Rectangle;
 
 namespace The_Fourest_Seven.lib.Objects
 {
-    internal class Obstacle : IObstacle
+    public class Obstacle : IObstacle
     {
         public Rectangle boundingBox { get; set; }
-        public float originPos { get; set; }
-        public Texture2D sprite { get; set; }
+        public Vector2 originPos { get; set; }
 
-        public Obstacle(Rectangle boundingBox, float originPos, Texture2D sprite)
+        public Obstacle(Rectangle boundingBox, Vector2 originPos)
         {
             this.originPos = originPos;
-            this.sprite = sprite;
             this.boundingBox = boundingBox;
         }
 
