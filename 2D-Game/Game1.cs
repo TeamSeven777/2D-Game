@@ -32,6 +32,18 @@ namespace _2D_Game
             controller.RegisterCommand(Keys.A, new LeftCommand(this));
             controller.RegisterCommand(Keys.D, new RightCommand(this));
             controller.RegisterCommand(Keys.S, new DownCommand(this));
+            controller.RegisterCommand(Keys.Q, new QuitCommand(this));
+            controller.RegisterCommand(Keys.R, new ResetCommand(this));
+            controller.RegisterCommand(Keys.Z, new AttackCommand(this));
+            controller.RegisterCommand(Keys.N, new AttackCommand(this));
+            //TODO UseItemCommands, finish implementing the commands
+            controller.RegisterCommand(Keys.E, new DamageCommand(this));
+            controller.RegisterCommand(Keys.T, new PreviousBlockCommand(this));
+            controller.RegisterCommand(Keys.Y, new NextBlockCommand(this));
+            controller.RegisterCommand(Keys.U, new PreviousItemCommand(this));
+            controller.RegisterCommand(Keys.I, new NextItemCommand(this));
+            controller.RegisterCommand(Keys.O, new PreviousCharacterCommand(this));
+            controller.RegisterCommand(Keys.P, new NextCharacterCommand(this));
 
 
             base.Initialize();
@@ -49,7 +61,7 @@ namespace _2D_Game
 
         protected override void Update(GameTime gameTime)
         {
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
+            if (Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
             // TODO: Add your update logic here
@@ -71,6 +83,10 @@ namespace _2D_Game
             _spriteBatch.End();
 
             base.Draw(gameTime);
+        }
+
+        public void ResetGame() { 
+            Initialize();
         }
     }
 }
