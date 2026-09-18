@@ -11,7 +11,8 @@ namespace The_Fourest_Seven
     {
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
-        private Texture2D treeSprite;
+        private Sprite treeSprite;
+        private Texture2D testTreeSprite;
         private IObstacle tree;
         private Texture2D testSpriteSheet;
         private AnimatedSprite lilGuy;
@@ -34,10 +35,15 @@ namespace The_Fourest_Seven
         protected override void LoadContent()
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
-            treeSprite = Content.Load<Texture2D>("Sprites/testsprite");
+            testTreeSprite = Content.Load<Texture2D>("Sprites/testsprite");
+            treeSprite = new Sprite(testTreeSprite);
+            tree.sprite = treeSprite;
             testSpriteSheet = Content.Load<Texture2D>("Sprites/testspritesheet");
-            lilGuy = new AnimatedSprite(testSpriteSheet, new Vector2(25, 25), Vector2.Zero);
-            lilGuy.scale = new Vector2(25f, 25f);
+            Animation lilGuyAnimation = new Animation(testSpriteSheet, System.TimeSpan.FromMilliseconds(500), new Vector2(25, 25), Vector2.Zero);
+            lilGuy = new AnimatedSprite(lilGuyAnimation, testSpriteSheet);
+            tree.sprite.scale = new Vector2(4.0f);
+
+
         }
 
         protected override void Update(GameTime gameTime)
@@ -58,8 +64,10 @@ namespace The_Fourest_Seven
 
             _spriteBatch.Begin();
             // TODO: Add your drawing code here
-            _spriteBatch.Draw(treeSprite, middleOfScreen, Color.White);
+            //_spriteBatch.Draw(testTreeSprite, middleOfScreen, Color.White);
+            //treeSprite.Draw(_spriteBatch, middleOfScreen);
             lilGuy.Draw(_spriteBatch, middleOfScreen);
+            //_spriteBatch.Draw(lilGuy.content, middleOfScreen, new Rectangle(0,0,25,25), Color.White);
             //_spriteBatch.Draw(testSpriteSheet,middleOfScreen, Color.White);
             _spriteBatch.End();
 

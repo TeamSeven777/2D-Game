@@ -17,29 +17,25 @@ namespace The_Fourest_Seven.lib.Graphics
 
         //This is assuming that the frames get inserted to the
         //list in the proper order
-        public Animation reel { get;set; }
+        public Animation animation { get; set; }
         //public Texture2D currentFrame {get; set; }
         public TimeSpan timeSinceLastFrame { get; set; }
         bool paused = false;
 
-        public AnimatedSprite(Texture2D spriteSheet, Vector2 spriteRegion, Vector2 startPoint)
+        public AnimatedSprite(Animation animation, Texture2D spriteSheet)
         {
-            //I know this is bad, but im using it for now
-            reel = new Animation(spriteSheet, TimeSpan.FromMilliseconds(17), spriteRegion, startPoint);
-            sourceRectangle = reel.frames.Peek();
-            this.content = spriteSheet;
+            this.animation = animation;
+            sourceRectangle = animation.frames.Peek();
+            content = spriteSheet;
+            //position = Vector2.Zero;
+            color = Color.White;
             //default framerate 60
-            
+            //origin = new Vector2(sourceRectangle.Width / 2, sourceRectangle.Height / 2);
+            //rotation = 0;
+            //layerDepth = 0;
+            //effects = SpriteEffects.None;
         }
-        public AnimatedSprite(Texture2D spriteSheet, TimeSpan animationRate, Vector2 spriteRegion, Vector2 startPoint)
-        {
-            //I know this is bad, but im using it for now
-            reel = new Animation(spriteSheet, animationRate, spriteRegion, startPoint);
-            sourceRectangle = reel.frames.Peek();
-            this.content = spriteSheet;
-            //default framerate 60
 
-        }
         public void Update(GameTime gameTime)
         {
             /*if(pauseAnimation()){
@@ -47,21 +43,24 @@ namespace The_Fourest_Seven.lib.Graphics
             *else if(!pauseAnimation()){
             *pause = false;}
             */
-            Debug.WriteLine("Sprite is checking if paused");
+            //Debug.WriteLine("Sprite is checking if paused");
             if (!paused)
             {
-                Debug.WriteLine("Sprite is about to be updated to next frame");
+                //Debug.WriteLine("Sprite is about to be updated to next frame");
                 timeSinceLastFrame += gameTime.ElapsedGameTime;
 
-                if (gameTime.ElapsedGameTime <= reel.frameRate)
+               //Debug.WriteLine("{0}", gameTime.ElapsedGameTime);
+
+                if (timeSinceLastFrame >= animation.frameRate)
                 {
                     Debug.WriteLine("Sprite was updated to next frame");
-                    timeSinceLastFrame -= gameTime.ElapsedGameTime;
-                    sourceRectangle = reel.frames.Dequeue();
-                    reel.frames.Enqueue(sourceRectangle);
+                    Debug.WriteLine("{0}", gameTime.ElapsedGameTime);
+
+                    timeSinceLastFrame -= animation.frameRate;
+                    this.sourceRectangle = animation.frames.Dequeue();
+                    animation.frames.Enqueue(this.sourceRectangle);
                 }
             }
         }
-
     }
 }

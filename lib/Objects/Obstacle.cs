@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using The_Fourest_Seven.lib.Graphics;
 using Rectangle = Microsoft.Xna.Framework.Rectangle;
 
 namespace The_Fourest_Seven.lib.Objects
@@ -14,9 +15,9 @@ namespace The_Fourest_Seven.lib.Objects
     {
         public Rectangle boundingBox { get; set; }
         public Vector2 originPos { get; set; }
-        public Texture2D sprite { get; set; }
+        public Sprite sprite { get; set; }
 
-        public Obstacle(Rectangle boundingBox, Vector2 originPos, Texture2D sprite)
+        public Obstacle(Rectangle boundingBox, Vector2 originPos, Sprite sprite)
         {
             this.originPos = originPos;
             this.sprite = sprite;

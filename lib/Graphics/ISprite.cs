@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace The_Fourest_Seven.lib.Graphics
 {
-    internal interface ISprite
+    public interface ISprite
     {
         //Properties of the sprite
         public Vector2 size { get; set; }

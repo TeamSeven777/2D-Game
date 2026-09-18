@@ -23,12 +23,12 @@ namespace The_Fourest_Seven.lib.Graphics
             this.frames = new Queue<Rectangle>();
             this.frameRate = rate;
 
-            int distance = spriteSheet.Width;
+            int distance = spriteSheet.Height;
             for (int i = (int)startPoint.Y; i < distance; i += (int)spriteRegion.Y)
             {
-                Debug.WriteLine("We added a frame");
-                frames.Enqueue(new Rectangle((int)startPoint.X, (int)startPoint.Y,(int)spriteRegion.X,(int)spriteRegion.Y));
-                startPoint.Y = i;
+                //Debug.WriteLine("We added a frame");
+                frames.Enqueue(new Rectangle((int)startPoint.X, (int)startPoint.Y, (int)spriteRegion.X, ((int)startPoint.Y + (int)spriteRegion.Y)));
+                startPoint.Y += spriteRegion.Y;
             }
 
 
