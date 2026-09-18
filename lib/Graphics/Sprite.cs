@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace The_Fourest_Seven.lib.Graphics
 {
-    internal class Sprite : ISprite
+    public class Sprite : ISprite
     {
         //Properties of the Sprite
         public Vector2 size { get; set; }
@@ -21,9 +21,12 @@ namespace The_Fourest_Seven.lib.Graphics
         public float layerDepth {  get; set; }
         public SpriteEffects effects { get; set; }
 
-        //The actual image and its bounding box
+        //The sprite sheet and its location on the sheet
         public Texture2D content { get; set; }
         public Rectangle sourceRectangle { get; set; }
+
+        public Sprite() 
+        { }
 
         //Constructor must at least have an image to set
         private Sprite(Texture2D image)
@@ -93,7 +96,7 @@ namespace The_Fourest_Seven.lib.Graphics
             origin = new Vector2(image.Width / 2, image.Height / 2);
             this.color = Color.White;
             this.rotation = rotation;
-            this.layerDepth = lay;
+            this.layerDepth = layerDepth;
             effects = SpriteEffects.None;
         }
 
@@ -102,5 +105,7 @@ namespace The_Fourest_Seven.lib.Graphics
         {
             spriteBatch.Draw(this.content, position, sourceRectangle, color, rotation, origin, scale, effects, layerDepth);
         }
+
+
     }
 }

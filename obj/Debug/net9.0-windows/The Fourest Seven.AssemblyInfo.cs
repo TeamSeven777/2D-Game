@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("The Fourest Seven")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+20c07d693459f6693705429c2039288f17f873e3")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+fa7dbe167e8141f1367979517462b7d5e13b4e0c")]
 [assembly: System.Reflection.AssemblyProductAttribute("The Fourest Seven")]
 [assembly: System.Reflection.AssemblyTitleAttribute("The Fourest Seven")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

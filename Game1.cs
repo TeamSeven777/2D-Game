@@ -1,10 +1,9 @@
 ﻿using System.Security.AccessControl;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input
-using lib.Objects
-using System.Drawing;
-using System.Numerics;
+using Microsoft.Xna.Framework.Input;
+using The_Fourest_Seven.lib.Objects;
+using The_Fourest_Seven.lib.Graphics;
 
 namespace The_Fourest_Seven
 {
@@ -12,7 +11,11 @@ namespace The_Fourest_Seven
     {
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
+        private Texture2D treeSprite;
         private IObstacle tree;
+        private Texture2D testSpriteSheet;
+        private AnimatedSprite lilGuy;
+
 
         public Game1()
         {
@@ -23,7 +26,7 @@ namespace The_Fourest_Seven
 
         protected override void Initialize()
         {
-            tree = new IObstacle(new Rectangle(_graphics.Width / 2, _graphics.Height /2), new Vector2(_graphics.Width / 2, _graphics.Height / 2));
+            tree = new Obstacle(new Rectangle(_graphics.GraphicsDevice.Viewport.Width / 2, _graphics.GraphicsDevice.Viewport.Height / 2, 100, 100), new Vector2( 15, 15), treeSprite );
 
             base.Initialize();
         }
@@ -31,8 +34,10 @@ namespace The_Fourest_Seven
         protected override void LoadContent()
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
-
-            
+            treeSprite = Content.Load<Texture2D>("Sprites/testsprite");
+            testSpriteSheet = Content.Load<Texture2D>("Sprites/testspritesheet");
+            lilGuy = new AnimatedSprite(testSpriteSheet, new Vector2(25, 25), Vector2.Zero);
+            lilGuy.scale = new Vector2(25f, 25f);
         }
 
         protected override void Update(GameTime gameTime)
@@ -41,17 +46,21 @@ namespace The_Fourest_Seven
                 Exit();
 
             // TODO: Add your update logic here
-
+            tree.Update(gameTime);
+            lilGuy.Update(gameTime);
             base.Update(gameTime);
         }
 
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(Microsoft.Xna.Framework.Color.CornflowerBlue);
+            Vector2 middleOfScreen = new Vector2(_graphics.GraphicsDevice.Viewport.Width / 2, _graphics.GraphicsDevice.Viewport.Height / 2);
 
             _spriteBatch.Begin();
             // TODO: Add your drawing code here
-
+            _spriteBatch.Draw(treeSprite, middleOfScreen, Color.White);
+            lilGuy.Draw(_spriteBatch, middleOfScreen);
+            //_spriteBatch.Draw(testSpriteSheet,middleOfScreen, Color.White);
             _spriteBatch.End();
 
             base.Draw(gameTime);

@@ -12,15 +12,16 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Remove=".vs\2D-Game\**" />
+    <EmbeddedResource Remove=".vs\2D-Game\**" />
+    <None Remove=".vs\2D-Game\**" />
+  </ItemGroup>
+  <ItemGroup>
     <Compile Include="obj\Debug\net9.0-windows\.NETCoreApp,Version=v9.0.AssemblyAttributes.cs" />
     <Compile Include="obj\Debug\net9.0-windows\The Fourest Seven.AssemblyInfo.cs" />
-    <Compile Include="obj\Release\net9.0-windows\.NETCoreApp,Version=v9.0.AssemblyAttributes.cs" />
-    <Compile Include="obj\Release\net9.0-windows\The Fourest Seven.AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include=".config\dotnet-tools.json" />
-    <Content Include=".vs\2D-Game.slnx\v18\DocumentLayout.backup.json" />
-    <Content Include=".vs\2D-Game.slnx\v18\DocumentLayout.json" />
     <Content Include=".vs\VSWorkspaceState.json" />
     <Content Include="obj\project.assets.json" />
     <Content Include="obj\The Fourest Seven.csproj.nuget.dgspec.json" />
@@ -35,28 +36,15 @@
     <Folder Include="bin\Release\net9.0-windows\" />
     <Folder Include="obj\Debug\net9.0-windows\refint\" />
     <Folder Include="obj\Debug\net9.0-windows\ref\" />
-    <Folder Include="obj\Release\net9.0-windows\refint\" />
-    <Folder Include="obj\Release\net9.0-windows\ref\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include=".vs\2D-Game.slnx\DesignTimeBuild\.dtbcache.v2" />
-    <None Include=".vs\2D-Game.slnx\FileContentIndex\29b47290-fd6e-418b-8948-3d50a5aa34ee.vsidx" />
-    <None Include=".vs\2D-Game.slnx\FileContentIndex\45a99f2d-70ab-4585-acc2-3d50ee5ec316.vsidx" />
-    <None Include=".vs\2D-Game.slnx\FileContentIndex\7346e7fa-fdd1-4992-a42d-443aa205e11b.vsidx" />
-    <None Include=".vs\2D-Game.slnx\FileContentIndex\ba8da28b-603d-454f-857b-8ba24ad3029f.vsidx" />
-    <None Include=".vs\2D-Game.slnx\FileContentIndex\fb26a8d7-9833-4bf8-af96-ade9cc7b1f86.vsidx" />
-    <None Include=".vs\2D-Game.slnx\v18\.futdcache.v2" />
-    <None Include=".vs\2D-Game\CopilotIndices\18.9.1319.62376\SemanticSymbols.db" />
     <None Include=".vs\slnx.sqlite" />
     <None Include=".vs\The Fourest Seven.slnx\FileContentIndex\48a20773-f3d7-40ea-8a98-12bca74346a2.vsidx" />
-    <None Include="2D-Game.slnx" />
     <None Include="obj\Debug\net9.0-windows\The Fourest Seven.AssemblyInfoInputs.cache" />
     <None Include="obj\Debug\net9.0-windows\The Fourest Seven.assets.cache" />
     <None Include="obj\Debug\net9.0-windows\The Fourest Seven.csproj.AssemblyReference.cache" />
     <None Include="obj\Debug\net9.0-windows\The Fourest Seven.GeneratedMSBuildEditorConfig.editorconfig" />
     <None Include="obj\project.nuget.cache" />
-    <None Include="obj\Release\net9.0-windows\The Fourest Seven.AssemblyInfoInputs.cache" />
-    <None Include="obj\Release\net9.0-windows\The Fourest Seven.GeneratedMSBuildEditorConfig.editorconfig" />
     <None Include="obj\The Fourest Seven.csproj.nuget.g.props" />
     <None Include="obj\The Fourest Seven.csproj.nuget.g.targets" />
   </ItemGroup>

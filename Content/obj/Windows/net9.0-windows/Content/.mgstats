@@ -1,0 +1,3 @@
+Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
+"C:/Users/jpfri/source/repos/TeamSeven777/2D-Game/Content/Sprites/testsprite.png","C:/Users/jpfri/source/repos/TeamSeven777/2D-Game/Content/bin/Windows/Content/Sprites/testsprite.xnb","TextureProcessor","Texture2DContent",296,5085,0.1982667
+"C:/Users/jpfri/source/repos/TeamSeven777/2D-Game/Content/Sprites/testspritesheet.png","C:/Users/jpfri/source/repos/TeamSeven777/2D-Game/Content/bin/Windows/Content/Sprites/testspritesheet.xnb","TextureProcessor","Texture2DContent",1777,37585,0.1153627
