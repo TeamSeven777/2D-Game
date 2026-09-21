@@ -315,11 +315,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\edwei\\source\\repos\\2D-Game\\2D-Game\\2D-Game.csproj",
+      "projectUniqueName": "C:\\Users\\edwei\\OneDrive\\Documents\\GitHub\\2D-Game\\2D-Game\\2D-Game.csproj",
       "projectName": "2D-Game",
-      "projectPath": "C:\\Users\\edwei\\source\\repos\\2D-Game\\2D-Game\\2D-Game.csproj",
+      "projectPath": "C:\\Users\\edwei\\OneDrive\\Documents\\GitHub\\2D-Game\\2D-Game\\2D-Game.csproj",
       "packagesPath": "C:\\Users\\edwei\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\edwei\\source\\repos\\2D-Game\\2D-Game\\obj\\",
+      "outputPath": "C:\\Users\\edwei\\OneDrive\\Documents\\GitHub\\2D-Game\\2D-Game\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\edwei\\AppData\\Roaming\\NuGet\\NuGet.Config",
