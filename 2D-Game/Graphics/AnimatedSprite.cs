@@ -1,16 +1,14 @@
-﻿using Microsoft.VisualBasic.Logging;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using SharpDX.DXGI;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using The_Fourest_Seven.lib.Graphics;
 
-namespace The_Fourest_Seven.lib.Graphics
+
+namespace _2D_Game
 {
     public class AnimatedSprite : Sprite
     {

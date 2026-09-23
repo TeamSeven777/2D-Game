@@ -5,9 +5,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using The_Fourest_Seven.lib.Graphics;
 
-namespace The_Fourest_Seven.lib.Objects
+namespace _2D_Game
 {
     internal interface IObstacle
     {

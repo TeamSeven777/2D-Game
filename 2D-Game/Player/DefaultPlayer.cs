@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,7 @@ namespace _2D_Game
 {
     public class DefaultPlayer : IPlayer
     {
-        //private Sprite/AnimatedSprite PlayerSprite;
+        private Sprite PlayerSprite; //change later
 
 
         public Vector2 Position;
@@ -21,11 +22,13 @@ namespace _2D_Game
         public int MaxHealth { get; set; }
 
 
-        public DefaultPlayer()
+        public DefaultPlayer(Texture2D texture)
         {
             WalkSpeed = 5.0f;
             MaxHealth = 5;
             Health = MaxHealth;
+
+            PlayerSprite = new Sprite(texture);
 
             Position = new Vector2(0, 0);
             PreviousPosition = Position;
@@ -60,6 +63,10 @@ namespace _2D_Game
             Health = Health - attackPoints;
             if (Health < 0) Health = 0;
             //call damage animation
+        }
+        public void Draw(SpriteBatch sprBatch)
+        {
+            PlayerSprite.Draw(sprBatch, Position);
         }
     }
 }

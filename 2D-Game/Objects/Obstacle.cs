@@ -6,10 +6,9 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using The_Fourest_Seven.lib.Graphics;
 using Rectangle = Microsoft.Xna.Framework.Rectangle;
 
-namespace The_Fourest_Seven.lib.Objects
+namespace _2D_Game
 {
     internal class Obstacle : IObstacle
     {

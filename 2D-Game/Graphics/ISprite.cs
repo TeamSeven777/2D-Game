@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace The_Fourest_Seven.lib.Graphics
+namespace _2D_Game
 {
     public interface ISprite
     {
