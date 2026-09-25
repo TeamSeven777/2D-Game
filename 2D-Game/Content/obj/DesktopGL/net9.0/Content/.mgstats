@@ -1,2 +1,7 @@
 Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
-"C:/Users/edwei/OneDrive/Documents/GitHub/2D-Game/2D-Game/Content/Images/logo.png","C:/Users/edwei/OneDrive/Documents/GitHub/2D-Game/2D-Game/Content/bin/DesktopGL/Content/Images/logo.xnb","TextureProcessor","Texture2DContent",16734,311381,0.1333278
+"C:/Users/schee/OneDrive/Desktop/2D-Game/2D-Game/Content/Images/Berry.png","C:/Users/schee/OneDrive/Desktop/2D-Game/2D-Game/Content/bin/DesktopGL/Content/Images/Berry.xnb","TextureProcessor","Texture2DContent",384,1109,0.1871597
+"C:/Users/schee/OneDrive/Desktop/2D-Game/2D-Game/Content/Images/Explosive.png","C:/Users/schee/OneDrive/Desktop/2D-Game/2D-Game/Content/bin/DesktopGL/Content/Images/Explosive.xnb","TextureProcessor","Texture2DContent",302,1109,0.0053715
+"C:/Users/schee/OneDrive/Desktop/2D-Game/2D-Game/Content/Images/Key.png","C:/Users/schee/OneDrive/Desktop/2D-Game/2D-Game/Content/bin/DesktopGL/Content/Images/Key.xnb","TextureProcessor","Texture2DContent",282,1109,0.0053184
+"C:/Users/schee/OneDrive/Desktop/2D-Game/2D-Game/Content/Images/Log.png","C:/Users/schee/OneDrive/Desktop/2D-Game/2D-Game/Content/bin/DesktopGL/Content/Images/Log.xnb","TextureProcessor","Texture2DContent",334,1109,0.0036483
+"C:/Users/schee/OneDrive/Desktop/2D-Game/2D-Game/Content/Images/logo.png","C:/Users/schee/OneDrive/Desktop/2D-Game/2D-Game/Content/bin/DesktopGL/Content/Images/logo.xnb","TextureProcessor","Texture2DContent",16734,311381,0.2210639
+"C:/Users/schee/OneDrive/Desktop/2D-Game/2D-Game/Content/Images/Pebble.png","C:/Users/schee/OneDrive/Desktop/2D-Game/2D-Game/Content/bin/DesktopGL/Content/Images/Pebble.xnb","TextureProcessor","Texture2DContent",195,1109,0.0046665

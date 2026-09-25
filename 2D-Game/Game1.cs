@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System.Collections.Generic;
 using System.Diagnostics;
 
 namespace _2D_Game
@@ -18,11 +19,15 @@ namespace _2D_Game
 
         private IController controller;
 
+        public ItemInventory Inventory { get; private set; }
+
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
+
+            Inventory = new ItemInventory();
         }
 
         protected override void Initialize()
@@ -57,7 +62,8 @@ namespace _2D_Game
 
             player = new DefaultPlayer(Content.Load<Texture2D>("images/logo"));
 
-
+            Inventory.LoadContent(Content);
+            
             // TODO: use this.Content to load your game content here
         }
 
@@ -69,6 +75,7 @@ namespace _2D_Game
             // TODO: Add your update logic here
             player.Update(gameTime);
             controller.Update();
+            Inventory.Update(gameTime);
 
             base.Update(gameTime);
         }
@@ -81,6 +88,7 @@ namespace _2D_Game
             _spriteBatch.Begin();
 
             player.Draw(_spriteBatch);
+            Inventory.Draw(_spriteBatch);
 
             _spriteBatch.End();
 

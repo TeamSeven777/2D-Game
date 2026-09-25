@@ -9,7 +9,7 @@ namespace _2D_Game
 {
     public class NextItemCommand : ICommand
     {
-        private Game1 myGame;
+        private readonly Game1 myGame;
 
         public NextItemCommand(Game1 game)
         {
@@ -18,8 +18,7 @@ namespace _2D_Game
 
         public void Execute()
         {
-            //TODO
+            myGame.Inventory.Next();
         }
-
     }
 }

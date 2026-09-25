@@ -4,9 +4,19 @@
   <Platform>DesktopGL</Platform>
   <Config />
   <SourceFiles>
-    <File>C:/Users/edwei/OneDrive/Documents/GitHub/2D-Game/2D-Game/Content/Images/logo.png</File>
+    <File>C:/Users/schee/OneDrive/Desktop/2D-Game/2D-Game/Content/Images/Berry.png</File>
+    <File>C:/Users/schee/OneDrive/Desktop/2D-Game/2D-Game/Content/Images/Explosive.png</File>
+    <File>C:/Users/schee/OneDrive/Desktop/2D-Game/2D-Game/Content/Images/Key.png</File>
+    <File>C:/Users/schee/OneDrive/Desktop/2D-Game/2D-Game/Content/Images/Log.png</File>
+    <File>C:/Users/schee/OneDrive/Desktop/2D-Game/2D-Game/Content/Images/logo.png</File>
+    <File>C:/Users/schee/OneDrive/Desktop/2D-Game/2D-Game/Content/Images/Pebble.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
   </DestFiles>
 </SourceFileCollection>
