@@ -18,7 +18,7 @@ namespace _2D_Game
 
         public void Execute()
         {
-            //TODO
+            myGame.Enemies.Previous();
         }
 
     }

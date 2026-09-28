@@ -32,6 +32,7 @@ namespace _2D_Game
         private Dictionary<IStateMachine.Direction, AnimatedSprite> playerSpriteSet;
         private IController controller;
         public ItemInventory Inventory { get; private set; }
+        public EnemyManager Enemies { get; private set; }
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
@@ -39,6 +40,7 @@ namespace _2D_Game
             IsMouseVisible = true;
 
             Inventory = new ItemInventory();
+            Enemies = new EnemyManager();
         }
 
         protected override void Initialize()
@@ -102,6 +104,7 @@ namespace _2D_Game
 
 
             Inventory.LoadContent(Content);
+            Enemies.LoadContent(Content);
 
             blockSpriteSheet = Content.Load<Texture2D>("Sprites/testblocks");
 
@@ -122,6 +125,7 @@ namespace _2D_Game
             player.Update(gameTime);
             controller.Update();
             Inventory.Update(gameTime);
+            Enemies.Update(gameTime);
 
             base.Update(gameTime);
         }
@@ -137,6 +141,7 @@ namespace _2D_Game
 
             Inventory.Draw(_spriteBatch);
             block.Draw(_spriteBatch);
+            Enemies.Draw(_spriteBatch);
 
             Vector2 middleOfScreen = new Vector2(_spriteBatch.GraphicsDevice.Viewport.Width/2 , _spriteBatch.GraphicsDevice.Viewport.Height/2);
             //playerDownSpr.Draw(_spriteBatch, middleOfScreen);
