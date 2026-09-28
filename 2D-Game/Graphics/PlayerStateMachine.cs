@@ -14,12 +14,12 @@ namespace _2D_Game
         //Here for other animations of the player
         //private enum 
         public Texture2D spriteSheet { get; private set; }
-        public AnimatedSprite CurrPlayerSprite { get; private set; }
+        public ISprite CurrPlayerSprite { get; private set; }
 
-        private AnimatedSprite PlayerUseUpSpr;
-        private AnimatedSprite PlayerUseDownSpr;
-        private AnimatedSprite PlayerUseLeftSpr;
-        private AnimatedSprite PlayerUseRightSpr;
+        private Sprite PlayerUseUpSpr;
+        private Sprite PlayerUseDownSpr;
+        private Sprite PlayerUseLeftSpr;
+        private Sprite PlayerUseRightSpr;
         private Animation animationPlayerUp;
         private Animation animationPlayerDown;
         private Animation animationPlayerLeft;
@@ -56,14 +56,14 @@ namespace _2D_Game
             animationPlayerRight = new Animation(spriteSheet, TimeSpan.FromMilliseconds(125), new Vector2(17, 17), new Vector2(34, 10), 34);
 
             animationAxePlayerDownSpr = new Animation(spriteSheet, TimeSpan.FromMilliseconds(125), new Vector2(17, 28), new Vector2(0, 47), 68);
-            animationAxePlayerUpSpr = new Animation(spriteSheet, TimeSpan.FromMilliseconds(125), new Vector2(17, 28), new Vector2(0, 78), 68);
+            animationAxePlayerUpSpr = new Animation(spriteSheet, TimeSpan.FromMilliseconds(125), new Vector2(17, 28), new Vector2(0, 97), 68);
             animationAxePlayerLeftSpr = new Animation(spriteSheet, TimeSpan.FromMilliseconds(125), new Vector2(28, 17), new Vector2(0, 78), 68);
-            animationAxePlayerRightSpr = new Animation(spriteSheet, TimeSpan.FromMilliseconds(125), new Vector2(28, 17), new Vector2(0, 97), 68);
+            animationAxePlayerRightSpr = new Animation(spriteSheet, TimeSpan.FromMilliseconds(125), new Vector2(28, 17), new Vector2(0, 78), 68);
 
             animationKnifePlayerDownSpr = new Animation(spriteSheet, TimeSpan.FromMilliseconds(125), new Vector2(17, 28), new Vector2(94, 47), 68);
-            animationKnifePlayerUpSpr = new Animation(spriteSheet, TimeSpan.FromMilliseconds(125), new Vector2(17, 28), new Vector2(84, 78), 68);
+            animationKnifePlayerUpSpr = new Animation(spriteSheet, TimeSpan.FromMilliseconds(125), new Vector2(17, 28), new Vector2(84, 97), 68);
             animationKnifePlayerLeftSpr = new Animation(spriteSheet, TimeSpan.FromMilliseconds(125), new Vector2(28, 17), new Vector2(84, 78), 68);
-            animationKnifePlayerRightSpr = new Animation(spriteSheet, TimeSpan.FromMilliseconds(125), new Vector2(28, 17), new Vector2(94, 97), 68);
+            animationKnifePlayerRightSpr = new Animation(spriteSheet, TimeSpan.FromMilliseconds(125), new Vector2(28, 17), new Vector2(94, 78), 68);
 
 
             playerDownSpr = new AnimatedSprite(animationPlayerDown, spriteSheet);
@@ -77,8 +77,11 @@ namespace _2D_Game
             //PlayerHurtSpr for when or if its needed; 
 
             AxePlayerDownSpr = new AnimatedSprite(animationAxePlayerDownSpr, spriteSheet);
+            AxePlayerDownSpr.Scale = new Vector2(4.0f);
             AxePlayerUpSpr = new AnimatedSprite(animationAxePlayerUpSpr, spriteSheet);
+            AxePlayerUpSpr.Scale = new Vector2(4.0f);
             AxePlayerRightSpr = new AnimatedSprite(animationAxePlayerRightSpr, spriteSheet);
+            playerDownSpr.Scale = new Vector2(4.0f);
             AxePlayerLeftSpr = new AnimatedSprite(animationAxePlayerLeftSpr, spriteSheet, SpriteEffects.FlipHorizontally);
 
             KnifePlayerDownSpr = new AnimatedSprite(animationKnifePlayerDownSpr, spriteSheet);
@@ -87,10 +90,10 @@ namespace _2D_Game
             KnifePlayerLeftSpr = new AnimatedSprite(animationKnifePlayerLeftSpr, spriteSheet, SpriteEffects.FlipHorizontally);
 
             //These dont compile, something to do with the explicit cast
-            //PlayerUseDownSpr = (AnimatedSprite) new Sprite(spriteSheet, new Rectangle(107, 10, 17, 17), new Vector2(4.0f));
-            //PlayerUseUpSpr =(AnimatedSprite) tempUp;
-            //PlayerUseLeftSpr = (AnimatedSprite) new Sprite(spriteSheet, new Rectangle(123, 10, 17, 17), new Vector2(4.0f), SpriteEffects.FlipHorizontally);
-            //PlayerUseRightSpr = (AnimatedSprite) new Sprite(spriteSheet, new Rectangle(123, 10, 17, 17), new Vector2(4.0f));
+            PlayerUseDownSpr = new Sprite(spriteSheet, new Rectangle(107, 10, 17, 17), new Vector2(4.0f));
+            PlayerUseUpSpr = new Sprite(spriteSheet, new Rectangle(140, 10, 17, 17), new Vector2(4.0f));
+            PlayerUseLeftSpr = new Sprite(spriteSheet, new Rectangle(123, 10, 17, 17), new Vector2(4.0f), SpriteEffects.FlipHorizontally);
+            PlayerUseRightSpr = new Sprite(spriteSheet, new Rectangle(123, 10, 17, 17), new Vector2(4.0f));
 
 
             toolEquiped = new NoTool();

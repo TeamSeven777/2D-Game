@@ -179,6 +179,8 @@ namespace _2D_Game
         
         }
 
+        public void Update(GameTime gt) { }
+
 
     }
 }

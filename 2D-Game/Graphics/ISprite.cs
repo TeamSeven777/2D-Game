@@ -24,5 +24,7 @@ namespace _2D_Game
         public Rectangle SourceRectangle {  get; set; }
 
         public void Draw(SpriteBatch spriteBatch, Vector2 position);
+
+        public void Update(GameTime gt);
     }
 }

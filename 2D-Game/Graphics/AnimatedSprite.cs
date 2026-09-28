@@ -31,6 +31,7 @@ namespace _2D_Game
             SourceRectangle = animation.Frames.Peek();
             Content = spriteSheet;
             Position = Vector2.Zero;
+            Scale = Vector2.One;
             Color = Color.White;
             //default framerate 60
             Origin = new Vector2(SourceRectangle.Width / 2, SourceRectangle.Height / 2);
@@ -45,6 +46,7 @@ namespace _2D_Game
             SourceRectangle = animation.Frames.Peek();
             Content = spriteSheet;
             Position = Vector2.Zero;
+            Scale = Vector2.One;
             Color = Color.White;
             //default framerate 60
             Origin = new Vector2(SourceRectangle.Width / 2, SourceRectangle.Height / 2);
