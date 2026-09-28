@@ -18,11 +18,11 @@ namespace _2D_Game
         public void LoadContent(ContentManager content)
         {
             // Add all items here
-            items.Add(new Item("Log", content.Load<Texture2D>("images/Log")));
-            items.Add(new Item("Berry", content.Load<Texture2D>("images/Berry")));
-            items.Add(new Item("Key", content.Load<Texture2D>("images/Key")));
-            items.Add(new Item("Explosive", content.Load<Texture2D>("images/Explosive")));
-            items.Add(new Item("Pebble", content.Load<Texture2D>("images/Pebble")));
+            items.Add(new Item("Log", content.Load<Texture2D>("Images/Log")));
+            items.Add(new Item("Berry", content.Load<Texture2D>("Images/Berry")));
+            items.Add(new Item("Key", content.Load<Texture2D>("Images/Key")));
+            items.Add(new Item("Explosive", content.Load<Texture2D>("Images/Explosive")));
+            items.Add(new Item("Pebble", content.Load<Texture2D>("Images/Pebble")));
         }
 
         public void Update(GameTime gameTime)
