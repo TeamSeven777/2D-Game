@@ -35,8 +35,20 @@ namespace _2D_Game
             Scale = Vector2.One;
             Position = Vector2.Zero;
             SourceRectangle = image.Bounds;
-            //origin = new Vector2(image.Width / 2, image.Height / 2);
-            Origin = Vector2.Zero;
+            Origin = new Vector2(image.Width / 2, image.Height / 2);
+            Color = Color.White;
+            Rotation = 0.0f;
+            LayerDepth = 0.0f;
+            Effects = SpriteEffects.None;
+        }
+
+        public Sprite(Texture2D image, Rectangle sourceRectangle)
+        {
+            this.Content = image;
+            Scale = Vector2.One;
+            Position = Vector2.Zero;
+            SourceRectangle = sourceRectangle;
+            Origin = new Vector2(image.Width / 2, image.Height / 2);
             Color = Color.White;
             Rotation = 0.0f;
             LayerDepth = 0.0f;
@@ -110,11 +122,9 @@ namespace _2D_Game
 
         public void Draw(SpriteBatch spriteBatch, Vector2 position)
         {
-            //Debug.WriteLine("Drawing {0} at {1}, {2}", this.content.Name, position.X, position.Y);
-            spriteBatch.Draw(this.Content, position, SourceRectangle, Color, Rotation, Origin, Scale, Effects, LayerDepth);
-            //spriteBatch.Draw(this.content, position, new Rectangle(0,0,25,25), color, rotation, origin, scale, effects, layerDepth);
-            //spriteBatch.Draw(this.content, position, color);
-            //spriteBatch.Draw(this.content, position, sourceRectangle, color);
+
+            spriteBatch.Draw(this.Content, position, SourceRectangle, Color, Rotation, Origin, Scale, Effects, LayerDepth);  
+        
         }
 
 

@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace _2D_Game
 {
-    public class AnimatedSpriteStateMachine
+    public class PlayerStateMachine : IStateMachine
     {
-        public Dictionary<Direction, AnimatedSprite> spriteSet;
-        public enum Direction {Up, Down, Left, Right};
+
         //Here for other animations of the player
         //private enum 
 
-        public AnimatedSprite getDirectionSprite(Direction direction)
+
+        public AnimatedSprite GetDirectionalSprite(IStateMachine.Direction direction, Dictionary<IStateMachine.Direction, AnimatedSprite> spriteSet)
         {
             if (spriteSet.ContainsKey(direction))
             {
@@ -21,9 +21,8 @@ namespace _2D_Game
             }
             else
             {
-                return spriteSet[Direction.Up];
+                return spriteSet[IStateMachine.Direction.Down];
             }
-         
         }
 
         // Then other functions for other states etc...

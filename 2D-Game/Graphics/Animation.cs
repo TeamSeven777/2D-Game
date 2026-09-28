@@ -24,7 +24,7 @@ namespace _2D_Game
             this.Frames = new Queue<Rectangle>();
             this.FrameRate = rate;
 
-            int distance = spriteSheet.Height;
+            int distance = spriteSheet.Width;
             for (int i = (int)startPoint.X; i < distance; i += (int)spriteRegion.X)
             {
                 //Debug.WriteLine("We added a frame");
