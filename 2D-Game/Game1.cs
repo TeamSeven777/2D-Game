@@ -38,14 +38,15 @@ namespace _2D_Game
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
 
-            Inventory = new ItemInventory();
-            Enemies = new EnemyManager();
+            
         }
 
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
-            
+            Inventory = new ItemInventory();
+            Enemies = new EnemyManager();
+            blockSpriteSet = new Queue<Sprite>();
+
             controller = new KeyboardController();
             controller.RegisterCommand(Keys.W, new UpCommand(this));
             controller.RegisterCommand(Keys.A, new LeftCommand(this));
@@ -55,7 +56,9 @@ namespace _2D_Game
             controller.RegisterCommand(Keys.R, new ResetCommand(this));
             controller.RegisterCommand(Keys.Z, new AttackCommand(this));
             controller.RegisterCommand(Keys.N, new AttackCommand(this));
-            //TODO UseItemCommands, finish implementing the commands
+  
+            controller.RegisterCommand(Keys.D1, new UseAxeCommand(this));
+            controller.RegisterCommand(Keys.D2, new UseSlingshotCommand(this));
             controller.RegisterCommand(Keys.E, new DamageCommand(this));
             controller.RegisterCommand(Keys.T, new PreviousBlockCommand(this));
             controller.RegisterCommand(Keys.Y, new NextBlockCommand(this));
@@ -63,7 +66,7 @@ namespace _2D_Game
             controller.RegisterCommand(Keys.I, new NextItemCommand(this));
             controller.RegisterCommand(Keys.O, new PreviousCharacterCommand(this));
             controller.RegisterCommand(Keys.P, new NextCharacterCommand(this));
-            blockSpriteSet = new Queue<Sprite>();
+            
 
 
             base.Initialize();
@@ -121,6 +124,7 @@ namespace _2D_Game
             controller.Update();
             Inventory.Update(gameTime);
             Enemies.Update(gameTime);
+            block.Update(gameTime);
 
             base.Update(gameTime);
         }
@@ -129,7 +133,7 @@ namespace _2D_Game
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            // TODO: Add your drawing code here
+
             _spriteBatch.Begin();
 
             player.Draw(_spriteBatch);
@@ -138,7 +142,7 @@ namespace _2D_Game
             block.Draw(_spriteBatch);
             Enemies.Draw(_spriteBatch);
 
-            Vector2 middleOfScreen = new Vector2(_spriteBatch.GraphicsDevice.Viewport.Width/2 , _spriteBatch.GraphicsDevice.Viewport.Height/2);
+           // Vector2 middleOfScreen = new Vector2(_spriteBatch.GraphicsDevice.Viewport.Width/2 , _spriteBatch.GraphicsDevice.Viewport.Height/2);
             //playerDownSpr.Draw(_spriteBatch, middleOfScreen);
             //_spriteBatch.Draw(playerDownSpr.Content, middleOfScreen, new Rectangle(0,0,25,25), Color.White);
 

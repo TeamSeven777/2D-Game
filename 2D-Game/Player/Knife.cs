@@ -14,7 +14,7 @@ namespace _2D_Game
         }
         public void Use()
         {
-            //TODO connect to player state machine to properly execute animation
+            //TODO add proper function
         }
     }
 }

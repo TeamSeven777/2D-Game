@@ -13,8 +13,8 @@ namespace _2D_Game
         {
             return Tool.Slingshot;
         }
-        public void Use() { 
-            //TODO connect to player state to appropriately update animations
+        public void Use() {
+            //TODO add proper function
         }
-}
+    }
 }

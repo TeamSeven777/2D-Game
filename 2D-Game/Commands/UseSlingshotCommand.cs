@@ -7,19 +7,20 @@ using System.Windows.Input;
 
 namespace _2D_Game
 {
-    public class DamageCommand : ICommand
+    public class UseSlingshotCommand : ICommand
     {
         private Game1 myGame;
 
-        public DamageCommand(Game1 game)
+        public UseSlingshotCommand(Game1 game)
         {
             myGame = game;
         }
 
         public void Execute()
         {
-            myGame.player.TakeDamage(1); //modify how much damage taken later
+            //TODO
+            myGame.player.UseTool(Tool.Slingshot); //default weapon attack
         }
-        
+
     }
 }

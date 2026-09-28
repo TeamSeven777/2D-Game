@@ -9,7 +9,7 @@ namespace _2D_Game
     {
         private readonly List<IItem> items = new();
         private int currentIndex = 0;
-        private readonly Vector2 drawPosition = new Vector2(600, 200);
+        private readonly Vector2 drawPosition = new Vector2(300, 200);
 
         // Cooldown vars
         private double cooldownTimer = 0;

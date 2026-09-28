@@ -12,8 +12,8 @@ namespace _2D_Game
         {
             return Tool.Axe;
         }
-        public void Use() { 
-            //TODO connect to player for proper animations
+        public void Use() {
+            //TODO add proper function
         }
-}
+    }
 }
