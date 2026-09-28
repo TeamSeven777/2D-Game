@@ -9,6 +9,10 @@ namespace _2D_Game
 {
     public class Slingshot : ITool
 {
+        public Tool GetTool()
+        {
+            return Tool.Slingshot;
+        }
         public void Use() { 
             //TODO connect to player state to appropriately update animations
         }

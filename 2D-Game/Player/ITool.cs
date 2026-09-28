@@ -8,6 +8,7 @@ namespace _2D_Game
 {
     public interface ITool
 {
+        Tool GetTool();
         void Use();
 }
 }

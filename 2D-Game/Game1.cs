@@ -29,7 +29,6 @@ namespace _2D_Game
         private AnimatedSprite playerRightSpr;
         private Queue<Sprite> blockSpriteSet;
         private Texture2D blockSpriteSheet;
-        private Dictionary<IStateMachine.Direction, AnimatedSprite> playerSpriteSet;
         private IController controller;
         public ItemInventory Inventory { get; private set; }
         public EnemyManager Enemies { get; private set; }
@@ -77,8 +76,7 @@ namespace _2D_Game
 
             spriteSheet = Content.Load<Texture2D>("Sprites/testspritesheet");
 
-            playerSpriteSet = new Dictionary<IStateMachine.Direction, AnimatedSprite>();
-
+            //move these to player state machine?
             animationPlayerDown = new Animation(spriteSheet, TimeSpan.FromMilliseconds(125), new Vector2(25, 25), Vector2.Zero, spriteSheet.Width, Animation.Style.Walking);
             animationPlayerUp = new Animation(spriteSheet, TimeSpan.FromMilliseconds(125), new Vector2(25, 25), new Vector2(0, 25), spriteSheet.Width, Animation.Style.Walking);
             animationPlayerLeft = new Animation(spriteSheet, TimeSpan.FromMilliseconds(125), new Vector2(25, 25), new Vector2(0, 50), spriteSheet.Width, Animation.Style.Walking);
@@ -95,12 +93,9 @@ namespace _2D_Game
 
             playerRightSpr = new AnimatedSprite(animationPlayerRight, spriteSheet);
             playerRightSpr.Scale = new Vector2(4.0f);
-
-            playerSpriteSet.Add(IStateMachine.Direction.Down, playerDownSpr);
-            playerSpriteSet.Add(IStateMachine.Direction.Up, playerUpSpr);
-            playerSpriteSet.Add(IStateMachine.Direction.Left, playerLeftSpr);
-            playerSpriteSet.Add(IStateMachine.Direction.Right, playerRightSpr);
-            player = new DefaultPlayer(playerSpriteSet);
+            //
+           
+            player = new DefaultPlayer(spriteSheet);
 
 
             Inventory.LoadContent(Content);

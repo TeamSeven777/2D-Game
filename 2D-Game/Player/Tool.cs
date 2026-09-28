@@ -1,0 +1,1 @@
+﻿public enum Tool {Knife, Axe, Slingshot, None };

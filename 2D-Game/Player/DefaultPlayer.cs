@@ -10,11 +10,11 @@ namespace _2D_Game
 {
     public class DefaultPlayer : IPlayer
     {
-        private Sprite PlayerSprite; //change later
 
-        public IStateMachine stateMachine;
-        public Dictionary<IStateMachine.Direction, AnimatedSprite> spriteSet;
-        public AnimatedSprite defaultSprite;
+        public PlayerStateMachine stateMachine;
+        //  public AnimatedSprite defaultSprite;
+        
+
         public Vector2 Position;
         public Vector2 PreviousPosition;
         private GameTime gameTime { get; set; }
@@ -23,14 +23,12 @@ namespace _2D_Game
         public int MaxHealth { get; set; }
 
 
-        public DefaultPlayer(Dictionary<IStateMachine.Direction, AnimatedSprite> spriteSet)
+        public DefaultPlayer(Texture2D playerSpriteSheet)
         {
             WalkSpeed = 5.0f;
             MaxHealth = 5;
             Health = MaxHealth;
-            stateMachine = new PlayerStateMachine();
-            defaultSprite = spriteSet.First().Value;
-            this.spriteSet = spriteSet;
+            stateMachine = new PlayerStateMachine(playerSpriteSheet);
             Position = new Vector2(0, 0);
             PreviousPosition = Position;
         }
@@ -39,42 +37,45 @@ namespace _2D_Game
         {
             gameTime = gt;
             PreviousPosition = Position;
-            defaultSprite.Update(gt);
+            stateMachine.Update(gt);
         }
 
         public void Draw(SpriteBatch sprbatch)
         {
-            defaultSprite.Draw(sprbatch, Position);
+            stateMachine.PlayerSprite.Draw(sprbatch, Position);
         }
 
         public void MoveLeft()
         {
             if(Position.X > 0)
                 Position.X -= WalkSpeed;
-            defaultSprite = stateMachine.GetDirectionalSprite(IStateMachine.Direction.Left, spriteSet);
+            stateMachine.ChangeDirection(Direction.Left);
             //call a method of PlayerSprite to update/animate the sprite
         }
         public void MoveRight()
         {
                 Position.X += WalkSpeed;
-            defaultSprite = stateMachine.GetDirectionalSprite(IStateMachine.Direction.Right, spriteSet);
+            stateMachine.ChangeDirection(Direction.Right);
         }
         public void MoveUp()
         {
                 Position.Y -= WalkSpeed;
-            defaultSprite = stateMachine.GetDirectionalSprite(IStateMachine.Direction.Up,spriteSet);
+            stateMachine.ChangeDirection(Direction.Up);
         }
         public void MoveDown()
         {
                 Position.Y += WalkSpeed;
-            defaultSprite = stateMachine.GetDirectionalSprite(IStateMachine.Direction.Down,spriteSet);
+            stateMachine.ChangeDirection(Direction.Down);
         }
 
         public void TakeDamage(int attackPoints)
         {
             Health = Health - attackPoints;
             if (Health < 0) Health = 0;
-            //call damage animation
+            stateMachine.BeDamaged(true);
+        }
+        public void UseTool(Tool tool) { 
+            stateMachine.UseTool(tool);
         }
       
     }
