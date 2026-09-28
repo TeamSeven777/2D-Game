@@ -37,8 +37,10 @@ namespace _2D_Game
 
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
-            
+            Inventory = new ItemInventory();
+            Enemies = new EnemyManager();
+            blockSpriteSet = new Queue<Sprite>();
+
             controller = new KeyboardController();
             controller.RegisterCommand(Keys.W, new UpCommand(this));
             controller.RegisterCommand(Keys.A, new LeftCommand(this));
@@ -142,6 +144,7 @@ namespace _2D_Game
 
 
             Inventory.LoadContent(Content);
+            Enemies.LoadContent(Content);
 
             blockSpriteSheet = Content.Load<Texture2D>("Sprites/testblocks");
 
@@ -172,15 +175,16 @@ namespace _2D_Game
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            // TODO: Add your drawing code here
+
             _spriteBatch.Begin();
 
             player.Draw(_spriteBatch);
             Enemies.Draw(_spriteBatch);
             Inventory.Draw(_spriteBatch);
             block.Draw(_spriteBatch);
+            Enemies.Draw(_spriteBatch);
 
-            Vector2 middleOfScreen = new Vector2(_spriteBatch.GraphicsDevice.Viewport.Width/2 , _spriteBatch.GraphicsDevice.Viewport.Height/2);
+           // Vector2 middleOfScreen = new Vector2(_spriteBatch.GraphicsDevice.Viewport.Width/2 , _spriteBatch.GraphicsDevice.Viewport.Height/2);
             //playerDownSpr.Draw(_spriteBatch, middleOfScreen);
             //_spriteBatch.Draw(playerDownSpr.Content, middleOfScreen, new Rectangle(0,0,25,25), Color.White);
 

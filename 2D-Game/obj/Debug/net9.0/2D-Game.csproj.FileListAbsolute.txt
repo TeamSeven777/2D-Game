@@ -79,3 +79,14 @@ C:\Users\schee\OneDrive\Desktop\2D-Game\2D-Game\bin\Debug\net9.0\Content\Images\
 C:\Users\schee\OneDrive\Desktop\2D-Game\2D-Game\bin\Debug\net9.0\Content\Images\Key.xnb
 C:\Users\schee\OneDrive\Desktop\2D-Game\2D-Game\bin\Debug\net9.0\Content\Images\Log.xnb
 C:\Users\schee\OneDrive\Desktop\2D-Game\2D-Game\bin\Debug\net9.0\Content\Images\Pebble.xnb
+C:\Users\edwei\OneDrive\Documents\GitHub\2D-Game\2D-Game\bin\Debug\net9.0\Content\Images\Berry.xnb
+C:\Users\edwei\OneDrive\Documents\GitHub\2D-Game\2D-Game\bin\Debug\net9.0\Content\Images\Explosive.xnb
+C:\Users\edwei\OneDrive\Documents\GitHub\2D-Game\2D-Game\bin\Debug\net9.0\Content\Images\Key.xnb
+C:\Users\edwei\OneDrive\Documents\GitHub\2D-Game\2D-Game\bin\Debug\net9.0\Content\Images\Log.xnb
+C:\Users\edwei\OneDrive\Documents\GitHub\2D-Game\2D-Game\bin\Debug\net9.0\Content\Sprites\testblocks.xnb
+C:\Users\edwei\OneDrive\Documents\GitHub\2D-Game\2D-Game\bin\Debug\net9.0\Content\Sprites\testspritesheet.xnb
+C:\Users\edwei\OneDrive\Documents\GitHub\2D-Game\2D-Game\bin\Debug\net9.0\Content\Images\Pebble.xnb
+C:\Users\edwei\OneDrive\Documents\GitHub\2D-Game\2D-Game\bin\Debug\net9.0\Content\Sprites\mosquito.xnb
+C:\Users\edwei\OneDrive\Documents\GitHub\2D-Game\2D-Game\bin\Debug\net9.0\Content\Sprites\Test-Ghost-Melee-Attack-N.xnb
+C:\Users\edwei\OneDrive\Documents\GitHub\2D-Game\2D-Game\bin\Debug\net9.0\Content\Sprites\Test-Ghost-Melee-Idle-N.xnb
+C:\Users\edwei\OneDrive\Documents\GitHub\2D-Game\2D-Game\bin\Debug\net9.0\Content\Sprites\testmosquito.xnb
