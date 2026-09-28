@@ -19,6 +19,7 @@ namespace _2D_Game
         public void Execute()
         {
             //TODO
+            myGame.player.UseTool(Tool.Knife); //default weapon attack
         }
 
     }

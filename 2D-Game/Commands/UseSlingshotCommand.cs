@@ -7,18 +7,19 @@ using System.Windows.Input;
 
 namespace _2D_Game
 {
-    public class PreviousCharacterCommand : ICommand
+    public class UseSlingshotCommand : ICommand
     {
         private Game1 myGame;
 
-        public PreviousCharacterCommand(Game1 game)
+        public UseSlingshotCommand(Game1 game)
         {
             myGame = game;
         }
 
         public void Execute()
         {
-            myGame.Enemies.Previous();
+            //TODO
+            myGame.player.UseTool(Tool.Slingshot); //default weapon attack
         }
 
     }

@@ -18,8 +18,8 @@ namespace _2D_Game
 
         public void Execute()
         {
-            //TODO myGame.player.Hurt(int dmg)
+            myGame.player.TakeDamage(1); //modify how much damage taken later
         }
-
+        
     }
 }

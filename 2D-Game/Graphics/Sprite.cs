@@ -55,6 +55,45 @@ namespace _2D_Game
             Effects = SpriteEffects.None;
         }
 
+        public Sprite(Texture2D image, Rectangle sourceRectangle, Vector2 scale)
+        {
+            this.Content = image;
+            Scale = Vector2.One;
+            Position = Vector2.Zero;
+            SourceRectangle = sourceRectangle;
+            Origin = new Vector2(image.Width / 2, image.Height / 2);
+            Color = Color.White;
+            Rotation = 0.0f;
+            LayerDepth = 0.0f;
+            Effects = SpriteEffects.None;
+        }
+
+        public Sprite(Texture2D image, Rectangle sourceRectangle, SpriteEffects effect)
+        {
+            this.Content = image;
+            Scale = Vector2.One;
+            Position = Vector2.Zero;
+            SourceRectangle = sourceRectangle;
+            Origin = new Vector2(image.Width / 2, image.Height / 2);
+            Color = Color.White;
+            Rotation = 0.0f;
+            LayerDepth = 0.0f;
+            Effects = effect;
+        }
+
+        public Sprite(Texture2D image, Rectangle sourceRectangle, Vector2 scale, SpriteEffects effect)
+        {
+            this.Content = image;
+            Scale = Vector2.One;
+            Position = Vector2.Zero;
+            SourceRectangle = sourceRectangle;
+            Origin = new Vector2(image.Width / 2, image.Height / 2);
+            Color = Color.White;
+            Rotation = 0.0f;
+            LayerDepth = 0.0f;
+            Effects = effect;
+        }
+
         public Sprite(Texture2D image, Vector2 position)
         {
             this.Content = image;
@@ -117,6 +156,19 @@ namespace _2D_Game
             this.Rotation = rotation;
             this.LayerDepth = layerDepth;
             Effects = SpriteEffects.None;
+        }
+
+        public Sprite(Texture2D image, Vector2 position, Vector2 scale, Color color, float rotation, int layerDepth, SpriteEffects effect)
+        {
+            this.Content = image;
+            this.Scale = scale;
+            this.Position = position;
+            SourceRectangle = image.Bounds;
+            Origin = new Vector2(image.Width / 2, image.Height / 2);
+            this.Color = Color.White;
+            this.Rotation = rotation;
+            this.LayerDepth = layerDepth;
+            Effects = effect;
         }
 
 

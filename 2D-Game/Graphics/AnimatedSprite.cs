@@ -30,13 +30,27 @@ namespace _2D_Game
             this.Animation = animation;
             SourceRectangle = animation.Frames.Peek();
             Content = spriteSheet;
-            //position = Vector2.Zero;
+            Position = Vector2.Zero;
             Color = Color.White;
             //default framerate 60
-            //origin = new Vector2(sourceRectangle.Width / 2, sourceRectangle.Height / 2);
-            //rotation = 0;
-            //layerDepth = 0;
-            //effects = SpriteEffects.None;
+            Origin = new Vector2(SourceRectangle.Width / 2, SourceRectangle.Height / 2);
+            Rotation = 0;
+            LayerDepth = 0;
+            Effects = SpriteEffects.None;
+        }
+
+        public AnimatedSprite(Animation animation, Texture2D spriteSheet, SpriteEffects effect)
+        {
+            this.Animation = animation;
+            SourceRectangle = animation.Frames.Peek();
+            Content = spriteSheet;
+            Position = Vector2.Zero;
+            Color = Color.White;
+            //default framerate 60
+            Origin = new Vector2(SourceRectangle.Width / 2, SourceRectangle.Height / 2);
+            Rotation = 0;
+            LayerDepth = 0;
+            Effects = effect;
         }
 
         public void Update(GameTime gameTime)
