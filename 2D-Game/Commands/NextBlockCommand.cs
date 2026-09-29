@@ -1,0 +1,27 @@
+﻿using Microsoft.Xna.Framework.Graphics;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Input;
+
+namespace _2D_Game
+{
+    public class NextBlockCommand : ICommand
+    {
+        private Game1 myGame;
+
+        public NextBlockCommand(Game1 game)
+        {
+            myGame = game;
+
+        }
+
+        public void Execute()
+        {
+            myGame.block.NextObstacle();
+        }
+
+    }
+}
