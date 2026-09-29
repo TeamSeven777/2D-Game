@@ -14,7 +14,7 @@ namespace _2D_Game
         //Here for other animations of the player
         //private enum 
         public Texture2D spriteSheet { get; private set; }
-        public ISprite CurrPlayerSprite { get; private set; }
+        public AnimatedSprite CurrPlayerSprite { get; private set; }
 
         private Sprite PlayerUseUpSpr;
         private Sprite PlayerUseDownSpr;
@@ -81,18 +81,23 @@ namespace _2D_Game
             AxePlayerUpSpr = new AnimatedSprite(animationAxePlayerUpSpr, spriteSheet);
             AxePlayerUpSpr.Scale = new Vector2(4.0f);
             AxePlayerRightSpr = new AnimatedSprite(animationAxePlayerRightSpr, spriteSheet);
-            playerDownSpr.Scale = new Vector2(4.0f);
+            AxePlayerRightSpr.Scale = new Vector2(4.0f);
             AxePlayerLeftSpr = new AnimatedSprite(animationAxePlayerLeftSpr, spriteSheet, SpriteEffects.FlipHorizontally);
+            AxePlayerLeftSpr.Scale = new Vector2(4.0f);
 
             KnifePlayerDownSpr = new AnimatedSprite(animationKnifePlayerDownSpr, spriteSheet);
+            KnifePlayerDownSpr.Scale = new Vector2(4.0f);
             KnifePlayerUpSpr = new AnimatedSprite(animationKnifePlayerUpSpr, spriteSheet);
+            KnifePlayerUpSpr.Scale = new Vector2(4.0f);
             KnifePlayerRightSpr = new AnimatedSprite(animationKnifePlayerRightSpr, spriteSheet);
+            KnifePlayerRightSpr.Scale = new Vector2(4.0f);
             KnifePlayerLeftSpr = new AnimatedSprite(animationKnifePlayerLeftSpr, spriteSheet, SpriteEffects.FlipHorizontally);
+            KnifePlayerLeftSpr.Scale = new Vector2(4.0f);
 
-            //These dont compile, something to do with the explicit cast
+            
             PlayerUseDownSpr = new Sprite(spriteSheet, new Rectangle(107, 10, 17, 17), new Vector2(4.0f));
-            PlayerUseUpSpr = new Sprite(spriteSheet, new Rectangle(140, 10, 17, 17), new Vector2(4.0f));
-            PlayerUseLeftSpr = new Sprite(spriteSheet, new Rectangle(123, 10, 17, 17), new Vector2(4.0f), SpriteEffects.FlipHorizontally);
+            PlayerUseUpSpr = new Sprite(spriteSheet,   new Rectangle(140, 10, 17, 17), new Vector2(4.0f));
+            PlayerUseLeftSpr = new Sprite(spriteSheet,  new Rectangle(123, 10, 17, 17), new Vector2(4.0f), SpriteEffects.FlipHorizontally);
             PlayerUseRightSpr = new Sprite(spriteSheet, new Rectangle(123, 10, 17, 17), new Vector2(4.0f));
 
 
@@ -148,7 +153,7 @@ namespace _2D_Game
                                 CurrPlayerSprite = AxePlayerLeftSpr;
                                 break;
                             case (Tool.Slingshot):
-                                CurrPlayerSprite = PlayerUseLeftSpr;
+                                //CurrPlayerSprite = PlayerUseLeftSpr;
                                 break;
                         }
                         break;
@@ -170,7 +175,7 @@ namespace _2D_Game
                                 CurrPlayerSprite = AxePlayerRightSpr;
                                 break;
                             case (Tool.Slingshot):
-                                CurrPlayerSprite = PlayerUseRightSpr;
+                               // CurrPlayerSprite = PlayerUseRightSpr;
                                 break;
                         }
                         break;
@@ -192,7 +197,7 @@ namespace _2D_Game
                                 CurrPlayerSprite = AxePlayerUpSpr;
                                 break;
                             case (Tool.Slingshot):
-                                CurrPlayerSprite = PlayerUseUpSpr;
+                              //  CurrPlayerSprite = PlayerUseUpSpr;
                                 break;
                         }
                         break;
@@ -214,7 +219,7 @@ namespace _2D_Game
                                 CurrPlayerSprite = AxePlayerDownSpr;
                                 break;
                             case (Tool.Slingshot):
-                                CurrPlayerSprite = PlayerUseDownSpr;
+                                //CurrPlayerSprite = PlayerUseDownSpr;
                                 break;
                         }
                         break;
@@ -225,6 +230,7 @@ namespace _2D_Game
                     }
                     break;
             }
+            CurrPlayerSprite.Scale = new Vector2(4.0f);
             CurrPlayerSprite.Update(gt);
         }
 

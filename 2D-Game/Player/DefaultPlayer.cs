@@ -27,7 +27,7 @@ namespace _2D_Game
             MaxHealth = 5;
             Health = MaxHealth;
             stateMachine = new PlayerStateMachine(playerSpriteSheet);
-            Position = new Vector2(0, 0);
+            Position = new Vector2(32, 32);
             PreviousPosition = Position;
         }
 
