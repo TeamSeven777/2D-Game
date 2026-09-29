@@ -14,108 +14,29 @@ namespace _2D_Game
         //Here for other animations of the player
         //private enum 
         public Texture2D spriteSheet { get; private set; }
-        public AnimatedSprite CurrPlayerSprite { get; private set; }
-
-        private Sprite PlayerUseUpSpr;
-        private Sprite PlayerUseDownSpr;
-        private Sprite PlayerUseLeftSpr;
-        private Sprite PlayerUseRightSpr;
-        private Animation animationPlayerUp;
-        private Animation animationPlayerDown;
-        private Animation animationPlayerLeft;
-        private Animation animationPlayerRight;
-        private Animation animationAxePlayerRightSpr;
-        private Animation animationAxePlayerLeftSpr;
-        private Animation animationAxePlayerUpSpr;
-        private Animation animationAxePlayerDownSpr;
-        private Animation animationKnifePlayerRightSpr;
-        private Animation animationKnifePlayerLeftSpr;
-        private Animation animationKnifePlayerUpSpr;
-        private Animation animationKnifePlayerDownSpr;
-     
-        private AnimatedSprite playerDownSpr;
-        private AnimatedSprite playerUpSpr;
-        private AnimatedSprite playerLeftSpr;
-        private AnimatedSprite playerRightSpr;
-        private AnimatedSprite AxePlayerRightSpr;
-        private AnimatedSprite AxePlayerLeftSpr;
-        private AnimatedSprite AxePlayerUpSpr;
-        private AnimatedSprite AxePlayerDownSpr;
-        private AnimatedSprite KnifePlayerRightSpr;
-        private AnimatedSprite KnifePlayerLeftSpr;
-        private AnimatedSprite KnifePlayerUpSpr;
-        private AnimatedSprite KnifePlayerDownSpr;
+        public IPlayerState CurrPlayerState { get; private set; }
 
         public PlayerStateMachine(Texture2D playerSpriteSheet) { 
             this.spriteSheet = playerSpriteSheet;
-            //add in others? or just update in Update.
 
-            animationPlayerDown = new Animation(spriteSheet, TimeSpan.FromMilliseconds(125), new Vector2(17, 17), new Vector2(0, 10), 34);
-            animationPlayerUp = new Animation(spriteSheet, TimeSpan.FromMilliseconds(125), new Vector2(17, 17), new Vector2(68, 10), 34);
-            animationPlayerLeft = new Animation(spriteSheet, TimeSpan.FromMilliseconds(125), new Vector2(17, 17), new Vector2(34, 10), 34);
-            animationPlayerRight = new Animation(spriteSheet, TimeSpan.FromMilliseconds(125), new Vector2(17, 17), new Vector2(34, 10), 34);
-
-            animationAxePlayerDownSpr = new Animation(spriteSheet, TimeSpan.FromMilliseconds(125), new Vector2(17, 28), new Vector2(0, 47), 68);
-            animationAxePlayerUpSpr = new Animation(spriteSheet, TimeSpan.FromMilliseconds(125), new Vector2(17, 28), new Vector2(0, 97), 68);
-            animationAxePlayerLeftSpr = new Animation(spriteSheet, TimeSpan.FromMilliseconds(125), new Vector2(28, 17), new Vector2(0, 78), 68);
-            animationAxePlayerRightSpr = new Animation(spriteSheet, TimeSpan.FromMilliseconds(125), new Vector2(28, 17), new Vector2(0, 78), 68);
-
-            animationKnifePlayerDownSpr = new Animation(spriteSheet, TimeSpan.FromMilliseconds(125), new Vector2(17, 28), new Vector2(94, 47), 68);
-            animationKnifePlayerUpSpr = new Animation(spriteSheet, TimeSpan.FromMilliseconds(125), new Vector2(17, 28), new Vector2(84, 97), 68);
-            animationKnifePlayerLeftSpr = new Animation(spriteSheet, TimeSpan.FromMilliseconds(125), new Vector2(28, 17), new Vector2(84, 78), 68);
-            animationKnifePlayerRightSpr = new Animation(spriteSheet, TimeSpan.FromMilliseconds(125), new Vector2(28, 17), new Vector2(94, 78), 68);
-
-
-            playerDownSpr = new AnimatedSprite(animationPlayerDown, spriteSheet);
-            playerDownSpr.Scale = new Vector2(4.0f);
-            playerUpSpr = new AnimatedSprite(animationPlayerUp, spriteSheet);
-            playerUpSpr.Scale = new Vector2(4.0f);
-            playerLeftSpr = new AnimatedSprite(animationPlayerLeft, spriteSheet, SpriteEffects.FlipHorizontally);
-            playerLeftSpr.Scale = new Vector2(4.0f);
-            playerRightSpr = new AnimatedSprite(animationPlayerRight, spriteSheet);
-            playerRightSpr.Scale = new Vector2(4.0f);
-            //PlayerHurtSpr for when or if its needed; 
-
-            AxePlayerDownSpr = new AnimatedSprite(animationAxePlayerDownSpr, spriteSheet);
-            AxePlayerDownSpr.Scale = new Vector2(4.0f);
-            AxePlayerUpSpr = new AnimatedSprite(animationAxePlayerUpSpr, spriteSheet);
-            AxePlayerUpSpr.Scale = new Vector2(4.0f);
-            AxePlayerRightSpr = new AnimatedSprite(animationAxePlayerRightSpr, spriteSheet);
-            AxePlayerRightSpr.Scale = new Vector2(4.0f);
-            AxePlayerLeftSpr = new AnimatedSprite(animationAxePlayerLeftSpr, spriteSheet, SpriteEffects.FlipHorizontally);
-            AxePlayerLeftSpr.Scale = new Vector2(4.0f);
-
-            KnifePlayerDownSpr = new AnimatedSprite(animationKnifePlayerDownSpr, spriteSheet);
-            KnifePlayerDownSpr.Scale = new Vector2(4.0f);
-            KnifePlayerUpSpr = new AnimatedSprite(animationKnifePlayerUpSpr, spriteSheet);
-            KnifePlayerUpSpr.Scale = new Vector2(4.0f);
-            KnifePlayerRightSpr = new AnimatedSprite(animationKnifePlayerRightSpr, spriteSheet);
-            KnifePlayerRightSpr.Scale = new Vector2(4.0f);
-            KnifePlayerLeftSpr = new AnimatedSprite(animationKnifePlayerLeftSpr, spriteSheet, SpriteEffects.FlipHorizontally);
-            KnifePlayerLeftSpr.Scale = new Vector2(4.0f);
-
-            
-            PlayerUseDownSpr = new Sprite(spriteSheet, new Rectangle(107, 10, 17, 17), new Vector2(4.0f));
-            PlayerUseUpSpr = new Sprite(spriteSheet,   new Rectangle(140, 10, 17, 17), new Vector2(4.0f));
-            PlayerUseLeftSpr = new Sprite(spriteSheet,  new Rectangle(123, 10, 17, 17), new Vector2(4.0f), SpriteEffects.FlipHorizontally);
-            PlayerUseRightSpr = new Sprite(spriteSheet, new Rectangle(123, 10, 17, 17), new Vector2(4.0f));
-
-
+            direction = Direction.Down;
             toolEquiped = new NoTool();
-            CurrPlayerSprite = playerDownSpr;
+            toolUsed = Tool.None;
+            CurrPlayerState = new DownIdlePlayerState(spriteSheet);
         }
-        public Direction direction;
+        public Direction direction, previousDirection;
         public ITool toolEquiped;
-        public Tool toolUsed;
-        public bool Damaged = false;
+        public Tool toolUsed, previousToolUsed;
+        public bool Damaged{ get; set; }
+        private bool PreviousDamaged;
+        public bool Moving {  get;  set; }
+        private bool PreviousMoving;
+        private bool ChangeOccurred = false;
 
         public void ChangeDirection(Direction dir) {
-            direction = dir;
+            direction = dir;            
         }
-        public void BeDamaged(bool dmg)
-        {
-            Damaged = dmg;
-        }
+
         public void UseTool(Tool tool)
         {
             switch (tool)
@@ -137,104 +58,97 @@ namespace _2D_Game
         }
 
         //
-        public void Update(GameTime gt) {
-            //TODO here is where you update sprite based on direction, tool, damaged, etc.
-            switch (direction)
+        public void Update(GameTime gt)
+        {
+            //TODO make it so item uses prohibit change in state, and execute once per button press
+            //TODO adjust Player Sprites in State classes to display more appropriately and have the appropriate origins.
+            if (direction != previousDirection || Moving != PreviousMoving || toolUsed != previousToolUsed || Damaged != PreviousDamaged) ChangeOccurred = true;
+            previousDirection = direction; PreviousMoving = Moving; previousToolUsed = toolUsed; PreviousDamaged = Damaged;
+            if (ChangeOccurred)
             {
-                case(Direction.Left):
-                    if (toolEquiped.GetTool() != Tool.None)
-                    {
+                switch (direction)
+                {
+                    case (Direction.Left):
                         switch (toolUsed)
                         {
                             case (Tool.Knife):
-                                CurrPlayerSprite = KnifePlayerLeftSpr;
+                                CurrPlayerState = new LeftKnifePlayerState(spriteSheet);
                                 break;
                             case (Tool.Axe):
-                                CurrPlayerSprite = AxePlayerLeftSpr;
+                                CurrPlayerState = new LeftAxePlayerState(spriteSheet);
                                 break;
                             case (Tool.Slingshot):
-                                //CurrPlayerSprite = PlayerUseLeftSpr;
+                                CurrPlayerState = new LeftSlingPlayerState(spriteSheet);
+                                break;
+                            case (Tool.None):
+                                if (Moving) CurrPlayerState = new LeftMovePlayerState(spriteSheet);
+                                else CurrPlayerState = new LeftIdlePlayerState(spriteSheet);
                                 break;
                         }
                         break;
-                    }
-                    else
-                    {
-                        CurrPlayerSprite = playerLeftSpr;
-                    }
-                    break;
-                case (Direction.Right):
-                    if (toolEquiped.GetTool() != Tool.None)
-                    {
+                    case (Direction.Right):
+
                         switch (toolUsed)
                         {
                             case (Tool.Knife):
-                                CurrPlayerSprite = KnifePlayerRightSpr;
+                                CurrPlayerState = new RightKnifePlayerState(spriteSheet);
                                 break;
                             case (Tool.Axe):
-                                CurrPlayerSprite = AxePlayerRightSpr;
+                                CurrPlayerState = new RightAxePlayerState(spriteSheet);
                                 break;
                             case (Tool.Slingshot):
-                               // CurrPlayerSprite = PlayerUseRightSpr;
+                                CurrPlayerState = new RightSlingPlayerState(spriteSheet);
+                                break;
+                            case (Tool.None):
+                                if (Moving) CurrPlayerState = new RightMovePlayerState(spriteSheet);
+                                else CurrPlayerState = new RightIdlePlayerState(spriteSheet);
                                 break;
                         }
                         break;
-                    }
-                    else
-                    {
-                        CurrPlayerSprite = playerRightSpr;
-                    }
-                    break;
-                case (Direction.Up):
-                    if (toolEquiped.GetTool() != Tool.None)
-                    {
+                    case (Direction.Up):
                         switch (toolUsed)
                         {
                             case (Tool.Knife):
-                                CurrPlayerSprite = KnifePlayerUpSpr;
+                                CurrPlayerState = new UpKnifePlayerState(spriteSheet); ;
                                 break;
                             case (Tool.Axe):
-                                CurrPlayerSprite = AxePlayerUpSpr;
+                                CurrPlayerState = new UpAxePlayerState(spriteSheet);
                                 break;
                             case (Tool.Slingshot):
-                              //  CurrPlayerSprite = PlayerUseUpSpr;
+                                CurrPlayerState = new UpSlingPlayerState(spriteSheet);
+                                break;
+                            case (Tool.None):
+                                if (Moving) CurrPlayerState = new UpMovePlayerState(spriteSheet);
+                                else CurrPlayerState = new UpIdlePlayerState(spriteSheet);
                                 break;
                         }
                         break;
-                    }
-                    else
-                    {
-                        CurrPlayerSprite = playerUpSpr;
-                    }
-                    break;
-                case (Direction.Down):
-                    if (toolEquiped.GetTool() != Tool.None)
-                    {
+                    case (Direction.Down):
                         switch (toolUsed)
                         {
                             case (Tool.Knife):
-                                CurrPlayerSprite = KnifePlayerDownSpr;
+                                CurrPlayerState = new DownKnifePlayerState(spriteSheet); ;
                                 break;
                             case (Tool.Axe):
-                                CurrPlayerSprite = AxePlayerDownSpr;
+                                CurrPlayerState = new DownAxePlayerState(spriteSheet);
                                 break;
                             case (Tool.Slingshot):
-                                //CurrPlayerSprite = PlayerUseDownSpr;
+                                CurrPlayerState = new DownSlingPlayerState(spriteSheet);
+                                break;
+                            case (Tool.None):
+                                if (Moving) CurrPlayerState = new DownMovePlayerState(spriteSheet);
+                                else CurrPlayerState = new DownIdlePlayerState(spriteSheet);
                                 break;
                         }
                         break;
-                    }
-                    else
-                    {
-                        CurrPlayerSprite = playerDownSpr;
-                    }
-                    break;
+                }
+                //CurrPlayerState
+                if (Damaged) CurrPlayerState.PlayerSprite.Color = Color.Red;
+                else CurrPlayerState.PlayerSprite.Color = Color.White;
+                ChangeOccurred = false;
             }
-            CurrPlayerSprite.Scale = new Vector2(4.0f);
-            CurrPlayerSprite.Update(gt);
+            CurrPlayerState.Update(gt);
         }
-
-
-        // Then other functions for other states etc...
+        
     }
 }

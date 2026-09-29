@@ -48,7 +48,7 @@ namespace _2D_Game
             Scale = Vector2.One;
             Position = Vector2.Zero;
             SourceRectangle = sourceRectangle;
-            Origin = new Vector2(image.Width / 2, image.Height / 2);
+            Origin = new Vector2(sourceRectangle.Width / 2, sourceRectangle.Height / 2);
             Color = Color.White;
             Rotation = 0.0f;
             LayerDepth = 0.0f;
@@ -58,10 +58,10 @@ namespace _2D_Game
         public Sprite(Texture2D image, Rectangle sourceRectangle, Vector2 scale)
         {
             this.Content = image;
-            Scale = Vector2.One;
+            Scale = scale;
             Position = Vector2.Zero;
             SourceRectangle = sourceRectangle;
-            Origin = new Vector2(image.Width / 2, image.Height / 2);
+            Origin = new Vector2(sourceRectangle.Width / 2, sourceRectangle.Height / 2);
             Color = Color.White;
             Rotation = 0.0f;
             LayerDepth = 0.0f;
@@ -74,7 +74,7 @@ namespace _2D_Game
             Scale = Vector2.One;
             Position = Vector2.Zero;
             SourceRectangle = sourceRectangle;
-            Origin = new Vector2(image.Width / 2, image.Height / 2);
+            Origin = new Vector2(sourceRectangle.Width / 2, sourceRectangle.Height / 2);
             Color = Color.White;
             Rotation = 0.0f;
             LayerDepth = 0.0f;
@@ -84,10 +84,10 @@ namespace _2D_Game
         public Sprite(Texture2D image, Rectangle sourceRectangle, Vector2 scale, SpriteEffects effect)
         {
             this.Content = image;
-            Scale = Vector2.One;
+            Scale = scale;
             Position = Vector2.Zero;
             SourceRectangle = sourceRectangle;
-            Origin = new Vector2(image.Width / 2, image.Height / 2);
+            Origin = new Vector2(sourceRectangle.Width / 2, sourceRectangle.Height / 2);
             Color = Color.White;
             Rotation = 0.0f;
             LayerDepth = 0.0f;

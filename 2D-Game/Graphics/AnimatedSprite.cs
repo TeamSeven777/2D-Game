@@ -12,8 +12,19 @@ using System.Threading.Tasks;
 
 namespace _2D_Game
 {
-    public class AnimatedSprite : Sprite
+    public class AnimatedSprite : ISprite
     {
+        public Vector2 Size { get; set; }
+        public Vector2 Position { get; set; }
+        public Vector2 Origin { get; set; }
+        public Color Color { get; set; }
+        public float Rotation { get; set; }
+        public Vector2 Scale { get; set; }
+        public float LayerDepth { get; set; }
+        public SpriteEffects Effects { get; set; }
+        //The sprite sheet and its location on the sheet
+        public Texture2D Content { get; set; }
+        public Rectangle SourceRectangle { get; set; }
 
         //This is assuming that the frames get inserted to the
         //list in the proper order
@@ -80,6 +91,13 @@ namespace _2D_Game
                     Animation.Frames.Enqueue(this.SourceRectangle);
                 }
             }
+        }
+
+        public void Draw(SpriteBatch spriteBatch, Vector2 position)
+        {
+
+            spriteBatch.Draw(this.Content, position, SourceRectangle, Color, Rotation, Origin, Scale, Effects, LayerDepth);
+
         }
     }
 }
