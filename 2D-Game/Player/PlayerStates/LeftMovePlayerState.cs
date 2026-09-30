@@ -11,10 +11,12 @@ namespace _2D_Game
     public class LeftMovePlayerState : IPlayerState
     {
         public ISprite PlayerSprite {get; set;}
-        public LeftMovePlayerState(Texture2D spriteSheet)
+        private PlayerStateMachine stateMachine;
+        public LeftMovePlayerState(PlayerStateMachine myPlayerStateMachine)
         {
-            PlayerSprite = new AnimatedSprite(new Animation(spriteSheet, TimeSpan.FromMilliseconds(125), new Vector2(17, 17), new Vector2(34, 10), 34), spriteSheet, SpriteEffects.FlipHorizontally);
+            PlayerSprite = new AnimatedSprite(new Animation(myPlayerStateMachine.spriteSheet, TimeSpan.FromMilliseconds(125), new Vector2(17, 17), new Vector2(34, 10), 34), myPlayerStateMachine.spriteSheet, SpriteEffects.FlipHorizontally);
             PlayerSprite.Scale = new Vector2(4.0f);
+            stateMachine = myPlayerStateMachine;
         }
         public void Update(GameTime gameTime)
         {

@@ -99,7 +99,7 @@ namespace _2D_Game
             }
         }
         public void UseTool(Tool tool) { 
-            stateMachine.UseTool(tool);
+            if(stateMachine.toolUsed == Tool.None)stateMachine.UseTool(tool);
         }
       
     }

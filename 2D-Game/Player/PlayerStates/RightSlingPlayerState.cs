@@ -11,13 +11,19 @@ namespace _2D_Game
     public class RightSlingPlayerState : IPlayerState
     {
         public ISprite PlayerSprite {get; set;}
-        public RightSlingPlayerState(Texture2D spriteSheet)
+        private PlayerStateMachine stateMachine;
+        private double stateTime = 0;
+        private double timeSling = 0.5;
+        public RightSlingPlayerState(PlayerStateMachine myPlayerStateMachine)
         {
-            PlayerSprite = new Sprite(spriteSheet, new Rectangle(123, 10, 17, 17), new Vector2(4.0f));
+            PlayerSprite = new Sprite(myPlayerStateMachine.spriteSheet, new Rectangle(123, 10, 17, 17), new Vector2(4.0f));
+            stateMachine = myPlayerStateMachine;
         }
         public void Update(GameTime gameTime)
         {
             PlayerSprite.Update(gameTime);
+            stateTime += gameTime.ElapsedGameTime.TotalSeconds;
+            if (stateTime >= timeSling) stateMachine.UseTool(Tool.None);
         }
         public void Draw(SpriteBatch sprBatch, Vector2 pos)
         {

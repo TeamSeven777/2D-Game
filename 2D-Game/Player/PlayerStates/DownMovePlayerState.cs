@@ -11,10 +11,12 @@ namespace _2D_Game
     public class DownMovePlayerState : IPlayerState
     {
         public ISprite PlayerSprite {get; set;}
-        public DownMovePlayerState(Texture2D spriteSheet)
+        private PlayerStateMachine stateMachine;
+        public DownMovePlayerState(PlayerStateMachine myPlayerStateMachine)
         {
-            PlayerSprite = new AnimatedSprite(new Animation(spriteSheet, TimeSpan.FromMilliseconds(125), new Vector2(17, 17), new Vector2(0, 10), 34), spriteSheet);
+            PlayerSprite = new AnimatedSprite(new Animation(myPlayerStateMachine.spriteSheet, TimeSpan.FromMilliseconds(125), new Vector2(17, 17), new Vector2(0, 10), 34), myPlayerStateMachine.spriteSheet);
             PlayerSprite.Scale = new Vector2(4.0f);
+            stateMachine = myPlayerStateMachine;
         }
         public void Update(GameTime gameTime)
         {

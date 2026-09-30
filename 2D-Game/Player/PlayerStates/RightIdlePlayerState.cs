@@ -11,9 +11,11 @@ namespace _2D_Game
     public class RightIdlePlayerState : IPlayerState
     {
         public ISprite PlayerSprite {get; set;}
-        public RightIdlePlayerState(Texture2D spriteSheet)
+        private PlayerStateMachine stateMachine;
+        public RightIdlePlayerState(PlayerStateMachine myPlayerStateMachine)
         {
-            PlayerSprite = new Sprite(spriteSheet, new Rectangle(34, 10, 17, 17), new Vector2(4.0f));
+            PlayerSprite = new Sprite(myPlayerStateMachine.spriteSheet, new Rectangle(34, 10, 17, 17), new Vector2(4.0f));
+            stateMachine = myPlayerStateMachine;
         }
         public void Update(GameTime gameTime)
         {

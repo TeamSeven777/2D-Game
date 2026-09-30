@@ -31,7 +31,7 @@ namespace _2D_Game
         public Animation Animation { get; set; }
         //public Texture2D currentFrame {get; set; }
         public TimeSpan TimeSinceLastFrame { get; set; }
-        public bool paused = false;
+        public bool Paused { get; set; }
 
         public enum State {Walk, Run, Other}
         public enum Direction {Left, Right, Up, Down}
@@ -74,7 +74,7 @@ namespace _2D_Game
             *pause = false;}
             */
             //Debug.WriteLine("Sprite is checking if paused");
-            if (!paused)
+            if (!Paused)
             {
                 //Debug.WriteLine("Sprite is about to be updated to next frame");
                 TimeSinceLastFrame += gameTime.ElapsedGameTime;
@@ -89,6 +89,14 @@ namespace _2D_Game
                     TimeSinceLastFrame -= Animation.FrameRate;
                     this.SourceRectangle = Animation.Frames.Dequeue();
                     Animation.Frames.Enqueue(this.SourceRectangle);
+                    Animation.FrameIndex++;
+                    if(Animation.FrameIndex >= Animation.Frames.Count && Animation.Loops)
+                    {
+                        Animation.FrameIndex = 0;
+                    }else if (Animation.FrameIndex >= Animation.Frames.Count && !Animation.Loops)
+                    {
+                        Paused = true;
+                    }
                 }
             }
         }

@@ -10,15 +10,21 @@ namespace _2D_Game
 {
     public class DownAxePlayerState : IPlayerState
     {
-        public ISprite PlayerSprite { get; set; }
-        public DownAxePlayerState(Texture2D spriteSheet)
+        public ISprite PlayerSprite { get; set; } 
+        private PlayerStateMachine stateMachine;
+        public DownAxePlayerState(PlayerStateMachine myPlayerStateMachine)
         {
-            PlayerSprite = new AnimatedSprite(new Animation(spriteSheet, TimeSpan.FromMilliseconds(125), new Vector2(17, 28), new Vector2(0, 47), 68), spriteSheet);
+            PlayerSprite = new AnimatedSprite(new Animation(myPlayerStateMachine.spriteSheet, TimeSpan.FromMilliseconds(125), new Vector2(17, 28), new Vector2(0, 47), 68, false), myPlayerStateMachine.spriteSheet);
             PlayerSprite.Scale = new Vector2(4.0f);
+            stateMachine = myPlayerStateMachine;
         }
         public void Update(GameTime gameTime)
         {
             PlayerSprite.Update(gameTime);
+            if (((AnimatedSprite)PlayerSprite).Paused)
+            {
+                stateMachine.UseTool(Tool.None);
+            }
         }
         public void Draw(SpriteBatch sprBatch, Vector2 pos)
         {
