@@ -32,6 +32,7 @@ namespace _2D_Game
         public bool Moving {  get;  set; }
         private bool PreviousMoving;
         private bool ChangeOccurred = false;
+        public bool CanMove { get; set; }
 
         public void ChangeDirection(Direction dir) {
             direction = dir;            
@@ -64,6 +65,8 @@ namespace _2D_Game
             //TODO adjust Player Sprites in State classes to display more appropriately and have the appropriate origins.
             if (direction != previousDirection || Moving != PreviousMoving || toolUsed != previousToolUsed || Damaged != PreviousDamaged) ChangeOccurred = true;
             previousDirection = direction; PreviousMoving = Moving; previousToolUsed = toolUsed; PreviousDamaged = Damaged;
+            if (toolUsed != Tool.None) CanMove = false;
+            else CanMove = true;
             if (ChangeOccurred)
             {
                 switch (direction)
@@ -147,6 +150,8 @@ namespace _2D_Game
                 else CurrPlayerState.PlayerSprite.Color = Color.White;
                 ChangeOccurred = false;
             }
+            Boggus bog = new Boggus();
+            CurrPlayerState.PlayerSprite = bog.GetBoggusSprite();
             CurrPlayerState.Update(gt);
         }
         
