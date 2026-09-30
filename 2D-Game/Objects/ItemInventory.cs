@@ -18,11 +18,11 @@ namespace _2D_Game
         public void LoadContent(ContentManager content)
         {
             // Add all items here
-            items.Add(new Item("Log", content.Load<Texture2D>("Images/Log")));
-            items.Add(new Item("Berry", content.Load<Texture2D>("Images/Berry")));
-            items.Add(new Item("Key", content.Load<Texture2D>("Images/Key")));
-            items.Add(new Item("Explosive", content.Load<Texture2D>("Images/Explosive")));
-            items.Add(new Item("Pebble", content.Load<Texture2D>("Images/Pebble")));
+            items.Add(new Item("Log", new Sprite(content.Load<Texture2D>("Images/Log")), 10));
+            items.Add(new Item("Berry", new Sprite(content.Load<Texture2D>("Images/Berry")), 5));
+            items.Add(new Item("Key", new Sprite(content.Load<Texture2D>("Images/Key")), 1));
+            items.Add(new Item("Explosive", new Sprite(content.Load<Texture2D>("Images/Explosive")), 1));
+            items.Add(new Item("Pebble", new Sprite(content.Load<Texture2D>("Images/Pebble")), 10));
         }
 
         public void Update(GameTime gameTime)
@@ -56,7 +56,7 @@ namespace _2D_Game
             IItem currentItem = items[currentIndex];
             if (currentItem.Icon != null)
             {
-                spriteBatch.Draw(currentItem.Icon, drawPosition, Color.White);
+                spriteBatch.Draw(currentItem.Icon.Content, drawPosition, Color.White);
             }
         }
     }
