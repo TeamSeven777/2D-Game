@@ -33,7 +33,7 @@ namespace _2D_Game
         private bool PreviousMoving;
         private bool ChangeOccurred = false;
         public bool CanMove { get; set; }
-
+        private bool BoggusMode = false;
         public void ChangeDirection(Direction dir) {
             direction = dir;            
         }
@@ -57,7 +57,12 @@ namespace _2D_Game
             }
             toolUsed = toolEquiped.GetTool();
         }
-
+        public void ToggleBoggle()
+        {
+            if (BoggusMode) BoggusMode = false;
+            else BoggusMode = true;
+            ChangeOccurred = true;
+        }
         //
         public void Update(GameTime gt)
         {
@@ -150,8 +155,10 @@ namespace _2D_Game
                 else CurrPlayerState.PlayerSprite.Color = Color.White;
                 ChangeOccurred = false;
             }
+            
             Boggus bog = new Boggus();
-            CurrPlayerState.PlayerSprite = bog.GetBoggusSprite();
+
+            if(BoggusMode) CurrPlayerState.PlayerSprite = bog.GetBoggusSprite();
             CurrPlayerState.Update(gt);
         }
         

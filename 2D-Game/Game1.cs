@@ -29,6 +29,8 @@ namespace _2D_Game
         private IController controller;
         public ItemInventory Inventory { get; private set; }
         public EnemyManager Enemies;
+        private GameTime currentGameTime;
+        public GameTime CurrentGameTime => currentGameTime;
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
@@ -50,7 +52,6 @@ namespace _2D_Game
             controller.RegisterCommand(Keys.S, new DownCommand(this));
             controller.RegisterCommand(Keys.Q, new QuitCommand(this));
             controller.RegisterCommand(Keys.R, new ResetCommand(this));
-            //TODO UseItemCommands, finish implementing the commands
             controller.RegisterCommand(Keys.E, new DamageCommand(this));
             controller.RegisterCommand(Keys.T, new PreviousBlockCommand(this));
             controller.RegisterCommand(Keys.Y, new NextBlockCommand(this));
@@ -62,6 +63,7 @@ namespace _2D_Game
             controller.RegisterCommand(Keys.D1, new UseAxeCommand(this));
             controller.RegisterCommand(Keys.D2, new UseSlingshotCommand(this));
             controller.RegisterCommand(Keys.D3, new UnEquipCommand(this));
+            controller.RegisterCommand(Keys.B, new BoggusCommand(this));
             blockSpriteSet = new Queue<Sprite>();
 
 
@@ -103,7 +105,7 @@ namespace _2D_Game
         {
             if (Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
-
+            currentGameTime = gameTime;
             // TODO: Add your update logic here
             player.Update(gameTime);
             controller.Update();
@@ -118,7 +120,7 @@ namespace _2D_Game
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-
+            currentGameTime = gameTime;
             _spriteBatch.Begin();
 
             player.Draw(_spriteBatch);
