@@ -1,5 +1,6 @@
 Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
 "C:/Users/edwei/OneDrive/Documents/GitHub/2D-Game/2D-Game/Content/Images/Berry.png","C:/Users/edwei/OneDrive/Documents/GitHub/2D-Game/2D-Game/Content/bin/DesktopGL/Content/Images/Berry.xnb","TextureProcessor","Texture2DContent",384,1109,1.0863665
+"C:/Users/edwei/OneDrive/Documents/GitHub/2D-Game/2D-Game/Content/Images/boggus.png","C:/Users/edwei/OneDrive/Documents/GitHub/2D-Game/2D-Game/Content/bin/DesktopGL/Content/Images/boggus.xnb","TextureProcessor","Texture2DContent",195271,3240085,0.3436197
 "C:/Users/edwei/OneDrive/Documents/GitHub/2D-Game/2D-Game/Content/Images/Explosive.png","C:/Users/edwei/OneDrive/Documents/GitHub/2D-Game/2D-Game/Content/bin/DesktopGL/Content/Images/Explosive.xnb","TextureProcessor","Texture2DContent",302,1109,0.0060032
 "C:/Users/edwei/OneDrive/Documents/GitHub/2D-Game/2D-Game/Content/Images/Key.png","C:/Users/edwei/OneDrive/Documents/GitHub/2D-Game/2D-Game/Content/bin/DesktopGL/Content/Images/Key.xnb","TextureProcessor","Texture2DContent",282,1109,0.0050858
 "C:/Users/edwei/OneDrive/Documents/GitHub/2D-Game/2D-Game/Content/Images/Log.png","C:/Users/edwei/OneDrive/Documents/GitHub/2D-Game/2D-Game/Content/bin/DesktopGL/Content/Images/Log.xnb","TextureProcessor","Texture2DContent",334,1109,0.004523
