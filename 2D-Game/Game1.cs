@@ -111,7 +111,7 @@ namespace _2D_Game
             controller.Update();
             Inventory.Update(gameTime);
             block.Update(gameTime);
-            Enemies.Update(gameTime);
+            Enemies.Update(gameTime, player.Position);
 
             base.Update(gameTime);
         }

@@ -15,10 +15,16 @@ namespace _2D_Game
         private float range = 100f;
         private int direction = 1;
 
+        // Chasing
+        private float chaseRange = 250f; // how close the player has to be before the ghost follows
+        private float chaseSpeed = 2f;
+        private bool chasing = false;
+
         // Attack timing
         private bool attacking = false;
         private double attackTimer = 0;
-        private const double TimeBetweenAttacks = 3.0; // seconds of floating before each attack
+        private float attackRange = 80f;               // how close the player has to be to get hit
+        private const double AttackCooldown = 1.0;     // seconds to wait after an attack before attacking again
         private readonly double attackDuration;       // how long one play of the attack animation takes
         private readonly Rectangle attackFirstFrame;
 
@@ -34,7 +40,7 @@ namespace _2D_Game
             attackDuration = attackSprite.Animation.Frames.Count * attackSprite.Animation.FrameRate.TotalSeconds;
         }
 
-        public void Update(GameTime gameTime)
+        public void Update(GameTime gameTime, Vector2 playerPosition)
         {
             attackTimer += gameTime.ElapsedGameTime.TotalSeconds;
 
@@ -50,16 +56,38 @@ namespace _2D_Game
             }
             else
             {
-                Position += new Vector2(speed * direction, 0);
-                if (Math.Abs(Position.X - startPosition.X) >= range)
-                    direction *= -1;
+                float distance = Vector2.Distance(Position, playerPosition);
 
-                if (attackTimer >= TimeBetweenAttacks)
+                if (distance < attackRange)
                 {
-                    attacking = true;
-                    attackTimer = 0;
-                    RestartAttackAnimation();
-                    currentSprite = attackSprite;
+                    chasing = true;
+                    //close enough to hit, so attack once the cooldown is over (and hold still until then)
+                    if (attackTimer >= AttackCooldown)
+                    {
+                        attacking = true;
+                        attackTimer = 0;
+                        RestartAttackAnimation();
+                        currentSprite = attackSprite;
+                    }
+                }
+                else if (distance < chaseRange)
+                {
+                    chasing = true;
+                    Vector2 toPlayer = playerPosition - Position;
+                    toPlayer.Normalize(); //turn it into a direction with length 1
+                    Position += toPlayer * chaseSpeed;
+                }
+                else
+                {
+                    if (chasing)
+                    {
+                        //player got away, so patrol from where the ghost is now
+                        chasing = false;
+                        startPosition = Position;
+                    }
+                    Position += new Vector2(speed * direction, 0);
+                    if (Math.Abs(Position.X - startPosition.X) >= range)
+                        direction *= -1;
                 }
             }
 
