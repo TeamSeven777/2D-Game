@@ -19,12 +19,15 @@ namespace _2D_Game
         public Obstacle block;
         public DefaultPlayer player;
         private Texture2D spriteSheet;
-
+        public IProjectileHandler projectileHandler;
+        bool fired = false;
         public Boggus boggus;
         
         //private AnimatedSprite PlayerHurtSpr;
         private Queue<Sprite> blockSpriteSet;
         private Texture2D blockSpriteSheet;
+        private Texture2D projectileSpriteSheet;
+
         // private Dictionary<PlayerStateMachine.PlayerStates, AnimatedSprite> playerSpriteSet;
         private IController controller;
         public ItemInventory Inventory { get; private set; }
@@ -71,6 +74,8 @@ namespace _2D_Game
             Enemies = new EnemyManager();
             Enemies.LoadContent(Content);
 
+
+
             base.Initialize();
         }
 
@@ -80,8 +85,6 @@ namespace _2D_Game
             middleOfScreen = new Vector2(_spriteBatch.GraphicsDevice.Viewport.Width / 2, _spriteBatch.GraphicsDevice.Viewport.Height / 2);
 
             spriteSheet = Content.Load<Texture2D>("Sprites/LinkSheet");
-
-            
 
             player = new DefaultPlayer(spriteSheet);
 
@@ -96,7 +99,11 @@ namespace _2D_Game
             blockSpriteSet.Enqueue(new Sprite(blockSpriteSheet, new Rectangle(0, 0, 25, 25)));
             blockSpriteSet.Enqueue(new Sprite(blockSpriteSheet, new Rectangle(25, 0, 25, 25)));
             blockSpriteSet.Enqueue(new Sprite(blockSpriteSheet, new Rectangle(50, 0, 25, 25)));
-          
+
+
+
+            projectileSpriteSheet = Content.Load<Texture2D>("Sprites/projectileSprites");
+            projectileHandler = new PlayerProjectileHandler(ref player, projectileSpriteSheet);
 
             block = new Obstacle(new Rectangle(0, 0, 25, 25), middleOfScreen, blockSpriteSet);
         }
@@ -107,11 +114,47 @@ namespace _2D_Game
                 Exit();
             currentGameTime = gameTime;
             // TODO: Add your update logic here
-            player.Update(gameTime);
             controller.Update();
+            player.Update(gameTime);
+
+
+            /*if (player.stateMachine.toolUsed == Tool.Slingshot)
+            {
+                if (fired == false)
+                {
+
+                    switch (player.stateMachine.direction)
+                    {
+                        case (Direction.Down):
+                            projectileHandler.Add(new PlayerProjectile(player.Position, new Vector2(0, 10), playerProjectileSpr));
+                            fired = true;
+                            break;
+                        case (Direction.Left):
+                            projectileHandler.Add(new PlayerProjectile(player.Position, new Vector2(-10, 0), playerProjectileSpr));
+                            fired = true;
+                            break;
+                        case (Direction.Right):
+                            projectileHandler.Add(new PlayerProjectile(player.Position, new Vector2(10, 0), playerProjectileSpr));
+                            fired = true;
+                            break;
+                        case (Direction.Up):
+                            projectileHandler.Add(new PlayerProjectile(player.Position, new Vector2(0, -10), playerProjectileSpr));
+                            fired = true;
+                            break;
+                    }
+                }
+            }
+            if(player.stateMachine.toolUsed == Tool.None)
+            {
+                fired = false;
+            }*/
+
+
+            projectileHandler.Update(gameTime);
             Inventory.Update(gameTime);
             block.Update(gameTime);
             Enemies.Update(gameTime, player.Position);
+
 
             base.Update(gameTime);
         }
@@ -124,6 +167,7 @@ namespace _2D_Game
             _spriteBatch.Begin();
 
             player.Draw(_spriteBatch);
+            projectileHandler.Draw(_spriteBatch);
             Enemies.Draw(_spriteBatch);
             Inventory.Draw(_spriteBatch);
             block.Draw(_spriteBatch);

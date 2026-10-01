@@ -18,7 +18,6 @@ namespace _2D_Game
         public float WalkSpeed { get; set; }
         public int Health { get; set; }
         public int MaxHealth { get; set; }
-
         private double IFrames = 0.5;
         private double IFramesTimer = 0;
 

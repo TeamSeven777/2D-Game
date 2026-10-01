@@ -16,7 +16,7 @@ namespace _2D_Game
         private double timeSling = 0.5;
         public RightSlingPlayerState(PlayerStateMachine myPlayerStateMachine)
         {
-            PlayerSprite = new Sprite(myPlayerStateMachine.spriteSheet, new Rectangle(123, 10, 17, 17), new Vector2(4.0f));
+            PlayerSprite = new Sprite(myPlayerStateMachine.spriteSheet, Vector2.Zero, new Vector2(4.0f), Color.White, new Rectangle(123, 10, 17, 17));
             stateMachine = myPlayerStateMachine;
         }
         public void Update(GameTime gameTime)

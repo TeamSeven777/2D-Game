@@ -14,7 +14,7 @@ namespace _2D_Game
         private PlayerStateMachine stateMachine;
         public LeftIdlePlayerState(PlayerStateMachine myPlayerStateMachine)
         {
-            PlayerSprite = new Sprite(myPlayerStateMachine.spriteSheet, new Rectangle(34, 10, 17, 17), new Vector2(4.0f), SpriteEffects.FlipHorizontally);
+            PlayerSprite = new Sprite(myPlayerStateMachine.spriteSheet,new Vector2(0.0f), new Vector2(4.0f), Color.White, new Rectangle(34, 10, 17, 17), SpriteEffects.FlipHorizontally);
             stateMachine = myPlayerStateMachine;
         }
         public void Update(GameTime gameTime)

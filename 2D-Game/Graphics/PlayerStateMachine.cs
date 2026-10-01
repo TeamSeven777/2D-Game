@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
+using System.Diagnostics;
 
 namespace _2D_Game
 {
@@ -151,7 +152,6 @@ namespace _2D_Game
                         }
                         break;
                 }
-                //CurrPlayerState
                 if (Damaged) CurrPlayerState.PlayerSprite.Color = Color.Red;
                 else CurrPlayerState.PlayerSprite.Color = Color.White;
                 ChangeOccurred = false;
@@ -159,8 +159,6 @@ namespace _2D_Game
             
             Boggus bog = new Boggus();
             if(BoggusMode) CurrPlayerState.PlayerSprite = bog.GetBoggusSprite();
-
-
             CurrPlayerState.Update(gt);
         }
         
