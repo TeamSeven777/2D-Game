@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,6 +15,7 @@ namespace _2D_Game
         public PlayerStateMachine stateMachine;
         public Vector2 Position;
         public Vector2 PreviousPosition;
+        public Rectangle BoundingBox;
         private GameTime gameTime { get; set; }
         public float WalkSpeed { get; set; }
         public int Health { get; set; }
@@ -31,6 +33,7 @@ namespace _2D_Game
             stateMachine = new PlayerStateMachine(playerSpriteSheet);
             Position = new Vector2(100, 100);
             PreviousPosition = Position;
+            BoundingBox = new Rectangle((int)Position.X,(int)Position.Y,16,16);
         }
 
         public void Update(GameTime gt)
@@ -47,6 +50,8 @@ namespace _2D_Game
                     stateMachine.Damaged = false;
                 }
             }
+            Debug.WriteLine("Rectangle Position = {0},{1}", BoundingBox.X, BoundingBox.Y);
+            BoundingBox.X = (int)Position.X; BoundingBox.Y = (int)Position.Y;
             PreviousPosition = Position;
             stateMachine.Update(gt);
         }
