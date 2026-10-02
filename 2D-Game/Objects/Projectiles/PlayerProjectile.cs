@@ -12,27 +12,31 @@ namespace _2D_Game
 {
     public class PlayerProjectile : IProjectile
     {
-        public Vector2 position { get; set; }
+        public Vector2 Position { get; set; }
 
-        public Vector2 travelingDirection { get; set; }
+        public Vector2 TravelingDirection { get; set; }
 
-        public ISprite sprite { get; set; }
+        public ISprite ProjectileSprite { get; set; }
+
+        public float DespawnTimer { get; set; }
 
         public PlayerProjectile(Vector2 position, Vector2 travelingDirection, ISprite sprite)
         {
-            this.position = position;
-            this.travelingDirection = travelingDirection;
-            this.sprite = sprite;
+            this.Position = position;
+            this.TravelingDirection = travelingDirection;
+            this.ProjectileSprite = sprite;
+            DespawnTimer = 1000;
         }
 
         public void Update(GameTime gt)
         {
-            position += travelingDirection;
+            Position += TravelingDirection;
+            if (DespawnTimer > 0) DespawnTimer--;
         }
 
         public void Draw(SpriteBatch sprbatch)
         {
-            sprite.Draw(sprbatch, position);
+            ProjectileSprite.Draw(sprbatch, Position);
         }
     }
 }

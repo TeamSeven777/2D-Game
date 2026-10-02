@@ -13,24 +13,26 @@ namespace _2D_Game
 {
     public class MosquitoProjectile : IProjectile
     {
-        public Vector2 position { get; set; }
+        public Vector2 Position { get; set; }
 
         float angle;
-        public Vector2 travelingDirection { get; set; }
+        public Vector2 TravelingDirection { get; set; }
 
-        public ISprite sprite { get; set; }
+        public ISprite ProjectileSprite { get; set; }
+
+        public float DespawnTimer { get; set; }
 
         public MosquitoProjectile(Vector2 position, Vector2 targetPosition, Sprite sprite)
         {
-            this.position = position;
+            this.Position = position;
             angle = (float)(Math.PI / 2) + (float)Math.Atan2(targetPosition.Y, targetPosition.X);
-            this.travelingDirection = new Vector2((float)Math.Cos(angle), (float)Math.Sin(angle));
-            this.sprite = sprite;
+            this.TravelingDirection = new Vector2((float)Math.Cos(angle), (float)Math.Sin(angle));
+            this.ProjectileSprite = sprite;
         }
 
         public void Update(GameTime gt)
         {
-            position += travelingDirection;
+            Position += TravelingDirection;
         }
         public void Update(GameTime gt, Vector2 targetPosition)
         {
@@ -39,13 +41,13 @@ namespace _2D_Game
             //Should be removed later, and inherit the position of
             //the mosquitos "target"
             angle = (float)(Math.PI / 2) + (float)Math.Atan2(targetPosition.Y, targetPosition.X);
-            travelingDirection = new Vector2((float)Math.Cos(angle), (float)Math.Sin(angle));
-            position += travelingDirection;
+            TravelingDirection = new Vector2((float)Math.Cos(angle), (float)Math.Sin(angle));
+            Position += TravelingDirection;
         }
 
         public void Draw(SpriteBatch sprbatch)
         {
-            sprite.Draw(sprbatch, position);
+            ProjectileSprite.Draw(sprbatch, Position);
         }
     }
 }

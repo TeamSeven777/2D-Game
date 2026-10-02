@@ -13,11 +13,12 @@ namespace _2D_Game
 {
     public interface IProjectile
     {
-        public Vector2 position { get; set; }
+        public Vector2 Position { get; set; }
 
-        public Vector2 travelingDirection { get; set; }
+        public Vector2 TravelingDirection { get; set; }
 
-        public ISprite sprite { get; set; }
+        public ISprite ProjectileSprite { get; set; }
+        public float DespawnTimer { get; set; }
 
         public void Update(GameTime gt);
 

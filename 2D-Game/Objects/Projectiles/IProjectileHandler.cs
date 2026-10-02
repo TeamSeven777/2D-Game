@@ -21,5 +21,7 @@ namespace _2D_Game
         public void Add();
 
         public void Remove();
+
+        public void Clear();
     }
 }

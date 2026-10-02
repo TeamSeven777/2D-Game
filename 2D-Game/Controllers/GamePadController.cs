@@ -9,28 +9,30 @@ namespace _2D_Game
 {
     public class GamePadController
 {
-        private Dictionary<Buttons, ICommand> controllerMappings;
+        private Dictionary<Buttons, ICommand> buttonMappings;
         public GamePadController()
         {
-            controllerMappings = new Dictionary<Buttons, ICommand>();
+            buttonMappings = new Dictionary<Buttons, ICommand>();
         }
         public void RegisterCommand(Buttons button, ICommand command)
         {
-            controllerMappings.Add(button, command);
+            buttonMappings.Add(button, command);
         }
         public void Update()
         {
-            GamePadState pressedButtons = GamePad.GetState(Microsoft.Xna.Framework.PlayerIndex.One);
+            
+              //Button Control//
+              foreach (Buttons btn in Enum.GetValues(typeof(Buttons)))
+                {
+                    if (buttonMappings.ContainsKey(btn))
+                    {
+                        if(GamePadState.Default.IsButtonDown(btn))
+                        buttonMappings[btn].Execute();
+                    }
+                }
 
-            /*
-             * foreach (Buttons in pressedButtons.IsButtonDown())
-             *   {
-             *       if (controllerMappings.ContainsKey(key))
-             *       {
-             *           controllerMappings[key].Execute();
-             *       }
-             *   }
-             */
+
+             
         }
     }
 }

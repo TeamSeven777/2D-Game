@@ -20,7 +20,6 @@ namespace _2D_Game
         public DefaultPlayer player;
         private Texture2D spriteSheet;
         public IProjectileHandler projectileHandler;
-        bool fired = false;
         public Boggus boggus;
         
         //private AnimatedSprite PlayerHurtSpr;

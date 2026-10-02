@@ -17,7 +17,8 @@ namespace _2D_Game
         public GameTime GameTime { get; set; }
         public DefaultPlayer playerRef;
         public ISprite[] CurProjectileSprite { get; set; }
-        public float Cooldown;
+        public float Cooldown = 0;
+        public int RemoveCount = 0;
 
         public PlayerProjectileHandler(ref DefaultPlayer player, Texture2D newSprite)
         {
@@ -26,9 +27,8 @@ namespace _2D_Game
             playerRef = player;
             for (int i = 0; i < 4; i++)
             {
-                CurProjectileSprite[i] = new Sprite(newSprite,Vector2.Zero, new Vector2(4.0f), Color.White, new Rectangle(i*16, 0, 16, 16));
+                CurProjectileSprite[i] = new Sprite(newSprite, Vector2.Zero, new Vector2(4.0f), Color.White, new Rectangle(i * 16, 0, 16, 16));
             }
-            Cooldown = 0;
         }
 
         public void Update(GameTime gt)
@@ -36,9 +36,10 @@ namespace _2D_Game
             foreach (IProjectile projectile in ActiveProjectiles)
             {
                 projectile.Update(gt);
+                if (projectile.DespawnTimer <= 0) RemoveCount++;
             }
             if (Cooldown > 0) Cooldown--;
-
+            for (int i = 0; i < RemoveCount; i++) this.Remove();
         }
 
         public void Draw(SpriteBatch spr)
@@ -79,7 +80,12 @@ namespace _2D_Game
 
         public void Remove()
         {
-            ActiveProjectiles.Dequeue();
+            if(ActiveProjectiles.Count > 0) ActiveProjectiles.Dequeue();
+        }
+
+        public void Clear()
+        {
+            if(ActiveProjectiles.Count > 0) ActiveProjectiles.Clear();
         }
     }
 }

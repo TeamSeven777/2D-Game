@@ -54,7 +54,7 @@ namespace _2D_Game
         {
             stateMachine.CurrPlayerState.Draw(sprbatch, Position);
         }
-        //TODO add way to disable/enable certain actions at given times
+
         public void MoveLeft()
         {
             if (stateMachine.CanMove)
