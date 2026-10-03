@@ -5,7 +5,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
-using System.Diagnostics;
 
 namespace _2D_Game
 {
@@ -23,7 +22,7 @@ namespace _2D_Game
             direction = Direction.Down;
             toolEquiped = new NoTool();
             toolUsed = Tool.None;
-            CurrPlayerState = new DownIdlePlayerState(this);
+            CurrPlayerState = new IdlePlayerState(this);
         }
         public Direction direction, previousDirection;
         public ITool toolEquiped;
@@ -76,82 +75,24 @@ namespace _2D_Game
             else CanMove = true;
             if (ChangeOccurred)
             {
-                switch (direction)
-                {
-                    case (Direction.Left):
-                        switch (toolUsed)
-                        {
-                            case (Tool.Knife):
-                                CurrPlayerState = new LeftKnifePlayerState(this);
-                                break;
-                            case (Tool.Axe):
-                                CurrPlayerState = new LeftAxePlayerState(this);
-                                break;
-                            case (Tool.Slingshot):
-                                CurrPlayerState = new LeftSlingPlayerState(this);
-                                break;
-                            case (Tool.None):
-                                if (Moving) CurrPlayerState = new LeftMovePlayerState(this);
-                                else CurrPlayerState = new LeftIdlePlayerState(this);
-                                break;
-                        }
-                        break;
-                    case (Direction.Right):
-
-                        switch (toolUsed)
-                        {
-                            case (Tool.Knife):
-                                CurrPlayerState = new RightKnifePlayerState(this);
-                                break;
-                            case (Tool.Axe):
-                                CurrPlayerState = new RightAxePlayerState(this);
-                                break;
-                            case (Tool.Slingshot):
-                                CurrPlayerState = new RightSlingPlayerState(this);
-                                break;
-                            case (Tool.None):
-                                if (Moving) CurrPlayerState = new RightMovePlayerState(this);
-                                else CurrPlayerState = new RightIdlePlayerState(this);
-                                break;
-                        }
-                        break;
-                    case (Direction.Up):
-                        switch (toolUsed)
-                        {
-                            case (Tool.Knife):
-                                CurrPlayerState = new UpKnifePlayerState(this); ;
-                                break;
-                            case (Tool.Axe):
-                                CurrPlayerState = new UpAxePlayerState(this);
-                                break;
-                            case (Tool.Slingshot):
-                                CurrPlayerState = new UpSlingPlayerState(this);
-                                break;
-                            case (Tool.None):
-                                if (Moving) CurrPlayerState = new UpMovePlayerState(this);
-                                else CurrPlayerState = new UpIdlePlayerState(this);
-                                break;
-                        }
-                        break;
-                    case (Direction.Down):
-                        switch (toolUsed)
-                        {
-                            case (Tool.Knife):
-                                CurrPlayerState = new DownKnifePlayerState(this); ;
-                                break;
-                            case (Tool.Axe):
-                                CurrPlayerState = new DownAxePlayerState(this);
-                                break;
-                            case (Tool.Slingshot):
-                                CurrPlayerState = new DownSlingPlayerState(this);
-                                break;
-                            case (Tool.None):
-                                if (Moving) CurrPlayerState = new DownMovePlayerState(this);
-                                else CurrPlayerState = new DownIdlePlayerState(this);
-                                break;
-                        }
-                        break;
-                }
+                    switch (toolUsed)
+                    {
+                        case (Tool.Knife):
+                            CurrPlayerState = new KnifePlayerState(this);
+                            break;
+                        case (Tool.Axe):
+                            CurrPlayerState = new AxePlayerState(this);
+                            break;
+                        case (Tool.Slingshot):
+                            CurrPlayerState = new SlingPlayerState(this);
+                            break;
+                        case (Tool.None):
+                            if (Moving) CurrPlayerState = new MovePlayerState(this);
+                            else CurrPlayerState = new IdlePlayerState(this);
+                            break;
+                    }
+                 
+                //CurrPlayerState
                 if (Damaged) CurrPlayerState.PlayerSprite.Color = Color.Red;
                 else CurrPlayerState.PlayerSprite.Color = Color.White;
                 ChangeOccurred = false;
@@ -159,6 +100,8 @@ namespace _2D_Game
             
             Boggus bog = new Boggus();
             if(BoggusMode) CurrPlayerState.PlayerSprite = bog.GetBoggusSprite();
+
+
             CurrPlayerState.Update(gt);
         }
         
