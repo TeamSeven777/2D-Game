@@ -18,7 +18,6 @@ namespace _2D_Game
         public float WalkSpeed { get; set; }
         public int Health { get; set; }
         public int MaxHealth { get; set; }
-
         private double IFrames = 0.5;
         private double IFramesTimer = 0;
 
@@ -55,7 +54,7 @@ namespace _2D_Game
         {
             stateMachine.CurrPlayerState.Draw(sprbatch, Position);
         }
-        //TODO add way to disable/enable certain actions at given times
+
         public void MoveLeft()
         {
             if (stateMachine.CanMove)

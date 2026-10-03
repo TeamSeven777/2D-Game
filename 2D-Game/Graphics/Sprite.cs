@@ -28,143 +28,32 @@ namespace _2D_Game
         public Sprite() 
         { }
 
+
+
         //Constructor must at least have an image to set
-        public Sprite(Texture2D image)
-        {
-            this.Content = image;
-            Scale = Vector2.One;
-            Position = Vector2.Zero;
-            SourceRectangle = image.Bounds;
-            Origin = new Vector2(image.Width / 2, image.Height / 2);
-            Color = Color.White;
-            Rotation = 0.0f;
-            LayerDepth = 0.0f;
-            Effects = SpriteEffects.None;
-        }
 
-        public Sprite(Texture2D image, Rectangle sourceRectangle)
+        public Sprite(Texture2D image, Rectangle src = new Rectangle())
         {
             this.Content = image;
-            Scale = Vector2.One;
-            Position = Vector2.Zero;
-            SourceRectangle = sourceRectangle;
-            Origin = new Vector2(sourceRectangle.Width / 2, sourceRectangle.Height / 2);
-            Color = Color.White;
-            Rotation = 0.0f;
-            LayerDepth = 0.0f;
-            Effects = SpriteEffects.None;
-        }
-
-        public Sprite(Texture2D image, Rectangle sourceRectangle, Vector2 scale)
-        {
-            this.Content = image;
-            Scale = scale;
-            Position = Vector2.Zero;
-            SourceRectangle = sourceRectangle;
-            Origin = new Vector2(sourceRectangle.Width / 2, sourceRectangle.Height / 2);
-            Color = Color.White;
-            Rotation = 0.0f;
-            LayerDepth = 0.0f;
-            Effects = SpriteEffects.None;
-        }
-
-        public Sprite(Texture2D image, Rectangle sourceRectangle, SpriteEffects effect)
-        {
-            this.Content = image;
-            Scale = Vector2.One;
-            Position = Vector2.Zero;
-            SourceRectangle = sourceRectangle;
-            Origin = new Vector2(sourceRectangle.Width / 2, sourceRectangle.Height / 2);
-            Color = Color.White;
-            Rotation = 0.0f;
-            LayerDepth = 0.0f;
-            Effects = effect;
-        }
-
-        public Sprite(Texture2D image, Rectangle sourceRectangle, Vector2 scale, SpriteEffects effect)
-        {
-            this.Content = image;
-            Scale = scale;
-            Position = Vector2.Zero;
-            SourceRectangle = sourceRectangle;
-            Origin = new Vector2(sourceRectangle.Width / 2, sourceRectangle.Height / 2);
-            Color = Color.White;
-            Rotation = 0.0f;
-            LayerDepth = 0.0f;
-            Effects = effect;
-        }
-
-        public Sprite(Texture2D image, Vector2 position)
-        {
-            this.Content = image;
-            Scale = Vector2.One;
-            this.Position = position;
-            SourceRectangle = image.Bounds;
-            Origin = new Vector2(image.Width / 2, image.Height / 2);
-            Color = Color.White;
-            Rotation = 0;
-            LayerDepth = 0;
-            Effects = SpriteEffects.None;
-        }
-
-        public Sprite(Texture2D image, Vector2 position, Vector2 scale)
-        {
-            this.Content = image;
-            this.Scale = scale;
-            this.Position = position;
-            SourceRectangle = image.Bounds;
-            Origin = new Vector2(image.Width / 2, image.Height / 2);
-            Color = Color.White;
-            Rotation = 0;
-            LayerDepth = 0;
-            Effects = SpriteEffects.None;
-        }
-
-        public Sprite(Texture2D image, Vector2 position, Vector2 scale, Color color)
-        {
-            this.Content = image;
-            this.Scale = scale;
-            this.Position = position;
-            SourceRectangle = image.Bounds;
-            Origin = new Vector2(image.Width / 2, image.Height / 2);
+            this.Scale = Vector2.One;
+            this.Position = Vector2.Zero;
+            SourceRectangle = src;
+            Origin = new Vector2(src.Width / 2, src.Height / 2);
+            Origin = new Vector2(0, 0);
             this.Color = Color.White;
-            Rotation = 0;
-            LayerDepth = 0;
-            Effects = SpriteEffects.None;
-        }
-        public Sprite(Texture2D image, Vector2 position, Vector2 scale, Color color, float rotation)
-        {
-            this.Content = image;
-            this.Scale = scale;
-            this.Position = position;
-            SourceRectangle = image.Bounds;
-            Origin = new Vector2(image.Width / 2, image.Height / 2);
-            this.Color = Color.White;
-            this.Rotation = rotation;
-            LayerDepth = 0;
+            this.Rotation = 0;
+            this.LayerDepth = 0;
             Effects = SpriteEffects.None;
         }
 
-        public Sprite(Texture2D image, Vector2 position, Vector2 scale, Color color, float rotation, int layerDepth)
-        {
-            this.Content = image;
-            this.Scale = scale;
-            this.Position = position;
-            SourceRectangle = image.Bounds;
-            Origin = new Vector2(image.Width / 2, image.Height / 2);
-            this.Color = Color.White;
-            this.Rotation = rotation;
-            this.LayerDepth = layerDepth;
-            Effects = SpriteEffects.None;
-        }
 
-        public Sprite(Texture2D image, Vector2 position, Vector2 scale, Color color, float rotation, int layerDepth, SpriteEffects effect)
+        public Sprite(Texture2D image, Vector2 position, Vector2 scale, Color color, Rectangle src = new Rectangle(), SpriteEffects effect = SpriteEffects.None, float rotation = 0, int layerDepth = 0)
         {
             this.Content = image;
             this.Scale = scale;
             this.Position = position;
-            SourceRectangle = image.Bounds;
-            Origin = new Vector2(image.Width / 2, image.Height / 2);
+            SourceRectangle = src;
+            Origin = new Vector2(src.Width / 2, src.Height / 2);
             this.Color = Color.White;
             this.Rotation = rotation;
             this.LayerDepth = layerDepth;
