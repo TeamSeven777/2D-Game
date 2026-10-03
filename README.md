@@ -35,3 +35,22 @@ Designated Meeting Time @ 4:30 Fridays In Person or Online
 Nighttime Forest Explorem-up : The Fourest Seven  
 
 A top down perspective game where the protagonist will explore a dark and spooky forest in search of their friends. Facing enemies like spiders, wolves, and mosquitos, the goal is to collect enough goods to make smores with the pals back at the campfire, and make it out alive...
+
+---
+
+# Game Information 
+
+You play as [PLACEHOLDER] in a [PLACEHOLDER] trying to find [PLACEHOLDER] while collecting [PLACEHOLDER] and dodging [PLACEHOLDER]s
+
+| Controls    |   Keys        |
+| ----------- | ------------  |
+|	W		  | Move Upward   |
+|   S		  | Move Downward |
+|   A         | Move Left     |
+|   D		  | Move Right    |
+|   Z         | 1st Attack    |
+|   1         | 2nd Attack	  |
+|   2         | Ranged Attack |
+|   Y, T	  | Next / Previous Block|
+|   I, U      | Next / Previous Item |
+|   P, O	  | Next / Previous Enemy|
