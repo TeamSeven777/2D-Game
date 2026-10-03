@@ -7,7 +7,7 @@ namespace _2D_Game
     {
         Vector2 Position { get; set; }
 
-        void Update(GameTime gameTime);
+        void Update(GameTime gameTime, Vector2 playerPosition);
         void Draw(SpriteBatch spriteBatch);
     }
 }

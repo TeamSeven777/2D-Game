@@ -58,24 +58,35 @@ namespace _2D_Game
         //TODO add way to disable/enable certain actions at given times
         public void MoveLeft()
         {
-            if(Position.X > 0)
+            if (stateMachine.CanMove)
+            {
                 Position.X -= WalkSpeed;
-            stateMachine.ChangeDirection(Direction.Left);
+                stateMachine.ChangeDirection(Direction.Left);
+            }
         }
         public void MoveRight()
         {
+            if (stateMachine.CanMove)
+            {
                 Position.X += WalkSpeed;
-            stateMachine.ChangeDirection(Direction.Right);
+                stateMachine.ChangeDirection(Direction.Right);
+            }
         }
         public void MoveUp()
         {
+            if (stateMachine.CanMove)
+            {
                 Position.Y -= WalkSpeed;
-            stateMachine.ChangeDirection(Direction.Up);
+                stateMachine.ChangeDirection(Direction.Up);
+            }
         }
         public void MoveDown()
         {
+            if (stateMachine.CanMove)
+            {
                 Position.Y += WalkSpeed;
-            stateMachine.ChangeDirection(Direction.Down);
+                stateMachine.ChangeDirection(Direction.Down);
+            }
         }
 
         public void TakeDamage(int attackPoints)
@@ -88,7 +99,7 @@ namespace _2D_Game
             }
         }
         public void UseTool(Tool tool) { 
-            stateMachine.UseTool(tool);
+            if(stateMachine.toolUsed == Tool.None)stateMachine.UseTool(tool);
         }
       
     }

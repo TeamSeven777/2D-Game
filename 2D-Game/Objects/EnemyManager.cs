@@ -41,7 +41,7 @@ namespace _2D_Game
             enemies.Add(new Mosquito(mosquitoSpr, spawnPosition));
         }
 
-        public void Update(GameTime gameTime)
+        public void Update(GameTime gameTime, Vector2 playerPosition)
         {
             if (cooldownTimer > 0)
             {
@@ -49,7 +49,7 @@ namespace _2D_Game
             }
 
             if (enemies.Count == 0) return;
-            enemies[currentIndex].Update(gameTime);
+            enemies[currentIndex].Update(gameTime, playerPosition);
         }
 
         public void Next()

@@ -22,7 +22,7 @@ namespace _2D_Game
             direction = Direction.Down;
             toolEquiped = new NoTool();
             toolUsed = Tool.None;
-            CurrPlayerState = new DownIdlePlayerState(spriteSheet);
+            CurrPlayerState = new IdlePlayerState(this);
         }
         public Direction direction, previousDirection;
         public ITool toolEquiped;
@@ -32,7 +32,8 @@ namespace _2D_Game
         public bool Moving {  get;  set; }
         private bool PreviousMoving;
         private bool ChangeOccurred = false;
-
+        public bool CanMove { get; set; }
+        private bool BoggusMode = false;
         public void ChangeDirection(Direction dir) {
             direction = dir;            
         }
@@ -54,9 +55,15 @@ namespace _2D_Game
                     toolEquiped = new NoTool();
                     break;
             }
+            previousToolUsed = toolUsed;
             toolUsed = toolEquiped.GetTool();
         }
-
+        public void ToggleBoggle()
+        {
+            if (BoggusMode) BoggusMode = false;
+            else BoggusMode = true;
+            ChangeOccurred = true;
+        }
         //
         public void Update(GameTime gt)
         {
@@ -64,89 +71,37 @@ namespace _2D_Game
             //TODO adjust Player Sprites in State classes to display more appropriately and have the appropriate origins.
             if (direction != previousDirection || Moving != PreviousMoving || toolUsed != previousToolUsed || Damaged != PreviousDamaged) ChangeOccurred = true;
             previousDirection = direction; PreviousMoving = Moving; previousToolUsed = toolUsed; PreviousDamaged = Damaged;
+            if (toolUsed != Tool.None) CanMove = false;
+            else CanMove = true;
             if (ChangeOccurred)
             {
-                switch (direction)
-                {
-                    case (Direction.Left):
-                        switch (toolUsed)
-                        {
-                            case (Tool.Knife):
-                                CurrPlayerState = new LeftKnifePlayerState(spriteSheet);
-                                break;
-                            case (Tool.Axe):
-                                CurrPlayerState = new LeftAxePlayerState(spriteSheet);
-                                break;
-                            case (Tool.Slingshot):
-                                CurrPlayerState = new LeftSlingPlayerState(spriteSheet);
-                                break;
-                            case (Tool.None):
-                                if (Moving) CurrPlayerState = new LeftMovePlayerState(spriteSheet);
-                                else CurrPlayerState = new LeftIdlePlayerState(spriteSheet);
-                                break;
-                        }
-                        break;
-                    case (Direction.Right):
-
-                        switch (toolUsed)
-                        {
-                            case (Tool.Knife):
-                                CurrPlayerState = new RightKnifePlayerState(spriteSheet);
-                                break;
-                            case (Tool.Axe):
-                                CurrPlayerState = new RightAxePlayerState(spriteSheet);
-                                break;
-                            case (Tool.Slingshot):
-                                CurrPlayerState = new RightSlingPlayerState(spriteSheet);
-                                break;
-                            case (Tool.None):
-                                if (Moving) CurrPlayerState = new RightMovePlayerState(spriteSheet);
-                                else CurrPlayerState = new RightIdlePlayerState(spriteSheet);
-                                break;
-                        }
-                        break;
-                    case (Direction.Up):
-                        switch (toolUsed)
-                        {
-                            case (Tool.Knife):
-                                CurrPlayerState = new UpKnifePlayerState(spriteSheet); ;
-                                break;
-                            case (Tool.Axe):
-                                CurrPlayerState = new UpAxePlayerState(spriteSheet);
-                                break;
-                            case (Tool.Slingshot):
-                                CurrPlayerState = new UpSlingPlayerState(spriteSheet);
-                                break;
-                            case (Tool.None):
-                                if (Moving) CurrPlayerState = new UpMovePlayerState(spriteSheet);
-                                else CurrPlayerState = new UpIdlePlayerState(spriteSheet);
-                                break;
-                        }
-                        break;
-                    case (Direction.Down):
-                        switch (toolUsed)
-                        {
-                            case (Tool.Knife):
-                                CurrPlayerState = new DownKnifePlayerState(spriteSheet); ;
-                                break;
-                            case (Tool.Axe):
-                                CurrPlayerState = new DownAxePlayerState(spriteSheet);
-                                break;
-                            case (Tool.Slingshot):
-                                CurrPlayerState = new DownSlingPlayerState(spriteSheet);
-                                break;
-                            case (Tool.None):
-                                if (Moving) CurrPlayerState = new DownMovePlayerState(spriteSheet);
-                                else CurrPlayerState = new DownIdlePlayerState(spriteSheet);
-                                break;
-                        }
-                        break;
-                }
+                    switch (toolUsed)
+                    {
+                        case (Tool.Knife):
+                            CurrPlayerState = new KnifePlayerState(this);
+                            break;
+                        case (Tool.Axe):
+                            CurrPlayerState = new AxePlayerState(this);
+                            break;
+                        case (Tool.Slingshot):
+                            CurrPlayerState = new SlingPlayerState(this);
+                            break;
+                        case (Tool.None):
+                            if (Moving) CurrPlayerState = new MovePlayerState(this);
+                            else CurrPlayerState = new IdlePlayerState(this);
+                            break;
+                    }
+                 
                 //CurrPlayerState
                 if (Damaged) CurrPlayerState.PlayerSprite.Color = Color.Red;
                 else CurrPlayerState.PlayerSprite.Color = Color.White;
                 ChangeOccurred = false;
             }
+            
+            Boggus bog = new Boggus();
+            if(BoggusMode) CurrPlayerState.PlayerSprite = bog.GetBoggusSprite();
+
+
             CurrPlayerState.Update(gt);
         }
         

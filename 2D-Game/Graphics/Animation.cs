@@ -14,7 +14,8 @@ namespace _2D_Game
         public Queue<Rectangle> Frames { get; set; }
         public TimeSpan FrameRate { get; set; }
         public enum Style {Walking, Linear, Idle };
-
+        public int FrameIndex = 0;
+        public bool Loops = true;
         /// <summary>
         /// Creates and animation from a spriteSheet, allocating each "region" as a rectangle to be used by the
         /// Animated Sprite class
@@ -46,6 +47,20 @@ namespace _2D_Game
                 startPoint.X += spriteRegion.X;
             }
 
+
+        }
+        public Animation(Texture2D spriteSheet, TimeSpan rate, Vector2 spriteRegion, Vector2 startPoint, int distance, bool loops)
+        {
+            this.Frames = new Queue<Rectangle>();
+            this.FrameRate = rate;
+            distance += (int)startPoint.X;
+
+            for (int i = (int)startPoint.X; i < distance; i += (int)spriteRegion.X)
+            {
+                Frames.Enqueue(new Rectangle((int)startPoint.X, (int)startPoint.Y, (int)spriteRegion.X, (int)spriteRegion.Y));
+                startPoint.X += spriteRegion.X;
+            }
+            Loops = loops;
 
         }
 
