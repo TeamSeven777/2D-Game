@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -12,5 +13,7 @@ namespace _2D_Game
         void Update();
 
         void RegisterCommand(Keys key, ICommand command);
+
+       /* void RegisterCommand(Buttons btn, ICommand command);*/
     }
 }

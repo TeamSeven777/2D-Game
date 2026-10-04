@@ -19,6 +19,9 @@ namespace _2D_Game
             MaxStackSize = maxStackSize;
         }
 
+        /// <summary>
+        /// Does nothing for right now
+        /// </summary>
         public virtual void Use()
         {
             // Base usage logic here

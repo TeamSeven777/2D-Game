@@ -55,14 +55,9 @@ namespace _2D_Game
                     toolEquiped = new NoTool();
                     break;
             }
+            //If tool isn't changed, use previous one
             previousToolUsed = toolUsed;
             toolUsed = toolEquiped.GetTool();
-        }
-        public void ToggleBoggle()
-        {
-            if (BoggusMode) BoggusMode = false;
-            else BoggusMode = true;
-            ChangeOccurred = true;
         }
         //
         public void Update(GameTime gt)
@@ -96,9 +91,7 @@ namespace _2D_Game
                 else CurrPlayerState.PlayerSprite.Color = Color.White;
                 ChangeOccurred = false;
             }
-            
-            Boggus bog = new Boggus();
-            if(BoggusMode) CurrPlayerState.PlayerSprite = bog.GetBoggusSprite();
+
 
 
             CurrPlayerState.Update(gt);

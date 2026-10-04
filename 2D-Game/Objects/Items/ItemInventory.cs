@@ -15,6 +15,10 @@ namespace _2D_Game
         private double cooldownTimer = 0;
         private const double CooldownDuration = 0.2; // 0.2 seconds (200ms) between switches
 
+        /// <summary>
+        /// SpriteFactory for all items
+        /// </summary>
+        /// <param name="content"></param>
         public void LoadContent(ContentManager content)
         {
             // Add all items here

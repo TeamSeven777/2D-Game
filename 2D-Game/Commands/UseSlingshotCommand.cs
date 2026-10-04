@@ -18,8 +18,8 @@ namespace _2D_Game
 
         public void Execute()
         {
-            //TODO
             myGame.player.UseTool(Tool.Slingshot); //default weapon attack
+            myGame.projectileHandler.Add();   
         }
 
     }

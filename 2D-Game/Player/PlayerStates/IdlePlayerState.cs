@@ -18,17 +18,19 @@ namespace _2D_Game
             switch (stateMachine.direction)
             {
                 case Direction.Down:
-                    PlayerSprite = new Sprite(stateMachine.spriteSheet, new Rectangle(0, 10, 17, 17), new Vector2(4.0f));
+                    PlayerSprite = new Sprite(stateMachine.spriteSheet, Vector2.Zero, new Vector2(4.0f), Color.White, new Rectangle(0, 10, 17, 17));
+                    
                     break;
                 case Direction.Up: 
-                    PlayerSprite = new Sprite(stateMachine.spriteSheet, new Rectangle(68, 10, 17, 17), new Vector2(4.0f));
+                   PlayerSprite = new Sprite(stateMachine.spriteSheet, Vector2.Zero, new Vector2(4.0f), Color.White, new Rectangle(68, 10, 17, 17));
                     break;
                 case Direction.Left:
-                    PlayerSprite = new Sprite(stateMachine.spriteSheet, new Rectangle(34, 10, 17, 17), new Vector2(4.0f), SpriteEffects.FlipHorizontally);
+                    PlayerSprite = new Sprite(stateMachine.spriteSheet, Vector2.Zero, new Vector2(4.0f), Color.White, new Rectangle(34, 10, 17, 17), SpriteEffects.FlipHorizontally);
                     break;
                 case Direction.Right:
-                    PlayerSprite = new Sprite(stateMachine.spriteSheet, new Rectangle(34, 10, 17, 17), new Vector2(4.0f));
+                    PlayerSprite = new Sprite(stateMachine.spriteSheet, Vector2.Zero, new Vector2(4.0f), Color.White, new Rectangle(34, 10, 17, 17));
                     break;
+                    
             }
             
         }

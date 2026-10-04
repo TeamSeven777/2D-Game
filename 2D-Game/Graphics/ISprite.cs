@@ -23,6 +23,11 @@ namespace _2D_Game
         public Texture2D Content { get; set; }
         public Rectangle SourceRectangle {  get; set; }
 
+        /// <summary>
+        /// Draws this sprite using SpriteBatch at (<paramref name="position"/>)
+        /// </summary>
+        /// <param name="spriteBatch">Contains Graphics Device Info</param>
+        /// <param name="position">The position to be drawn at</param>
         public void Draw(SpriteBatch spriteBatch, Vector2 position);
 
         public void Update(GameTime gt);
