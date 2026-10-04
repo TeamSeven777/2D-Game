@@ -18,21 +18,20 @@ namespace _2D_Game
             switch (stateMachine.direction)
             {
                 case Direction.Down:
-                    PlayerSprite = new Sprite(stateMachine.spriteSheet, Vector2.Zero, new Vector2(4.0f), Color.White, new Rectangle(0, 10, 17, 17));
-                    
+                    PlayerSprite = new AnimatedSprite(new Animation(myPlayerStateMachine.spriteSheet, TimeSpan.FromMilliseconds(500), new Vector2(32, 32), new Vector2(0, 96), 128, true), myPlayerStateMachine.spriteSheet);
                     break;
-                case Direction.Up: 
-                   PlayerSprite = new Sprite(stateMachine.spriteSheet, Vector2.Zero, new Vector2(4.0f), Color.White, new Rectangle(68, 10, 17, 17));
+                case Direction.Up:
+                    PlayerSprite = new AnimatedSprite(new Animation(myPlayerStateMachine.spriteSheet, TimeSpan.FromMilliseconds(500), new Vector2(32, 32), new Vector2(0, 160), 128, true), myPlayerStateMachine.spriteSheet);
                     break;
                 case Direction.Left:
-                    PlayerSprite = new Sprite(stateMachine.spriteSheet, Vector2.Zero, new Vector2(4.0f), Color.White, new Rectangle(34, 10, 17, 17), SpriteEffects.FlipHorizontally);
+                    PlayerSprite = new AnimatedSprite(new Animation(myPlayerStateMachine.spriteSheet, TimeSpan.FromMilliseconds(500), new Vector2(32, 32), new Vector2(0, 128), 128, true), myPlayerStateMachine.spriteSheet, SpriteEffects.FlipHorizontally);
                     break;
                 case Direction.Right:
-                    PlayerSprite = new Sprite(stateMachine.spriteSheet, Vector2.Zero, new Vector2(4.0f), Color.White, new Rectangle(34, 10, 17, 17));
+                    PlayerSprite = new AnimatedSprite(new Animation(myPlayerStateMachine.spriteSheet, TimeSpan.FromMilliseconds(500), new Vector2(32, 32), new Vector2(0, 128), 128, true), myPlayerStateMachine.spriteSheet);
                     break;
                     
             }
-            
+            PlayerSprite.Scale = new Vector2(4.0f);
         }
         public void Update(GameTime gameTime)
         {

@@ -87,8 +87,8 @@ namespace _2D_Game
             //Handy variable if you just want something to be centered and observable
             middleOfScreen = new Vector2(_spriteBatch.GraphicsDevice.Viewport.Width / 2, _spriteBatch.GraphicsDevice.Viewport.Height / 2);
 
-            spriteSheet = Content.Load<Texture2D>("Sprites/LinkSheet");
-            //spriteSheet = Content.Load<Texture2D>("Sprites/Player_Sheet");
+            //spriteSheet = Content.Load<Texture2D>("Sprites/LinkSheet");
+            spriteSheet = Content.Load<Texture2D>("Sprites/Player_Sheet");
 
             player = new DefaultPlayer(spriteSheet);
 

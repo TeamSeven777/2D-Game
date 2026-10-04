@@ -21,21 +21,20 @@ namespace _2D_Game
             switch (stateMachine.direction)
             {
                 case Direction.Down:
-                    PlayerSprite = new Sprite(stateMachine.spriteSheet, Vector2.Zero, new Vector2(4.0f), Color.White, new Rectangle(107, 10, 17, 17));
+                    PlayerSprite = new AnimatedSprite(new Animation(myPlayerStateMachine.spriteSheet, TimeSpan.FromMilliseconds(125), new Vector2(32, 32), new Vector2(0, 192), 128, false), myPlayerStateMachine.spriteSheet);
                     break;
-                    
                 case Direction.Up:
-                    PlayerSprite = new Sprite(stateMachine.spriteSheet, Vector2.Zero, new Vector2(4.0f), Color.White, new Rectangle(140, 10, 17, 17));
+                    PlayerSprite = new AnimatedSprite(new Animation(myPlayerStateMachine.spriteSheet, TimeSpan.FromMilliseconds(125), new Vector2(32, 32), new Vector2(0, 256), 128, false), myPlayerStateMachine.spriteSheet);
                     break;
-                    
                 case Direction.Left:
-                    PlayerSprite = new Sprite(stateMachine.spriteSheet, Vector2.Zero, new Vector2(4.0f), Color.White, new Rectangle(123, 10, 17, 17), SpriteEffects.FlipHorizontally);
+                    PlayerSprite = new AnimatedSprite(new Animation(myPlayerStateMachine.spriteSheet, TimeSpan.FromMilliseconds(125), new Vector2(32, 32), new Vector2(0, 224), 128, false), myPlayerStateMachine.spriteSheet, SpriteEffects.FlipHorizontally);
                     break;
                 case Direction.Right:
-                    PlayerSprite = new Sprite(stateMachine.spriteSheet, Vector2.Zero, new Vector2(4.0f), Color.White, new Rectangle(123, 10, 17, 17));
+                    PlayerSprite = new AnimatedSprite(new Animation(myPlayerStateMachine.spriteSheet, TimeSpan.FromMilliseconds(125), new Vector2(32, 32), new Vector2(0, 224), 128, false), myPlayerStateMachine.spriteSheet);
                     break;
             }
-            
+            PlayerSprite.Scale = new Vector2(4.0f);
+
         }
         public void Update(GameTime gameTime)
         {
