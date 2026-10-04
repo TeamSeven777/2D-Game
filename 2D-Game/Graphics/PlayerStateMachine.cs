@@ -33,7 +33,6 @@ namespace _2D_Game
         private bool PreviousMoving;
         private bool ChangeOccurred = false;
         public bool CanMove { get; set; }
-        private bool BoggusMode = false;
         public void ChangeDirection(Direction dir) {
             direction = dir;            
         }
