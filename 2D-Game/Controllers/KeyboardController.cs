@@ -19,6 +19,7 @@ namespace _2D_Game
         {
             controllerMappings.Add(key, command);
         }
+        public void RegisterCommand(Buttons button, ICommand command) { }
         public void Update()
         {
             Keys[] pressedKeys = Keyboard.GetState().GetPressedKeys();
