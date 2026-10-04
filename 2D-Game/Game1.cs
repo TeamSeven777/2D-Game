@@ -23,7 +23,8 @@ namespace _2D_Game
         private Texture2D blockSpriteSheet;
         private Texture2D projectileSpriteSheet;
         public IProjectileHandler projectileHandler;
-        private IController controller;
+        private Dictionary<String, IController> controllers;
+        private String[] controllerNames;
         public ItemInventory Inventory { get; private set; }
         public EnemyManager Enemies;
         private GameTime currentGameTime;
@@ -42,33 +43,13 @@ namespace _2D_Game
             Inventory = new ItemInventory();
             Enemies = new EnemyManager();
             blockSpriteSet = new Queue<Sprite>();
+            controllerNames = new String[]{ "keyboard", "gamepad", "mouse"};
+            controllers = new Dictionary<string, IController>();
+            controllers.Add(controllerNames[0], new KeyboardController(this));
+            controllers.Add(controllerNames[1], new GamePadController(PlayerIndex.One, this));
+            controllers.Add(controllerNames[2], new MouseController(this));
 
 
-            controller = new KeyboardController();
-
-            controller.RegisterCommand(Keys.W, new UpCommand(this));
-            controller.RegisterCommand(Keys.A, new LeftCommand(this));
-            controller.RegisterCommand(Keys.D, new RightCommand(this));
-            controller.RegisterCommand(Keys.S, new DownCommand(this));
-            controller.RegisterCommand(Keys.Q, new QuitCommand(this));
-            controller.RegisterCommand(Keys.R, new ResetCommand(this));
-            controller.RegisterCommand(Keys.E, new DamageCommand(this));
-            controller.RegisterCommand(Keys.T, new PreviousBlockCommand(this));
-            controller.RegisterCommand(Keys.Y, new NextBlockCommand(this));
-            controller.RegisterCommand(Keys.U, new PreviousItemCommand(this));
-            controller.RegisterCommand(Keys.I, new NextItemCommand(this));
-            controller.RegisterCommand(Keys.O, new PreviousCharacterCommand(this));
-            controller.RegisterCommand(Keys.P, new NextCharacterCommand(this));
-            controller.RegisterCommand(Keys.Z, new AttackCommand(this));
-            controller.RegisterCommand(Keys.D1, new UseAxeCommand(this));
-            controller.RegisterCommand(Keys.D2, new UseSlingshotCommand(this));
-            controller.RegisterCommand(Keys.D3, new UnEquipCommand(this));
-            
-
-            /*gamepad = new GamePadController(PlayerIndex.One);
-            gamepad.RegisterCommand(Buttons.DPadDown, new DownCommand(this));
-            controller.RegisterCommand(Keys.D, new RightCommand(this));
-            controller.RegisterCommand(Keys.W, new UpCommand(this));*/
 
             Inventory = new ItemInventory();
             Enemies = new EnemyManager();
@@ -117,10 +98,13 @@ namespace _2D_Game
             //Everything we are updating
             //To make it more "fair", everything
             //The player does should come first
-            
+
             //~Player Actions~
-            controller.Update();
-            //gamepad.Update();
+            foreach (String controllerType in controllerNames)
+            {
+                if(controllers[controllerType].Update()) break; //only use one controller type at a time.
+
+            }
 
             player.Update(gameTime);
             projectileHandler.Update(gameTime);

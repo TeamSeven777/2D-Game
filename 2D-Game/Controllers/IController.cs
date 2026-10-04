@@ -10,10 +10,7 @@ namespace _2D_Game
 {
     public interface IController
     {
-        void Update();
+        bool Update(); //return true if an update did occur
 
-        void RegisterCommand(Keys key, ICommand command);
-
-       /* void RegisterCommand(Buttons btn, ICommand command);*/
     }
 }
