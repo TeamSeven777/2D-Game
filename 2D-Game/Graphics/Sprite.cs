@@ -25,13 +25,18 @@ namespace _2D_Game
         public Texture2D Content { get; set; }
         public Rectangle SourceRectangle { get; set; }
 
+        /// <summary>
+        /// WARNING, THIS WILL CAUSE ERRORS
+        /// </summary>
         public Sprite() 
         { }
 
 
 
         //Constructor must at least have an image to set
-
+        /// <summary>
+        /// Takes a Texture2D or section of one and associates modifiers and properties with it
+        /// </summary>
         public Sprite(Texture2D image, Rectangle src = new Rectangle())
         {
             this.Content = image;
@@ -46,7 +51,9 @@ namespace _2D_Game
             Effects = SpriteEffects.None;
         }
 
-
+        /// <summary>
+        /// Takes a Texture2D and associates properties with it
+        /// </summary>
         public Sprite(Texture2D image, Vector2 position, Vector2 scale, Color color, Rectangle src = new Rectangle(), SpriteEffects effect = SpriteEffects.None, float rotation = 0, int layerDepth = 0)
         {
             this.Content = image;
@@ -60,7 +67,11 @@ namespace _2D_Game
             Effects = effect;
         }
 
-
+        /// <summary>
+        /// Uses SpriteBatch to draw Sprite to screen
+        /// </summary>
+        /// <param name="spriteBatch"></param>
+        /// <param name="position"></param>
         public void Draw(SpriteBatch spriteBatch, Vector2 position)
         {
 
@@ -68,6 +79,10 @@ namespace _2D_Game
         
         }
 
+        /// <summary>
+        /// Does nothing right now
+        /// </summary>
+        /// <param name="gt"></param>
         public void Update(GameTime gt) { }
 
 

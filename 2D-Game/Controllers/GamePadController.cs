@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework.Input;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,17 +8,28 @@ using System.Threading.Tasks;
 
 namespace _2D_Game
 {
-    public class GamePadController
+    public class GamePadController : IController
 {
+        private PlayerIndex CurIndex;
         private Dictionary<Buttons, ICommand> buttonMappings;
-        public GamePadController()
+        public GamePadController(PlayerIndex index)
         {
             buttonMappings = new Dictionary<Buttons, ICommand>();
+            CurIndex = index;
         }
-        public void RegisterCommand(Buttons button, ICommand command)
+        public void RegisterCommand(Keys key, ICommand command) { }
+        /*public void RegisterCommand(Buttons button, ICommand command)
         {
             buttonMappings.Add(button, command);
-        }
+        }*/
+
+        /*
+         * This implementation DOES work, but I dont want to
+         * include it yet since it modifies IController in
+         * an undesireable way, so maybe we workshop this
+         * and double back?
+         */
+
         public void Update()
         {
             
@@ -26,7 +38,7 @@ namespace _2D_Game
                 {
                     if (buttonMappings.ContainsKey(btn))
                     {
-                        if(GamePadState.Default.IsButtonDown(btn))
+                        if(GamePad.GetState(CurIndex).IsButtonDown(btn))
                         buttonMappings[btn].Execute();
                     }
                 }

@@ -21,7 +21,9 @@ namespace _2D_Game
         private double IFrames = 0.5;
         private double IFramesTimer = 0;
 
-
+        /// <summary>
+        /// Creates a player object with sprites given in playerSpriteSheet
+        /// </summary>
         public DefaultPlayer(Texture2D playerSpriteSheet)
         {
             WalkSpeed = 5.0f;
@@ -32,11 +34,18 @@ namespace _2D_Game
             PreviousPosition = Position;
         }
 
+        /// <summary>
+        /// Checks player's current states and updates logic based on user input
+        /// </summary>
+        /// <param name="gt"></param>
         public void Update(GameTime gt)
         {
             gameTime = gt;
             if (PreviousPosition != Position) stateMachine.Moving = true;
             else stateMachine.Moving = false;
+
+            //Player will be damaged based on duration of IFrames (half a second)
+            //Essentialy applies a red filter
             if (stateMachine.Damaged)
             {
                 IFramesTimer += gt.ElapsedGameTime.TotalSeconds;

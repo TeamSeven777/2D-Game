@@ -16,6 +16,10 @@ namespace _2D_Game
         private double cooldownTimer = 0;
         private const double CooldownDuration = 0.2; // 0.2 seconds (200ms) between switches
 
+        /// <summary>
+        /// SpriteFactory for all enemies
+        /// </summary>
+        /// <param name="content"></param>
         public void LoadContent(ContentManager content)
         {
             //Ghost: 12 frames of 256x256 in one row
@@ -52,6 +56,9 @@ namespace _2D_Game
             enemies[currentIndex].Update(gameTime, playerPosition);
         }
 
+        /// <summary>
+        /// (DEBUG) Swap test enemy for another type 
+        /// </summary>
         public void Next()
         {
             if (enemies.Count == 0 || cooldownTimer > 0) return;
@@ -60,6 +67,9 @@ namespace _2D_Game
             cooldownTimer = CooldownDuration; // Reset timer
         }
 
+        /// <summary>
+        /// (DEBUG) Swap test enemy for another type 
+        /// </summary>
         public void Previous()
         {
             if (enemies.Count == 0 || cooldownTimer > 0) return;

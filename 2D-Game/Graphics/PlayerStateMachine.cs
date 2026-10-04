@@ -55,6 +55,7 @@ namespace _2D_Game
                     toolEquiped = new NoTool();
                     break;
             }
+            //If tool isn't changed, use previous one
             previousToolUsed = toolUsed;
             toolUsed = toolEquiped.GetTool();
         }

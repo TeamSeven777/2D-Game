@@ -19,6 +19,13 @@ namespace _2D_Game
         private bool isReversed = false;
         private double cooldownTimer = 0.21;
         private const double CooldownDuration = 0.2; // 0.2 seconds (200ms) between switches
+
+        /// <summary>
+        /// Creates an obstacle with <paramref name="boundingBox"/> hitbox at <paramref name="originPos"/>
+        /// </summary>
+        /// <param name="boundingBox">In case sprite doesnt match boundaries</param>
+        /// <param name="originPos"></param>
+        /// <param name="sprite"></param>
         public Obstacle(Rectangle boundingBox, Vector2 originPos, Sprite sprite)
         {
             this.originPos = originPos;
@@ -26,6 +33,13 @@ namespace _2D_Game
             this.boundingBox = boundingBox;
         }
 
+        /// <summary>
+        /// (DEBUG)Creates an obstacle with <paramref name="boundingBox"/> hitbox at <paramref name="originPos"/>
+        /// with ability to swap sprites
+        /// </summary>
+        /// <param name="boundingBox">In case sprite doesnt match boundaries</param>
+        /// <param name="originPos"></param>
+        /// <param name="sprite"></param>
         public Obstacle(Rectangle boundingBox, Vector2 originPos, Queue<Sprite> sprites)
         {
             this.originPos = originPos;
@@ -34,7 +48,9 @@ namespace _2D_Game
             this.boundingBox = boundingBox;
         }
 
-
+        /// <summary>
+        /// (DEBUG) Used to swap test block for another
+        /// </summary>
         public void NextObstacle()
         {
 
@@ -52,6 +68,9 @@ namespace _2D_Game
             }
         }
 
+        /// <summary>
+        /// (DEBUG) Used to swap test block for another
+        /// </summary>
         public void PrevObstacle()
         {
             if (spriteSet != null && cooldownTimer > CooldownDuration)
@@ -68,10 +87,18 @@ namespace _2D_Game
             }
         }
 
+        /// <summary>
+        /// Draws obstacle to screen using <paramref name="sprbatch"/>
+        /// </summary>
+        /// <param name="sprbatch"></param>
         public void Draw(SpriteBatch sprbatch)
         {
             sprite.Draw(sprbatch, originPos);
         }
+        /// <summary>
+        /// Does nothing for now
+        /// </summary>
+        /// <param name="gameTime"></param>
         public void Update(GameTime gameTime)
         {
             //If player.boundingBox.getArea == this.boundingBox.getArea (?) do player.Pos.X / Y - distance to edge
