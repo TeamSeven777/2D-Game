@@ -19,7 +19,6 @@ namespace _2D_Game
         public Obstacle block;
         public DefaultPlayer player;
         private Texture2D spriteSheet;
-        public Boggus boggus;
         private Queue<Sprite> blockSpriteSet;
         private Texture2D blockSpriteSheet;
         private Texture2D projectileSpriteSheet;
@@ -64,7 +63,7 @@ namespace _2D_Game
             controller.RegisterCommand(Keys.D1, new UseAxeCommand(this));
             controller.RegisterCommand(Keys.D2, new UseSlingshotCommand(this));
             controller.RegisterCommand(Keys.D3, new UnEquipCommand(this));
-            controller.RegisterCommand(Keys.B, new BoggusCommand(this));
+            
 
             /*gamepad = new GamePadController(PlayerIndex.One);
             gamepad.RegisterCommand(Buttons.DPadDown, new DownCommand(this));
@@ -92,7 +91,6 @@ namespace _2D_Game
 
             player = new DefaultPlayer(spriteSheet);
 
-            boggus = new Boggus(Content.Load<Texture2D>("Images/boggus"));
 
             Inventory.LoadContent(Content);
             Enemies.LoadContent(Content);
