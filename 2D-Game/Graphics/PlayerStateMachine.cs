@@ -67,7 +67,6 @@ namespace _2D_Game
         //
         public void Update(GameTime gt)
         {
-            //TODO make it so item uses prohibit change in state, and execute once per button press
             //TODO adjust Player Sprites in State classes to display more appropriately and have the appropriate origins.
             if (direction != previousDirection || Moving != PreviousMoving || toolUsed != previousToolUsed || Damaged != PreviousDamaged) ChangeOccurred = true;
             previousDirection = direction; PreviousMoving = Moving; previousToolUsed = toolUsed; PreviousDamaged = Damaged;
