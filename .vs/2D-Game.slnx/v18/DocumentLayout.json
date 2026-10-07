@@ -1,7 +1,36 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\edwei\\source\\repos\\2D-Game\\",
-  "Documents": [],
+  "WorkspaceRootPath": "C:\\Users\\edwei\\OneDrive\\Documents\\GitHub\\2D-Game\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{1A49DD9B-7888-3C49-8C04-E072500C2AE6}|2D-Game\\2D-Game.csproj|c:\\users\\edwei\\onedrive\\documents\\github\\2d-game\\2d-game\\graphics\\animatedsprite.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1A49DD9B-7888-3C49-8C04-E072500C2AE6}|2D-Game\\2D-Game.csproj|solutionrelative:2d-game\\graphics\\animatedsprite.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1A49DD9B-7888-3C49-8C04-E072500C2AE6}|2D-Game\\2D-Game.csproj|c:\\users\\edwei\\onedrive\\documents\\github\\2d-game\\2d-game\\graphics\\sprite.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1A49DD9B-7888-3C49-8C04-E072500C2AE6}|2D-Game\\2D-Game.csproj|solutionrelative:2d-game\\graphics\\sprite.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1A49DD9B-7888-3C49-8C04-E072500C2AE6}|2D-Game\\2D-Game.csproj|c:\\users\\edwei\\onedrive\\documents\\github\\2d-game\\2d-game\\objects\\enemies\\ghost.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1A49DD9B-7888-3C49-8C04-E072500C2AE6}|2D-Game\\2D-Game.csproj|solutionrelative:2d-game\\objects\\enemies\\ghost.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1A49DD9B-7888-3C49-8C04-E072500C2AE6}|2D-Game\\2D-Game.csproj|c:\\users\\edwei\\onedrive\\documents\\github\\2d-game\\2d-game\\objects\\enemies\\mosquito.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1A49DD9B-7888-3C49-8C04-E072500C2AE6}|2D-Game\\2D-Game.csproj|solutionrelative:2d-game\\objects\\enemies\\mosquito.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1A49DD9B-7888-3C49-8C04-E072500C2AE6}|2D-Game\\2D-Game.csproj|c:\\users\\edwei\\onedrive\\documents\\github\\2d-game\\2d-game\\objects\\enemies\\enemymanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1A49DD9B-7888-3C49-8C04-E072500C2AE6}|2D-Game\\2D-Game.csproj|solutionrelative:2d-game\\objects\\enemies\\enemymanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1A49DD9B-7888-3C49-8C04-E072500C2AE6}|2D-Game\\2D-Game.csproj|c:\\users\\edwei\\onedrive\\documents\\github\\2d-game\\2d-game\\objects\\enemies\\ienemy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1A49DD9B-7888-3C49-8C04-E072500C2AE6}|2D-Game\\2D-Game.csproj|solutionrelative:2d-game\\objects\\enemies\\ienemy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1A49DD9B-7888-3C49-8C04-E072500C2AE6}|2D-Game\\2D-Game.csproj|c:\\users\\edwei\\onedrive\\documents\\github\\2d-game\\2d-game\\game1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1A49DD9B-7888-3C49-8C04-E072500C2AE6}|2D-Game\\2D-Game.csproj|solutionrelative:2d-game\\game1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -9,11 +38,101 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 0,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "AnimatedSprite.cs",
+              "DocumentMoniker": "C:\\Users\\edwei\\OneDrive\\Documents\\GitHub\\2D-Game\\2D-Game\\Graphics\\AnimatedSprite.cs",
+              "RelativeDocumentMoniker": "2D-Game\\Graphics\\AnimatedSprite.cs",
+              "ToolTip": "C:\\Users\\edwei\\OneDrive\\Documents\\GitHub\\2D-Game\\2D-Game\\Graphics\\AnimatedSprite.cs",
+              "RelativeToolTip": "2D-Game\\Graphics\\AnimatedSprite.cs",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-05T21:37:40.586Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Sprite.cs",
+              "DocumentMoniker": "C:\\Users\\edwei\\OneDrive\\Documents\\GitHub\\2D-Game\\2D-Game\\Graphics\\Sprite.cs",
+              "RelativeDocumentMoniker": "2D-Game\\Graphics\\Sprite.cs",
+              "ToolTip": "C:\\Users\\edwei\\OneDrive\\Documents\\GitHub\\2D-Game\\2D-Game\\Graphics\\Sprite.cs",
+              "RelativeToolTip": "2D-Game\\Graphics\\Sprite.cs",
+              "ViewState": "AgIAABQAAAAAAAAAAAAswAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-05T21:33:27.943Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Ghost.cs",
+              "DocumentMoniker": "C:\\Users\\edwei\\OneDrive\\Documents\\GitHub\\2D-Game\\2D-Game\\Objects\\Enemies\\Ghost.cs",
+              "RelativeDocumentMoniker": "2D-Game\\Objects\\Enemies\\Ghost.cs",
+              "ToolTip": "C:\\Users\\edwei\\OneDrive\\Documents\\GitHub\\2D-Game\\2D-Game\\Objects\\Enemies\\Ghost.cs",
+              "RelativeToolTip": "2D-Game\\Objects\\Enemies\\Ghost.cs",
+              "ViewState": "AgIAAFoAAAAAAAAAAAAYwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-05T18:37:23.677Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:130:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Mosquito.cs",
+              "DocumentMoniker": "C:\\Users\\edwei\\OneDrive\\Documents\\GitHub\\2D-Game\\2D-Game\\Objects\\Enemies\\Mosquito.cs",
+              "RelativeDocumentMoniker": "2D-Game\\Objects\\Enemies\\Mosquito.cs",
+              "ToolTip": "C:\\Users\\edwei\\OneDrive\\Documents\\GitHub\\2D-Game\\2D-Game\\Objects\\Enemies\\Mosquito.cs",
+              "RelativeToolTip": "2D-Game\\Objects\\Enemies\\Mosquito.cs",
+              "ViewState": "AgIAAEcAAAAAAAAAAAAAwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-05T18:37:25.907Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "IEnemy.cs",
+              "DocumentMoniker": "C:\\Users\\edwei\\OneDrive\\Documents\\GitHub\\2D-Game\\2D-Game\\Objects\\Enemies\\IEnemy.cs",
+              "RelativeDocumentMoniker": "2D-Game\\Objects\\Enemies\\IEnemy.cs",
+              "ToolTip": "C:\\Users\\edwei\\OneDrive\\Documents\\GitHub\\2D-Game\\2D-Game\\Objects\\Enemies\\IEnemy.cs",
+              "RelativeToolTip": "2D-Game\\Objects\\Enemies\\IEnemy.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-05T18:37:25.139Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "EnemyManager.cs",
+              "DocumentMoniker": "C:\\Users\\edwei\\OneDrive\\Documents\\GitHub\\2D-Game\\2D-Game\\Objects\\Enemies\\EnemyManager.cs",
+              "RelativeDocumentMoniker": "2D-Game\\Objects\\Enemies\\EnemyManager.cs",
+              "ToolTip": "C:\\Users\\edwei\\OneDrive\\Documents\\GitHub\\2D-Game\\2D-Game\\Objects\\Enemies\\EnemyManager.cs",
+              "RelativeToolTip": "2D-Game\\Objects\\Enemies\\EnemyManager.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-05T18:37:10.507Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Game1.cs",
+              "DocumentMoniker": "C:\\Users\\edwei\\OneDrive\\Documents\\GitHub\\2D-Game\\2D-Game\\Game1.cs",
+              "RelativeDocumentMoniker": "2D-Game\\Game1.cs",
+              "ToolTip": "C:\\Users\\edwei\\OneDrive\\Documents\\GitHub\\2D-Game\\2D-Game\\Game1.cs",
+              "RelativeToolTip": "2D-Game\\Game1.cs",
+              "ViewState": "AgIAACUAAAAAAAAAAADwv2gAAABpAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-04T15:41:45.628Z"
             }
           ]
         }
