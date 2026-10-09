@@ -11,7 +11,8 @@ namespace _2D_Game
     public class PlayerCollisionHandler : ICollisionHandler
     {
         DefaultPlayer player;
-
+        //some list of hamndler types? later
+        //tool classes
 
         public PlayerCollisionHandler(DefaultPlayer player)
         {
