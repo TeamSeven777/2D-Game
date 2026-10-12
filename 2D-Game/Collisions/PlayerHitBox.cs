@@ -9,7 +9,7 @@ namespace _2D_Game
 {
     public class PlayerHitBox : IHitbox
     {
-        public Rectangle BoundingBox { get; set; }
+        public Rectangle BoundingBox { get; set; }       
         public HitBoxType Type { get; set; }
         public DefaultPlayer player;
         public PlayerHitBox(Rectangle area, DefaultPlayer player)

@@ -39,7 +39,7 @@ namespace _2D_Game
             //The size might be slightly smaller than intended but!
             //For reference, the sprites have been scaled up by 16 from original (32x32 -> 512x512)
             //and I have set their scale 1/4th the original so it still fits on screen
-            HitBox = new PlayerHitBox(new Microsoft.Xna.Framework.Rectangle((int)Position.X, (int)Position.Y, 64, 128), this);
+            HitBox = new PlayerHitBox(new Rectangle((int)Position.X, (int)Position.Y, 64, 128), this);
             DisabledDirections = new HashSet<Direction>();
         }
 

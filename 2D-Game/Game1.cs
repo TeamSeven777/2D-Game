@@ -30,6 +30,7 @@ namespace _2D_Game
         public EnemyManager Enemies;
         private GameTime currentGameTime;
         public GameTime CurrentGameTime => currentGameTime;
+        private HitboxMode hitboxMode;
         
         public Game1()
         {
@@ -85,6 +86,7 @@ namespace _2D_Game
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
             
+            
             //Handy variable if you just want something to be centered and observable
             middleOfScreen = new Vector2(_spriteBatch.GraphicsDevice.Viewport.Width / 2, _spriteBatch.GraphicsDevice.Viewport.Height / 2);
 
@@ -109,7 +111,11 @@ namespace _2D_Game
             projectileHandler = new PlayerProjectileHandler(ref player, projectileSpriteSheet);
 
             block = new Obstacle(new Vector2(25), middleOfScreen, blockSpriteSet);
-            
+
+
+
+            hitboxMode = new HitboxMode(this);
+
         }
 
         protected override void Update(GameTime gameTime)
@@ -137,6 +143,8 @@ namespace _2D_Game
             //~Whatever Else Actions~
             Enemies.Update(gameTime, player.Position);
 
+            hitboxMode.Update();
+
 
             base.Update(gameTime);
         }
@@ -154,6 +162,9 @@ namespace _2D_Game
             Inventory.Draw(_spriteBatch);
             block.Draw(_spriteBatch);
             Enemies.Draw(_spriteBatch);
+            //for hitbox debugging
+            hitboxMode.DrawHitboxes(_spriteBatch);
+            //
             _spriteBatch.End();
 
             base.Draw(gameTime);
