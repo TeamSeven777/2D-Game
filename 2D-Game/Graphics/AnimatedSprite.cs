@@ -51,6 +51,7 @@ namespace _2D_Game
             Rotation = 0;
             LayerDepth = 0;
             Effects = SpriteEffects.None;
+            TimeSinceLastFrame = Animation.FrameRate;
         }
 
         /// <summary>
@@ -71,6 +72,7 @@ namespace _2D_Game
             Rotation = 0;
             LayerDepth = 0;
             Effects = effect;
+            TimeSinceLastFrame = Animation.FrameRate;
         }
 
         public void Update(GameTime gameTime)

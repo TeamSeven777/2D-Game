@@ -22,6 +22,7 @@ namespace _2D_Game
         public float WalkSpeed { get; set; }
         public int Health { get; set; }
         public int MaxHealth { get; set; }
+        private ISet<Direction> DisabledDirections;
         private double IFrames = 0.5;
         private double IFramesTimer = 0;
 
@@ -36,7 +37,8 @@ namespace _2D_Game
             stateMachine = new PlayerStateMachine(playerSpriteSheet);
             Position = new Vector2(100, 100);
             PreviousPosition = Position;
-            HitBox = new PlayerHitBox(new System.Drawing.Rectangle((int)Position.X,(int)Position.Y,16,16));
+            HitBox = new PlayerHitBox(new System.Drawing.Rectangle((int)Position.X, (int)Position.Y, 16, 16));
+            DisabledDirections = new HashSet<Direction>();
         }
 
         /// <summary>
@@ -54,7 +56,7 @@ namespace _2D_Game
             if (stateMachine.Damaged)
             {
                 IFramesTimer += gt.ElapsedGameTime.TotalSeconds;
-                if(IFramesTimer >= IFrames)
+                if (IFramesTimer >= IFrames)
                 {
                     IFramesTimer = 0;
                     stateMachine.Damaged = false;
@@ -72,7 +74,7 @@ namespace _2D_Game
 
         public void MoveLeft()
         {
-            if (stateMachine.CanMove)
+            if (stateMachine.CanMove && !DisabledDirections.Contains(Direction.Left))
             {
                 Position.X -= WalkSpeed;
                 stateMachine.ChangeDirection(Direction.Left);
@@ -80,7 +82,7 @@ namespace _2D_Game
         }
         public void MoveRight()
         {
-            if (stateMachine.CanMove)
+            if (stateMachine.CanMove && !DisabledDirections.Contains(Direction.Right))
             {
                 Position.X += WalkSpeed;
                 stateMachine.ChangeDirection(Direction.Right);
@@ -88,7 +90,7 @@ namespace _2D_Game
         }
         public void MoveUp()
         {
-            if (stateMachine.CanMove)
+            if (stateMachine.CanMove && !DisabledDirections.Contains(Direction.Up))
             {
                 Position.Y -= WalkSpeed;
                 stateMachine.ChangeDirection(Direction.Up);
@@ -96,7 +98,7 @@ namespace _2D_Game
         }
         public void MoveDown()
         {
-            if (stateMachine.CanMove)
+            if (stateMachine.CanMove && !DisabledDirections.Contains(Direction.Down))
             {
                 Position.Y += WalkSpeed;
                 stateMachine.ChangeDirection(Direction.Down);
@@ -112,9 +114,16 @@ namespace _2D_Game
                 stateMachine.Damaged = true;
             }
         }
-        public void UseTool(Tool tool) { 
-            if(stateMachine.toolUsed == Tool.None)stateMachine.UseTool(tool);
+        public void UseTool(Tool tool)
+        {
+            if (stateMachine.toolUsed == Tool.None) stateMachine.UseTool(tool);
         }
-      
+
+        //can disable/enable a particular direction
+        public void ToggleAllowedDirection(Direction dir, bool allowed)
+        {
+            if (allowed && DisabledDirections.Contains(dir)) DisabledDirections.Remove(dir);
+            else DisabledDirections.Add(dir);
+        }
     }
 }

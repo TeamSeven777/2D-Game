@@ -92,3 +92,5 @@ C:\Users\edwei\OneDrive\Documents\GitHub\2D-Game\2D-Game\bin\Debug\net9.0\Conten
 C:\Users\edwei\OneDrive\Documents\GitHub\2D-Game\2D-Game\bin\Debug\net9.0\Content\Sprites\testmosquito.xnb
 C:\Users\edwei\OneDrive\Documents\GitHub\2D-Game\2D-Game\bin\Debug\net9.0\Content\Sprites\LinkSheet.xnb
 C:\Users\edwei\OneDrive\Documents\GitHub\2D-Game\2D-Game\bin\Debug\net9.0\Content\Images\boggus.xnb
+C:\Users\edwei\OneDrive\Documents\GitHub\2D-Game\2D-Game\bin\Debug\net9.0\Content\Sprites\Player_Sheet.xnb
+C:\Users\edwei\OneDrive\Documents\GitHub\2D-Game\2D-Game\bin\Debug\net9.0\Content\Sprites\projectileSprites.xnb
