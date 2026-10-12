@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
+using Microsoft.Xna.Framework;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,21 +12,27 @@ namespace _2D_Game
         public Rectangle BoundingBox { get; set; }
         public HitBoxType Type { get; set; }
 
-        public bool WillCollide(IHitbox collider)
+        public BlockHitBox(Rectangle boundingBox)
         {
-            return true;
+            this.BoundingBox = boundingBox;
+            this.Type = HitBoxType.Block;
         }
-        public bool IsCollide(IHitbox collider)
+        public Tuple<Side,bool> WillCollide(IHitbox collider)
         {
-            if (this.BoundingBox.IntersectsWith(collider.BoundingBox))
+            Tuple<Side, bool> resultOfCollision = new Tuple<Side, bool>(Side.Bottom, false);
+            return resultOfCollision;
+        }
+        public Tuple<Side,bool> IsCollide(IHitbox collider)
+        {
+            Tuple<Side, bool> resultOfCollision = new Tuple<Side, bool>(Side.Bottom, false);
+            if (this.BoundingBox.Intersects(collider.BoundingBox))
             {
-                return true;
+                return resultOfCollision;
             }
             else
             {
-                return false;
+                return resultOfCollision;
             }
-            return true;
         }
 }
 }

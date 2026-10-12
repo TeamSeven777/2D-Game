@@ -10,7 +10,7 @@ using Vector2 = Microsoft.Xna.Framework.Vector2;
 
 namespace _2D_Game
 {
-    public class PlayerProjectile : IProjectile
+    public class PlayerProjectileBoomerang : IProjectile
     {
         public Vector2 Position { get; set; }
 
@@ -20,7 +20,7 @@ namespace _2D_Game
 
         public float DespawnTimer { get; set; }
 
-        public PlayerProjectile(Vector2 position, Vector2 travelingDirection, ISprite sprite)
+        public PlayerProjectileBoomerang(Vector2 position, Vector2 travelingDirection, ISprite sprite)
         {
             this.Position = position;
             this.TravelingDirection = travelingDirection;

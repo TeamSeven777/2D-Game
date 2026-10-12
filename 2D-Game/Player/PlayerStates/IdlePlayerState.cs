@@ -18,20 +18,20 @@ namespace _2D_Game
             switch (stateMachine.direction)
             {
                 case Direction.Down:
-                    PlayerSprite = new AnimatedSprite(new Animation(myPlayerStateMachine.spriteSheet, TimeSpan.FromMilliseconds(500), new Vector2(32, 32), new Vector2(0, 96), 128, true), myPlayerStateMachine.spriteSheet);
+                    PlayerSprite = new AnimatedSprite(new Animation(myPlayerStateMachine.spriteSheet, TimeSpan.FromMilliseconds(500), new Vector2(32*16, 32*16), new Vector2(0, 96*16), 2048, true), myPlayerStateMachine.spriteSheet);
                     break;
                 case Direction.Up:
-                    PlayerSprite = new AnimatedSprite(new Animation(myPlayerStateMachine.spriteSheet, TimeSpan.FromMilliseconds(500), new Vector2(32, 32), new Vector2(0, 160), 128, true), myPlayerStateMachine.spriteSheet);
+                    PlayerSprite = new AnimatedSprite(new Animation(myPlayerStateMachine.spriteSheet, TimeSpan.FromMilliseconds(500), new Vector2(32 * 16, 32 * 16), new Vector2(0, 160*16), 2048, true), myPlayerStateMachine.spriteSheet);
                     break;
                 case Direction.Left:
-                    PlayerSprite = new AnimatedSprite(new Animation(myPlayerStateMachine.spriteSheet, TimeSpan.FromMilliseconds(500), new Vector2(32, 32), new Vector2(0, 128), 128, true), myPlayerStateMachine.spriteSheet, SpriteEffects.FlipHorizontally);
+                    PlayerSprite = new AnimatedSprite(new Animation(myPlayerStateMachine.spriteSheet, TimeSpan.FromMilliseconds(500), new Vector2(32 * 16, 32 * 16), new Vector2(0, 128*16), 2048, true), myPlayerStateMachine.spriteSheet, SpriteEffects.FlipHorizontally);
                     break;
                 case Direction.Right:
-                    PlayerSprite = new AnimatedSprite(new Animation(myPlayerStateMachine.spriteSheet, TimeSpan.FromMilliseconds(500), new Vector2(32, 32), new Vector2(0, 128), 128, true), myPlayerStateMachine.spriteSheet);
+                    PlayerSprite = new AnimatedSprite(new Animation(myPlayerStateMachine.spriteSheet, TimeSpan.FromMilliseconds(500), new Vector2(32 * 16, 32 * 16), new Vector2(0, 128*16), 2048, true), myPlayerStateMachine.spriteSheet);
                     break;
                     
             }
-            PlayerSprite.Scale = new Vector2(4.0f);
+            PlayerSprite.Scale = new Vector2(0.25f);
         }
         public void Update(GameTime gameTime)
         {

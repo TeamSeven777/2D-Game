@@ -18,6 +18,7 @@ namespace _2D_Game
         private SpriteBatch _spriteBatch;
         public Obstacle block;
         public DefaultPlayer player;
+        private ICollisionHandler _playerCollisionHandler;  
         private Texture2D spriteSheet;
         public Boggus boggus;
         private Queue<Sprite> blockSpriteSet;
@@ -91,6 +92,7 @@ namespace _2D_Game
             spriteSheet = Content.Load<Texture2D>("Sprites/Player_Sheet");
 
             player = new DefaultPlayer(spriteSheet);
+            _playerCollisionHandler = new PlayerCollisionHandler(player);
 
             boggus = new Boggus(Content.Load<Texture2D>("Images/boggus"));
 
@@ -106,7 +108,8 @@ namespace _2D_Game
             projectileSpriteSheet = Content.Load<Texture2D>("Sprites/projectileSprites");
             projectileHandler = new PlayerProjectileHandler(ref player, projectileSpriteSheet);
 
-            block = new Obstacle(new Rectangle(0, 0, 25, 25), middleOfScreen, blockSpriteSet);
+            block = new Obstacle(new Vector2(25), middleOfScreen, blockSpriteSet);
+            
         }
 
         protected override void Update(GameTime gameTime)
@@ -119,7 +122,9 @@ namespace _2D_Game
             //Everything we are updating
             //To make it more "fair", everything
             //The player does should come first
-            
+
+            _playerCollisionHandler.HandleCollision(block.BoundingBox);
+
             //~Player Actions~
             controller.Update();
             //gamepad.Update();

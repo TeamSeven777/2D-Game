@@ -57,19 +57,19 @@ namespace _2D_Game
                 switch (playerRef.stateMachine.direction)
                 {
                     case (Direction.Down):
-                        ActiveProjectiles.Enqueue(new PlayerProjectile(playerRef.Position, new Vector2(0, 10), CurProjectileSprite[0]));
+                        ActiveProjectiles.Enqueue(new PlayerProjectilePebble(playerRef.Position, new Vector2(0, 10), CurProjectileSprite[0]));
                         Cooldown = 10;
                         break;
                     case (Direction.Left):
-                        ActiveProjectiles.Enqueue(new PlayerProjectile(playerRef.Position, new Vector2(-10, 0), CurProjectileSprite[2]));
+                        ActiveProjectiles.Enqueue(new PlayerProjectilePebble(playerRef.Position, new Vector2(-10, 0), CurProjectileSprite[2]));
                         Cooldown = 10;
                         break;
                     case (Direction.Right):
-                        ActiveProjectiles.Enqueue(new PlayerProjectile(playerRef.Position, new Vector2(10, 0), CurProjectileSprite[3]));
+                        ActiveProjectiles.Enqueue(new PlayerProjectilePebble(playerRef.Position, new Vector2(10, 0), CurProjectileSprite[3]));
                         Cooldown = 10;
                         break;
                     case (Direction.Up):
-                        ActiveProjectiles.Enqueue(new PlayerProjectile(playerRef.Position, new Vector2(0, -10), CurProjectileSprite[1]));
+                        ActiveProjectiles.Enqueue(new PlayerProjectilePebble(playerRef.Position, new Vector2(0, -10), CurProjectileSprite[1]));
                         Cooldown = 10;
                         break;
 

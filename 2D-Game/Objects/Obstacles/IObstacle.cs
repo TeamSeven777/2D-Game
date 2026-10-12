@@ -11,7 +11,7 @@ namespace _2D_Game
 {
     internal interface IObstacle
     {
-        public Rectangle boundingBox { get; set; }
+        public IHitbox BoundingBox { get; set; }
         public Vector2 originPos { get; set; }
         public Sprite sprite { get; set; }
 

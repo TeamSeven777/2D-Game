@@ -1,5 +1,6 @@
-﻿using System.Drawing;
+﻿
 using System;
+using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,21 +19,24 @@ namespace _2D_Game
             Type = HitBoxType.Enemy;
         }
 
-        public bool WillCollide(IHitbox collider)
+        public Tuple<Side,bool> WillCollide(IHitbox collider)
         {
-
-            return true;
+            Tuple<Side, bool> resultOfCollision = new Tuple<Side, bool>(Side.Bottom, false);
+            return resultOfCollision;
         }
 
-        public bool IsCollide(IHitbox collider)
+        public Tuple<Side,bool> IsCollide(IHitbox collider)
         {
-            if (this.BoundingBox.IntersectsWith(collider.BoundingBox))
+            Tuple<Side, bool> resultOfCollision = new Tuple<Side, bool>(Side.Bottom,false);
+            if (this.BoundingBox.Intersects(collider.BoundingBox))
             {
-                return true;
+                
+                return resultOfCollision;
             }
             else
             {
-                return false;
+             
+                return resultOfCollision;
             }
         }
     }

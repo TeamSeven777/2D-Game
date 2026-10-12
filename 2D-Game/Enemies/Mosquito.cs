@@ -36,7 +36,7 @@ namespace _2D_Game
             //Unfortunately unable to take straight from sprite due to type mismatch
             //Dont know if there is a fix to this, since I think spritebatch draw
             //takes only Rectangle from the XNA framework (This is System.Drawing for reference)
-            hitbox = new EnemyHitBox(new System.Drawing.Rectangle((int)this.Position.X,(int)this.Position.Y,sprite.SourceRectangle.Width,sprite.SourceRectangle.Y));
+            hitbox = new EnemyHitBox(new Rectangle((int)this.Position.X,(int)this.Position.Y,sprite.SourceRectangle.Width,sprite.SourceRectangle.Y));
 
             //spin around the middle of the frame instead of the top-left corner
             sprite.Origin = new Vector2(sprite.SourceRectangle.Width / 2, sprite.SourceRectangle.Height / 2);
