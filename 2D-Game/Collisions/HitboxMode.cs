@@ -9,31 +9,74 @@ using System.Threading.Tasks;
 
 namespace _2D_Game
 {
+    /*
+     * Create a list of hitboxes to display visually, for debugging purposes.
+     */
     public class HitboxMode
 {
         private Game1 myGame;
-        private List<Rectangle> boxes;
+        private List<IHitbox> boxes;
         private Texture2D hitboxTexture;
+        private Timer toggleCooldown = new Timer(0.2);
+        private bool HitboxesOn = false;
+        private Color hitboxColor;
+        
         public HitboxMode(Game1 game) {
             hitboxTexture = new Texture2D(game.GraphicsDevice, 1, 1);
             hitboxTexture.SetData<Color>(new Color[] { Color.White });
             myGame = game;
-            boxes = new List<Rectangle>();
-            boxes.Add(myGame.player.HitBox.BoundingBox);
-            boxes.Add(myGame.block.BoundingBox.BoundingBox);
+            boxes = new List<IHitbox>();
+            boxes.Add(myGame.player.HitBox);
+            boxes.Add(myGame.block.BoundingBox);
+            
         }
-        public void Update() { 
-            boxes = new List<Rectangle>();
-            boxes.Add(myGame.player.HitBox.BoundingBox);
-            boxes.Add(myGame.block.BoundingBox.BoundingBox);
+        //update hitbox locations and timer
+        public void Update(GameTime gt) { 
+            toggleCooldown.Update(gt);
+            boxes = new List<IHitbox>();
+            boxes.Add(myGame.player.HitBox);
+            boxes.Add(myGame.block.BoundingBox);
+
         }
+        //Draw each hitbox in the game for better debugging
         public void DrawHitboxes(SpriteBatch spriteBatch) {
 
             //myGame.player.HitBox.BoundingBox
             // myGame.block.BoundingBox.BoundingBox
             //myGame.
-            foreach (Rectangle box in boxes) {
-                spriteBatch.Draw(hitboxTexture, box, Color.White);
+            if (HitboxesOn)
+            {
+                foreach (IHitbox box in boxes)
+                {
+                    switch (box.Type)
+                    {
+                        case HitBoxType.Player:
+                            hitboxColor = Color.Green;
+                            break;
+                        case HitBoxType.Enemy:
+                            hitboxColor = Color.HotPink;
+                            break;
+                        case HitBoxType.HurtBlock:
+                            hitboxColor = Color.HotPink;
+                            break;
+                        case HitBoxType.Block:
+                            hitboxColor = Color.White;
+                            break;
+                        default:
+                            hitboxColor = Color.White;
+                            break;
+                    }
+                    spriteBatch.Draw(hitboxTexture, box.BoundingBox, hitboxColor);
+                }
+            }
+        }
+        public void ToggleHitboxes()
+        {
+            if (toggleCooldown.Ringing)
+            {
+                if (HitboxesOn) HitboxesOn = false;
+                else HitboxesOn = true;
+                toggleCooldown.Reset();
             }
         }
 }

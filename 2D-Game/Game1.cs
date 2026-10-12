@@ -30,7 +30,7 @@ namespace _2D_Game
         public EnemyManager Enemies;
         private GameTime currentGameTime;
         public GameTime CurrentGameTime => currentGameTime;
-        private HitboxMode hitboxMode;
+        public HitboxMode hitboxMode;
         
         public Game1()
         {
@@ -66,7 +66,8 @@ namespace _2D_Game
             controller.RegisterCommand(Keys.D1, new UseAxeCommand(this));
             controller.RegisterCommand(Keys.D2, new UseSlingshotCommand(this));
             controller.RegisterCommand(Keys.D3, new UnEquipCommand(this));
-            controller.RegisterCommand(Keys.B, new BoggusCommand(this));
+            //controller.RegisterCommand(Keys.B, new BoggusCommand(this));
+            controller.RegisterCommand(Keys.H, new HitboxModeCommand(this));
 
             /*gamepad = new GamePadController(PlayerIndex.One);
             gamepad.RegisterCommand(Buttons.DPadDown, new DownCommand(this));
@@ -143,7 +144,7 @@ namespace _2D_Game
             //~Whatever Else Actions~
             Enemies.Update(gameTime, player.Position);
 
-            hitboxMode.Update();
+            hitboxMode.Update(gameTime);
 
 
             base.Update(gameTime);
