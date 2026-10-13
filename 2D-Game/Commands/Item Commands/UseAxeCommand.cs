@@ -10,6 +10,8 @@ namespace _2D_Game
     public class UseAxeCommand : ICommand
     {
         private Game1 myGame;
+        private TimeSpan gameTime;
+        private TimeSpan previousGameTime;
 
         public UseAxeCommand(Game1 game)
         {
@@ -18,8 +20,11 @@ namespace _2D_Game
 
         public void Execute()
         {
-            //TODO
-            myGame.player.UseTool(Tool.Stick); //temp to test stick
+            gameTime = myGame.CurrentGameTime.TotalGameTime;
+
+            if (gameTime > previousGameTime) myGame.player.UseTool(Tool.Stick);
+
+            previousGameTime = gameTime + TimeSpan.FromMilliseconds(100);
         }
 
     }

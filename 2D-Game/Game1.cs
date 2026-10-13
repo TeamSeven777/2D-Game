@@ -95,7 +95,7 @@ namespace _2D_Game
             spriteSheet = Content.Load<Texture2D>("Sprites/Player_Sheet");
             PlayerSpriteFactory.Instance.LoadTextures(Content);
 
-            player = new DefaultPlayer(spriteSheet);
+            player = new DefaultPlayer();
             _playerCollisionHandler = new PlayerCollisionHandler(player);
 
             boggus = new Boggus(Content.Load<Texture2D>("Images/boggus"));

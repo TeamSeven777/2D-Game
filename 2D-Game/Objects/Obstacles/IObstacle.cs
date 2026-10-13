@@ -9,9 +9,8 @@ using System.Threading.Tasks;
 
 namespace _2D_Game
 {
-    internal interface IObstacle
+    public interface IObstacle
     {
-        public IHitbox BoundingBox { get; set; }
         public Vector2 originPos { get; set; }
         public Sprite sprite { get; set; }
 

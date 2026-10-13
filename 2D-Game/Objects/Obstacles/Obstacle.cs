@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace _2D_Game
 {
-    public class Obstacle : IObstacle
+    public class Obstacle : IObstacle, IHitboxOwner
     {
-        public IHitbox BoundingBox { get; set; }
+        public IHitbox Hitbox { get; set; }
         public Vector2 originPos { get; set; }
         public Sprite sprite { get; set; }
         public Queue<Sprite> spriteSet;
@@ -28,7 +28,7 @@ namespace _2D_Game
         {
             this.originPos = originPos;
             this.sprite = sprite; 
-            this.BoundingBox = new BlockHitBox(new Rectangle((int)originPos.X, (int)originPos.Y, (int)size.X, (int)size.Y));
+            this.Hitbox = new BlockHitBox(new Rectangle((int)originPos.X, (int)originPos.Y, (int)size.X, (int)size.Y));
 
         }
 
@@ -44,7 +44,7 @@ namespace _2D_Game
             this.originPos = originPos;
             spriteSet = sprites;
             this.sprite = sprites.First();
-            this.BoundingBox = new BlockHitBox(new Rectangle((int)originPos.X,(int)originPos.Y,(int)size.X,(int)size.Y));
+            this.Hitbox = new BlockHitBox(new Rectangle((int)originPos.X,(int)originPos.Y,(int)size.X,(int)size.Y));
         }
 
         /// <summary>

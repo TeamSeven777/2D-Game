@@ -12,7 +12,8 @@ namespace _2D_Game
     public class PlayerSpriteFactory
 {
         private Texture2D playerSpritesheet;
-        private int spriteSize = 32*16;
+        private Texture2D stick;
+        private int spriteSize = 32*16; //for player
         private TimeSpan FrameDelay;
 
         private static PlayerSpriteFactory instance = new PlayerSpriteFactory();
@@ -25,6 +26,7 @@ namespace _2D_Game
         public void LoadTextures(ContentManager content)
         {
             playerSpritesheet = content.Load<Texture2D>("Sprites/Player_Sheet");
+            stick = content.Load<Texture2D>("Sprites/Stick");
         }
 
         //idle animations
@@ -161,6 +163,33 @@ namespace _2D_Game
             }
             PlayerSprite.Scale = new Vector2(0.25f);
             return PlayerSprite;
+        }
+        public ISprite CreateToolAttack(Tool tool, Direction direction)
+        {
+            ISprite ToolSprite;
+            float rotationStatingOffset = 20;
+            float rotationEndingOffset = 20;
+            float rotationSpeed = .2f;
+            Vector2 scale = new Vector2(.75f);
+            //TODO make work
+            switch (direction)
+            {
+                case Direction.Left:
+                    ToolSprite = new RotatingSprite(stick, -rotationStatingOffset, -180f + rotationEndingOffset, rotationSpeed, false, false, scale, SpriteEffects.None); //CC, Left attack
+                    break;
+                case Direction.Right:
+                    ToolSprite = new RotatingSprite(stick, rotationStatingOffset, 180f - rotationEndingOffset, rotationSpeed, true, false, scale, SpriteEffects.None); //C, Right attack
+                    break;
+                case Direction.Up:
+                    ToolSprite = new RotatingSprite(stick, -90+rotationStatingOffset, 90f - rotationEndingOffset, rotationSpeed, true, false, scale, SpriteEffects.None); //C, Up attack
+                    break;
+                default: //down
+                    ToolSprite = new RotatingSprite(stick, -90 - rotationStatingOffset, -270f + rotationEndingOffset, rotationSpeed, false, false, scale, SpriteEffects.None); //CC, down attack
+                    break;
+            }
+            
+            //
+            return ToolSprite;
         }
     }
 }

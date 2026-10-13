@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,6 +11,8 @@ namespace _2D_Game
     public class UseSlingshotCommand : ICommand
     {
         private Game1 myGame;
+        private TimeSpan gameTime;
+        private TimeSpan previousGameTime;
 
         public UseSlingshotCommand(Game1 game)
         {
@@ -18,8 +21,16 @@ namespace _2D_Game
 
         public void Execute()
         {
-            myGame.player.UseTool(Tool.Slingshot); //default weapon attack
-            myGame.projectileHandler.Add();   
+            
+            gameTime = myGame.CurrentGameTime.TotalGameTime;
+
+            if (gameTime > previousGameTime)
+            {
+                myGame.player.UseTool(Tool.Slingshot);
+                myGame.projectileHandler.Add();
+            }
+
+            previousGameTime = gameTime + TimeSpan.FromMilliseconds(100);
         }
 
     }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,6 +12,8 @@ namespace _2D_Game
     {
         private Game1 myGame;
 
+        private TimeSpan gameTime;
+        private TimeSpan previousGameTime;
         public AttackCommand(Game1 game)
         {
             myGame = game;
@@ -18,8 +21,11 @@ namespace _2D_Game
 
         public void Execute()
         {
-            //TODO
-            myGame.player.UseTool(Tool.Fist); //default weapon attack
+            gameTime = myGame.CurrentGameTime.TotalGameTime;
+
+            if (gameTime > previousGameTime) myGame.player.UseTool(Tool.Fist);
+
+            previousGameTime = gameTime + TimeSpan.FromMilliseconds(100);
         }
 
     }

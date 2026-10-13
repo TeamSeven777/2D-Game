@@ -13,12 +13,9 @@ namespace _2D_Game
 
         //Here for other animations of the player
         //private enum 
-        public Texture2D spriteSheet { get; private set; }
         public IPlayerState CurrPlayerState { get; private set; }
 
-        public PlayerStateMachine(Texture2D playerSpriteSheet) { 
-            this.spriteSheet = playerSpriteSheet;
-
+        public PlayerStateMachine() { 
             direction = Direction.Down;
             toolEquiped = new NoTool();
             toolUsed = Tool.None;
@@ -46,7 +43,7 @@ namespace _2D_Game
                     toolEquiped = new Fist();          
                     break;
                 case Tool.Stick:
-                    toolEquiped = new Stick();
+                    toolEquiped = new Stick(this);
                     break;
                 case Tool.Slingshot:
                     toolEquiped = new Slingshot();
