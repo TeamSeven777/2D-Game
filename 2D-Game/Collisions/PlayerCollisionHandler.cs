@@ -25,7 +25,7 @@ namespace _2D_Game
         public void HandleCollision(IHitbox collider)
         {
             Rectangle temp = Rectangle.Empty;
-            Tuple<Side, bool> resultOfCollision = player.HitBox.WillCollide(collider);
+            Tuple<Side, bool> resultOfCollision = player.Hitbox.WillCollide(collider);
             //First determines if a collision happened
             if (resultOfCollision.Item2)
             {

@@ -41,6 +41,7 @@ namespace _2D_Game
             //For reference, the sprites have been scaled up by 16 from original (spriteSizexspriteSize -> 512x512)
             //and I have set their scale 1/4th the original so it still fits on screen
             Hitbox = new PlayerHitBox(new Rectangle((int)Position.X, (int)Position.Y, 64, 128), this);
+            RoomCollisionHandler.Instance.Add(this, true);
             DisabledDirections = new HashSet<Direction>();
             toolUsed = new NoTool();
         }
@@ -71,6 +72,7 @@ namespace _2D_Game
             stateMachine.Update(gt);
             toolUsed.Update(gt);
             Hitbox.BoundingBox = new Rectangle((int)Position.X, (int)Position.Y, Hitbox.BoundingBox.Width, Hitbox.BoundingBox.Height);
+            RoomCollisionHandler.Instance.Update(this);
         }
 
         public void Draw(SpriteBatch sprbatch)

@@ -42,6 +42,7 @@ namespace _2D_Game
 
         protected override void Initialize()
         {
+            RoomCollisionHandler.Instance.Initialize();
             Inventory = new ItemInventory();
             Enemies = new EnemyManager();
             blockSpriteSet = new Queue<Sprite>();
@@ -131,7 +132,7 @@ namespace _2D_Game
             //To make it more "fair", everything
             //The player does should come first
 
-            _playerCollisionHandler.HandleCollision(block.BoundingBox);
+            _playerCollisionHandler.HandleCollision(block.Hitbox);
 
             //~Player Actions~
             controller.Update();

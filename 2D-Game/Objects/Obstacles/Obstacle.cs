@@ -29,6 +29,7 @@ namespace _2D_Game
             this.originPos = originPos;
             this.sprite = sprite; 
             this.Hitbox = new BlockHitBox(new Rectangle((int)originPos.X, (int)originPos.Y, (int)size.X, (int)size.Y));
+            RoomCollisionHandler.Instance.Add(this, false);
 
         }
 
@@ -45,6 +46,7 @@ namespace _2D_Game
             spriteSet = sprites;
             this.sprite = sprites.First();
             this.Hitbox = new BlockHitBox(new Rectangle((int)originPos.X,(int)originPos.Y,(int)size.X,(int)size.Y));
+            RoomCollisionHandler.Instance.Add(this, false);
         }
 
         /// <summary>

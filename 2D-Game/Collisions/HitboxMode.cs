@@ -25,17 +25,14 @@ namespace _2D_Game
             hitboxTexture = new Texture2D(game.GraphicsDevice, 1, 1);
             hitboxTexture.SetData<Color>(new Color[] { Color.White });
             myGame = game;
-            boxes = new List<IHitbox>();
-            boxes.Add(myGame.player.HitBox);
-            boxes.Add(myGame.block.BoundingBox);
+            boxes = RoomCollisionHandler.Instance.GetHitboxes();
             
         }
         //update hitbox locations and timer
         public void Update(GameTime gt) { 
             toggleCooldown.Update(gt);
-            boxes = new List<IHitbox>();
-            boxes.Add(myGame.player.HitBox);
-            boxes.Add(myGame.block.BoundingBox);
+            boxes = RoomCollisionHandler.Instance.GetHitboxes();
+            
 
         }
         //Draw each hitbox in the game for better debugging
