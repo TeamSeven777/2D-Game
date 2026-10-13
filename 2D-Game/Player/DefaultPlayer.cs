@@ -34,13 +34,13 @@ namespace _2D_Game
             WalkSpeed = 5.0f;
             MaxHealth = 5;
             Health = MaxHealth;
-            stateMachine = new PlayerStateMachine();
+            stateMachine = new PlayerStateMachine(this);
             Position = new Vector2(100, 100);
             PreviousPosition = Position;
             //The size might be slightly smaller than intended but!
             //For reference, the sprites have been scaled up by 16 from original (spriteSizexspriteSize -> 512x512)
             //and I have set their scale 1/4th the original so it still fits on screen
-            Hitbox = new PlayerHitBox(new Rectangle((int)Position.X, (int)Position.Y, 64, 128), this);
+            Hitbox = new PlayerHitBox(new Rectangle((int)Position.X - 16, (int)Position.Y - 16, 32, 64), this);
             RoomCollisionHandler.Instance.Add(this, true);
             DisabledDirections = new HashSet<Direction>();
             toolUsed = new NoTool();
@@ -71,7 +71,7 @@ namespace _2D_Game
             PreviousPosition = Position;
             stateMachine.Update(gt);
             toolUsed.Update(gt);
-            Hitbox.BoundingBox = new Rectangle((int)Position.X, (int)Position.Y, Hitbox.BoundingBox.Width, Hitbox.BoundingBox.Height);
+            Hitbox.BoundingBox = new Rectangle((int)Position.X - Hitbox.BoundingBox.Width/2, (int)Position.Y - Hitbox.BoundingBox.Height / 4, Hitbox.BoundingBox.Width, Hitbox.BoundingBox.Height);
             RoomCollisionHandler.Instance.Update(this);
         }
 

@@ -75,9 +75,6 @@ namespace _2D_Game
             controller.RegisterCommand(Keys.D, new RightCommand(this));
             controller.RegisterCommand(Keys.W, new UpCommand(this));*/
 
-            Inventory = new ItemInventory();
-            Enemies = new EnemyManager();
-            Enemies.LoadContent(Content);
 
 
 
@@ -146,10 +143,10 @@ namespace _2D_Game
             //~Whatever Else Actions~
             Enemies.Update(gameTime, player.Position);
 
-            hitboxMode.Update(gameTime);
-
+            
 
             base.Update(gameTime);
+            hitboxMode.Update(gameTime);
         }
 
         protected override void Draw(GameTime gameTime)

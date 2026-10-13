@@ -39,10 +39,10 @@ namespace _2D_Game
             Animation mosquitoFly = new Animation(mosquitoSheet, TimeSpan.FromMilliseconds(80), new Vector2(96, 96), new Vector2(0, 96), mosquitoSheet.Width);
             AnimatedSprite mosquitoSpr = new AnimatedSprite(mosquitoFly, mosquitoSheet);
             mosquitoSpr.Scale = Vector2.One;
-
             // Add all enemies here
             enemies.Add(new Ghost(ghostSpr, ghostAttackSpr, spawnPosition));
             enemies.Add(new Mosquito(mosquitoSpr, spawnPosition));
+            enemies[enemies.Count - 1].Unload();
         }
 
         public void Update(GameTime gameTime, Vector2 playerPosition)
@@ -62,9 +62,10 @@ namespace _2D_Game
         public void Next()
         {
             if (enemies.Count == 0 || cooldownTimer > 0) return;
-
+            enemies[currentIndex].Unload();
             currentIndex = (currentIndex + 1) % enemies.Count;
             cooldownTimer = CooldownDuration; // Reset timer
+            enemies[currentIndex].Load();
         }
 
         /// <summary>
@@ -73,9 +74,10 @@ namespace _2D_Game
         public void Previous()
         {
             if (enemies.Count == 0 || cooldownTimer > 0) return;
-
+            enemies[currentIndex].Unload();
             currentIndex = (currentIndex - 1 + enemies.Count) % enemies.Count;
             cooldownTimer = CooldownDuration; // Reset timer
+            enemies[currentIndex].Load();
         }
 
         public void Draw(SpriteBatch spriteBatch)

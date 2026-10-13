@@ -9,5 +9,9 @@ namespace _2D_Game
 
         void Update(GameTime gameTime, Vector2 playerPosition);
         void Draw(SpriteBatch spriteBatch);
+        void Unload();
+
+         void Load();
+
     }
 }

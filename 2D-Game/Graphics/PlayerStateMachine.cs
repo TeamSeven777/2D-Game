@@ -14,8 +14,12 @@ namespace _2D_Game
         //Here for other animations of the player
         //private enum 
         public IPlayerState CurrPlayerState { get; private set; }
+        private DefaultPlayer player;
+        public Vector2 Position { get; private set; }
 
-        public PlayerStateMachine() { 
+        public PlayerStateMachine(DefaultPlayer myPlayer) {
+            Position = myPlayer.Position;
+            player = myPlayer;
             direction = Direction.Down;
             toolEquiped = new NoTool();
             toolUsed = Tool.None;
@@ -65,6 +69,7 @@ namespace _2D_Game
         //
         public void Update(GameTime gt)
         {
+            Position = player.Position;
             //TODO make it so item uses prohibit change in state, and execute once per button press
             //TODO adjust Player Sprites in State classes to display more appropriately and have the appropriate origins.
             if (direction != previousDirection || Moving != PreviousMoving || toolUsed != previousToolUsed || Damaged != PreviousDamaged) ChangeOccurred = true;

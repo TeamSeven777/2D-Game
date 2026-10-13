@@ -4,16 +4,20 @@ using System;
 
 namespace _2D_Game
 {
-    public class Mosquito : IEnemy
+    public class Mosquito : IEnemy, IHitboxOwner
     {
         public Vector2 Position { get; set; }
-        private AnimatedSprite sprite;
-        private IHitbox hitbox;
+        private AnimatedSprite sprite;        
         private Vector2 startPosition;
         private float speed = 3f;
         private float range = 150f;
         private int direction = -1;
         private double elapsedSeconds;
+
+        //Hitbox
+        public IHitbox Hitbox { get; set; }
+        private int hbWidth = 10;
+        private int hbHeight = 10;
 
         // Chasing
         private float chaseRange = 250f; // how close the player has to be before the mosquito follows
@@ -33,15 +37,23 @@ namespace _2D_Game
             this.startPosition = startPosition;
             Position = startPosition;
 
-            //Unfortunately unable to take straight from sprite due to type mismatch
-            //Dont know if there is a fix to this, since I think spritebatch draw
-            //takes only Rectangle from the XNA framework (This is System.Drawing for reference)
-            hitbox = new EnemyHitBox(new Rectangle((int)this.Position.X,(int)this.Position.Y,sprite.SourceRectangle.Width,sprite.SourceRectangle.Y));
 
             //spin around the middle of the frame instead of the top-left corner
             sprite.Origin = new Vector2(sprite.SourceRectangle.Width / 2, sprite.SourceRectangle.Height / 2);
+
+            //hitbox
+            Hitbox = new EnemyHitBox(new Rectangle((int)Position.X, (int)Position.Y, hbWidth, hbHeight));
+            RoomCollisionHandler.Instance.Add(this, true);
         }
 
+        public void Unload()
+        {
+            RoomCollisionHandler.Instance.Remove(this);
+        }
+        public void Load()
+        {
+            RoomCollisionHandler.Instance.Add(this, true);
+        }
         public void Update(GameTime gameTime, Vector2 playerPosition)
         {
             spinTimer += gameTime.ElapsedGameTime.TotalSeconds;
@@ -104,6 +116,8 @@ namespace _2D_Game
             //sprite sheet row faces left, so flip when moving right
             sprite.Effects = facingX > 0 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
             sprite.Update(gameTime);
+            Hitbox.BoundingBox = new Rectangle((int)Position.X, (int)Position.Y, hbWidth, hbHeight);
+            RoomCollisionHandler.Instance.Update(this);
         }
 
         public void Draw(SpriteBatch spriteBatch)

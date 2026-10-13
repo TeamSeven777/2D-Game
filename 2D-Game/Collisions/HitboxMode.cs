@@ -56,6 +56,12 @@ namespace _2D_Game
                         case HitBoxType.HurtBlock:
                             hitboxColor = Color.HotPink;
                             break;
+                        case HitBoxType.PlayerAttack:
+                            hitboxColor = Color.HotPink;
+                            break;
+                        case HitBoxType.EnemyAttack:
+                            hitboxColor = Color.HotPink;
+                            break;
                         case HitBoxType.Block:
                             hitboxColor = Color.White;
                             break;
