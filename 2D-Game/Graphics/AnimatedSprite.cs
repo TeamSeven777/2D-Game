@@ -31,6 +31,7 @@ namespace _2D_Game
         //Animation Information
         public Animation Animation { get; set; }
         public TimeSpan TimeSinceLastFrame { get; set; }
+        private Rectangle StartingFrame { get; set; }
         public bool Paused { get; set; }
 
         public enum State {Walk, Run, Other}
@@ -43,6 +44,7 @@ namespace _2D_Game
         {
             this.Animation = animation;
             SourceRectangle = animation.Frames.Peek();
+            StartingFrame = SourceRectangle;
             Content = spriteSheet;
             Position = Vector2.Zero;
             Scale = Vector2.One;
@@ -64,6 +66,7 @@ namespace _2D_Game
         {
             this.Animation = animation;
             SourceRectangle = animation.Frames.Peek();
+            StartingFrame = SourceRectangle;
             Content = spriteSheet;
             Position = Vector2.Zero;
             Scale = Vector2.One;
@@ -73,6 +76,27 @@ namespace _2D_Game
             LayerDepth = 0;
             Effects = effect;
             TimeSinceLastFrame = Animation.FrameRate;
+        }
+        //copy constructor, resets the animation
+        public AnimatedSprite(AnimatedSprite animSpr)
+        {
+            this.Animation = animSpr.Animation;
+            SourceRectangle = animSpr.SourceRectangle;
+            StartingFrame = SourceRectangle;
+            Content = animSpr.Content;
+            Position = animSpr.Position;
+            Scale = animSpr.Scale;
+            Color = animSpr.Color;
+            Origin = animSpr.Origin;
+            Rotation = animSpr.Rotation;
+            LayerDepth= animSpr.LayerDepth;
+            Effects = animSpr.Effects;
+            TimeSinceLastFrame = Animation.FrameRate;
+            Animation.FrameIndex = 0;
+            Paused = false;
+            while (!StartingFrame.Equals(Animation.Frames.Peek())) {
+                Animation.Frames.Enqueue(Animation.Frames.Dequeue());
+            }
         }
 
         public void Update(GameTime gameTime)

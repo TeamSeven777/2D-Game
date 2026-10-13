@@ -66,7 +66,7 @@ namespace _2D_Game
                     {
                         attacking = true;
                         attackTimer = 0;
-                        RestartAttackAnimation();
+                        attackSprite = new AnimatedSprite(attackSprite);
                         currentSprite = attackSprite;
                     }
                 }
@@ -99,17 +99,5 @@ namespace _2D_Game
             currentSprite.Draw(spriteBatch, Position);
         }
 
-        //Rewinds the attack so it always plays from the first frame
-        private void RestartAttackAnimation()
-        {
-            var frames = attackSprite.Animation.Frames;
-            while (frames.Peek() != attackFirstFrame)
-                frames.Enqueue(frames.Dequeue());
-
-            //show the first frame now, and move it to the back so the next frame shown is frame 2
-            attackSprite.SourceRectangle = frames.Dequeue();
-            frames.Enqueue(attackSprite.SourceRectangle);
-            attackSprite.TimeSinceLastFrame = TimeSpan.Zero;
-        }
     }
 }

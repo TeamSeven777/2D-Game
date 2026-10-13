@@ -42,11 +42,11 @@ namespace _2D_Game
         {
             switch (tool)
             {
-                case Tool.Knife:
-                    toolEquiped = new Knife();          
+                case Tool.Fist:
+                    toolEquiped = new Fist();          
                     break;
-                case Tool.Axe:
-                    toolEquiped = new Axe();
+                case Tool.Stick:
+                    toolEquiped = new Stick();
                     break;
                 case Tool.Slingshot:
                     toolEquiped = new Slingshot();
@@ -72,17 +72,17 @@ namespace _2D_Game
             //TODO adjust Player Sprites in State classes to display more appropriately and have the appropriate origins.
             if (direction != previousDirection || Moving != PreviousMoving || toolUsed != previousToolUsed || Damaged != PreviousDamaged) ChangeOccurred = true;
             previousDirection = direction; PreviousMoving = Moving; previousToolUsed = toolUsed; PreviousDamaged = Damaged;
-            if (toolUsed != Tool.None) CanMove = false;
+            if (toolUsed != Tool.None || Damaged) CanMove = false;
             else CanMove = true;
             if (ChangeOccurred)
             {
                     switch (toolUsed)
                     {
-                        case (Tool.Knife):
-                            CurrPlayerState = new KnifePlayerState(this);
+                        case (Tool.Stick):
+                            CurrPlayerState = new StickPlayerState(this);
                             break;
-                        case (Tool.Axe):
-                            CurrPlayerState = new AxePlayerState(this);
+                        case (Tool.Fist):
+                            CurrPlayerState = new FistPlayerState(this);
                             break;
                         case (Tool.Slingshot):
                             CurrPlayerState = new SlingPlayerState(this);
@@ -94,7 +94,7 @@ namespace _2D_Game
                     }
                  
                 //CurrPlayerState
-                if (Damaged) CurrPlayerState.PlayerSprite.Color = Color.Red;
+                if (Damaged) CurrPlayerState = new DamagedPlayerState(this);
                 else CurrPlayerState.PlayerSprite.Color = Color.White;
                 ChangeOccurred = false;
             }

@@ -15,22 +15,7 @@ namespace _2D_Game
         public MovePlayerState(PlayerStateMachine myPlayerStateMachine)
         {
             stateMachine = myPlayerStateMachine;
-            switch (stateMachine.direction)
-            {
-                case Direction.Down:
-                    PlayerSprite = new AnimatedSprite(new Animation(myPlayerStateMachine.spriteSheet, TimeSpan.FromMilliseconds(125), new Vector2(32*16, 32*16), new Vector2(0, 0), myPlayerStateMachine.spriteSheet.Width), myPlayerStateMachine.spriteSheet);
-                    break;
-                case Direction.Up:
-                    PlayerSprite = new AnimatedSprite(new Animation(myPlayerStateMachine.spriteSheet, TimeSpan.FromMilliseconds(125), new Vector2(32 * 16, 32 * 16), new Vector2(0, 64*16), myPlayerStateMachine.spriteSheet.Width), myPlayerStateMachine.spriteSheet);
-                    break;
-                case Direction.Left:
-                    PlayerSprite = new AnimatedSprite(new Animation(myPlayerStateMachine.spriteSheet, TimeSpan.FromMilliseconds(125), new Vector2(32 * 16, 32 * 16), new Vector2(0, 32*16), myPlayerStateMachine.spriteSheet.Width), myPlayerStateMachine.spriteSheet, SpriteEffects.FlipHorizontally);
-                    break;
-                case Direction.Right:
-                    PlayerSprite = new AnimatedSprite(new Animation(myPlayerStateMachine.spriteSheet, TimeSpan.FromMilliseconds(125), new Vector2(32 * 16, 32 * 16), new Vector2(0, 32*16), myPlayerStateMachine.spriteSheet.Width), myPlayerStateMachine.spriteSheet);
-                    break;
-            }
-            PlayerSprite.Scale = new Vector2(0.25f);
+            PlayerSprite = PlayerSpriteFactory.Instance.CreateMovingPlayerSprite(stateMachine.direction);
         }
         public void Update(GameTime gameTime)
         {

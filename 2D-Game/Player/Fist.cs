@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace _2D_Game 
 {
-    public class Knife : ITool
+    public class Fist : ITool
     {
         public Tool GetTool()
         {
-            return Tool.Knife;
+            return Tool.Fist;
         }
         public void Use()
         {

@@ -93,6 +93,7 @@ namespace _2D_Game
 
             //spriteSheet = Content.Load<Texture2D>("Sprites/LinkSheet");
             spriteSheet = Content.Load<Texture2D>("Sprites/Player_Sheet");
+            PlayerSpriteFactory.Instance.LoadTextures(Content);
 
             player = new DefaultPlayer(spriteSheet);
             _playerCollisionHandler = new PlayerCollisionHandler(player);

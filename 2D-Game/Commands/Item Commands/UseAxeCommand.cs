@@ -19,7 +19,7 @@ namespace _2D_Game
         public void Execute()
         {
             //TODO
-            myGame.player.UseTool(Tool.Axe); //default weapon attack
+            myGame.player.UseTool(Tool.Stick); //temp to test stick
         }
 
     }
