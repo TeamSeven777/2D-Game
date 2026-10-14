@@ -38,33 +38,6 @@ namespace _2D_Game
                         switch (resultOfCollision.Item1) {
                             case (Side.Left):
                                 player.ToggleAllowedDirection(Direction.Right, false);
-                                player.Position.X = player.Position.X - (int)collider.BoundingBox.Width;
-                                player.ToggleAllowedDirection(Direction.Right, true);
-                                break;
-                            case (Side.Right):
-                                player.stateMachine.CanMove = false;
-                                player.Position.X = player.Position.X + (int)collider.BoundingBox.Width;
-                                player.stateMachine.CanMove = true;
-                                break;
-                            case (Side.Top):
-                                player.stateMachine.CanMove = false;
-                                player.Position.X = player.Position.X - (int)collider.BoundingBox.Height;
-                                player.stateMachine.CanMove = true;
-                                break;
-                            case (Side.Bottom):
-                                player.stateMachine.CanMove = false;
-                                player.Position.X = player.Position.X + (int)collider.BoundingBox.Height;
-                                player.stateMachine.CanMove = true;
-                                break;
-                        }
-                        //Ouch!
-                        player.TakeDamage(1);
-                        break;
-                    case (HitBoxType.Block):
-                        switch (resultOfCollision.Item1)
-                        {
-                            case (Side.Left):
-                                player.ToggleAllowedDirection(Direction.Right, false);
                                 //player.Position.X = player.Position.X - (int)collider.BoundingBox.Width;
                                 //player.ToggleAllowedDirection(Direction.Right, true);
                                 break;
@@ -84,16 +57,51 @@ namespace _2D_Game
                                 //player.stateMachine.CanMove = true;
                                 break;
                         }
+                        //Ouch!
+                        player.TakeDamage(1);
+                        break;
+                    case (HitBoxType.Block):
+                        switch (resultOfCollision.Item1)
+                        {
+                            case (Side.Left):
+                                player.ToggleAllowedDirection(Direction.Right, false);
+                                if (player.Hitbox.IsCollide(collider).Item2)
+                                    player.Position.X -= player.WalkSpeed;
+                                //player.Position.X = player.Position.X - (int)collider.BoundingBox.Width;
+                                //player.ToggleAllowedDirection(Direction.Right, true);
+                                break;
+                            case (Side.Right):
+                                player.ToggleAllowedDirection(Direction.Left, false);
+                                if (player.Hitbox.IsCollide(collider).Item2)
+                                    player.Position.X += player.WalkSpeed;
+                                //player.Position.X = player.Position.X + (int)collider.BoundingBox.Width;
+                                //player.stateMachine.CanMove = true;
+                                break;
+                            case (Side.Top):
+                                player.ToggleAllowedDirection(Direction.Down, false);
+                                if (player.Hitbox.IsCollide(collider).Item2)
+                                    player.Position.Y -= player.WalkSpeed;
+                                //player.Position.X = player.Position.X - (int)collider.BoundingBox.Height;
+                                //player.stateMachine.CanMove = true;
+                                break;
+                            case (Side.Bottom):
+                                player.ToggleAllowedDirection(Direction.Up, false);
+                                if (player.Hitbox.IsCollide(collider).Item2)
+                                    player.Position.Y += player.WalkSpeed;
+                                //player.Position.X = player.Position.X + (int)collider.BoundingBox.Height;
+                                //player.stateMachine.CanMove = true;
+                                break;
+                        }
                         break;
             
                 }
             }
-            else if(player.DisabledDirections.Count > 0)
+            else if (player.DisabledDirections.Count > 0 && !player.stateMachine.Moving)
             {
                 player.DisabledDirections.Clear();
             }
-            
-            
+
+
         }
     }
 }
