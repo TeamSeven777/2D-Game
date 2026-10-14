@@ -11,6 +11,11 @@ namespace _2D_Game
         private readonly List<IEnemy> enemies = new();
         private int currentIndex = 0;
         private readonly Vector2 spawnPosition = new Vector2(550, 150);
+        
+        //Debugging Purposes (Sorry ; ( )
+        private bool AIDisabled = false;
+        private double ToggleCooldownTimer = 0;
+        private const double ToggleCooldownDuration = 0.2;
 
         // Cooldown vars
         private double cooldownTimer = 0;
@@ -43,6 +48,7 @@ namespace _2D_Game
             enemies.Add(new Ghost(ghostSpr, ghostAttackSpr, spawnPosition));
             enemies.Add(new Mosquito(mosquitoSpr, spawnPosition));
             enemies[enemies.Count - 1].Unload();
+            AIDisabled = false;
         }
 
         public void Update(GameTime gameTime, Vector2 playerPosition)
@@ -51,9 +57,15 @@ namespace _2D_Game
             {
                 cooldownTimer -= gameTime.ElapsedGameTime.TotalSeconds;
             }
-
-            if (enemies.Count == 0) return;
-            enemies[currentIndex].Update(gameTime, playerPosition);
+            if (ToggleCooldownTimer > 0)
+            {
+                ToggleCooldownTimer -= gameTime.ElapsedGameTime.TotalSeconds;
+            }
+            if (!AIDisabled)
+            {
+                if (enemies.Count == 0) return;
+                enemies[currentIndex].Update(gameTime, playerPosition);
+            }
         }
 
         /// <summary>
@@ -78,6 +90,22 @@ namespace _2D_Game
             currentIndex = (currentIndex - 1 + enemies.Count) % enemies.Count;
             cooldownTimer = CooldownDuration; // Reset timer
             enemies[currentIndex].Load();
+        }
+
+        public IEnemy GetCurrentEnemy()
+        {
+            return enemies[currentIndex];
+        }
+
+        public void ToggleAI()
+        {
+            if (ToggleCooldownTimer > 0) return;
+
+            if (AIDisabled)
+                AIDisabled = false;
+            else
+                AIDisabled = true;
+            ToggleCooldownTimer = ToggleCooldownDuration;
         }
 
         public void Draw(SpriteBatch spriteBatch)

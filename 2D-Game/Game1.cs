@@ -69,6 +69,7 @@ namespace _2D_Game
             controller.RegisterCommand(Keys.D3, new UnEquipCommand(this));
             //controller.RegisterCommand(Keys.B, new BoggusCommand(this));
             controller.RegisterCommand(Keys.H, new HitboxModeCommand(this));
+            controller.RegisterCommand(Keys.G, new ToggleAICommand(this));
 
             /*gamepad = new GamePadController(PlayerIndex.One);
             gamepad.RegisterCommand(Buttons.DPadDown, new DownCommand(this));
@@ -112,8 +113,6 @@ namespace _2D_Game
 
             block = new Obstacle(new Vector2(25), middleOfScreen, blockSpriteSet);
 
-
-
             hitboxMode = new HitboxMode(this);
 
         }
@@ -130,6 +129,8 @@ namespace _2D_Game
             //The player does should come first
 
             _playerCollisionHandler.HandleCollision(block.Hitbox);
+            _playerCollisionHandler.HandleCollision(Enemies.GetCurrentEnemy().Hitbox);
+
 
             //~Player Actions~
             controller.Update();
@@ -142,7 +143,6 @@ namespace _2D_Game
 
             //~Whatever Else Actions~
             Enemies.Update(gameTime, player.Position);
-
             
 
             base.Update(gameTime);

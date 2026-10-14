@@ -26,7 +26,7 @@ namespace _2D_Game
         {
             Rectangle temp = Rectangle.Empty;
             Tuple<Side, bool> resultOfCollision = player.Hitbox.WillCollide(collider);
-            //First determines if a collision happened
+            //First determines if a collision will happen
             if (resultOfCollision.Item2)
             {
                 //Then how the collision should be handled
@@ -38,21 +38,25 @@ namespace _2D_Game
                         switch (resultOfCollision.Item1) {
                             case (Side.Left):
                                 player.ToggleAllowedDirection(Direction.Right, false);
-                                //player.Position.X = player.Position.X - (int)collider.BoundingBox.Width;
+                                //Maybe have some knockback and push the player back a set amount?
+                                player.Position.X = player.Position.X - 50;
                                 //player.ToggleAllowedDirection(Direction.Right, true);
                                 break;
                             case (Side.Right):
                                 player.ToggleAllowedDirection(Direction.Left, false);
+                                player.Position.X = player.Position.X + 50;
                                 //player.Position.X = player.Position.X + (int)collider.BoundingBox.Width;
                                 //player.stateMachine.CanMove = true;
                                 break;
                             case (Side.Top):
                                 player.ToggleAllowedDirection(Direction.Down, false);
+                                player.Position.Y = player.Position.Y - 50;
                                 //player.Position.X = player.Position.X - (int)collider.BoundingBox.Height;
                                 //player.stateMachine.CanMove = true;
                                 break;
                             case (Side.Bottom):
                                 player.ToggleAllowedDirection(Direction.Up, false);
+                                player.Position.Y = player.Position.Y + 50;
                                 //player.Position.X = player.Position.X + (int)collider.BoundingBox.Height;
                                 //player.stateMachine.CanMove = true;
                                 break;
