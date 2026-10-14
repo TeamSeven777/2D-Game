@@ -43,9 +43,23 @@ namespace _2D_Game
             if (dynamic && !dynamicHitboxes.ContainsKey(hitboxOwner)) dynamicHitboxes.Add(hitboxOwner, hitboxOwner.Hitbox);
             else if(!staticHitboxes.ContainsKey(hitboxOwner)) staticHitboxes.Add(hitboxOwner, hitboxOwner.Hitbox);
         }
+        /*
+         * Update a specific dynamic Hitbox
+         */
         public void Update(IHitboxOwner hitboxOwner)
         {
-            if (dynamicHitboxes.ContainsKey(hitboxOwner)) dynamicHitboxes[hitboxOwner] = hitboxOwner.Hitbox;
+            if (dynamicHitboxes.ContainsKey(hitboxOwner)) dynamicHitboxes[hitboxOwner] = hitboxOwner.Hitbox;            
+        }
+
+        /*
+         * Update all dynamic hitboxes
+         */
+        public void Update()
+        {
+            foreach (IHitboxOwner hbOwner in dynamicHitboxes.Keys)
+            {
+                dynamicHitboxes[hbOwner] = hbOwner.Hitbox;
+            }            
         }
         public void Remove(IHitboxOwner hitboxOwner)
         {

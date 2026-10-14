@@ -117,7 +117,6 @@ namespace _2D_Game
             sprite.Effects = facingX > 0 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
             sprite.Update(gameTime);
             Hitbox.BoundingBox = new Rectangle((int)Position.X, (int)Position.Y, hbWidth, hbHeight);
-            RoomCollisionHandler.Instance.Update(this);
         }
 
         public void Draw(SpriteBatch spriteBatch)

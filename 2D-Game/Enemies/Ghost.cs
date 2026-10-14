@@ -108,7 +108,6 @@ namespace _2D_Game
             }
 
             Hitbox.BoundingBox = new Rectangle((int)Position.X, (int)Position.Y, hbWidth, hbHeight);
-            RoomCollisionHandler.Instance.Update(this);
             currentSprite.Update(gameTime);
         }
 

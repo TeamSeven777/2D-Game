@@ -72,7 +72,6 @@ namespace _2D_Game
             stateMachine.Update(gt);
             toolUsed.Update(gt);
             Hitbox.BoundingBox = new Rectangle((int)Position.X - Hitbox.BoundingBox.Width/2, (int)Position.Y - Hitbox.BoundingBox.Height / 4, Hitbox.BoundingBox.Width, Hitbox.BoundingBox.Height);
-            RoomCollisionHandler.Instance.Update(this);
         }
 
         public void Draw(SpriteBatch sprbatch)

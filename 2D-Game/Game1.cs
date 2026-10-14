@@ -146,6 +146,7 @@ namespace _2D_Game
             
 
             base.Update(gameTime);
+            RoomCollisionHandler.Instance.Update();
             hitboxMode.Update(gameTime);
         }
 
