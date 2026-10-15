@@ -10,8 +10,8 @@ namespace _2D_Game
 {
     public interface ITool
 {
+        public Direction direction { get; set; }
         Tool GetTool();
-        void Use();
         void Update(GameTime gameTime);
         void Draw(SpriteBatch spriteBatch, Vector2 position);
 }

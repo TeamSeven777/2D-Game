@@ -9,7 +9,7 @@ namespace _2D_Game
     public interface ICollisionHandler
     {
         // for classes, have a constructor that passes up reference to player, enemy, etc.
-        void HandleCollision(IHitbox collider); 
+        void HandleCollision(IHitboxOwner hbOwner); 
 
 
     }

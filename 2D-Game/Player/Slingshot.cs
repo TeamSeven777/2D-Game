@@ -9,14 +9,15 @@ using System.Threading.Tasks;
 
 namespace _2D_Game
 {
-    public class Slingshot : ITool
-{
+    public class Slingshot : ITool, IHitboxOwner
+    {
+        public IHitbox Hitbox {  get; set; }
+        public Direction direction { get; set; }
+        public ICollisionHandler CollisionHandler { get; set; }
+
         public Tool GetTool()
         {
             return Tool.Slingshot;
-        }
-        public void Use() {
-            //TODO add proper function
         }
         public void Update(GameTime gt)
         {

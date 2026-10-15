@@ -44,7 +44,7 @@ namespace _2D_Game
             switch (tool)
             {
                 case Tool.Fist:
-                    toolEquiped = new Fist();          
+                    toolEquiped = new Fist(this);          
                     break;
                 case Tool.Stick:
                     toolEquiped = new Stick(this);
