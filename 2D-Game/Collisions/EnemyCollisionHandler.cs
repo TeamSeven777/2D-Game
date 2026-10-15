@@ -1,9 +1,10 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Microsoft.Xna.Framework;
+using static _2D_Game.AnimatedSprite;
 
 namespace _2D_Game
 {
@@ -33,12 +34,17 @@ namespace _2D_Game
                             if (collidedTool.GetTool() == Tool.Fist) knockback = 50;
                             else if (collidedTool.GetTool() == Tool.Stick) knockback = 25;
                             else knockback = 10;
+                            /*float startX = enemy.Position.X;
+                            float startY = enemy.Position.Y;
+                            float kbSpeed = 0.1f;
+                            Timer kbUpdate = new Timer(10);*/                            
                             //Then which side(s) the collision happened
                             //TODO update for diagonal
-                             //this only checks one side.
+                            //this only checks one side.
                             switch (collidedTool.direction)
                             {
                                 case (Direction.Left):
+                                    //TODO replace these with a class that gradually gives KB rather than Teleporting
                                     enemy.Position = new Vector2(enemy.Position.X - knockback, enemy.Position.Y);
                                     break;
                                 case (Direction.Right):
@@ -56,7 +62,7 @@ namespace _2D_Game
                         }
                         break;
                 }
-                enemy.Update(RoomCollisionHandler.Instance.RoomGameTime, enemy.Position);                
+                
             }
         }
     }

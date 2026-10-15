@@ -17,7 +17,7 @@ namespace _2D_Game
         private Vector2 playerOffset;
         private int offsetValueX = 20;
         private int offsetValueHY = 32;
-
+        private Timer punchDelay;
         private int hbWidth = 32;
         private int hbLength = 48;
         private Vector2 Position;
@@ -46,7 +46,8 @@ namespace _2D_Game
             }
             direction = stateMachine.direction;
             CollisionHandler = new BlankCollisionHandler();//temp?
-            RoomCollisionHandler.Instance.Add(this, true);
+            //RoomCollisionHandler.Instance.Add(this, true);
+            punchDelay = new Timer(.3);
 
         }
         public Tool GetTool()
@@ -55,7 +56,9 @@ namespace _2D_Game
         }
         public void Update(GameTime gt) {
             Position = stateMachine.Position;
+            punchDelay.Update(gt);            
             if (stateMachine.CurrPlayerState.GetType() != typeof(FistPlayerState)) RoomCollisionHandler.Instance.Remove(this);
+            else if (punchDelay.Ringing) RoomCollisionHandler.Instance.Add(this, true);
         }
         public void Draw(SpriteBatch spriteBatch, Vector2 position) { }
     }
