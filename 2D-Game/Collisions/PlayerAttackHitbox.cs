@@ -22,17 +22,18 @@ namespace _2D_Game
         }
 
 
-        public Tuple<Side, bool> WillCollide(IHitbox box)
+        public HashSet<Side> WillCollide(IHitbox box)
         {
-            Tuple<Side, bool> resultOfCollision = new Tuple<Side, bool>(Side.Bottom, false);            
+            HashSet<Side> result = new HashSet<Side>();
             //Unnecessary for this HB type
-            return resultOfCollision;
+            result.Add(Side.None);
+            return result;
         }
 
-        public Tuple<Side, bool> IsCollide(IHitbox box)
+        public HashSet<Side> IsCollide(IHitbox box)
         {
             //TODO modify
-            Tuple<Side, bool> resultOfCollision = new Tuple<Side, bool>(Side.Bottom, false);
+            HashSet<Side> result = new HashSet<Side>();
             if (this.BoundingBox.Intersects(box.BoundingBox))
             {
                 //Will determine the direction depending on the difference between 
@@ -42,24 +43,24 @@ namespace _2D_Game
                 if (temp.Width > temp.Height)
                 {
                     if (this.BoundingBox.X > box.BoundingBox.X)
-                        resultOfCollision = new Tuple<Side, bool>(Side.Right, true);
+                        result.Add(Side.Right);
                     else
-                        resultOfCollision = new Tuple<Side, bool>(Side.Left, true);
+                        result.Add(Side.Left);
 
                 }
                 else
                 {
                     if (this.BoundingBox.Y > box.BoundingBox.Y)
-                        resultOfCollision = new Tuple<Side, bool>(Side.Top, true);
+                        result.Add(Side.Top);
                     else
-                        resultOfCollision = new Tuple<Side, bool>(Side.Bottom, true);
+                        result.Add(Side.Bottom);
                 }
-                return resultOfCollision;
             }
             else
             {
-                return resultOfCollision;
+                result.Add(Side.None);
             }
+            return result;
         }
     }
 }

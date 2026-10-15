@@ -16,6 +16,7 @@ namespace _2D_Game
 
         //Hitbox
         public IHitbox Hitbox { get; set; }
+        public ICollisionHandler CollisionHandler { get; set; }
         private int hbWidth = 10;
         private int hbHeight = 10;
 
@@ -43,6 +44,7 @@ namespace _2D_Game
 
             //hitbox
             Hitbox = new EnemyHitBox(new Rectangle((int)Position.X, (int)Position.Y, hbWidth, hbHeight));
+            CollisionHandler = new BlankCollisionHandler(); //for now
             RoomCollisionHandler.Instance.Add(this, true);
         }
 

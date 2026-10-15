@@ -14,6 +14,7 @@ namespace _2D_Game
         private RotatingSprite stickSprite;
         public IHitbox Hitbox { get; set; }
 
+        public ICollisionHandler CollisionHandler { get; set; }
         private Vector2 playerOffset;
         private int offsetValueX = 20;
         private int offsetValueHY = 32;
@@ -50,6 +51,7 @@ namespace _2D_Game
                     Hitbox = new PlayerAttackHitBox(new Rectangle((int)Position.X - hbWidth / 2, (int)(Position.Y + offsetValueHY), hbWidth, hbLength), this, stateMachine.direction);
                     break;
             }
+            CollisionHandler = new BlankCollisionHandler();//temp?
             RoomCollisionHandler.Instance.Add(this, true);
 
         }

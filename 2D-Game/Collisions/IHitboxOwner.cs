@@ -9,5 +9,6 @@ namespace _2D_Game
     public interface IHitboxOwner
 {
         public IHitbox Hitbox { get; set; }
+        public ICollisionHandler CollisionHandler { get; set; }
 }
 }

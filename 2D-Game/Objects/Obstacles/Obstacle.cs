@@ -11,6 +11,7 @@ namespace _2D_Game
     public class Obstacle : IObstacle, IHitboxOwner
     {
         public IHitbox Hitbox { get; set; }
+        public ICollisionHandler CollisionHandler { get; set; }
         public Vector2 originPos { get; set; }
         public Sprite sprite { get; set; }
         public Queue<Sprite> spriteSet;
@@ -29,6 +30,7 @@ namespace _2D_Game
             this.originPos = originPos;
             this.sprite = sprite; 
             this.Hitbox = new BlockHitBox(new Rectangle((int)originPos.X, (int)originPos.Y, (int)size.X, (int)size.Y));
+            CollisionHandler = new BlankCollisionHandler();
             RoomCollisionHandler.Instance.Add(this, false);
 
         }
@@ -46,6 +48,7 @@ namespace _2D_Game
             spriteSet = sprites;
             this.sprite = sprites.First();
             this.Hitbox = new BlockHitBox(new Rectangle((int)originPos.X,(int)originPos.Y,(int)size.X,(int)size.Y));
+            CollisionHandler = new BlankCollisionHandler();
             RoomCollisionHandler.Instance.Add(this, false);
         }
 

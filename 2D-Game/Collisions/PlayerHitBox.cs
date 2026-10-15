@@ -12,54 +12,51 @@ namespace _2D_Game
         public Rectangle BoundingBox { get; set; }       
         public HitBoxType Type { get; set; }
         public DefaultPlayer player;
+        private int RaycastDistance = 16;
+       // private int VerticalRaycastWidth;
+        //private int HorizontalRaycastWidth;
+        private Rectangle LeftRaycast, RightRaycast, UpRaycast, DownRaycast;
         public PlayerHitBox(Rectangle area, DefaultPlayer player)
         {
             BoundingBox = area;
             Type = HitBoxType.Player;
             this.player = player;
+            UpdateRays();
         }
-
+        private void UpdateRays() {
+            LeftRaycast = new Rectangle((int)(BoundingBox.X-RaycastDistance), (int)(BoundingBox.Y), RaycastDistance, BoundingBox.Height);
+            RightRaycast = new Rectangle((int)(BoundingBox.Right), (int)(BoundingBox.Y), RaycastDistance, BoundingBox.Height);
+            UpRaycast = new Rectangle((int)(BoundingBox.X), (int)(BoundingBox.Y-RaycastDistance), BoundingBox.Width, RaycastDistance);
+            DownRaycast = new Rectangle((int)(BoundingBox.X), (int)(BoundingBox.Bottom), BoundingBox.Width, RaycastDistance);
+            RoomCollisionHandler.Instance.AddTempRectangle(LeftRaycast);
+            RoomCollisionHandler.Instance.AddTempRectangle(RightRaycast);
+            RoomCollisionHandler.Instance.AddTempRectangle(UpRaycast);
+            RoomCollisionHandler.Instance.AddTempRectangle(DownRaycast);   
+        }
         
-        public Tuple<Side,bool> WillCollide(IHitbox box)
+        public HashSet<Side> WillCollide(IHitbox box)
         {
-            Tuple<Side, bool> resultOfCollision = new Tuple<Side, bool>(Side.Bottom,false);
-            Rectangle temp = Rectangle.Empty;
+            HashSet<Side> result = new HashSet<Side>();
+            UpdateRays();
 
-            //Attempts to predict whether or not the hitbox will collide in the next update, and uses area of intersection
-            //to decide direction
-            switch (player.stateMachine.direction)
-            {
-                case (Direction.Left):
-                    //If the player is moving left, create a new rectangle where they will be
-                    //And if it collides then it will prevent movement in CollisionHandler
-                    temp = new Rectangle((int)(BoundingBox.X - player.WalkSpeed), BoundingBox.Y, BoundingBox.Width, BoundingBox.Height);
-                    if (temp.Intersects(box.BoundingBox))
-                        resultOfCollision = new Tuple<Side, bool>(Side.Right, true);
-                    break;
-                case (Direction.Right):
-                    temp = new Rectangle((int)(BoundingBox.X + player.WalkSpeed), BoundingBox.Y, BoundingBox.Width, BoundingBox.Height);
-                    if (temp.Intersects(box.BoundingBox))
-                        resultOfCollision = new Tuple<Side, bool>(Side.Left, true);
-                    break;
-                case (Direction.Up):
-                    temp = new Rectangle(BoundingBox.X,(int)(BoundingBox.Y - player.WalkSpeed), BoundingBox.Width, BoundingBox.Height);
-                    if (temp.Intersects(box.BoundingBox))
-                        resultOfCollision = new Tuple<Side, bool>(Side.Bottom, true);
-                    break;
-                case (Direction.Down):
-                    temp = new Rectangle(BoundingBox.X, (int)(BoundingBox.Y + player.WalkSpeed), BoundingBox.Width, BoundingBox.Height);
-                    if (temp.Intersects(box.BoundingBox))
-                        resultOfCollision = new Tuple<Side, bool>(Side.Top, true);
-                    break;
-            }
-           
+            //Check each raycast, and if it intersects the collidee, add it to set of sides.
+            if (LeftRaycast.Intersects(box.BoundingBox))
+                result.Add(Side.Right);
+            if (RightRaycast.Intersects(box.BoundingBox))
+                result.Add(Side.Left);
+            if (UpRaycast.Intersects(box.BoundingBox))
+                result.Add(Side.Bottom);
+            if (DownRaycast.Intersects(box.BoundingBox))
+                result.Add(Side.Top);
 
-            return resultOfCollision;
+            if (result.Count == 0) result.Add(Side.None); //casts don't collide
+
+            return result;
         }
 
-        public Tuple<Side,bool> IsCollide(IHitbox box)
+        public HashSet<Side> IsCollide(IHitbox box)
         {
-            Tuple<Side, bool> resultOfCollision = new Tuple<Side, bool>(Side.Bottom, false);
+            HashSet<Side> result = new HashSet<Side>();
             if (this.BoundingBox.Intersects(box.BoundingBox))
             { 
                 //Will determine the direction depending on the difference between 
@@ -69,24 +66,24 @@ namespace _2D_Game
                 if (temp.Width > temp.Height)
                 {
                     if (this.BoundingBox.X > box.BoundingBox.X)
-                        resultOfCollision = new Tuple<Side, bool>(Side.Right, true);
+                        result.Add(Side.Right);
                     else
-                        resultOfCollision = new Tuple<Side, bool>(Side.Left, true);
+                        result.Add(Side.Left);
 
                 }
                 else
                 {
                     if (this.BoundingBox.Y > box.BoundingBox.Y)
-                        resultOfCollision = new Tuple<Side, bool>(Side.Top, true);
+                        result.Add(Side.Top);
                     else
-                        resultOfCollision = new Tuple<Side, bool>(Side.Bottom, true);
+                        result.Add(Side.Bottom);
                 }
-                return resultOfCollision;
             }
             else
             {
-                return resultOfCollision;
+                result.Add(Side.None);
             }
+            return result;
         }
     }
 }

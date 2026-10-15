@@ -17,21 +17,24 @@ namespace _2D_Game
             this.BoundingBox = boundingBox;
             this.Type = HitBoxType.Block;
         }
-        public Tuple<Side,bool> WillCollide(IHitbox collider)
+        public HashSet<Side> WillCollide(IHitbox collider)
         {
-            Tuple<Side, bool> resultOfCollision = new Tuple<Side, bool>(Side.Bottom, false);
-            return resultOfCollision;
+            HashSet<Side> result = new HashSet<Side>();
+            result.Add(Side.None);
+            return result;
         }
-        public Tuple<Side,bool> IsCollide(IHitbox collider)
+        public HashSet<Side> IsCollide(IHitbox collider)
         {
-            Tuple<Side, bool> resultOfCollision = new Tuple<Side, bool>(Side.Bottom, false);
+            HashSet<Side> result = new HashSet<Side>();
             if (this.BoundingBox.Intersects(collider.BoundingBox))
             {
-                return resultOfCollision;
+                result.Add(Side.SomeSide);
+                return result;
             }
             else
             {
-                return resultOfCollision;
+                result.Add(Side.None);
+                return result;
             }
         }
 }

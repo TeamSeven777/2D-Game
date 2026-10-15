@@ -11,7 +11,7 @@ namespace _2D_Game
 {
         public Rectangle BoundingBox { get; set; }
         public HitBoxType Type { get; set; }
-        public Tuple<Side, bool> WillCollide(IHitbox hitbox);
-        public Tuple<Side, bool> IsCollide(IHitbox hitbox);
+        public HashSet<Side> WillCollide(IHitbox hitbox);
+        public HashSet<Side> IsCollide(IHitbox hitbox);
     }
 }

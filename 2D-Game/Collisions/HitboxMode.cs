@@ -16,6 +16,7 @@ namespace _2D_Game
 {
         private Game1 myGame;
         private List<IHitbox> boxes;
+        private List<Rectangle> rects; //any 
         private Texture2D hitboxTexture;
         private Timer toggleCooldown = new Timer(0.2);
         private bool HitboxesOn = false;
@@ -26,13 +27,14 @@ namespace _2D_Game
             hitboxTexture.SetData<Color>(new Color[] { Color.White });
             myGame = game;
             boxes = RoomCollisionHandler.Instance.GetHitboxes();
-            
+            rects = RoomCollisionHandler.Instance.GetRectangles();
+
         }
         //update hitbox locations and timer
         public void Update(GameTime gt) { 
             toggleCooldown.Update(gt);
             boxes = RoomCollisionHandler.Instance.GetHitboxes();
-            
+            rects = RoomCollisionHandler.Instance.GetRectangles();
 
         }
         //Draw each hitbox in the game for better debugging
@@ -70,6 +72,9 @@ namespace _2D_Game
                             break;
                     }
                     spriteBatch.Draw(hitboxTexture, box.BoundingBox, hitboxColor);
+                }
+                foreach (Rectangle rect in rects) {
+                    spriteBatch.Draw(hitboxTexture, rect, Color.Orange);
                 }
             }
         }

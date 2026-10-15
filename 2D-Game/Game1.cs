@@ -18,7 +18,6 @@ namespace _2D_Game
         private SpriteBatch _spriteBatch;
         public Obstacle block;
         public DefaultPlayer player;
-        private ICollisionHandler _playerCollisionHandler;  
         private Texture2D spriteSheet;
         public Boggus boggus;
         private Queue<Sprite> blockSpriteSet;
@@ -95,7 +94,6 @@ namespace _2D_Game
             PlayerSpriteFactory.Instance.LoadTextures(Content);
 
             player = new DefaultPlayer();
-            _playerCollisionHandler = new PlayerCollisionHandler(player);
 
             boggus = new Boggus(Content.Load<Texture2D>("Images/boggus"));
 
@@ -119,6 +117,7 @@ namespace _2D_Game
 
         protected override void Update(GameTime gameTime)
         {
+            RoomCollisionHandler.Instance.HandleCollision();
             //Do we still need this??
             if (Keyboard.GetState().IsKeyDown(Keys.Escape))
                Exit();
@@ -128,8 +127,6 @@ namespace _2D_Game
             //To make it more "fair", everything
             //The player does should come first
 
-            _playerCollisionHandler.HandleCollision(block.Hitbox);
-            _playerCollisionHandler.HandleCollision(Enemies.GetCurrentEnemy().Hitbox);
 
 
             //~Player Actions~
@@ -146,7 +143,7 @@ namespace _2D_Game
             
 
             base.Update(gameTime);
-            RoomCollisionHandler.Instance.Update();
+            RoomCollisionHandler.Instance.Update(gameTime);
             hitboxMode.Update(gameTime);
         }
 

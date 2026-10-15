@@ -14,6 +14,8 @@ namespace _2D_Game
 
         private Dictionary<IHitboxOwner, IHitbox>  dynamicHitboxes;
         private Dictionary<IHitboxOwner, IHitbox> staticHitboxes;
+        private List<Rectangle> temporaryRectangles;
+        private Timer tempRectRefreshTimer = new Timer(.1);
         private static RoomCollisionHandler instance = new RoomCollisionHandler();
 
         public static RoomCollisionHandler Instance
@@ -25,6 +27,7 @@ namespace _2D_Game
         {
             dynamicHitboxes = new Dictionary<IHitboxOwner, IHitbox>();
             staticHitboxes = new Dictionary<IHitboxOwner, IHitbox>();
+            temporaryRectangles = new List<Rectangle>();
         }
         public List<IHitbox> GetHitboxes()
         {
@@ -37,6 +40,17 @@ namespace _2D_Game
                 hitboxList.Add(hitbox);
             }
             return hitboxList;
+        }
+        public List<Rectangle> GetRectangles() { 
+            return temporaryRectangles;
+        }
+        public void AddTempRectangle(Rectangle rectangle)
+        {
+            if(!temporaryRectangles.Contains(rectangle)) temporaryRectangles.Add(rectangle);
+        }
+        private void DeleteTemps()
+        {
+            temporaryRectangles = new List<Rectangle>();
         }
         public void Add(IHitboxOwner hitboxOwner, bool dynamic)
         {
@@ -54,12 +68,13 @@ namespace _2D_Game
         /*
          * Update all dynamic hitboxes
          */
-        public void Update()
+        public void Update(GameTime gameTime)
         {
             foreach (IHitboxOwner hbOwner in dynamicHitboxes.Keys)
             {
                 dynamicHitboxes[hbOwner] = hbOwner.Hitbox;
-            }            
+            }
+            tempRectRefreshTimer.Update(gameTime);
         }
         public void Remove(IHitboxOwner hitboxOwner)
         {
@@ -68,6 +83,21 @@ namespace _2D_Game
         }
         public void HandleCollision()
         {
+            if (tempRectRefreshTimer.Ringing) {
+                DeleteTemps();
+                tempRectRefreshTimer.Reset();
+            }
+            foreach(IHitboxOwner hbOwner in dynamicHitboxes.Keys)
+            {
+                foreach(IHitboxOwner hbOwner2 in dynamicHitboxes.Keys)
+                {
+                    if (!hbOwner.Equals(hbOwner2)) hbOwner.CollisionHandler.HandleCollision(hbOwner2.Hitbox);
+                }
+                foreach(IHitboxOwner staticHbOwner in staticHitboxes.Keys)
+                {
+                    hbOwner.CollisionHandler.HandleCollision(staticHbOwner.Hitbox);
+                }
+            }
             //TODO
             //call all collision methods and checks from here.
         }
