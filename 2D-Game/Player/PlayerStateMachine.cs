@@ -69,8 +69,9 @@ namespace _2D_Game
         }
         public void KillPlayer()
         {
-            CurrPlayerState = new DeadPlayerState(this);
+            if(CurrPlayerState.GetType() != typeof(DeadPlayerState))CurrPlayerState = new DeadPlayerState(this);
             isDead = true;
+            CurrPlayerState.PlayerSprite.Color = Color.Red;
             player.MoveDown();
         }
         //

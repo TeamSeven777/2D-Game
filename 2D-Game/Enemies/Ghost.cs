@@ -81,12 +81,17 @@ namespace _2D_Game
 
             if (attacking)
             {
+                if(attackTimer  >= .5)
+                {
+                    hbWidth = hbHeight = 100;//temporary solution for enemyattack hitbox
+                }
                 //stay in place until the attack animation has played once
                 if (attackTimer >= attackDuration)
                 {
                     attacking = false;
                     attackTimer = 0;
                     currentSprite = idleSprite;
+                    hbHeight = 50; hbWidth = 50;
                 }
             }
             else
@@ -102,7 +107,7 @@ namespace _2D_Game
                         attacking = true;
                         attackTimer = 0;
                         attackSprite = new AnimatedSprite(attackSprite);
-                        currentSprite = attackSprite;
+                        currentSprite = attackSprite;                       
                     }
                 }
                 else if (distance < chaseRange)

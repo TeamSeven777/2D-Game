@@ -91,14 +91,15 @@ namespace _2D_Game
             }
             foreach(IHitboxOwner hbOwner in dynamicHitboxes.Keys)
             {
-                foreach(IHitboxOwner hbOwner2 in dynamicHitboxes.Keys)
-                {
-                    if (!hbOwner.Equals(hbOwner2)) hbOwner.CollisionHandler.HandleCollision(hbOwner2);
-                }
-                foreach(IHitboxOwner staticHbOwner in staticHitboxes.Keys)
+                foreach (IHitboxOwner staticHbOwner in staticHitboxes.Keys)//check static first to disable any movement caused by dynamic
                 {
                     hbOwner.CollisionHandler.HandleCollision(staticHbOwner);
                 }
+                foreach (IHitboxOwner hbOwner2 in dynamicHitboxes.Keys)
+                {
+                    if (!hbOwner.Equals(hbOwner2)) hbOwner.CollisionHandler.HandleCollision(hbOwner2);
+                }
+                
             }
             //TODO
             //call all collision methods and checks from here.

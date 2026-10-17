@@ -25,8 +25,11 @@ namespace _2D_Game
         public int MaxHealth { get; set; }
         public ISet<Direction> DisabledDirections;
         public ISet<Direction> MovingDirections;
-        private double IFrames = 0.5;
+        private double IFrames = 1;
         private double IFramesTimer = 0;
+        private double HitFrames = 0.5;
+        private bool hasIFrames = false;
+        private bool playerDead = false;
         public ITool toolUsed;
 
         /// <summary>
@@ -35,7 +38,7 @@ namespace _2D_Game
         public DefaultPlayer()
         {
             WalkSpeed = 5.0f;
-            MaxHealth = 5;
+            MaxHealth = 3;
             Health = MaxHealth;
             stateMachine = new PlayerStateMachine(this);
             Position = new Vector2(100, 100);
@@ -59,22 +62,28 @@ namespace _2D_Game
         public void Update(GameTime gt)
         {
             gameTime = gt;
-            Position = NextPosition;
-            if (PreviousPosition != Position) stateMachine.Moving = true;
-            else stateMachine.Moving = false;
-
-            //Player will be damaged based on duration of IFrames (half a second)
-            //Essentialy applies a red filter
-            if (stateMachine.Damaged)
+            if (!playerDead)
             {
-                IFramesTimer += gt.ElapsedGameTime.TotalSeconds;
-                if (IFramesTimer >= IFrames)
+                Position = NextPosition;
+                if (PreviousPosition != Position) stateMachine.Moving = true;
+                else stateMachine.Moving = false;
+
+                //Player will be damaged based on duration
+                if (hasIFrames)
                 {
-                    IFramesTimer = 0;
-                    stateMachine.Damaged = false;
+                    if (IFramesTimer >= HitFrames) stateMachine.Damaged = false;
+                    IFramesTimer += gt.ElapsedGameTime.TotalSeconds;
+                    if (IFramesTimer >= IFrames)
+                    {
+                        IFramesTimer = 0;
+                        hasIFrames = false;
+                    }
                 }
             }
-
+            else
+            {
+                stateMachine.KillPlayer();
+            }
             PreviousPosition = Position;
             stateMachine.Update(gt);
             toolUsed.Update(gt);
@@ -133,12 +142,17 @@ namespace _2D_Game
 
         public void TakeDamage(int attackPoints)
         {
-            if (!stateMachine.Damaged)
+            if (!stateMachine.Damaged && !hasIFrames)
             {
                 Health = Health - attackPoints;
-                if (Health < 0) Health = 0;
+                if (Health < 1)
+                {
+                    Health = 0;
+                    playerDead = true;
+                    stateMachine.KillPlayer();                    
+                }
                 stateMachine.Damaged = true;
-                if(Health <= 0) stateMachine.KillPlayer();
+                hasIFrames = true;
             }
         }
         public void UseTool(Tool tool)

@@ -34,7 +34,7 @@ namespace _2D_Game
                 switch (collider.Type)
                 {
                     case (HitBoxType.Enemy):
-
+                        int knockback = 16;
                         //Then which side(s) the collision happened
                         //TODO update for diagonal
                         Side firstSide = resultsOfWillCollide.ElementAt(0); //this only checks one side.
@@ -42,23 +42,23 @@ namespace _2D_Game
                             case (Side.Left):
                                 player.ToggleAllowedDirection(Direction.Right, false);
                                 //Maybe have some knockback and push the player back a set amount?
-                                player.NextPosition.X = player.Position.X - 50;
+                                if(!player.DisabledDirections.Contains(Direction.Left))player.NextPosition.X = player.Position.X - knockback;//only conduct KB if no block in dir.
                                 break;
                             case (Side.Right):
                                 player.ToggleAllowedDirection(Direction.Left, false);
-                                player.NextPosition.X = player.Position.X + 50;
+                                if (!player.DisabledDirections.Contains(Direction.Right)) player.NextPosition.X = player.Position.X + knockback;
                                 //player.Position.X = player.Position.X + (int)collider.BoundingBox.Width;
                                 //player.stateMachine.CanMove = true;
                                 break;
                             case (Side.Top):
                                 player.ToggleAllowedDirection(Direction.Down, false);
-                                player.NextPosition.Y = player.Position.Y - 50;
+                                if (!player.DisabledDirections.Contains(Direction.Up)) player.NextPosition.Y = player.Position.Y - knockback;
                                 //player.Position.X = player.Position.X - (int)collider.BoundingBox.Height;
                                 //player.stateMachine.CanMove = true;
                                 break;
                             case (Side.Bottom):
                                 player.ToggleAllowedDirection(Direction.Up, false);
-                                player.NextPosition.Y = player.Position.Y + 50;
+                                if (!player.DisabledDirections.Contains(Direction.Down)) player.NextPosition.Y = player.Position.Y + knockback;
                                 //player.Position.X = player.Position.X + (int)collider.BoundingBox.Height;
                                 //player.stateMachine.CanMove = true;
                                 break;

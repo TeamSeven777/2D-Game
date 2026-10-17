@@ -21,8 +21,8 @@ namespace _2D_Game
         //Hitbox
         public IHitbox Hitbox { get; set; }
         public ICollisionHandler CollisionHandler { get; set; }
-        private int hbWidth = 20;
-        private int hbHeight = 20;
+        private int hbWidth = 30;
+        private int hbHeight = 30;
 
         // Chasing
         private float chaseRange = 250f; // how close the player has to be before the mosquito follows
@@ -78,11 +78,16 @@ namespace _2D_Game
             {
                 //stay in place and turn one full circle over SpinDuration
                 sprite.Rotation = (float)(spinTimer / SpinDuration * MathHelper.TwoPi);
+                if(spinTimer >= SpinDuration / 2)
+                {
+                    hbWidth = hbHeight = 60;
+                }
                 if (spinTimer >= SpinDuration)
                 {
                     spinning = false;
                     spinTimer = 0;
                     sprite.Rotation = 0;
+                    hbWidth = hbHeight = 30;
                 }
                 sprite.Update(gameTime);
                 return;
