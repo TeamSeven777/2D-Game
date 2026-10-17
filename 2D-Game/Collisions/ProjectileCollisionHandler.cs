@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace _2D_Game
 {
-    public class ProjectileCollisionHandler : ICollisionHandler
+    public class ProjectileCollisionHandler : ICollisionHandler 
     {
         IProjectile projectile;
 
@@ -15,8 +15,9 @@ namespace _2D_Game
             projectile = thing;
         }
 
-        public void HandleCollision(IHitbox collider)
+        public void HandleCollision(IHitboxOwner hbOwner)
         {
+            IHitbox collider = hbOwner.Hitbox;
             HashSet<Side> resultOfCollision = projectile.Hitbox.IsCollide(collider);
             if (!resultOfCollision.Contains(Side.None) && resultOfCollision.Count > 0)
             {

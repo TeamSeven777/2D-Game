@@ -88,9 +88,9 @@ namespace _2D_Game
 
         public void Remove()
         {
-            if (ActiveProjectiles.Count > 0)
+            if (ActiveProjectiles.Count > 0 && (ActiveProjectiles.Dequeue() is IHitboxOwner hbOwner))
             {
-                RoomCollisionHandler.Instance.Remove(ActiveProjectiles.Dequeue());
+                RoomCollisionHandler.Instance.Remove(hbOwner);
                 
             }
         }

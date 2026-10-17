@@ -34,6 +34,7 @@ namespace _2D_Game
         private bool PreviousMoving;
         private bool ChangeOccurred = false;
         public bool CanMove { get; set; }
+        private bool isDead = false;
         private bool BoggusMode = false;
         public void ChangeDirection(Direction dir) {
             direction = dir;            
@@ -66,13 +67,15 @@ namespace _2D_Game
             else BoggusMode = true;
             ChangeOccurred = true;
         }
+        public void KillPlayer()
+        {
+            CurrPlayerState = new DeadPlayerState(this);
+            isDead = true;
+            player.MoveDown();
+        }
         //
         public void Update(GameTime gt)
         {
-            if(player.Health <= 0)
-            {
-               //do something, theres no reference to game so cant reset. Idk. Maybe move back a screen?
-            }
             Position = player.Position;
             //TODO make it so item uses prohibit change in state, and execute once per button press
             //TODO adjust Player Sprites in State classes to display more appropriately and have the appropriate origins.
@@ -80,7 +83,7 @@ namespace _2D_Game
             previousDirection = direction; PreviousMoving = Moving; previousToolUsed = toolUsed; PreviousDamaged = Damaged;
             if (toolUsed != Tool.None || Damaged) CanMove = false;
             else CanMove = true;
-            if (ChangeOccurred)
+            if (ChangeOccurred && !isDead)
             {
                     switch (toolUsed)
                     {

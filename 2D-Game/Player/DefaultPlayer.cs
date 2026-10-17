@@ -138,6 +138,7 @@ namespace _2D_Game
                 Health = Health - attackPoints;
                 if (Health < 0) Health = 0;
                 stateMachine.Damaged = true;
+                if(Health <= 0) stateMachine.KillPlayer();
             }
         }
         public void UseTool(Tool tool)

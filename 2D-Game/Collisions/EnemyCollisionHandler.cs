@@ -30,8 +30,12 @@ namespace _2D_Game
                 {
                     case (HitBoxType.PlayerAttack):                        
                         if (hbOwner is ITool collidedTool) {
-                            int knockback;
-                            if (collidedTool.GetTool() == Tool.Fist) knockback = 50;
+                            int knockback; int dmg = 1;
+                            if (collidedTool.GetTool() == Tool.Fist)
+                            {
+                                knockback = 50;
+                                dmg = 2;
+                            }
                             else if (collidedTool.GetTool() == Tool.Stick) knockback = 25;
                             else knockback = 10;
                             /*float startX = enemy.Position.X;
@@ -59,6 +63,7 @@ namespace _2D_Game
                             }
                             //Ouch!
                             // player.TakeDamage(1);
+                            enemy.TakeDamage(dmg);
                         }
                         break;
                 }

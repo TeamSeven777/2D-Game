@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
@@ -70,7 +71,10 @@ namespace _2D_Game
             { 
                 if (enemies[currentIndex].Health <= 0)
                 {
+                    enemies[currentIndex].Unload();
                     enemies.Remove(enemies[currentIndex]);
+                    if(currentIndex >= enemies.Count)currentIndex = 0;
+                    if (enemies.Count > 0) enemies[currentIndex].Load();
                 }
             }
         }

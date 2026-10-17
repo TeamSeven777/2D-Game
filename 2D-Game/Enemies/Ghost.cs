@@ -35,6 +35,11 @@ namespace _2D_Game
         private readonly double attackDuration;       // how long one play of the attack animation takes
         private readonly Rectangle attackFirstFrame;
 
+        public int Health { get; set; }
+        private double IFrames = 1;
+        private double IFramesTimer = 0;
+        private bool isDamaged = false;
+
         public Ghost(AnimatedSprite idleSprite, AnimatedSprite attackSprite, Vector2 startPosition)
         {
             this.idleSprite = idleSprite;
@@ -42,6 +47,7 @@ namespace _2D_Game
             currentSprite = idleSprite;
             this.startPosition = startPosition;
             Position = startPosition;
+            Health = 3;
 
             attackFirstFrame = attackSprite.Animation.Frames.Peek();
             attackDuration = attackSprite.Animation.Frames.Count * attackSprite.Animation.FrameRate.TotalSeconds;
@@ -54,8 +60,19 @@ namespace _2D_Game
         {
             RoomCollisionHandler.Instance.Remove(this);
         }
-        public void Load() {
+        public void Load()
+        {
             RoomCollisionHandler.Instance.Add(this, true);
+        }
+        public void TakeDamage(int attackPoints)
+        {
+            if (!isDamaged)
+            {
+                Health = Health - attackPoints;
+                if (Health < 0) Health = 0;
+                isDamaged = true;
+                currentSprite.Color = Color.Red;
+            }
         }
 
         public void Update(GameTime gameTime, Vector2 playerPosition)
@@ -107,6 +124,14 @@ namespace _2D_Game
                     if (Math.Abs(Position.X - startPosition.X) >= range)
                         direction *= -1;
                 }
+            }
+
+            IFramesTimer += gameTime.ElapsedGameTime.TotalSeconds;
+            if (IFramesTimer >= IFrames)
+            {
+                IFramesTimer = 0;
+                isDamaged = false;
+                currentSprite.Color = Color.White;
             }
 
             Hitbox.BoundingBox = new Rectangle((int)Position.X - hbWidth / 2, (int)Position.Y - hbHeight / 2, hbWidth, hbHeight);

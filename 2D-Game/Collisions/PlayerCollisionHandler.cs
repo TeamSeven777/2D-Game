@@ -22,9 +22,9 @@ namespace _2D_Game
         /// Will stop the player from moving any further into the specified <paramref name="collider"/>
         /// </summary>
         /// <param name="collider"></param>
-        public void HandleCollision(IHitbox collider)
+        public void HandleCollision(IHitboxOwner hbOwner)
         {
-
+            IHitbox collider = hbOwner.Hitbox;
             HashSet<Side> resultsOfWillCollide = player.Hitbox.WillCollide(collider);//fix to use willcollide for raycasting, and Is for the standard hitbox.
             HashSet<Side> resultsOfIsCollide = player.Hitbox.IsCollide(collider);
             //First determines if a collision will happen

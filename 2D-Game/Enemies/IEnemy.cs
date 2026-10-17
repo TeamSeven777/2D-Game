@@ -14,6 +14,7 @@ namespace _2D_Game
         void Unload();
 
          void Load();
+        void TakeDamage(int damage);
 
     }
 }

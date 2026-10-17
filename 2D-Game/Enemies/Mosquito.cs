@@ -8,6 +8,9 @@ namespace _2D_Game
     {
         public Vector2 Position { get; set; }
         public int Health   { get; set; }
+        private bool isDamaged = false;
+        private double IFrames = 0.5;
+        private double IFramesTimer = 0;
         private AnimatedSprite sprite;        
         private Vector2 startPosition;
         private float speed = 3f;
@@ -39,12 +42,12 @@ namespace _2D_Game
             this.startPosition = startPosition;
             Position = startPosition;
 
-
+            Health = 3;
             //spin around the middle of the frame instead of the top-left corner
             sprite.Origin = new Vector2(sprite.SourceRectangle.Width / 2, sprite.SourceRectangle.Height / 2);
 
             //hitbox
-            Hitbox = new EnemyHitBox(new Rectangle((int)sprite.Origin.X-hbWidth/2, (int)sprite.Origin.Y-hbHeight/2, hbWidth, hbHeight));
+            Hitbox = new EnemyHitBox(new Rectangle((int)(Position.X + sprite.Origin.X - hbWidth / 2), (int)(Position.Y + sprite.Origin.Y - hbHeight / 2), hbWidth, hbHeight));
             CollisionHandler = new EnemyCollisionHandler(this);
             RoomCollisionHandler.Instance.Add(this, true);
         }
@@ -56,6 +59,16 @@ namespace _2D_Game
         public void Load()
         {
             RoomCollisionHandler.Instance.Add(this, true);
+        }
+        public void TakeDamage(int attackPoints)
+        {
+            if (!isDamaged)
+            {
+                Health = Health - attackPoints;
+                if (Health < 0) Health = 0;     
+                isDamaged = true;
+                sprite.Color = Color.Red;
+            }
         }
         public void Update(GameTime gameTime, Vector2 playerPosition)
         {
@@ -116,10 +129,18 @@ namespace _2D_Game
                 facingX = direction;
             }
 
+            IFramesTimer += gameTime.ElapsedGameTime.TotalSeconds;
+            if (IFramesTimer >= IFrames)
+            {
+                IFramesTimer = 0;
+                isDamaged = false;
+                sprite.Color = Color.White;
+            }
+
             //sprite sheet row faces left, so flip when moving right
             sprite.Effects = facingX > 0 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
             sprite.Update(gameTime);
-            Hitbox.BoundingBox = new Rectangle((int)Position.X, (int)Position.Y, hbWidth, hbHeight);
+            Hitbox.BoundingBox = new Rectangle((int)(Position.X + sprite.Origin.X - hbWidth / 2), (int)(Position.Y + sprite.Origin.Y - hbHeight / 2), hbWidth, hbHeight);
         }
 
         public void Draw(SpriteBatch spriteBatch)
