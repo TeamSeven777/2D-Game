@@ -21,11 +21,12 @@ namespace _2D_Game
         public Obstacle block;
         public DefaultPlayer player;
         private Texture2D spriteSheet;
-        public Boggus boggus;
         private Queue<Sprite> blockSpriteSet;
         private Texture2D blockSpriteSheet;
         private Texture2D projectileSpriteSheet;
-        private IController controller;
+        public IProjectileHandler projectileHandler;
+        private Dictionary<String, IController> controllers;
+        private String[] controllerNames;
         public ItemInventory Inventory { get; private set; }
         public EnemyManager Enemies;
         private GameTime currentGameTime;
@@ -72,11 +73,11 @@ namespace _2D_Game
             controller.RegisterCommand(Keys.H, new HitboxModeCommand(this));
             controller.RegisterCommand(Keys.G, new ToggleAICommand(this));
 
-            /*gamepad = new GamePadController(PlayerIndex.One);
-            gamepad.RegisterCommand(Buttons.DPadDown, new DownCommand(this));
-            controller.RegisterCommand(Keys.D, new RightCommand(this));
-            controller.RegisterCommand(Keys.W, new UpCommand(this));*/
-
+            controllerNames = new String[]{ "keyboard", "gamepad", "mouse"};
+            controllers = new Dictionary<string, IController>();
+            controllers.Add(controllerNames[0], new KeyboardController(this));
+            controllers.Add(controllerNames[1], new GamePadController(PlayerIndex.One, this));
+            controllers.Add(controllerNames[2], new MouseController(this));
 
 
 
@@ -100,7 +101,6 @@ namespace _2D_Game
 
             player = new DefaultPlayer();
 
-            boggus = new Boggus(Content.Load<Texture2D>("Images/boggus"));
 
             Inventory.LoadContent(Content);
             Enemies.LoadContent(Content);
@@ -135,12 +135,12 @@ namespace _2D_Game
             //Everything we are updating
             //To make it more "fair", everything
             //The player does should come first
-
-
-
             //~Player Actions~
-            controller.Update();
-            //gamepad.Update();
+            foreach (String controllerType in controllerNames)
+            {
+                if(controllers[controllerType].Update()) break; //only use one controller type at a time.
+
+            }
 
             player.Update(gameTime);
             PlayerProjectileHandler.Instance.Update(gameTime);
