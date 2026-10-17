@@ -50,28 +50,6 @@ namespace _2D_Game
             blockSpriteSet = new Queue<Sprite>();
             boundaries = new List<Boundary>();
 
-            controller = new KeyboardController();
-
-            controller.RegisterCommand(Keys.W, new UpCommand(this));
-            controller.RegisterCommand(Keys.A, new LeftCommand(this));
-            controller.RegisterCommand(Keys.D, new RightCommand(this));
-            controller.RegisterCommand(Keys.S, new DownCommand(this));
-            controller.RegisterCommand(Keys.Q, new QuitCommand(this));
-            controller.RegisterCommand(Keys.R, new ResetCommand(this));
-            controller.RegisterCommand(Keys.E, new DamageCommand(this));
-            controller.RegisterCommand(Keys.T, new PreviousBlockCommand(this));
-            controller.RegisterCommand(Keys.Y, new NextBlockCommand(this));
-            controller.RegisterCommand(Keys.U, new PreviousItemCommand(this));
-            controller.RegisterCommand(Keys.I, new NextItemCommand(this));
-            controller.RegisterCommand(Keys.O, new PreviousCharacterCommand(this));
-            controller.RegisterCommand(Keys.P, new NextCharacterCommand(this));
-            controller.RegisterCommand(Keys.Z, new AttackCommand(this));
-            controller.RegisterCommand(Keys.D1, new UseAxeCommand(this));
-            controller.RegisterCommand(Keys.D2, new UseSlingshotCommand(this));
-            controller.RegisterCommand(Keys.D3, new UnEquipCommand(this));
-            //controller.RegisterCommand(Keys.B, new BoggusCommand(this));
-            controller.RegisterCommand(Keys.H, new HitboxModeCommand(this));
-            controller.RegisterCommand(Keys.G, new ToggleAICommand(this));
 
             controllerNames = new String[]{ "keyboard", "gamepad", "mouse"};
             controllers = new Dictionary<string, IController>();
