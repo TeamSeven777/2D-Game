@@ -33,10 +33,15 @@ namespace _2D_Game
         public GameTime CurrentGameTime => currentGameTime;
         public HitboxMode hitboxMode;
         public List<Boundary> boundaries;
+        private Texture2D background;
+        private int worldWidth, worldHeight;
+        public Camera Camera { get; private set; }
         
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
+            _graphics.PreferredBackBufferWidth = 1080;   // 1080 / 700 ≈ 1.54, same as your image
+            _graphics.PreferredBackBufferHeight = 700;
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
 
@@ -72,12 +77,18 @@ namespace _2D_Game
             roomWidth = _spriteBatch.GraphicsDevice.Viewport.Width;
             middleOfScreen = new Vector2(roomWidth / 2, roomHeight / 2);
             
+            worldWidth = roomWidth * 3;
+            worldHeight = roomHeight * 3;
+            background = Content.Load<Texture2D>("Images/gameBackground");
+            Camera = new Camera(roomWidth, roomHeight, worldWidth, worldHeight);
 
             //spriteSheet = Content.Load<Texture2D>("Sprites/LinkSheet");
             spriteSheet = Content.Load<Texture2D>("Sprites/Player_Sheet");
             PlayerSpriteFactory.Instance.LoadTextures(Content);
 
-            player = new DefaultPlayer();
+            Vector2 playerStart = new Vector2(roomWidth / 2f, worldHeight - roomHeight / 2f);
+            player = new DefaultPlayer(playerStart);
+            Camera.Follow(player.Position);
 
 
             Inventory.LoadContent(Content);
@@ -88,11 +99,10 @@ namespace _2D_Game
             blockSpriteSet.Enqueue(new Sprite(blockSpriteSheet, new Rectangle(0, 0, 25, 25)));
             blockSpriteSet.Enqueue(new Sprite(blockSpriteSheet, new Rectangle(25, 0, 25, 25)));
             blockSpriteSet.Enqueue(new Sprite(blockSpriteSheet, new Rectangle(50, 0, 25, 25)));
-            boundaries.Add(new Boundary(new Vector2(0, 0), new Vector2(0, roomHeight)));//boundary test to left
-            boundaries.Add(new Boundary(new Vector2(roomWidth, 0), new Vector2(roomWidth, roomHeight)));//boundary test to right
-            boundaries.Add(new Boundary(new Vector2(0, 0), new Vector2(roomWidth, 0)));//boundary test to up
-            boundaries.Add(new Boundary(new Vector2(0, roomHeight), new Vector2(roomWidth, roomHeight)));//boundary test to down
-
+            boundaries.Add(new Boundary(new Vector2(0, 0), new Vector2(0, worldHeight)));                      // left
+            boundaries.Add(new Boundary(new Vector2(worldWidth, 0), new Vector2(worldWidth, worldHeight)));    // right
+            boundaries.Add(new Boundary(new Vector2(0, 0), new Vector2(worldWidth, 0)));                       // up
+            boundaries.Add(new Boundary(new Vector2(0, worldHeight), new Vector2(worldWidth, worldHeight)));   // down
             projectileSpriteSheet = Content.Load<Texture2D>("Sprites/pebble");
             PlayerProjectileHandler.Instance.Initialize(ref player, projectileSpriteSheet);
 
@@ -131,6 +141,8 @@ namespace _2D_Game
 
             base.Update(gameTime);
             RoomCollisionHandler.Instance.Update(gameTime);
+            Camera.Follow(player.Position);
+
             hitboxMode.Update(gameTime);
         }
 
@@ -138,7 +150,10 @@ namespace _2D_Game
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
             currentGameTime = gameTime;
-            _spriteBatch.Begin();
+            
+             // World: scrolls with the camera
+            _spriteBatch.Begin(samplerState: SamplerState.PointClamp, transformMatrix: Camera.Transform);  // <-- changed line
+            _spriteBatch.Draw(background, new Rectangle(0, 0, worldWidth, worldHeight), Color.White);
 
             //Everything we are drawing
             player.Draw(_spriteBatch);
@@ -146,12 +161,15 @@ namespace _2D_Game
             Enemies.Draw(_spriteBatch);
             Inventory.Draw(_spriteBatch);
             block.Draw(_spriteBatch);
-            Enemies.Draw(_spriteBatch);
             foreach(Boundary boundary in boundaries) boundary.Draw(_spriteBatch);
 
             //for hitbox debugging
             hitboxMode.DrawHitboxes(_spriteBatch);
             //
+            _spriteBatch.End();
+
+            _spriteBatch.Begin(samplerState: SamplerState.PointClamp); // no transform
+            // HUD draws here
             _spriteBatch.End();
 
             base.Draw(gameTime);

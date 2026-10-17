@@ -35,13 +35,13 @@ namespace _2D_Game
         /// <summary>
         /// Creates a player object with sprites given in playerSpriteSheet
         /// </summary>
-        public DefaultPlayer()
+        public DefaultPlayer(Vector2 startPosition)
         {
             WalkSpeed = 5.0f;
             MaxHealth = 3;
             Health = MaxHealth;
             stateMachine = new PlayerStateMachine(this);
-            Position = new Vector2(100, 100);
+            Position = startPosition;
             PreviousPosition = Position;
             NextPosition = Position;
             //The size might be slightly smaller than intended but!
