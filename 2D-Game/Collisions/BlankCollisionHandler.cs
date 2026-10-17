@@ -12,7 +12,7 @@ namespace _2D_Game
         {
             //dummy class
         }
-        public void HandleCollision(IHitbox collider)
+        public void HandleCollision(IHitboxOwner hbOwner)
         {
             //do nothing (the object with this handler does not handle collision).
         }

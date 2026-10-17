@@ -6,8 +6,7 @@ namespace _2D_Game
 {
     public class Ghost : IEnemy, IHitboxOwner
     {
-        public Vector2 Position { get; set; }
-        public int Health { get; set; }
+        public Vector2 Position { get; set; }       
         private AnimatedSprite idleSprite;
         private AnimatedSprite attackSprite;
         private AnimatedSprite currentSprite;
@@ -19,8 +18,8 @@ namespace _2D_Game
         //Hitbox
         public IHitbox Hitbox { get; set; }
         public ICollisionHandler CollisionHandler { get; set; }
-        private int hbWidth = 10;
-        private int hbHeight = 10;
+        private int hbWidth = 50;
+        private int hbHeight = 50;
 
         // Chasing
         private float chaseRange = 250f; // how close the player has to be before the ghost follows
@@ -43,13 +42,12 @@ namespace _2D_Game
             currentSprite = idleSprite;
             this.startPosition = startPosition;
             Position = startPosition;
-            Health = 1;
 
             attackFirstFrame = attackSprite.Animation.Frames.Peek();
             attackDuration = attackSprite.Animation.Frames.Count * attackSprite.Animation.FrameRate.TotalSeconds;
 
-            Hitbox = new EnemyHitBox(new Rectangle((int)Position.X, (int)Position.Y, hbWidth, hbHeight));
-            CollisionHandler = new EnemyCollisionHandler(this); //for now
+            Hitbox = new EnemyHitBox(new Rectangle((int)Position.X-hbWidth/2, (int)Position.Y-hbHeight/2, hbWidth, hbHeight));
+            CollisionHandler = new EnemyCollisionHandler(this);
             RoomCollisionHandler.Instance.Add(this, true);
         }
         public void Unload()
@@ -111,7 +109,7 @@ namespace _2D_Game
                 }
             }
 
-            Hitbox.BoundingBox = new Rectangle((int)Position.X, (int)Position.Y, hbWidth, hbHeight);
+            Hitbox.BoundingBox = new Rectangle((int)Position.X - hbWidth / 2, (int)Position.Y - hbHeight / 2, hbWidth, hbHeight);
             currentSprite.Update(gameTime);
         }
 

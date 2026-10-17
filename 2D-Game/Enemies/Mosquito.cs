@@ -18,8 +18,8 @@ namespace _2D_Game
         //Hitbox
         public IHitbox Hitbox { get; set; }
         public ICollisionHandler CollisionHandler { get; set; }
-        private int hbWidth = 10;
-        private int hbHeight = 10;
+        private int hbWidth = 20;
+        private int hbHeight = 20;
 
         // Chasing
         private float chaseRange = 250f; // how close the player has to be before the mosquito follows
@@ -44,8 +44,8 @@ namespace _2D_Game
             sprite.Origin = new Vector2(sprite.SourceRectangle.Width / 2, sprite.SourceRectangle.Height / 2);
 
             //hitbox
-            Hitbox = new EnemyHitBox(new Rectangle((int)Position.X, (int)Position.Y, hbWidth, hbHeight));
-            CollisionHandler = new BlankCollisionHandler(); //for now
+            Hitbox = new EnemyHitBox(new Rectangle((int)sprite.Origin.X-hbWidth/2, (int)sprite.Origin.Y-hbHeight/2, hbWidth, hbHeight));
+            CollisionHandler = new EnemyCollisionHandler(this);
             RoomCollisionHandler.Instance.Add(this, true);
         }
 

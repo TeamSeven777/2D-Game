@@ -31,14 +31,31 @@ namespace _2D_Game
             HashSet<Side> result = new HashSet<Side>();  
             if (this.BoundingBox.Intersects(collider.BoundingBox))
             {
-                result.Add(Side.SomeSide);
-                return result;
+                //Will determine the direction depending on the difference between 
+                //the area the rectangles collide
+                Rectangle temp = this.BoundingBox;
+                temp = Rectangle.Intersect(temp, collider.BoundingBox);
+                if (temp.Width > temp.Height)
+                {
+                    if (this.BoundingBox.X > collider.BoundingBox.X)
+                        result.Add(Side.Right);
+                    else
+                        result.Add(Side.Left);
+
+                }
+                else
+                {
+                    if (this.BoundingBox.Y > collider.BoundingBox.Y)
+                        result.Add(Side.Top);
+                    else
+                        result.Add(Side.Bottom);
+                }
             }
             else
             {
-                result.Add(Side.None);
-                return result;
+                result.Add(Side.None);                
             }
+            return result;
         }
     }
 }

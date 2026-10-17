@@ -17,6 +17,7 @@ namespace _2D_Game
         private List<Rectangle> temporaryRectangles;
         private Timer tempRectRefreshTimer = new Timer(.1);
         private static RoomCollisionHandler instance = new RoomCollisionHandler();
+        public GameTime RoomGameTime { get; private set; }
 
         public static RoomCollisionHandler Instance
         { get { return instance; } }
@@ -75,6 +76,7 @@ namespace _2D_Game
                 dynamicHitboxes[hbOwner] = hbOwner.Hitbox;
             }
             tempRectRefreshTimer.Update(gameTime);
+            RoomGameTime = gameTime;
         }
         public void Remove(IHitboxOwner hitboxOwner)
         {
@@ -91,11 +93,11 @@ namespace _2D_Game
             {
                 foreach(IHitboxOwner hbOwner2 in dynamicHitboxes.Keys)
                 {
-                    if (!hbOwner.Equals(hbOwner2)) hbOwner.CollisionHandler.HandleCollision(hbOwner2.Hitbox);
+                    if (!hbOwner.Equals(hbOwner2)) hbOwner.CollisionHandler.HandleCollision(hbOwner2);
                 }
                 foreach(IHitboxOwner staticHbOwner in staticHitboxes.Keys)
                 {
-                    hbOwner.CollisionHandler.HandleCollision(staticHbOwner.Hitbox);
+                    hbOwner.CollisionHandler.HandleCollision(staticHbOwner);
                 }
             }
             //TODO

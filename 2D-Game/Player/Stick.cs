@@ -15,6 +15,7 @@ namespace _2D_Game
         public IHitbox Hitbox { get; set; }
 
         public ICollisionHandler CollisionHandler { get; set; }
+        public Direction direction { get; set; }
         private Vector2 playerOffset;
         private int offsetValueX = 20;
         private int offsetValueHY = 32;
@@ -51,13 +52,10 @@ namespace _2D_Game
                     Hitbox = new PlayerAttackHitBox(new Rectangle((int)Position.X - hbWidth / 2, (int)(Position.Y + offsetValueHY), hbWidth, hbLength), this, stateMachine.direction);
                     break;
             }
+            direction = stateMachine.direction;
             CollisionHandler = new BlankCollisionHandler();//temp?
             RoomCollisionHandler.Instance.Add(this, true);
 
-        }
-        public void Use()
-        {
-            //TODO add proper function
         }
         //Update and draw methods to interface for separate draw
         public void Update(GameTime gt)

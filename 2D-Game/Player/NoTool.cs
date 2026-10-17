@@ -10,6 +10,7 @@ namespace _2D_Game
 {
     public class NoTool : ITool
     {
+        public Direction direction {  get; set; }
         public Tool GetTool()
         {
             return Tool.None;
