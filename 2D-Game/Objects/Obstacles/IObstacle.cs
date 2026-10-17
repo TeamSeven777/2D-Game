@@ -12,7 +12,7 @@ namespace _2D_Game
     public interface IObstacle
     {
         public Vector2 originPos { get; set; }
-        public Sprite sprite { get; set; }
+        public ISprite sprite { get; set; }
 
         public void Update(GameTime gameTime);
 

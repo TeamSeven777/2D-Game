@@ -13,7 +13,7 @@ namespace _2D_Game
         public IHitbox Hitbox { get; set; }
         public ICollisionHandler CollisionHandler { get; set; }
         public Vector2 originPos { get; set; }
-        public Sprite sprite { get; set; }
+        public ISprite sprite { get; set; }
         public Queue<Sprite> spriteSet;
         private bool isReversed = false;
         private double cooldownTimer = 0.21;

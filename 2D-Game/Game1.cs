@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Numerics;
+using System.Threading.Channels;
 using Vector2 = Microsoft.Xna.Framework.Vector2;
 
 namespace _2D_Game
@@ -14,6 +15,7 @@ namespace _2D_Game
     {
 
         private Vector2 middleOfScreen;
+        private int roomWidth, roomHeight;
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
         public Obstacle block;
@@ -29,6 +31,7 @@ namespace _2D_Game
         private GameTime currentGameTime;
         public GameTime CurrentGameTime => currentGameTime;
         public HitboxMode hitboxMode;
+        public List<Boundary> boundaries;
         
         public Game1()
         {
@@ -44,7 +47,7 @@ namespace _2D_Game
             Inventory = new ItemInventory();
             Enemies = new EnemyManager();
             blockSpriteSet = new Queue<Sprite>();
-
+            boundaries = new List<Boundary>();
 
             controller = new KeyboardController();
 
@@ -83,10 +86,13 @@ namespace _2D_Game
         protected override void LoadContent()
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
-            
-            
+
+
             //Handy variable if you just want something to be centered and observable
-            middleOfScreen = new Vector2(_spriteBatch.GraphicsDevice.Viewport.Width / 2, _spriteBatch.GraphicsDevice.Viewport.Height / 2);
+            roomHeight = _spriteBatch.GraphicsDevice.Viewport.Height;
+            roomWidth = _spriteBatch.GraphicsDevice.Viewport.Width;
+            middleOfScreen = new Vector2(roomWidth / 2, roomHeight / 2);
+            
 
             //spriteSheet = Content.Load<Texture2D>("Sprites/LinkSheet");
             spriteSheet = Content.Load<Texture2D>("Sprites/Player_Sheet");
@@ -104,6 +110,10 @@ namespace _2D_Game
             blockSpriteSet.Enqueue(new Sprite(blockSpriteSheet, new Rectangle(0, 0, 25, 25)));
             blockSpriteSet.Enqueue(new Sprite(blockSpriteSheet, new Rectangle(25, 0, 25, 25)));
             blockSpriteSet.Enqueue(new Sprite(blockSpriteSheet, new Rectangle(50, 0, 25, 25)));
+            boundaries.Add(new Boundary(new Vector2(0, 0), new Vector2(0, roomHeight)));//boundary test to left
+            boundaries.Add(new Boundary(new Vector2(roomWidth, 0), new Vector2(roomWidth, roomHeight)));//boundary test to right
+            boundaries.Add(new Boundary(new Vector2(0, 0), new Vector2(roomWidth, 0)));//boundary test to up
+            boundaries.Add(new Boundary(new Vector2(0, roomHeight), new Vector2(roomWidth, roomHeight)));//boundary test to down
 
             projectileSpriteSheet = Content.Load<Texture2D>("Sprites/pebble");
             PlayerProjectileHandler.Instance.Initialize(ref player, projectileSpriteSheet);
@@ -159,6 +169,7 @@ namespace _2D_Game
             Inventory.Draw(_spriteBatch);
             block.Draw(_spriteBatch);
             Enemies.Draw(_spriteBatch);
+            foreach(Boundary boundary in boundaries) boundary.Draw(_spriteBatch);
 
             //for hitbox debugging
             hitboxMode.DrawHitboxes(_spriteBatch);
