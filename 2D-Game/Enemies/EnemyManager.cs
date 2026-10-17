@@ -66,6 +66,13 @@ namespace _2D_Game
                 if (enemies.Count == 0) return;
                 enemies[currentIndex].Update(gameTime, playerPosition);
             }
+            if (enemies.Count > 0) 
+            { 
+                if (enemies[currentIndex].Health <= 0)
+                {
+                    enemies.Remove(enemies[currentIndex]);
+                }
+            }
         }
 
         /// <summary>

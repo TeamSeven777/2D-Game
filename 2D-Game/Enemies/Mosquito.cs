@@ -7,6 +7,7 @@ namespace _2D_Game
     public class Mosquito : IEnemy, IHitboxOwner
     {
         public Vector2 Position { get; set; }
+        public int Health   { get; set; }
         private AnimatedSprite sprite;        
         private Vector2 startPosition;
         private float speed = 3f;

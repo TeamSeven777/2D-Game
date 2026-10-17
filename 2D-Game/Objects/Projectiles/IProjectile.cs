@@ -11,12 +11,13 @@ using Vector2 = Microsoft.Xna.Framework.Vector2;
 
 namespace _2D_Game
 {
-    public interface IProjectile
+    public interface IProjectile : IHitboxOwner
     {
         public Vector2 Position { get; set; }
 
         public Vector2 TravelingDirection { get; set; }
 
+        public IHitbox Hitbox { get; set; }
         public ISprite ProjectileSprite { get; set; }
         public float DespawnTimer { get; set; }
 

@@ -11,16 +11,17 @@ using Vector2 = Microsoft.Xna.Framework.Vector2;
 
 namespace _2D_Game
 {
-    public class MosquitoProjectile : IProjectile
+    public class MosquitoProjectile : IProjectile, IHitboxOwner
     {
         public Vector2 Position { get; set; }
-
+        public IHitbox Hitbox { get; set; }
         float angle;
         public Vector2 TravelingDirection { get; set; }
 
         public ISprite ProjectileSprite { get; set; }
 
         public float DespawnTimer { get; set; }
+        public ICollisionHandler CollisionHandler { get; set; }
 
         public MosquitoProjectile(Vector2 position, Vector2 targetPosition, Sprite sprite)
         {

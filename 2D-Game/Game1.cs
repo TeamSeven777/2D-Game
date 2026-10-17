@@ -23,7 +23,6 @@ namespace _2D_Game
         private Queue<Sprite> blockSpriteSet;
         private Texture2D blockSpriteSheet;
         private Texture2D projectileSpriteSheet;
-        public IProjectileHandler projectileHandler;
         private IController controller;
         public ItemInventory Inventory { get; private set; }
         public EnemyManager Enemies;
@@ -106,8 +105,8 @@ namespace _2D_Game
             blockSpriteSet.Enqueue(new Sprite(blockSpriteSheet, new Rectangle(25, 0, 25, 25)));
             blockSpriteSet.Enqueue(new Sprite(blockSpriteSheet, new Rectangle(50, 0, 25, 25)));
 
-            projectileSpriteSheet = Content.Load<Texture2D>("Sprites/projectileSprites");
-            projectileHandler = new PlayerProjectileHandler(ref player, projectileSpriteSheet);
+            projectileSpriteSheet = Content.Load<Texture2D>("Sprites/pebble");
+            PlayerProjectileHandler.Instance.Initialize(ref player, projectileSpriteSheet);
 
             block = new Obstacle(new Vector2(25), middleOfScreen, blockSpriteSet);
 
@@ -134,7 +133,7 @@ namespace _2D_Game
             //gamepad.Update();
 
             player.Update(gameTime);
-            projectileHandler.Update(gameTime);
+            PlayerProjectileHandler.Instance.Update(gameTime);
             Inventory.Update(gameTime);
             block.Update(gameTime);
 
@@ -155,11 +154,12 @@ namespace _2D_Game
 
             //Everything we are drawing
             player.Draw(_spriteBatch);
-            projectileHandler.Draw(_spriteBatch);
+            PlayerProjectileHandler.Instance.Draw(_spriteBatch);
             Enemies.Draw(_spriteBatch);
             Inventory.Draw(_spriteBatch);
             block.Draw(_spriteBatch);
             Enemies.Draw(_spriteBatch);
+
             //for hitbox debugging
             hitboxMode.DrawHitboxes(_spriteBatch);
             //

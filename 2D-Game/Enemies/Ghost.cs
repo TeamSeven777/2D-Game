@@ -6,7 +6,8 @@ namespace _2D_Game
 {
     public class Ghost : IEnemy, IHitboxOwner
     {
-        public Vector2 Position { get; set; }       
+        public Vector2 Position { get; set; }
+        public int Health { get; set; }
         private AnimatedSprite idleSprite;
         private AnimatedSprite attackSprite;
         private AnimatedSprite currentSprite;
@@ -42,12 +43,13 @@ namespace _2D_Game
             currentSprite = idleSprite;
             this.startPosition = startPosition;
             Position = startPosition;
+            Health = 1;
 
             attackFirstFrame = attackSprite.Animation.Frames.Peek();
             attackDuration = attackSprite.Animation.Frames.Count * attackSprite.Animation.FrameRate.TotalSeconds;
 
             Hitbox = new EnemyHitBox(new Rectangle((int)Position.X, (int)Position.Y, hbWidth, hbHeight));
-            CollisionHandler = new BlankCollisionHandler(); //for now
+            CollisionHandler = new EnemyCollisionHandler(this); //for now
             RoomCollisionHandler.Instance.Add(this, true);
         }
         public void Unload()

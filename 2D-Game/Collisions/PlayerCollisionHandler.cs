@@ -24,7 +24,7 @@ namespace _2D_Game
         /// <param name="collider"></param>
         public void HandleCollision(IHitbox collider)
         {
-            Rectangle temp = Rectangle.Empty;
+
             HashSet<Side> resultsOfWillCollide = player.Hitbox.WillCollide(collider);//fix to use willcollide for raycasting, and Is for the standard hitbox.
             HashSet<Side> resultsOfIsCollide = player.Hitbox.IsCollide(collider);
             //First determines if a collision will happen

@@ -27,7 +27,7 @@ namespace _2D_Game
             if (gameTime > previousGameTime)
             {
                 myGame.player.UseTool(Tool.Slingshot);
-                myGame.projectileHandler.Add();
+                PlayerProjectileHandler.Instance.Add();
             }
 
             previousGameTime = gameTime + TimeSpan.FromMilliseconds(100);

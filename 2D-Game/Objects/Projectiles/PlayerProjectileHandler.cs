@@ -19,15 +19,23 @@ namespace _2D_Game
         public ISprite[] CurProjectileSprite { get; set; }
         public float Cooldown = 0;
         public int RemoveCount = 0;
+        private static PlayerProjectileHandler instance = new PlayerProjectileHandler();
 
-        public PlayerProjectileHandler(ref DefaultPlayer player, Texture2D newSprite)
+        public static PlayerProjectileHandler Instance
+        { get { return instance; } }
+        public PlayerProjectileHandler()
+        {
+        }
+
+        public void Initialize(ref DefaultPlayer player, Texture2D newSprite)
         {
             ActiveProjectiles = new Queue<IProjectile>();
             CurProjectileSprite = new ISprite[4];
             playerRef = player;
             for (int i = 0; i < 4; i++)
             {
-                CurProjectileSprite[i] = new Sprite(newSprite, Vector2.Zero, new Vector2(4.0f), Color.White, new Rectangle(i * 16, 0, 16, 16));
+                //This will be repurposed for switching between the different types
+                CurProjectileSprite[i] = new Sprite(newSprite, Vector2.Zero, new Vector2(4.0f), Color.White, new Rectangle(0 * 64, 0, 64, 64));
             }
         }
 
@@ -61,15 +69,15 @@ namespace _2D_Game
                         Cooldown = 10;
                         break;
                     case (Direction.Left):
-                        ActiveProjectiles.Enqueue(new PlayerProjectilePebble(playerRef.Position, new Vector2(-10, 0), CurProjectileSprite[2]));
+                        ActiveProjectiles.Enqueue(new PlayerProjectilePebble(playerRef.Position, new Vector2(-10, 0), CurProjectileSprite[0]));
                         Cooldown = 10;
                         break;
                     case (Direction.Right):
-                        ActiveProjectiles.Enqueue(new PlayerProjectilePebble(playerRef.Position, new Vector2(10, 0), CurProjectileSprite[3]));
+                        ActiveProjectiles.Enqueue(new PlayerProjectilePebble(playerRef.Position, new Vector2(10, 0), CurProjectileSprite[0]));
                         Cooldown = 10;
                         break;
                     case (Direction.Up):
-                        ActiveProjectiles.Enqueue(new PlayerProjectilePebble(playerRef.Position, new Vector2(0, -10), CurProjectileSprite[1]));
+                        ActiveProjectiles.Enqueue(new PlayerProjectilePebble(playerRef.Position, new Vector2(0, -10), CurProjectileSprite[0]));
                         Cooldown = 10;
                         break;
 
@@ -80,7 +88,11 @@ namespace _2D_Game
 
         public void Remove()
         {
-            if(ActiveProjectiles.Count > 0) ActiveProjectiles.Dequeue();
+            if (ActiveProjectiles.Count > 0)
+            {
+                RoomCollisionHandler.Instance.Remove(ActiveProjectiles.Dequeue());
+                
+            }
         }
 
         public void Clear()

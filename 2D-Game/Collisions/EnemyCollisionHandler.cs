@@ -16,7 +16,15 @@ namespace _2D_Game
         }
         public void HandleCollision(IHitbox collider)
         {
-
-        }
+            HashSet<Side> resultsOfWillCollide = enemy.Hitbox.WillCollide(collider);//fix to use willcollide for raycasting, and Is for the standard hitbox.
+            HashSet<Side> resultsOfIsCollide = enemy.Hitbox.IsCollide(collider);
+            if (!resultsOfWillCollide.Contains(Side.None))
+            {
+                if (collider.Type == HitBoxType.PlayerAttack)
+                {
+                    enemy.Health--;
+                }
+            }
+        }   
 }
 }
