@@ -11,8 +11,7 @@ namespace _2D_Game
     {
         private readonly List<IEnemy> enemies = new();
         private int currentIndex = 0;
-        private readonly Vector2 spawnPosition = new Vector2(550, 150);
-        
+        private readonly Vector2 spawnOffset = new Vector2(550, 150);        
         //Debugging Purposes (Sorry ; ( )
         private bool AIDisabled = false;
         private double ToggleCooldownTimer = 0;
@@ -26,8 +25,10 @@ namespace _2D_Game
         /// SpriteFactory for all enemies
         /// </summary>
         /// <param name="content"></param>
-        public void LoadContent(ContentManager content)
+        public void LoadContent(ContentManager content, Vector2 roomOrigin)
         {
+            Vector2 spawnPosition = roomOrigin + spawnOffset;
+            
             //Ghost: 12 frames of 256x256 in one row
             Texture2D ghostSheet = content.Load<Texture2D>("Sprites/Test-Ghost-Melee-Idle-N");
             Animation ghostIdle = new Animation(ghostSheet, TimeSpan.FromMilliseconds(100), new Vector2(256, 256), Vector2.Zero, ghostSheet.Width);

@@ -9,8 +9,8 @@ namespace _2D_Game
     {
         private readonly List<IItem> items = new();
         private int currentIndex = 0;
-        private readonly Vector2 drawPosition = new Vector2(300, 200);
-
+        private readonly Vector2 drawOffset = new Vector2(300, 200);
+        private Vector2 drawPosition;
         // Cooldown vars
         private double cooldownTimer = 0;
         private const double CooldownDuration = 0.2; // 0.2 seconds (200ms) between switches
@@ -19,8 +19,10 @@ namespace _2D_Game
         /// SpriteFactory for all items
         /// </summary>
         /// <param name="content"></param>
-        public void LoadContent(ContentManager content)
+        public void LoadContent(ContentManager content, Vector2 roomOrigin)
         {
+            drawPosition = roomOrigin + drawOffset;
+            
             // Add all items here
             items.Add(new Item("Log", new Sprite(content.Load<Texture2D>("Images/Log")), 10));
             items.Add(new Item("Berry", new Sprite(content.Load<Texture2D>("Images/Berry")), 5));

@@ -37,10 +37,11 @@ namespace _2D_Game
         private int worldWidth, worldHeight;
         public Camera Camera { get; private set; }
         
+        
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
-            _graphics.PreferredBackBufferWidth = 1080;   // 1080 / 700 ≈ 1.54, same as your image
+            _graphics.PreferredBackBufferWidth = 1080;
             _graphics.PreferredBackBufferHeight = 700;
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
@@ -71,14 +72,13 @@ namespace _2D_Game
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
-
-            //Handy variable if you just want something to be centered and observable
             roomHeight = _spriteBatch.GraphicsDevice.Viewport.Height;
             roomWidth = _spriteBatch.GraphicsDevice.Viewport.Width;
             middleOfScreen = new Vector2(roomWidth / 2, roomHeight / 2);
             
             worldWidth = roomWidth * 3;
             worldHeight = roomHeight * 3;
+            Vector2 startRoomOrigin = new Vector2(0, worldHeight - roomHeight);
             background = Content.Load<Texture2D>("Images/gameBackground");
             Camera = new Camera(roomWidth, roomHeight, worldWidth, worldHeight);
 
@@ -86,13 +86,12 @@ namespace _2D_Game
             spriteSheet = Content.Load<Texture2D>("Sprites/Player_Sheet");
             PlayerSpriteFactory.Instance.LoadTextures(Content);
 
-            Vector2 playerStart = new Vector2(roomWidth / 2f, worldHeight - roomHeight / 2f);
-            player = new DefaultPlayer(playerStart);
+            player = new DefaultPlayer(startRoomOrigin + middleOfScreen);
             Camera.Follow(player.Position);
 
 
-            Inventory.LoadContent(Content);
-            Enemies.LoadContent(Content);
+            Inventory.LoadContent(Content, startRoomOrigin);
+            Enemies.LoadContent(Content, startRoomOrigin);
 
             blockSpriteSet = new Queue<Sprite>();
             blockSpriteSheet = Content.Load<Texture2D>("Sprites/testblocks");
@@ -106,7 +105,7 @@ namespace _2D_Game
             projectileSpriteSheet = Content.Load<Texture2D>("Sprites/pebble");
             PlayerProjectileHandler.Instance.Initialize(ref player, projectileSpriteSheet);
 
-            block = new Obstacle(new Vector2(25), middleOfScreen, blockSpriteSet);
+            block = new Obstacle(new Vector2(25), startRoomOrigin + middleOfScreen + new Vector2(150, 0), blockSpriteSet);
 
             hitboxMode = new HitboxMode(this);
 
@@ -152,7 +151,7 @@ namespace _2D_Game
             currentGameTime = gameTime;
             
              // World: scrolls with the camera
-            _spriteBatch.Begin(samplerState: SamplerState.PointClamp, transformMatrix: Camera.Transform);  // <-- changed line
+            _spriteBatch.Begin(samplerState: SamplerState.PointClamp, transformMatrix: Camera.Transform);
             _spriteBatch.Draw(background, new Rectangle(0, 0, worldWidth, worldHeight), Color.White);
 
             //Everything we are drawing
