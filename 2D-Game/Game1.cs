@@ -35,6 +35,7 @@ namespace _2D_Game
         public List<Boundary> boundaries;
         private Texture2D background;
         private int worldWidth, worldHeight;
+        private RoomManager roomManager;
         public Camera Camera { get; private set; }
         
         
@@ -63,7 +64,7 @@ namespace _2D_Game
             controllers.Add(controllerNames[1], new GamePadController(PlayerIndex.One, this));
             controllers.Add(controllerNames[2], new MouseController(this));
 
-
+            roomManager = new RoomManager();
 
             base.Initialize();
         }
@@ -95,6 +96,8 @@ namespace _2D_Game
 
             blockSpriteSet = new Queue<Sprite>();
             blockSpriteSheet = Content.Load<Texture2D>("Sprites/testblocks");
+
+
             blockSpriteSet.Enqueue(new Sprite(blockSpriteSheet, new Rectangle(0, 0, 25, 25)));
             blockSpriteSet.Enqueue(new Sprite(blockSpriteSheet, new Rectangle(25, 0, 25, 25)));
             blockSpriteSet.Enqueue(new Sprite(blockSpriteSheet, new Rectangle(50, 0, 25, 25)));
@@ -108,6 +111,10 @@ namespace _2D_Game
             block = new Obstacle(new Vector2(25), startRoomOrigin + middleOfScreen + new Vector2(150, 0), blockSpriteSet);
 
             hitboxMode = new HitboxMode(this);
+
+            
+            // Load dungeon rooms and pass viewport dimensions
+            roomManager.LoadDungeon("Content/all_rooms.xml", Content, blockSpriteSheet, roomWidth, roomHeight);
 
         }
 
@@ -130,6 +137,7 @@ namespace _2D_Game
             }
 
             player.Update(gameTime);
+            roomManager.Update(gameTime, player.Position);
             PlayerProjectileHandler.Instance.Update(gameTime);
             Inventory.Update(gameTime);
             block.Update(gameTime);
@@ -156,6 +164,7 @@ namespace _2D_Game
 
             //Everything we are drawing
             player.Draw(_spriteBatch);
+            roomManager.Draw(_spriteBatch);
             PlayerProjectileHandler.Instance.Draw(_spriteBatch);
             Enemies.Draw(_spriteBatch);
             Inventory.Draw(_spriteBatch);

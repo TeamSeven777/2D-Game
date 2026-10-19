@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace _2D_Game
 {
-    internal interface IItem
+    public interface IItem
     {
         string Name { get; }
         Sprite Icon { get; }
