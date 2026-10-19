@@ -151,7 +151,7 @@ namespace _2D_Game
                 block.Update(gameTime);
 
                 //~Whatever Else Actions~
-                //Enemies.Update(gameTime, player.Position);
+                Enemies.Update(gameTime, player.Position);
 
 
 
@@ -194,7 +194,6 @@ namespace _2D_Game
             hitboxMode.DrawHitboxes(_spriteBatch);
             //
 
-            //CurrentDialogue.Draw(_spriteBatch);
             _spriteBatch.End();
 
             _spriteBatch.Begin(samplerState: SamplerState.PointClamp); // no transform
