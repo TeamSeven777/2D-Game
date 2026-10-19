@@ -10,7 +10,11 @@
       <Entity Type="Mosquito" X="300" Y="100" />
     </Enemies>
     <Items>
-      
+    <Entity Type="Log" X="100" Y="300" />
+      <Entity Type="Berry" X="250" Y="150" />
+      <Entity Type="Explosive" X="400" Y="300" />
+      <Entity Type="Key" X="200" Y="200" />
+      <Entity Type="Pebble" X="400" Y="200" />
     </Items>
   </Room>
 

@@ -9,8 +9,9 @@ namespace _2D_Game
         public Point GridPosition { get; private set; }
         public List<Obstacle> Obstacles { get; private set; } = new List<Obstacle>();
         public List<IEnemy> Enemies { get; private set; } = new List<IEnemy>(); // Room-specific enemies
-        public List<IItem> Items { get; private set; } = new List<IItem>();
-
+        public List<WorldItem> Items { get; private set; } = new List<WorldItem>();
+        
+        
         public Room(Point gridPosition)
         {
             GridPosition = gridPosition;
@@ -31,7 +32,8 @@ namespace _2D_Game
                 }
             }
 
-            // TODO: items
+            foreach (var item in Items) 
+                item.Update(gameTime);
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -42,7 +44,8 @@ namespace _2D_Game
             foreach (var enemy in Enemies) 
                 enemy.Draw(spriteBatch);
 
-            // TODO: items
+            foreach (var item in Items) 
+                item.Draw(spriteBatch);
         }
 
         public void Activate()   { foreach (var e in Enemies) e.Load(); }
