@@ -39,6 +39,8 @@ namespace _2D_Game
         public Camera Camera { get; private set; }
         private Minimap minimap;
         public bool PauseGameOn { get; private set; }
+        public bool DialogueMode { get; private set; }
+        public IDialogue CurrentDialogue { get; set; }
         
         public Game1()
         {
@@ -53,14 +55,17 @@ namespace _2D_Game
         protected override void Initialize()
         {
             currentGameTime = new GameTime();
-            RoomCollisionHandler.Instance.Initialize();
+            RoomCollisionHandler.Instance.Initialize(this);
+            DialogueFactory.Instance.WindowSizeX = Window.ClientBounds.Width;
+            DialogueFactory.Instance.WindowSizeY = Window.ClientBounds.Height;
             Inventory = new ItemInventory();
             Enemies = new EnemyManager();
             blockSpriteSet = new Queue<Sprite>();
             boundaries = new List<Boundary>();
 
             PauseGameOn = false;
-
+            CurrentDialogue = new NoDialogue();
+            DialogueMode = false;
 
             controllerNames = new String[]{ "keyboard", "gamepad", "mouse"};
             controllers = new Dictionary<string, IController>();
@@ -90,6 +95,7 @@ namespace _2D_Game
             //spriteSheet = Content.Load<Texture2D>("Sprites/LinkSheet");
             spriteSheet = Content.Load<Texture2D>("Sprites/Player_Sheet");
             PlayerSpriteFactory.Instance.LoadTextures(Content);
+            DialogueFactory.Instance.LoadFonts(Content);
 
             player = new DefaultPlayer(startRoomOrigin + middleOfScreen);
             Camera.Follow(player.Position);
@@ -120,20 +126,19 @@ namespace _2D_Game
         {
             
             RoomCollisionHandler.Instance.HandleCollision();
-
             currentGameTime = gameTime;
 
             //Everything we are updating
             //To make it more "fair", everything
             //The player does should come first
             //~Player Actions~
-
-            if (!PauseGameOn) //disable certain updates on Pause. //TODO have another check to determine whether this is due to dialogue or a menu, and update accordingly
+            foreach (String controllerType in controllerNames)
             {
-                foreach (String controllerType in controllerNames)
-                {
-                    if (controllers[controllerType].Update()) break; //only use one controller type at a time.
-                }
+                if (controllers[controllerType].Update()) break; //only use one controller type at a time.
+
+            }
+            if (!PauseGameOn && !DialogueMode) //disable certain updates on Pause. //TODO have another check to determine whether this is due to dialogue or a menu, and update accordingly
+            {
                 if (IsActive && minimap.TryGetClickedRoomCenter(out Vector2 roomCenter))
                 {
                     player.Teleport(roomCenter);
@@ -146,7 +151,7 @@ namespace _2D_Game
                 block.Update(gameTime);
 
                 //~Whatever Else Actions~
-                Enemies.Update(gameTime, player.Position);
+                //Enemies.Update(gameTime, player.Position);
 
 
 
@@ -155,13 +160,14 @@ namespace _2D_Game
 
                 hitboxMode.Update(gameTime);
             }
+            else if (DialogueMode)
+            {
+                CurrentDialogue.Update(gameTime);
+                player.Update(gameTime);
+            }
             else
             {
-                foreach (String controllerType in controllerNames)
-                {
-                    if (controllers[controllerType].Update()) break; //only use one controller type at a time.
-
-                }
+                //no updates aside from controller inputs
             }
             base.Update(gameTime);
 
@@ -187,6 +193,8 @@ namespace _2D_Game
             //for hitbox debugging
             hitboxMode.DrawHitboxes(_spriteBatch);
             //
+
+            //CurrentDialogue.Draw(_spriteBatch);
             _spriteBatch.End();
 
             _spriteBatch.Begin(samplerState: SamplerState.PointClamp); // no transform
@@ -195,6 +203,7 @@ namespace _2D_Game
 
             _spriteBatch.Begin(samplerState: SamplerState.PointClamp);
             minimap.Draw(_spriteBatch, player.Position);
+            CurrentDialogue.Draw(_spriteBatch);
             _spriteBatch.End();
 
             base.Draw(gameTime);
@@ -217,6 +226,23 @@ namespace _2D_Game
                 controllers[controllerNames[0]] = new KeyboardController(this, ControllerMode.PauseMode);
             }
             
+        }
+        public void HandleDialogue()
+        {
+            if (!DialogueMode)
+            {
+                DialogueMode = true;
+                controllers[controllerNames[0]] = new KeyboardController(this, ControllerMode.DialogueMode);
+            }
+            else
+            {
+                if (!CurrentDialogue.Next())
+                {
+                    CurrentDialogue = new NoDialogue();
+                    DialogueMode = false;
+                    controllers[controllerNames[0]] = new KeyboardController(this, ControllerMode.MovementMode);
+                }
+            }
         }
     }
 }

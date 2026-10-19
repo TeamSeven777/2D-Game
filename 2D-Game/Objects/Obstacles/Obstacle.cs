@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace _2D_Game
 {
-    public class Obstacle : IObstacle, IHitboxOwner
+    public class Obstacle : IObstacle, IHitboxOwner, IInteractable
     {
         public IHitbox Hitbox { get; set; }
         public ICollisionHandler CollisionHandler { get; set; }
@@ -50,6 +50,12 @@ namespace _2D_Game
             this.Hitbox = new BlockHitBox(new Rectangle((int)originPos.X,(int)originPos.Y,(int)size.X,(int)size.Y));
             CollisionHandler = new BlankCollisionHandler();
             RoomCollisionHandler.Instance.Add(this, false);
+        }
+
+        public void HandleInteraction() {
+            //interaction testing
+            RoomCollisionHandler.Instance.myGame.CurrentDialogue = DialogueFactory.Instance.CreateBlockDialogue();
+            RoomCollisionHandler.Instance.myGame.HandleDialogue();
         }
 
         /// <summary>

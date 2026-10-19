@@ -13,6 +13,14 @@
 
 #---------------------------------- Content ---------------------------------#
 
+#begin Fonts/defaultFont.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/processorParam:Version=3.8.5.0
+/build:Fonts/defaultFont.spritefont
+
 #begin Images/Berry.png
 /importer:TextureImporter
 /processor:TextureProcessor

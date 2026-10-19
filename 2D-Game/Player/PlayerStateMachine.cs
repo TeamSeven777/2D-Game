@@ -53,6 +53,9 @@ namespace _2D_Game
                 case Tool.Slingshot:
                     toolEquiped = new Slingshot();
                     break;
+                case Tool.Interact:
+                    toolEquiped = new InteractTool(this);
+                    break;
                 default:
                     toolEquiped = new NoTool();
                     break;
@@ -91,7 +94,10 @@ namespace _2D_Game
                         case (Tool.Stick):
                             CurrPlayerState = new StickPlayerState(this);
                             break;
-                        case (Tool.Fist):
+                    case (Tool.Interact):
+                        CurrPlayerState = new StickPlayerState(this);
+                        break;
+                    case (Tool.Fist):
                             CurrPlayerState = new FistPlayerState(this);
                             break;
                         case (Tool.Slingshot):

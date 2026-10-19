@@ -28,8 +28,8 @@ namespace _2D_Game
                 //Then how the collision should be handled
                 switch (collider.Type)
                 {
-                    case (HitBoxType.PlayerAttack):                        
-                        if (hbOwner is ITool collidedTool) {
+                    case (HitBoxType.PlayerAttack):
+                        if ((hbOwner is ITool collidedTool) && collidedTool.GetTool() != Tool.Interact) {
                             int knockback; int dmg = 1;
                             if (collidedTool.GetTool() == Tool.Fist)
                             {

@@ -36,11 +36,11 @@ namespace _2D_Game
                 RegisterCommand(Keys.D3, new UnEquipCommand(myGame));
                 RegisterCommand(Keys.H, new HitboxModeCommand(myGame));
                 RegisterCommand(Keys.Escape, new PauseMenuCommand(myGame));
-                //RegisterCommand(Keys.Space, new InteractCommand(myGame));
+                RegisterCommand(Keys.Space, new InteractCommand(myGame));
             }
             else if (controllerMode == ControllerMode.DialogueMode)
             {
-                //RegisterCommand(Keys.Space, new ProgressDialogueCommand(myGame));
+                RegisterCommand(Keys.Space, new NextDialogueCommand(myGame));
             }else if (controllerMode == ControllerMode.PauseMode)
             {
                 RegisterCommand(Keys.Escape, new PauseMenuCommand(myGame));

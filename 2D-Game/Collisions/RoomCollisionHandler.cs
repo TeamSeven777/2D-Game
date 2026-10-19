@@ -18,17 +18,19 @@ namespace _2D_Game
         private Timer tempRectRefreshTimer = new Timer(.1);
         private static RoomCollisionHandler instance = new RoomCollisionHandler();
         public GameTime RoomGameTime { get; private set; }
+        public Game1 myGame {  get;  private set; }
 
         public static RoomCollisionHandler Instance
         { get { return instance; } }
 
         private RoomCollisionHandler() { }
 
-        public void Initialize()
+        public void Initialize(Game1 game1)
         {
             dynamicHitboxes = new Dictionary<IHitboxOwner, IHitbox>();
             staticHitboxes = new Dictionary<IHitboxOwner, IHitbox>();
             temporaryRectangles = new List<Rectangle>();
+            myGame = game1;
         }
         public List<IHitbox> GetHitboxes()
         {
