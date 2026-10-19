@@ -175,16 +175,16 @@ namespace _2D_Game
             switch (direction)
             {
                 case Direction.Left:
-                    ToolSprite = new RotatingSprite(stick, -rotationStatingOffset, -180f + rotationEndingOffset, rotationSpeed, false, false, scale, SpriteEffects.None); //CC, Left attack
+                    ToolSprite = new RotatingSprite(stick, scale, SpriteEffects.None, - rotationStatingOffset, -180f + rotationEndingOffset, rotationSpeed, false, false); //CC, Left attack
                     break;
                 case Direction.Right:
-                    ToolSprite = new RotatingSprite(stick, rotationStatingOffset, 180f - rotationEndingOffset, rotationSpeed, true, false, scale, SpriteEffects.None); //C, Right attack
+                    ToolSprite = new RotatingSprite(stick, scale, SpriteEffects.None, rotationStatingOffset, 180f - rotationEndingOffset, rotationSpeed, true, false); //C, Right attack
                     break;
                 case Direction.Up:
-                    ToolSprite = new RotatingSprite(stick, -90+rotationStatingOffset, 90f - rotationEndingOffset, rotationSpeed, true, false, scale, SpriteEffects.None); //C, Up attack
+                    ToolSprite = new RotatingSprite(stick, scale, SpriteEffects.None, - 90+rotationStatingOffset, 90f - rotationEndingOffset, rotationSpeed, true, false); //C, Up attack
                     break;
                 default: //down
-                    ToolSprite = new RotatingSprite(stick, -90 - rotationStatingOffset, -270f + rotationEndingOffset, rotationSpeed, false, false, scale, SpriteEffects.None); //CC, down attack
+                    ToolSprite = new RotatingSprite(stick, scale, SpriteEffects.None, - 90 - rotationStatingOffset, -270f + rotationEndingOffset, rotationSpeed, false, false); //CC, down attack
                     break;
             }
             

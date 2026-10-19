@@ -23,7 +23,7 @@ namespace _2D_Game
             RegisterCommand(Keys.R, new ResetCommand(myGame));
             RegisterCommand(Keys.E, new DamageCommand(myGame));
             RegisterCommand(Keys.T, new PreviousBlockCommand(myGame));
-            RegisterCommand(Keys.Y, new NextBlockCommand(myGame));
+            RegisterCommand(Keys.Y, new SwapRangedWeaponCommand(myGame));
             RegisterCommand(Keys.U, new PreviousItemCommand(myGame));
             RegisterCommand(Keys.I, new NextItemCommand(myGame));
             RegisterCommand(Keys.O, new PreviousCharacterCommand(myGame));

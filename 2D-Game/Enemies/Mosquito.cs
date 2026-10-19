@@ -36,6 +36,10 @@ namespace _2D_Game
         private bool spinning = false;
         private double spinTimer = 0;
 
+        // Projectile Attack
+        private double ShootCooldown =  10;
+
+
         public Mosquito(AnimatedSprite sprite, Vector2 startPosition)
         {
             this.sprite = sprite;
@@ -114,6 +118,15 @@ namespace _2D_Game
                 facingX = toPlayer.X;
                 toPlayer.Normalize(); //turn it into a direction with length 1
                 Position += toPlayer * chaseSpeed;
+
+
+                Random rand = new Random();
+                if (ShootCooldown == 0)
+                {
+                    EnemyProjectileHandler.Instance.Add(this);
+                    ShootCooldown = 200;
+                }
+                else ShootCooldown--;
             }
             else
             {

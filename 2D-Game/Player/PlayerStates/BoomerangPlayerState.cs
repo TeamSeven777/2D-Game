@@ -13,7 +13,7 @@ namespace _2D_Game
         public ISprite PlayerSprite { get; set; }
         private PlayerStateMachine stateMachine;
         private double stateTime = 0;
-        private double timeSling = 0.5;
+        private double throwTime = 0.5;
         public BoomerangPlayerState(PlayerStateMachine myPlayerStateMachine)
         {
             
@@ -25,7 +25,7 @@ namespace _2D_Game
         {
             PlayerSprite.Update(gameTime);
             stateTime += gameTime.ElapsedGameTime.TotalSeconds;
-            if (stateTime >= timeSling) stateMachine.UseTool(Tool.Dynamite);
+            if (stateTime >= throwTime) stateMachine.UseTool(Tool.None);
         }
         public void Draw(SpriteBatch sprBatch, Vector2 pos)
         {

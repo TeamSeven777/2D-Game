@@ -23,7 +23,10 @@ namespace _2D_Game
         public PlayerProjectileBoomerang(Vector2 position, Vector2 travelingDirection, ISprite sprite)
         {
             this.Position = position;
-            TravelApex = position + travelingDirection * 5;
+            this.Hitbox = new ProjectileHitBox(new Rectangle((int)Position.X - 32, (int)Position.Y - 32, 64, 64), HitBoxType.PlayerAttack);
+            RoomCollisionHandler.Instance.Add(this, true);
+            this.CollisionHandler = new ProjectileCollisionHandler(this);
+            TravelApex = position + travelingDirection * 50;
             this.TravelingDirection = travelingDirection;
             this.ProjectileSprite = sprite;
             DespawnTimer = 1000;
@@ -32,10 +35,12 @@ namespace _2D_Game
 
         public void Update(GameTime gt)
         {
+            Hitbox.BoundingBox = new Rectangle((int)Position.X - 32, (int)Position.Y - 32, 64, 64);
             Position += TravelingDirection;
             if (DespawnTimer > 0) DespawnTimer--;
             if (Position == TravelApex)
                 TravelingDirection = -TravelingDirection;
+            ProjectileSprite.Update(gt);
         }
 
         public void Draw(SpriteBatch sprbatch)

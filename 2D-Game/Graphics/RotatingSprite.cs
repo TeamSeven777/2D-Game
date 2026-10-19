@@ -39,9 +39,27 @@ namespace _2D_Game
         /// <summary>
         /// Uses a Texture2D and rotation information to generate a sprite that rotates
         /// </summary>
-        public RotatingSprite(Texture2D spriteSheet, float startingDegree, float endingDegree, float rotationSpeed, bool clockwise, bool loops, Vector2 scale, SpriteEffects effects)
+        public RotatingSprite(Texture2D spriteSheet, Vector2 scale, Rectangle sourceRectangle, SpriteEffects effects = SpriteEffects.None, float startingDegree = 0, float endingDegree = 0, float rotationSpeed = 0, bool clockwise = true, bool loops = false)
         {
-            SourceRectangle = new Rectangle(0,0, spriteSheet.Width, spriteSheet.Height);
+            SourceRectangle = SourceRectangle;
+            Content = spriteSheet;
+            Position = Vector2.Zero;
+            Scale = scale;
+            Color = Color.White;
+            Origin = new Vector2(SourceRectangle.Width / 2, SourceRectangle.Height); //pivot from the middle of the bottom
+            Rotation = MathHelper.ToRadians(startingDegree);
+            StartingDegree = startingDegree;
+            EndingDegree = endingDegree;
+            RotationSpeed = rotationSpeed;
+            LayerDepth = 0;
+            Effects = effects;
+            Loops = loops;
+            Clockwise = clockwise;
+            Paused = false;
+        }
+        public RotatingSprite(Texture2D spriteSheet, Vector2 scale, SpriteEffects effects = SpriteEffects.None, float startingDegree = 0, float endingDegree = 0, float rotationSpeed = 0, bool clockwise = true, bool loops = false)
+        {
+            SourceRectangle = new Rectangle(0,0, spriteSheet.Width,spriteSheet.Height);
             Content = spriteSheet;
             Position = Vector2.Zero;
             Scale = scale;

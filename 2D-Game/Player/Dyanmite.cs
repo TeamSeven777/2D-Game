@@ -15,7 +15,6 @@ namespace _2D_Game
 
         public void Draw(SpriteBatch spriteBatch, Vector2 position)
         {
-            throw new NotImplementedException();
         }
 
         public Tool GetTool()
@@ -25,7 +24,6 @@ namespace _2D_Game
 
         public void Update(GameTime gameTime)
         {
-            throw new NotImplementedException();
         }
     }
 }
