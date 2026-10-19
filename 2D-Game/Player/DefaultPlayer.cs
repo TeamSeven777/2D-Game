@@ -167,5 +167,13 @@ namespace _2D_Game
             if (allowed && DisabledDirections.Contains(dir)) DisabledDirections.Remove(dir);
             else DisabledDirections.Add(dir);
         }
+
+        public void Teleport(Vector2 target)
+        {
+            Position = target;
+            NextPosition = target;      
+            PreviousPosition = target;
+            Hitbox.BoundingBox = new Rectangle((int)Position.X - Hitbox.BoundingBox.Width / 2, (int)Position.Y - Hitbox.BoundingBox.Height / 4, Hitbox.BoundingBox.Width, Hitbox.BoundingBox.Height);
+        }
     }
 }
