@@ -15,14 +15,19 @@ namespace _2D_Game
         public PauseMenuCommand(Game1 game)
         {
             myGame = game;
-
+            gameTime = myGame.CurrentGameTime.TotalGameTime;
+            previousGameTime = gameTime + TimeSpan.FromMilliseconds(100);
         }
 
         public void Execute()
         {
-            gameTime = myGame.CurrentGameTime.TotalGameTime;
-            if (gameTime > previousGameTime) myGame.TogglePause();
-            previousGameTime = gameTime + TimeSpan.FromMilliseconds(100);
+           gameTime = myGame.CurrentGameTime.TotalGameTime;
+           if (gameTime > previousGameTime)
+           {
+                myGame.TogglePause();
+                //will later bring up the respective UI
+           }
+           previousGameTime = gameTime + TimeSpan.FromMilliseconds(100);
         }
 
     }

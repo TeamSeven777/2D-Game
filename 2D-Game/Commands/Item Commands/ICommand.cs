@@ -9,5 +9,6 @@ namespace _2D_Game
     public interface ICommand
     {
         void Execute();
+        
     }
 }

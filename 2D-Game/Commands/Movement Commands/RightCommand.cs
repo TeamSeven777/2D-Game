@@ -10,6 +10,7 @@ namespace _2D_Game
     {
         private Game1 myGame;
 
+
         public RightCommand(Game1 game)
         {
             myGame = game;

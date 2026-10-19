@@ -10,6 +10,7 @@ namespace _2D_Game
     public class LeftCommand : ICommand
     {
         private Game1 myGame;
+        
 
         public LeftCommand(Game1 game)
         {
@@ -18,7 +19,7 @@ namespace _2D_Game
 
         public void Execute()
         {
-            myGame.player.MoveLeft();
+            if (!myGame.PauseGameOn) myGame.player.MoveLeft();
         }
 
     }

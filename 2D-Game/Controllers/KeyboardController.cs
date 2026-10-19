@@ -9,37 +9,51 @@ namespace _2D_Game
 {
     public class KeyboardController : IController
     {
-        private Dictionary<Keys, ICommand> controllerMappings;
+        private Dictionary<Keys, ICommand> controllerMappings;     
 
-        public KeyboardController(Game1 myGame)
+        public KeyboardController(Game1 myGame, ControllerMode controllerMode)
         {
             controllerMappings = new Dictionary<Keys, ICommand>();
             //all keyboard controls
-            RegisterCommand(Keys.W, new UpCommand(myGame));
-            RegisterCommand(Keys.A, new LeftCommand(myGame));
-            RegisterCommand(Keys.D, new RightCommand(myGame));
-            RegisterCommand(Keys.S, new DownCommand(myGame));
-            RegisterCommand(Keys.Q, new QuitCommand(myGame));
-            RegisterCommand(Keys.R, new ResetCommand(myGame));
-            RegisterCommand(Keys.E, new DamageCommand(myGame));
-            RegisterCommand(Keys.T, new PreviousBlockCommand(myGame));
-            RegisterCommand(Keys.Y, new NextBlockCommand(myGame));
-            RegisterCommand(Keys.U, new PreviousItemCommand(myGame));
-            RegisterCommand(Keys.I, new NextItemCommand(myGame));
-            RegisterCommand(Keys.O, new PreviousCharacterCommand(myGame));
-            RegisterCommand(Keys.P, new NextCharacterCommand(myGame));
-            RegisterCommand(Keys.Z, new AttackCommand(myGame));
-            RegisterCommand(Keys.D1, new UseAxeCommand(myGame));
-            RegisterCommand(Keys.D2, new UseSlingshotCommand(myGame));
-            RegisterCommand(Keys.D3, new UnEquipCommand(myGame));
-            RegisterCommand(Keys.H, new HitboxModeCommand(myGame));
-            RegisterCommand(Keys.Escape, new PauseMenuCommand(myGame));
+            if (controllerMode == ControllerMode.MovementMode)
+            {
+                RegisterCommand(Keys.W, new UpCommand(myGame));
+                RegisterCommand(Keys.A, new LeftCommand(myGame));
+                RegisterCommand(Keys.D, new RightCommand(myGame));
+                RegisterCommand(Keys.S, new DownCommand(myGame));
+                RegisterCommand(Keys.Q, new QuitCommand(myGame));
+                RegisterCommand(Keys.R, new ResetCommand(myGame));
+                RegisterCommand(Keys.E, new DamageCommand(myGame));
+                RegisterCommand(Keys.T, new PreviousBlockCommand(myGame));
+                RegisterCommand(Keys.Y, new NextBlockCommand(myGame));
+                RegisterCommand(Keys.U, new PreviousItemCommand(myGame));
+                RegisterCommand(Keys.I, new NextItemCommand(myGame));
+                RegisterCommand(Keys.O, new PreviousCharacterCommand(myGame));
+                RegisterCommand(Keys.P, new NextCharacterCommand(myGame));
+                RegisterCommand(Keys.Z, new AttackCommand(myGame));
+                RegisterCommand(Keys.D1, new UseAxeCommand(myGame));
+                RegisterCommand(Keys.D2, new UseSlingshotCommand(myGame));
+                RegisterCommand(Keys.D3, new UnEquipCommand(myGame));
+                RegisterCommand(Keys.H, new HitboxModeCommand(myGame));
+                RegisterCommand(Keys.Escape, new PauseMenuCommand(myGame));
+                //RegisterCommand(Keys.Space, new InteractCommand(myGame));
+            }
+            else if (controllerMode == ControllerMode.DialogueMode)
+            {
+                //RegisterCommand(Keys.Space, new ProgressDialogueCommand(myGame));
+            }else if (controllerMode == ControllerMode.PauseMode)
+            {
+                RegisterCommand(Keys.Escape, new PauseMenuCommand(myGame));
+            }
         }
         public void RegisterCommand(Keys key, ICommand command)
         {
             controllerMappings.Add(key, command);
         }
-        public void RegisterCommand(Buttons button, ICommand command) { }
+        public void UnRegisterCommand(Keys key) 
+        {
+            if(controllerMappings.ContainsKey(key))controllerMappings.Remove(key);
+        }
         public bool Update()
         {
             Keys[] pressedKeys = Keyboard.GetState().GetPressedKeys();

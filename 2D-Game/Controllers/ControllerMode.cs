@@ -1,0 +1,1 @@
+﻿public enum ControllerMode { MovementMode, DialogueMode, PauseMode} //modes a controller can have (switch to disable current set)

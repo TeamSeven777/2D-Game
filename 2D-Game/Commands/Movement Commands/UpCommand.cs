@@ -8,7 +8,7 @@ namespace _2D_Game
 {
     public class UpCommand : ICommand
     {
-        private Game1 myGame;
+        private Game1 myGame;       
 
         public UpCommand(Game1 game)
         {

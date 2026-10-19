@@ -26,6 +26,7 @@ namespace _2D_Game
         private Texture2D projectileSpriteSheet;
         public IProjectileHandler projectileHandler;
         private Dictionary<String, IController> controllers;
+  
         private String[] controllerNames;
         public ItemInventory Inventory { get; private set; }
         public EnemyManager Enemies;
@@ -37,7 +38,7 @@ namespace _2D_Game
         private int worldWidth, worldHeight;
         public Camera Camera { get; private set; }
         private Minimap minimap;
-        private bool PauseGameOn = false;
+        public bool PauseGameOn { get; private set; }
         
         public Game1()
         {
@@ -51,19 +52,21 @@ namespace _2D_Game
 
         protected override void Initialize()
         {
+            currentGameTime = new GameTime();
             RoomCollisionHandler.Instance.Initialize();
             Inventory = new ItemInventory();
             Enemies = new EnemyManager();
             blockSpriteSet = new Queue<Sprite>();
             boundaries = new List<Boundary>();
 
+            PauseGameOn = false;
+
 
             controllerNames = new String[]{ "keyboard", "gamepad", "mouse"};
             controllers = new Dictionary<string, IController>();
-            controllers.Add(controllerNames[0], new KeyboardController(this));
+            controllers.Add(controllerNames[0], new KeyboardController(this, ControllerMode.MovementMode));
             controllers.Add(controllerNames[1], new GamePadController(PlayerIndex.One, this));
             controllers.Add(controllerNames[2], new MouseController(this));
-
 
 
             base.Initialize();
@@ -118,19 +121,19 @@ namespace _2D_Game
             
             RoomCollisionHandler.Instance.HandleCollision();
 
-            //currentGameTime = gameTime;
+            currentGameTime = gameTime;
 
             //Everything we are updating
             //To make it more "fair", everything
             //The player does should come first
             //~Player Actions~
-            foreach (String controllerType in controllerNames)
-            {
-                if(controllers[controllerType].Update()) break; //only use one controller type at a time.
 
-            }
             if (!PauseGameOn) //disable certain updates on Pause. //TODO have another check to determine whether this is due to dialogue or a menu, and update accordingly
             {
+                foreach (String controllerType in controllerNames)
+                {
+                    if (controllers[controllerType].Update()) break; //only use one controller type at a time.
+                }
                 if (IsActive && minimap.TryGetClickedRoomCenter(out Vector2 roomCenter))
                 {
                     player.Teleport(roomCenter);
@@ -146,12 +149,21 @@ namespace _2D_Game
                 Enemies.Update(gameTime, player.Position);
 
 
-                base.Update(gameTime);
+
                 RoomCollisionHandler.Instance.Update(gameTime);
                 Camera.Follow(player.Position);
 
                 hitboxMode.Update(gameTime);
             }
+            else
+            {
+                foreach (String controllerType in controllerNames)
+                {
+                    if (controllers[controllerType].Update()) break; //only use one controller type at a time.
+
+                }
+            }
+            base.Update(gameTime);
 
         }
 
@@ -194,8 +206,17 @@ namespace _2D_Game
         }
         public void TogglePause()
         {
-            if (PauseGameOn) PauseGameOn = false;
-            else PauseGameOn = true;
+            if (PauseGameOn)
+            {
+                PauseGameOn = false;
+                controllers[controllerNames[0]] = new KeyboardController(this, ControllerMode.MovementMode);
+            }
+            else
+            {
+                PauseGameOn = true;
+                controllers[controllerNames[0]] = new KeyboardController(this, ControllerMode.PauseMode);
+            }
+            
         }
     }
 }
