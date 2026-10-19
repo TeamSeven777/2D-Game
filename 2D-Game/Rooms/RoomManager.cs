@@ -18,6 +18,8 @@ namespace _2D_Game
         // Textures for enemy creation during room loading
         private Texture2D ghostSheet, ghostAttackSheet;
         private Texture2D mosquitoSheet;
+        private Texture2D spiderSheet;
+
 
         // Textures for item creation during room loading
         private Texture2D berryTexture, explosiveTexture, logTexture, keyTexture, pebbleTexture;
@@ -29,6 +31,8 @@ namespace _2D_Game
             ghostSheet = content.Load<Texture2D>("Sprites/Test-Ghost-Melee-Idle-N");
             ghostAttackSheet = content.Load<Texture2D>("Sprites/Test-Ghost-Melee-Attack-N");
             mosquitoSheet = content.Load<Texture2D>("Sprites/mosquito");
+            spiderSheet = content.Load<Texture2D>("Sprites/Spider");
+
 
             // Pre-load item sprites so rooms can instantiate them
             berryTexture = content.Load<Texture2D>("Images/Berry2");
@@ -131,6 +135,15 @@ namespace _2D_Game
 
                         Mosquito mosquito = new Mosquito(mosquitoSpr, worldPos);
                         room.Enemies.Add(mosquito);
+                    }
+                    else if (type == "Spider")
+                    {
+                        Animation spiderIdle = new Animation(spiderSheet, TimeSpan.FromMilliseconds(80), new Vector2(64, 64), new Vector2(0, 64), spiderSheet.Width);
+                        AnimatedSprite spiderSpr = new AnimatedSprite(spiderIdle, spiderSheet);
+                        spiderSpr.Scale = Vector2.One;
+                        
+                        Spider spider = new Spider(spiderSpr, worldPos);
+                        room.Enemies.Add(spider);
                     }
                 }
             }
