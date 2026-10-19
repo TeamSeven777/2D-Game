@@ -37,7 +37,7 @@ namespace _2D_Game
         private int worldWidth, worldHeight;
         public Camera Camera { get; private set; }
         private Minimap minimap;
-        
+        private bool PauseGameOn = false;
         
         public Game1()
         {
@@ -115,10 +115,9 @@ namespace _2D_Game
 
         protected override void Update(GameTime gameTime)
         {
+            
             RoomCollisionHandler.Instance.HandleCollision();
-            //Do we still need this??
-            if (Keyboard.GetState().IsKeyDown(Keys.Escape))
-               Exit();
+
             //currentGameTime = gameTime;
 
             //Everything we are updating
@@ -130,27 +129,30 @@ namespace _2D_Game
                 if(controllers[controllerType].Update()) break; //only use one controller type at a time.
 
             }
-
-            if (IsActive && minimap.TryGetClickedRoomCenter(out Vector2 roomCenter))
+            if (!PauseGameOn) //disable certain updates on Pause. //TODO have another check to determine whether this is due to dialogue or a menu, and update accordingly
             {
-                player.Teleport(roomCenter);
+                if (IsActive && minimap.TryGetClickedRoomCenter(out Vector2 roomCenter))
+                {
+                    player.Teleport(roomCenter);
+                    Camera.Follow(player.Position);
+                }
+
+                player.Update(gameTime);
+                PlayerProjectileHandler.Instance.Update(gameTime);
+                Inventory.Update(gameTime);
+                block.Update(gameTime);
+
+                //~Whatever Else Actions~
+                Enemies.Update(gameTime, player.Position);
+
+
+                base.Update(gameTime);
+                RoomCollisionHandler.Instance.Update(gameTime);
                 Camera.Follow(player.Position);
+
+                hitboxMode.Update(gameTime);
             }
 
-            player.Update(gameTime);
-            PlayerProjectileHandler.Instance.Update(gameTime);
-            Inventory.Update(gameTime);
-            block.Update(gameTime);
-
-            //~Whatever Else Actions~
-            Enemies.Update(gameTime, player.Position);
-            
-
-            base.Update(gameTime);
-            RoomCollisionHandler.Instance.Update(gameTime);
-            Camera.Follow(player.Position);
-
-            hitboxMode.Update(gameTime);
         }
 
         protected override void Draw(GameTime gameTime)
@@ -189,6 +191,11 @@ namespace _2D_Game
         public void ResetGame()
         {
             Initialize();
+        }
+        public void TogglePause()
+        {
+            if (PauseGameOn) PauseGameOn = false;
+            else PauseGameOn = true;
         }
     }
 }

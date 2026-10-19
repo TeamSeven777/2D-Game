@@ -33,6 +33,7 @@ namespace _2D_Game
             RegisterCommand(Keys.D2, new UseSlingshotCommand(myGame));
             RegisterCommand(Keys.D3, new UnEquipCommand(myGame));
             RegisterCommand(Keys.H, new HitboxModeCommand(myGame));
+            RegisterCommand(Keys.Escape, new PauseMenuCommand(myGame));
         }
         public void RegisterCommand(Keys key, ICommand command)
         {
