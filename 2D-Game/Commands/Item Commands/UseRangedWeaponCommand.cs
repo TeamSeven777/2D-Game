@@ -8,13 +8,13 @@ using System.Windows.Input;
 
 namespace _2D_Game
 {
-    public class UseSlingshotCommand : ICommand
+    public class UseRangedWeaponCommand : ICommand
     {
         private Game1 myGame;
         private TimeSpan gameTime;
         private TimeSpan previousGameTime;
 
-        public UseSlingshotCommand(Game1 game)
+        public UseRangedWeaponCommand(Game1 game)
         {
             myGame = game;
         }
@@ -26,7 +26,7 @@ namespace _2D_Game
 
             if (gameTime > previousGameTime)
             {
-                myGame.player.UseTool(Tool.Slingshot);
+                myGame.player.UseTool(myGame.player.CurrentRangedWeapon);
                 PlayerProjectileHandler.Instance.Add();
             }
 

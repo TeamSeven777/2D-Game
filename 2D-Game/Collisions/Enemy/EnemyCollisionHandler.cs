@@ -31,7 +31,7 @@ namespace _2D_Game
                     case (HitBoxType.PlayerAttack):
                         if ((hbOwner is ITool collidedTool) && collidedTool.GetTool() != Tool.Interact) {
                             int knockback; int dmg = 1;
-                            if (collidedTool.GetTool() == Tool.Fist)
+                            if (collidedTool.GetTool() == Tool.Fist || hbOwner.Hitbox.Type == HitBoxType.PlayerAttack)
                             {
                                 knockback = 50;
                                 dmg = 2;

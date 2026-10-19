@@ -21,8 +21,16 @@ namespace _2D_Game
             HashSet<Side> resultOfCollision = projectile.Hitbox.IsCollide(collider);
             if (!resultOfCollision.Contains(Side.None) && resultOfCollision.Count > 0)
             {
-                if(collider.Type == HitBoxType.Enemy || collider.Type == HitBoxType.Block)
-                 PlayerProjectileHandler.Instance.Remove();
+                if (projectile.Hitbox.Type == HitBoxType.PlayerAttack)
+                {
+                    if (collider.Type == HitBoxType.Enemy || collider.Type == HitBoxType.Block)
+                        PlayerProjectileHandler.Instance.Remove();
+                }
+                else if (projectile.Hitbox.Type == HitBoxType.EnemyAttack)
+                {
+                    if (collider.Type == HitBoxType.Player || collider.Type == HitBoxType.Block)
+                        PlayerProjectileHandler.Instance.Remove();
+                }
             }
         }
     }

@@ -32,11 +32,15 @@ namespace _2D_Game
             ActiveProjectiles = new Queue<IProjectile>();
             CurProjectileSprite = new ISprite[4];
             playerRef = player;
-            for (int i = 0; i < 4; i++)
+            //This will change to rotating sprite at some point
+            //CurProjectileSprite[0] = new Sprite(newSprite, Vector2.One, new Rectangle(0, 0, 64, 64), SpriteEffects.None, 0, 360, 2, true, true);
+            CurProjectileSprite[0] = new Sprite(newSprite, Vector2.Zero, new Vector2(1), Color.White, new Rectangle(0, 0, 64, 64));
+            for (int i = 1; i < 3; i++)
             {
                 //This will be repurposed for switching between the different types
-                CurProjectileSprite[i] = new Sprite(newSprite, Vector2.Zero, new Vector2(4.0f), Color.White, new Rectangle(0 * 64, 0, 64, 64));
+                CurProjectileSprite[i] = new Sprite(newSprite, Vector2.Zero, new Vector2(1), Color.White, new Rectangle(i * 64, 0, 64, 64));
             }
+
         }
 
         public void Update(GameTime gt)
@@ -58,27 +62,83 @@ namespace _2D_Game
             }
         }
 
+
         public void Add()
         {
             if (Cooldown == 0)
             {
-                switch (playerRef.stateMachine.direction)
+                switch (playerRef.CurrentRangedWeapon)
                 {
+                    case (Tool.Slingshot):
+
+
+                        switch (playerRef.stateMachine.direction)
+                        {
                     case (Direction.Down):
-                        ActiveProjectiles.Enqueue(new PlayerProjectilePebble(playerRef.Position, new Vector2(0, 10), CurProjectileSprite[0]));
+                        ActiveProjectiles.Enqueue(new PlayerProjectilePebble(playerRef.Position, new Vector2(0, 10), CurProjectileSprite[1]));
                         Cooldown = 10;
                         break;
                     case (Direction.Left):
-                        ActiveProjectiles.Enqueue(new PlayerProjectilePebble(playerRef.Position, new Vector2(-10, 0), CurProjectileSprite[0]));
+                        ActiveProjectiles.Enqueue(new PlayerProjectilePebble(playerRef.Position, new Vector2(-10, 0), CurProjectileSprite[1]));
                         Cooldown = 10;
                         break;
                     case (Direction.Right):
-                        ActiveProjectiles.Enqueue(new PlayerProjectilePebble(playerRef.Position, new Vector2(10, 0), CurProjectileSprite[0]));
+                        ActiveProjectiles.Enqueue(new PlayerProjectilePebble(playerRef.Position, new Vector2(10, 0), CurProjectileSprite[1]));
                         Cooldown = 10;
                         break;
                     case (Direction.Up):
-                        ActiveProjectiles.Enqueue(new PlayerProjectilePebble(playerRef.Position, new Vector2(0, -10), CurProjectileSprite[0]));
+                        ActiveProjectiles.Enqueue(new PlayerProjectilePebble(playerRef.Position, new Vector2(0, -10), CurProjectileSprite[1]));
                         Cooldown = 10;
+                        break;
+                                
+
+                        }
+                        break;
+                    case (Tool.Dynamite):
+                        switch (playerRef.stateMachine.direction)
+                        {
+                            case (Direction.Down):
+                                ActiveProjectiles.Enqueue(new PlayerProjectileDynamite(playerRef.Position, new Vector2(0, 10), CurProjectileSprite[2]));
+                                Cooldown = 10;
+                                break;
+                            case (Direction.Left):
+                                ActiveProjectiles.Enqueue(new PlayerProjectileDynamite(playerRef.Position, new Vector2(-10, 0), CurProjectileSprite[2]));
+                                Cooldown = 10;
+                                break;
+                            case (Direction.Right):
+                                ActiveProjectiles.Enqueue(new PlayerProjectileDynamite(playerRef.Position, new Vector2(10, 0), CurProjectileSprite[2]));
+                                Cooldown = 10;
+                                break;
+                            case (Direction.Up):
+                                ActiveProjectiles.Enqueue(new PlayerProjectileDynamite(playerRef.Position, new Vector2(0, -10), CurProjectileSprite[2]));
+                                Cooldown = 10;
+                                break;
+
+
+                        }
+                        break;
+                    case (Tool.Boomerang):
+                        switch (playerRef.stateMachine.direction)
+                        {
+                            case (Direction.Down):
+                                ActiveProjectiles.Enqueue(new PlayerProjectileBoomerang(playerRef.Position, new Vector2(0, 10), CurProjectileSprite[0]));
+                                Cooldown = 10;
+                                break;
+                            case (Direction.Left):
+                                ActiveProjectiles.Enqueue(new PlayerProjectileBoomerang(playerRef.Position, new Vector2(-10, 0), CurProjectileSprite[0]));
+                                Cooldown = 10;
+                                break;
+                            case (Direction.Right):
+                                ActiveProjectiles.Enqueue(new PlayerProjectileBoomerang(playerRef.Position, new Vector2(10, 0), CurProjectileSprite[0]));
+                                Cooldown = 10;
+                                break;
+                            case (Direction.Up):
+                                ActiveProjectiles.Enqueue(new PlayerProjectileBoomerang(playerRef.Position, new Vector2(0, -10), CurProjectileSprite[0]));
+                                Cooldown = 10;
+                                break;
+
+
+                        }
                         break;
 
                 }
@@ -91,7 +151,6 @@ namespace _2D_Game
             if (ActiveProjectiles.Count > 0 && (ActiveProjectiles.Dequeue() is IHitboxOwner hbOwner))
             {
                 RoomCollisionHandler.Instance.Remove(hbOwner);
-                
             }
         }
 

@@ -23,6 +23,8 @@ namespace _2D_Game
         public float WalkSpeed { get; set; }
         public int Health { get; set; }
         public int MaxHealth { get; set; }
+        public Tool CurrentRangedWeapon { get; set; }
+        public WeaponInventory Weapons { get; set; }
         public ISet<Direction> DisabledDirections;
         public ISet<Direction> MovingDirections;
         private double IFrames = 1;
@@ -44,6 +46,7 @@ namespace _2D_Game
             Position = startPosition;
             PreviousPosition = Position;
             NextPosition = Position;
+            CurrentRangedWeapon = Tool.Slingshot;
             //The size might be slightly smaller than intended but!
             //For reference, the sprites have been scaled up by 16 from original (spriteSizexspriteSize -> 512x512)
             //and I have set their scale 1/4th the original so it still fits on screen
