@@ -109,6 +109,11 @@ namespace _2D_Game
             // Set initial starting room (bottom-left-most room is [0,2])
             Point startGrid = new Point(0, 2);
             CurrentRoom = rooms.ContainsKey(startGrid) ? rooms[startGrid] : null;
+        
+            foreach (var room in rooms.Values)
+            {
+            if (room != CurrentRoom) room.Deactivate();
+            }
         }
 
         public void Update(GameTime gameTime, Vector2 playerPosition)
@@ -118,9 +123,11 @@ namespace _2D_Game
             int gridY = (int)(playerPosition.Y / roomHeight);
             Point currentGridPos = new Point(gridX, gridY);
 
-            if (rooms.ContainsKey(currentGridPos))
+            if (rooms.ContainsKey(currentGridPos) && rooms[currentGridPos] != CurrentRoom)
             {
+                CurrentRoom?.Deactivate();
                 CurrentRoom = rooms[currentGridPos];
+                CurrentRoom.Activate();
             }
 
             CurrentRoom?.Update(gameTime, playerPosition);

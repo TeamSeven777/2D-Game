@@ -21,8 +21,15 @@ namespace _2D_Game
             foreach (var obstacle in Obstacles) 
                 obstacle.Update(gameTime);
 
-            foreach (var enemy in Enemies) 
-                enemy.Update(gameTime, playerPosition);
+            for (int i = Enemies.Count - 1; i >= 0; i--) 
+            {
+                Enemies[i].Update(gameTime, playerPosition);
+                if (Enemies[i].Health <= 0)
+                {
+                    Enemies[i].Unload();  
+                    Enemies.RemoveAt(i);
+                }
+            }
 
             // TODO: items
         }
@@ -37,5 +44,8 @@ namespace _2D_Game
 
             // TODO: items
         }
+
+        public void Activate()   { foreach (var e in Enemies) e.Load(); }
+        public void Deactivate() { foreach (var e in Enemies) e.Unload(); }
     }
 }

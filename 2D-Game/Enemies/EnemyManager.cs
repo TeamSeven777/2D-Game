@@ -47,9 +47,6 @@ namespace _2D_Game
             AnimatedSprite mosquitoSpr = new AnimatedSprite(mosquitoFly, mosquitoSheet);
             mosquitoSpr.Scale = Vector2.One;
             // Add all enemies here
-            enemies.Add(new Ghost(ghostSpr, ghostAttackSpr, spawnPosition));
-            enemies.Add(new Mosquito(mosquitoSpr, spawnPosition));
-            enemies[enemies.Count - 1].Unload();
             AIDisabled = false;
         }
 
