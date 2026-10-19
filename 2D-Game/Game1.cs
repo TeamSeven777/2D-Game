@@ -37,6 +37,7 @@ namespace _2D_Game
         private int worldWidth, worldHeight;
         private RoomManager roomManager;
         public Camera Camera { get; private set; }
+        private Minimap minimap;
         
         
         public Game1()
@@ -76,6 +77,7 @@ namespace _2D_Game
             roomHeight = _spriteBatch.GraphicsDevice.Viewport.Height;
             roomWidth = _spriteBatch.GraphicsDevice.Viewport.Width;
             middleOfScreen = new Vector2(roomWidth / 2, roomHeight / 2);
+            minimap = new Minimap(GraphicsDevice, new Point(10, 10), 60, roomWidth, roomHeight);
             
             worldWidth = roomWidth * 3;
             worldHeight = roomHeight * 3;
@@ -136,6 +138,12 @@ namespace _2D_Game
 
             }
 
+            if (IsActive && minimap.TryGetClickedRoomCenter(out Vector2 roomCenter))
+            {
+                player.Teleport(roomCenter);
+                Camera.Follow(player.Position);
+            }
+
             player.Update(gameTime);
             roomManager.Update(gameTime, player.Position);
             PlayerProjectileHandler.Instance.Update(gameTime);
@@ -178,6 +186,10 @@ namespace _2D_Game
 
             _spriteBatch.Begin(samplerState: SamplerState.PointClamp); // no transform
             // HUD draws here
+            _spriteBatch.End();
+
+            _spriteBatch.Begin(samplerState: SamplerState.PointClamp);
+            minimap.Draw(_spriteBatch, player.Position);
             _spriteBatch.End();
 
             base.Draw(gameTime);
