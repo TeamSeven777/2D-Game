@@ -35,7 +35,7 @@ namespace _2D_Game
             for (int i = 0; i < 4; i++)
             {
                 //This will be repurposed for switching between the different types
-                CurProjectileSprite[i] = new Sprite(newSprite, Vector2.Zero, new Vector2(4.0f), Color.White, new Rectangle(0 * 64, 0, 64, 64));
+                CurProjectileSprite[i] = new Sprite(newSprite, Vector2.Zero, new Vector2(1), Color.White, new Rectangle(0, 0, 64, 64));
             }
         }
 

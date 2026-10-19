@@ -23,6 +23,7 @@ namespace _2D_Game
         public float WalkSpeed { get; set; }
         public int Health { get; set; }
         public int MaxHealth { get; set; }
+        public Tool CurrentRangedWeapon { get; set; }
         public ISet<Direction> DisabledDirections;
         public ISet<Direction> MovingDirections;
         private double IFrames = 1;

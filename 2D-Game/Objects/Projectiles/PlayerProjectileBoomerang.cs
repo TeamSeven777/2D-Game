@@ -15,6 +15,7 @@ namespace _2D_Game
         public Vector2 Position { get; set; }
         public IHitbox Hitbox { get; set; }
         public Vector2 TravelingDirection { get; set; }
+        public Vector2 TravelApex { get; set; }
         public ISprite ProjectileSprite { get; set; }
         public float DespawnTimer { get; set; }
         public ICollisionHandler CollisionHandler { get; set; }
@@ -22,15 +23,19 @@ namespace _2D_Game
         public PlayerProjectileBoomerang(Vector2 position, Vector2 travelingDirection, ISprite sprite)
         {
             this.Position = position;
+            TravelApex = position + travelingDirection * 5;
             this.TravelingDirection = travelingDirection;
             this.ProjectileSprite = sprite;
             DespawnTimer = 1000;
+           
         }
 
         public void Update(GameTime gt)
         {
             Position += TravelingDirection;
             if (DespawnTimer > 0) DespawnTimer--;
+            if (Position == TravelApex)
+                TravelingDirection = -TravelingDirection;
         }
 
         public void Draw(SpriteBatch sprbatch)

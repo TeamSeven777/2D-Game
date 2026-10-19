@@ -39,6 +39,10 @@ namespace _2D_Game
         public void ChangeDirection(Direction dir) {
             direction = dir;            
         }
+        public void ChangeTool(Tool tool)
+        {
+            player.CurrentRangedWeapon = tool;
+        }
 
         public void UseTool(Tool tool)
         {
@@ -52,6 +56,12 @@ namespace _2D_Game
                     break;
                 case Tool.Slingshot:
                     toolEquiped = new Slingshot();
+                    break;
+                case Tool.Boomerang:
+                    toolEquiped = new Boomerang();
+                    break;
+                case Tool.Dynamite:
+                    toolEquiped = new Dyanmite();
                     break;
                 default:
                     toolEquiped = new NoTool();
@@ -94,6 +104,12 @@ namespace _2D_Game
                         case (Tool.Fist):
                             CurrPlayerState = new FistPlayerState(this);
                             break;
+                        case (Tool.Dynamite):
+                            CurrPlayerState = new DynamitePlayerState(this);
+                            break;
+                        case (Tool.Boomerang):
+                            CurrPlayerState = new BoomerangPlayerState(this);
+                            break;
                         case (Tool.Slingshot):
                             CurrPlayerState = new SlingPlayerState(this);
                             break;
@@ -101,6 +117,7 @@ namespace _2D_Game
                             if (Moving) CurrPlayerState = new MovePlayerState(this);
                             else CurrPlayerState = new IdlePlayerState(this);
                             break;
+                        
                     }
                  
                 //CurrPlayerState

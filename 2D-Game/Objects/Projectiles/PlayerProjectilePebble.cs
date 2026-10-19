@@ -28,7 +28,7 @@ namespace _2D_Game
             this.Position = position;
             this.TravelingDirection = travelingDirection;
             this.ProjectileSprite = sprite;
-            this.Hitbox = new ProjectileHitBox(new Rectangle((int)position.X,(int)position.Y,64,64),HitBoxType.PlayerAttack);
+            this.Hitbox = new ProjectileHitBox(new Rectangle((int)(position.X - 400),(int)position.Y,64,64),HitBoxType.PlayerAttack);
             this.CollisionHandler = new ProjectileCollisionHandler(this);
             DespawnTimer = 1000;
             RoomCollisionHandler.Instance.Add(this, true);

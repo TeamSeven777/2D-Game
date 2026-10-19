@@ -30,9 +30,10 @@ namespace _2D_Game
             RegisterCommand(Keys.P, new NextCharacterCommand(myGame));
             RegisterCommand(Keys.Z, new AttackCommand(myGame));
             RegisterCommand(Keys.D1, new UseAxeCommand(myGame));
-            RegisterCommand(Keys.D2, new UseSlingshotCommand(myGame));
+            RegisterCommand(Keys.D2, new UseRangedWeaponCommand(myGame));
             RegisterCommand(Keys.D3, new UnEquipCommand(myGame));
             RegisterCommand(Keys.H, new HitboxModeCommand(myGame));
+
         }
         public void RegisterCommand(Keys key, ICommand command)
         {

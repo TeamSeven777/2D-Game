@@ -23,7 +23,7 @@ namespace _2D_Game
             RegisterCommand(Buttons.DPadLeft, new LeftCommand(myGame));
             RegisterCommand(Buttons.X, new AttackCommand(myGame));
             RegisterCommand(Buttons.Y, new UseAxeCommand(myGame));
-            RegisterCommand(Buttons.RightShoulder, new UseSlingshotCommand(myGame));
+            RegisterCommand(Buttons.RightShoulder, new UseRangedWeaponCommand(myGame));
         }
         public void RegisterCommand(Buttons button, ICommand command)
         {
