@@ -13,7 +13,7 @@ namespace _2D_Game
         private double IFramesTimer = 0;
         private AnimatedSprite sprite;        
         private Vector2 startPosition;
-        private float speed = 3f;
+        private float speed = 2f;
         private float range = 150f;
         private int direction = -1;
         private double elapsedSeconds;
@@ -26,7 +26,7 @@ namespace _2D_Game
 
         // Chasing
         private float chaseRange = 250f; // how close the player has to be before the mosquito follows
-        private float chaseSpeed = 4f;
+        private float chaseSpeed = 2f;
         private bool chasing = false;
 
         // Spin attack

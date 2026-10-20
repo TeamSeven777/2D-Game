@@ -1,30 +1,84 @@
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-
 namespace _2D_Game
 {
-    public class Item : IItem
+    // Base Item Class
+    public abstract class Item : IItem
     {
         public string Name { get; set; }
         public Sprite Icon { get; set; }
         public int MaxStackSize { get; set; } = 99;
         public int CurrentStack { get; set; } = 1;
-        
         public bool IsStackable => MaxStackSize > 1;
 
-        public Item(string name, Sprite icon, int maxStackSize)
+        protected Item(string name, Sprite icon, int maxStackSize)
         {
             Name = name;
             Icon = icon;
             MaxStackSize = maxStackSize;
         }
 
-        /// <summary>
-        /// Does nothing for right now
-        /// </summary>
-        public virtual void Use()
+        // Abstract so subclasses (specific item types) can define custom behavior
+        public abstract void Use();
+    }
+
+// Specific item subclasses:
+
+    // Log
+    public class LogItem : Item
+    {
+        public LogItem(Sprite icon) : base("Log", icon, 99) { }
+
+        public override void Use()
         {
-            // Base usage logic here
+            // Custom logic here:
+            if (CurrentStack > 0) CurrentStack--;
+        }
+    }
+
+    // Berry
+    public class BerryItem : Item
+    {
+        public BerryItem(Sprite icon) : base("Berry", icon, 99) { }
+
+        public override void Use()
+        {
+            // Custom logic here:
+            if (CurrentStack > 0) CurrentStack--;
+        }
+    }
+
+    // Key
+    public class KeyItem : Item
+    {
+        public KeyItem(Sprite icon) : base("Key", icon, 99) { }
+
+        public override void Use()
+        {
+            // Custom logic here:
+            if (CurrentStack > 0) CurrentStack--;
+        }
+    }
+
+    // Explosive
+    public class ExplosiveItem : Item
+    {
+        public ExplosiveItem(Sprite icon) : base("Explosive", icon, 99) { }
+
+        public override void Use()
+        {
+            // Custom logic here:
+            if (CurrentStack > 0) CurrentStack--;
+        }
+    }
+
+    // Pebble
+    public class PebbleItem : Item
+    {
+        public PebbleItem(Sprite icon) : base("Pebble", icon, 99) { }
+
+        public override void Use()
+        {
+            // Custom logic here:
+            if (CurrentStack > 0) CurrentStack--;
         }
     }
 }

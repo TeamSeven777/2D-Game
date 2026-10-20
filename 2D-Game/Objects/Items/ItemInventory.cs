@@ -15,20 +15,18 @@ namespace _2D_Game
         private double cooldownTimer = 0;
         private const double CooldownDuration = 0.2; // 0.2 seconds (200ms) between switches
 
-        /// <summary>
-        /// SpriteFactory for all items
-        /// </summary>
-        /// <param name="content"></param>
+        // SpriteFactory for all items
         public void LoadContent(ContentManager content, Vector2 roomOrigin)
         {
             drawPosition = roomOrigin + drawOffset;
             
-            // Add all items here
-            items.Add(new Item("Log", new Sprite(content.Load<Texture2D>("Images/Log")), 10));
-            items.Add(new Item("Berry", new Sprite(content.Load<Texture2D>("Images/Berry")), 5));
-            items.Add(new Item("Key", new Sprite(content.Load<Texture2D>("Images/Key")), 1));
-            items.Add(new Item("Explosive", new Sprite(content.Load<Texture2D>("Images/Explosive")), 1));
-            items.Add(new Item("Pebble", new Sprite(content.Load<Texture2D>("Images/Pebble")), 10));
+            // Add all items to base inventory here
+            // For sprint 3, start player with one of each object:
+            items.Add(new LogItem(new Sprite(content.Load<Texture2D>("Images/Log2"))));
+            items.Add(new BerryItem(new Sprite(content.Load<Texture2D>("Images/Berry2"))));
+            items.Add(new KeyItem(new Sprite(content.Load<Texture2D>("Images/Key2"))));
+            items.Add(new ExplosiveItem(new Sprite(content.Load<Texture2D>("Images/Explosive2"))));
+            items.Add(new PebbleItem(new Sprite(content.Load<Texture2D>("Images/Pebble2"))));
         }
 
         public void Update(GameTime gameTime)

@@ -46,10 +46,14 @@ namespace _2D_Game
             Animation mosquitoFly = new Animation(mosquitoSheet, TimeSpan.FromMilliseconds(80), new Vector2(96, 96), new Vector2(0, 96), mosquitoSheet.Width);
             AnimatedSprite mosquitoSpr = new AnimatedSprite(mosquitoFly, mosquitoSheet);
             mosquitoSpr.Scale = Vector2.One;
+
+            //Spider: 6 frames of 96x96 per row, row 1 is the side view
+            Texture2D spiderSheet = content.Load<Texture2D>("Sprites/Spider");
+            Animation spiderIdle = new Animation(spiderSheet, TimeSpan.FromMilliseconds(80), new Vector2(64, 64), new Vector2(0, 64), spiderSheet.Width);
+            AnimatedSprite spiderSpr = new AnimatedSprite(spiderIdle, spiderSheet);
+            spiderSpr.Scale = Vector2.One;
+
             // Add all enemies here
-            enemies.Add(new Ghost(ghostSpr, ghostAttackSpr, spawnPosition));
-            enemies.Add(new Mosquito(mosquitoSpr, spawnPosition));
-            enemies[enemies.Count - 1].Unload();
             AIDisabled = false;
         }
 

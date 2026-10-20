@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Dungeon>
+  <!-- Starting Room (0, 2) -->
+  <Room RoomX="0" RoomY="2">
+    <Obstacles>
+      <Entity Type="Block" X="150" Y="0" />
+    </Obstacles>
+    <Enemies>
+      <Entity Type="Ghost" X="200" Y="200" />
+      <Entity Type="Mosquito" X="300" Y="100" />
+      <Entity Type="Spider" X="200" Y="100" />
+    </Enemies>
+    <Items>
+    <Entity Type="Log" X="100" Y="300" />
+      <Entity Type="Berry" X="250" Y="150" />
+      <Entity Type="Explosive" X="400" Y="300" />
+      <Entity Type="Key" X="200" Y="200" />
+      <Entity Type="Pebble" X="400" Y="200" />
+    </Items>
+  </Room>
+
+  <!-- Adjacent Room (1, 2) -->
+  <Room RoomX="1" RoomY="2">
+    <Obstacles>
+      <Entity Type="Block" X="50" Y="50" />
+      <Entity Type="Block" X="75" Y="50" />
+    </Obstacles>
+    <Enemies>
+      <Entity Type="Ghost" X="120" Y="150" />
+    </Enemies>
+    <Items />
+  </Room>
+</Dungeon>
