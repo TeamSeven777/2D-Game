@@ -94,7 +94,7 @@ namespace _2D_Game
             worldWidth = roomWidth * 3;
             worldHeight = roomHeight * 3;
             Vector2 startRoomOrigin = new Vector2(0, worldHeight - roomHeight);
-            background = Content.Load<Texture2D>("Images/gameBackground");
+            background = Content.Load<Texture2D>("Images/FullMap");
             Camera = new Camera(roomWidth, roomHeight, worldWidth, worldHeight);
 
             //spriteSheet = Content.Load<Texture2D>("Sprites/LinkSheet");
