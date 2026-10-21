@@ -25,7 +25,7 @@ namespace _2D_Game
 
         public void LoadFonts(ContentManager content)
         {
-            mainFont = content.Load<SpriteFont>("Fonts/defaultFont");
+            mainFont = content.Load<SpriteFont>("Fonts/pixelFont");
         }
 
         //idle animations

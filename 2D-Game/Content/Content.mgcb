@@ -21,6 +21,22 @@
 /processorParam:Version=3.8.5.0
 /build:Fonts/defaultFont.spritefont
 
+#begin Fonts/pixelFont.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/processorParam:Version=3.8.5.0
+/build:Fonts/pixelFont.spritefont
+
+#begin Fonts/Pixelzone-E4MV4.ttf
+/importer:FontImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/processorParam:Version=3.8.5.0
+/build:Fonts/Pixelzone-E4MV4.ttf
+
 #begin Images/Berry.png
 /importer:TextureImporter
 /processor:TextureProcessor
