@@ -52,7 +52,6 @@ namespace _2D_Game
                 projectile.Update(gt);
                 if (projectile.DespawnTimer <= 0) RemoveCount++;
             }
-            if (Cooldown > 0) Cooldown--;
             for (int i = 0; i < RemoveCount; i++) this.Remove();
         }
 

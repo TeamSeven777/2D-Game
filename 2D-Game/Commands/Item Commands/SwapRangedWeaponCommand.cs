@@ -18,8 +18,8 @@ namespace _2D_Game
 
     public void Execute()
     {
-        myGame.Weapons.Next();
-        myGame.player.CurrentRangedWeapon = myGame.Weapons.GetTop();
+        WeaponInventory.Instance.Next();
+        myGame.player.CurrentRangedWeapon = WeaponInventory.Instance.GetTop();
     }
 }
 }

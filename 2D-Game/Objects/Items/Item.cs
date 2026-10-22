@@ -8,6 +8,7 @@ namespace _2D_Game
         public int MaxStackSize { get; set; } = 99;
         public int CurrentStack { get; set; } = 1;
         public bool IsStackable => MaxStackSize > 1;
+        
 
         protected Item(string name, Sprite icon, int maxStackSize)
         {

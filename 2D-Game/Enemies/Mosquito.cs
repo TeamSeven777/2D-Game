@@ -119,8 +119,6 @@ namespace _2D_Game
                 toPlayer.Normalize(); //turn it into a direction with length 1
                 Position += toPlayer * chaseSpeed;
 
-
-                Random rand = new Random();
                 if (ShootCooldown == 0)
                 {
                     EnemyProjectileHandler.Instance.Add(this);

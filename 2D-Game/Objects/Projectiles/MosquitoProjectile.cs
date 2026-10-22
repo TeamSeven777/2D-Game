@@ -15,28 +15,30 @@ namespace _2D_Game
     {
         public Vector2 Position { get; set; }
         public IHitbox Hitbox { get; set; }
-        float angle;
         public Vector2 TravelingDirection { get; set; }
-
         public ISprite ProjectileSprite { get; set; }
-
         public float DespawnTimer { get; set; }
+        public int projectileSpeed = 5;
         public ICollisionHandler CollisionHandler { get; set; }
 
-        public MosquitoProjectile(Vector2 position, Vector2 targetDirection, ISprite sprite)
+        public MosquitoProjectile(Vector2 position, Vector2 targetPosition, ISprite sprite)
         {
             this.Position = position;
-            this.TravelingDirection = targetDirection;
+            Vector2 target = targetPosition - position;
+            target.Normalize();
+            TravelingDirection = target;
             this.ProjectileSprite = sprite;
+            DespawnTimer = 1000;
             CollisionHandler = new ProjectileCollisionHandler(this);
-            Hitbox = new ProjectileHitBox(new Rectangle((int)Position.X, (int)Position.Y, 64, 64), HitBoxType.EnemyAttack);
+            Hitbox = new ProjectileHitBox(new Rectangle((int)Position.X-16, (int)Position.Y-16, 32, 32), HitBoxType.EnemyProjectile);
             RoomCollisionHandler.Instance.Add(this, true);
         }
 
         public void Update(GameTime gt)
         {
-            Position += TravelingDirection;
-            Hitbox.BoundingBox = new Rectangle((int)Position.X, (int)Position.Y, 64, 64);
+            Position += TravelingDirection * projectileSpeed;
+            Hitbox.BoundingBox = new Rectangle((int)Position.X-16, (int)Position.Y-16, 32, 32);
+            if (DespawnTimer > 0) DespawnTimer--;
         }
 
         public void Draw(SpriteBatch sprbatch)

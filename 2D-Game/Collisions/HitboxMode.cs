@@ -67,6 +67,15 @@ namespace _2D_Game
                         case HitBoxType.Block:
                             hitboxColor = Color.White;
                             break;
+                        case HitBoxType.Item:
+                            hitboxColor = Color.Blue;
+                            break;
+                        case HitBoxType.PlayerProjectile:
+                            hitboxColor = Color.Orange;
+                            break;
+                        case HitBoxType.EnemyProjectile:
+                            hitboxColor = Color.Red;
+                            break;
                         default:
                             hitboxColor = Color.White;
                             break;
