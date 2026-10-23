@@ -52,6 +52,7 @@ namespace _2D_Game
             }
             if (Cooldown > 0) Cooldown--;
             for (int i = 0; i < RemoveCount; i++) this.Remove();
+            RemoveCount = 0;
         }
 
         public void Draw(SpriteBatch spr)

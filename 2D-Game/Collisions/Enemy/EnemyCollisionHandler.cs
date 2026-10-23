@@ -34,7 +34,7 @@ namespace _2D_Game
                             if (collidedTool.GetTool() == Tool.Fist)
                             {
                                 knockback = 50;
-                                dmg = 2;
+                                dmg = 6;
                             }
                             else if (collidedTool.GetTool() == Tool.Stick) knockback = 25;
                             else knockback = 10;

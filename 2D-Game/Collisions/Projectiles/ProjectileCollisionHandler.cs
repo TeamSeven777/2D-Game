@@ -23,13 +23,13 @@ namespace _2D_Game
             {
                 if (projectile.Hitbox.Type == HitBoxType.PlayerProjectile)
                 {
-                    if (collider.Type == HitBoxType.Enemy || collider.Type == HitBoxType.Block) ;
-                        //PlayerProjectileHandler.Instance.Remove();
+                    if (collider.Type == HitBoxType.Block)
+                        PlayerProjectileHandler.Instance.Remove();
                 }
                 else if (projectile.Hitbox.Type == HitBoxType.EnemyProjectile)
                 {
-                    if (collider.Type == HitBoxType.Player) ;
-                        //EnemyProjectileHandler.Instance.Remove();
+                    if (collider.Type == HitBoxType.Block)
+                        EnemyProjectileHandler.Instance.Remove();
                 }
             }
         }

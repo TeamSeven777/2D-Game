@@ -47,7 +47,7 @@ namespace _2D_Game
             currentSprite = idleSprite;
             this.startPosition = startPosition;
             Position = startPosition;
-            Health = 3;
+            Health = 10;
 
             attackFirstFrame = attackSprite.Animation.Frames.Peek();
             attackDuration = attackSprite.Animation.Frames.Count * attackSprite.Animation.FrameRate.TotalSeconds;

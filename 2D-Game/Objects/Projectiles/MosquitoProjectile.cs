@@ -7,6 +7,7 @@ using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 using static _2D_Game.AnimatedSprite;
+using static _2D_Game.RotatingSprite;
 using Vector2 = Microsoft.Xna.Framework.Vector2;
 
 namespace _2D_Game
@@ -28,10 +29,12 @@ namespace _2D_Game
             target.Normalize();
             TravelingDirection = target;
             this.ProjectileSprite = sprite;
-            DespawnTimer = 1000;
+            DespawnTimer = 500;
             CollisionHandler = new ProjectileCollisionHandler(this);
             Hitbox = new ProjectileHitBox(new Rectangle((int)Position.X-16, (int)Position.Y-16, 32, 32), HitBoxType.EnemyProjectile);
             RoomCollisionHandler.Instance.Add(this, true);
+            ProjectileSprite.Rotation = -(float)(Math.PI / 2) + (float)Math.Atan2(target.Y, target.X);
+
         }
 
         public void Update(GameTime gt)
@@ -43,6 +46,7 @@ namespace _2D_Game
 
         public void Draw(SpriteBatch sprbatch)
         {
+
             ProjectileSprite.Draw(sprbatch, Position);
         }
     }

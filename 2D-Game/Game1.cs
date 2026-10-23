@@ -20,10 +20,11 @@ namespace _2D_Game
         private SpriteBatch _spriteBatch;
         public Obstacle block;
         public DefaultPlayer player;
-        private Texture2D spriteSheet;
+        private Texture2D playerSpriteSheet;
         private Queue<Sprite> blockSpriteSet;
         private Texture2D blockSpriteSheet;
-        private Texture2D projectileSpriteSheet;
+        private Texture2D playerProjectileSpriteSheet;
+        private Texture2D enemyProjectileSpriteSheet;
         private Dictionary<String, IController> controllers;
         private String[] controllerNames;
         public EnemyManager Enemies;
@@ -92,7 +93,7 @@ namespace _2D_Game
             Camera = new Camera(roomWidth, roomHeight, worldWidth, worldHeight);
 
             //spriteSheet = Content.Load<Texture2D>("Sprites/LinkSheet");
-            spriteSheet = Content.Load<Texture2D>("Sprites/Player_Sheet");
+            playerSpriteSheet = Content.Load<Texture2D>("Sprites/Player_Sheet");
             PlayerSpriteFactory.Instance.LoadTextures(Content);
             DialogueFactory.Instance.LoadFonts(Content);
 
@@ -115,9 +116,10 @@ namespace _2D_Game
             boundaries.Add(new Boundary(new Vector2(worldWidth, 0), new Vector2(worldWidth, worldHeight)));    // right
             boundaries.Add(new Boundary(new Vector2(0, 0), new Vector2(worldWidth, 0)));                       // up
             boundaries.Add(new Boundary(new Vector2(0, worldHeight), new Vector2(worldWidth, worldHeight)));   // down
-            projectileSpriteSheet = Content.Load<Texture2D>("Sprites/playerprojectiles");
-            PlayerProjectileHandler.Instance.Initialize(ref player, projectileSpriteSheet);
-            EnemyProjectileHandler.Instance.Initialize(ref Enemies, ref player, projectileSpriteSheet);
+            playerProjectileSpriteSheet = Content.Load<Texture2D>("Sprites/playerprojectiles");
+            enemyProjectileSpriteSheet = Content.Load<Texture2D>("Sprites/enemy-projectiles");
+            PlayerProjectileHandler.Instance.Initialize(ref player, playerProjectileSpriteSheet);
+            EnemyProjectileHandler.Instance.Initialize(ref Enemies, ref player, enemyProjectileSpriteSheet);
 
             block = new Obstacle(new Vector2(25), startRoomOrigin + middleOfScreen + new Vector2(150, 0), blockSpriteSet);
 
