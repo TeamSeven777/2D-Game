@@ -10,6 +10,7 @@ namespace _2D_Game
     {
         // Assets
         private Texture2D ghostSheet, ghostAttackSheet, mosquitoSheet, spiderSheet;
+        private Texture2D teamSheet;
         private readonly Dictionary<string, Texture2D> itemTextures = new(StringComparer.OrdinalIgnoreCase);
         private Texture2D blockSpriteSheet;
 
@@ -17,13 +18,16 @@ namespace _2D_Game
         {
             blockSpriteSheet = blockSheet;
 
-            // Pre-load enemy sprite sheets
+            // Enemy sprite sheets
             ghostSheet = content.Load<Texture2D>("Sprites/Test-Ghost-Melee-Idle-N");
             ghostAttackSheet = content.Load<Texture2D>("Sprites/Test-Ghost-Melee-Attack-N");
             mosquitoSheet = content.Load<Texture2D>("Sprites/mosquito");
             spiderSheet = content.Load<Texture2D>("Sprites/Spider");
 
-            // Pre-load item textures (lookup dictionary)
+            // NPC sprite sheets
+            teamSheet = content.Load<Texture2D>("Sprites/TeamIdles-Sheet");
+
+            // Item textures (lookup dictionary)
             itemTextures["Berry"] = content.Load<Texture2D>("Images/Berry2");
             itemTextures["Explosive"] = content.Load<Texture2D>("Images/Explosive2");
             itemTextures["Log"] = content.Load<Texture2D>("Images/Log2");
@@ -63,6 +67,36 @@ namespace _2D_Game
                 AnimatedSprite spiderSpr = new(spiderIdle, spiderSheet) { Scale = Vector2.One };
 
                 return new Spider(spiderSpr, position);
+            }
+
+            return null;
+        }
+
+        public INPC CreateNPC(string type, Vector2 position)
+        {
+            if (type.Equals("Ethan", StringComparison.OrdinalIgnoreCase))
+            {
+                Animation ethanIdle = new(teamSheet, TimeSpan.FromMilliseconds(100), new Vector2(128, 128), Vector2.Zero, teamSheet.Width);
+                AnimatedSprite ethan = new(ethanIdle, teamSheet) { Scale = new Vector2(0.95f) };
+                return new NPC(ethan, position);
+            }
+            else if (type.Equals("Lydia", StringComparison.OrdinalIgnoreCase))
+            {
+                Animation lydiaIdle = new(teamSheet, TimeSpan.FromMilliseconds(100), new Vector2(128, 128), new Vector2(0, 128), teamSheet.Width);
+                AnimatedSprite lydia = new(lydiaIdle, teamSheet) { Scale = new Vector2(0.95f) };
+                return new NPC(lydia, position);
+            }
+            else if (type.Equals("Joe", StringComparison.OrdinalIgnoreCase))
+            {
+                Animation joeIdle = new(teamSheet, TimeSpan.FromMilliseconds(100), new Vector2(128, 128), new Vector2(0, 256), teamSheet.Width);
+                AnimatedSprite joe = new(joeIdle, teamSheet) { Scale = new Vector2(0.95f) };
+                return new NPC(joe, position);
+            }
+            else if (type.Equals("Lily", StringComparison.OrdinalIgnoreCase))
+            {
+                Animation lilyIdle = new(teamSheet, TimeSpan.FromMilliseconds(100), new Vector2(128, 128), new Vector2(0, 384), teamSheet.Width);
+                AnimatedSprite lily = new(lilyIdle, teamSheet) { Scale = new Vector2(0.95f) };
+                return new NPC(lily, position);
             }
 
             return null;

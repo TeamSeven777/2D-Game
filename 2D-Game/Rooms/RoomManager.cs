@@ -38,6 +38,7 @@ namespace _2D_Game
 
                 ParseObstacles(roomElement, rx, ry, room);
                 ParseEnemies(roomElement, rx, ry, room);
+                ParseNPCs(roomElement, rx, ry, room);
                 ParseItems(roomElement, rx, ry, room);
 
                 rooms[gridPos] = room;
@@ -101,6 +102,24 @@ namespace _2D_Game
                 if (enemy != null)
                 {
                     room.Enemies.Add(enemy);
+                }
+            }
+        }
+
+        private void ParseNPCs(XElement roomElement, int rx, int ry, Room room)
+        {
+            var npcsElement = roomElement.Element("NPCs");
+            if (npcsElement == null) return;
+
+            foreach (var npcElement in npcsElement.Elements("Entity"))
+            {
+                string type = npcElement.Attribute("Type")?.Value ?? string.Empty;
+                Vector2 worldPos = CalculateWorldPosition(npcElement, rx, ry);
+
+                INPC npc = contentFactory.CreateNPC(type, worldPos);
+                if (npc != null)
+                {
+                    room.NPCs.Add(npc);
                 }
             }
         }
