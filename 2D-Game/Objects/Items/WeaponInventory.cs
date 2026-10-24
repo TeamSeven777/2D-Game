@@ -10,24 +10,42 @@ namespace _2D_Game
     public class WeaponInventory
     {
         //Weapon, then Ammo
-        private readonly List<Tuple<Tool, int>> Weapons = new();
-        private int currentIndex = 0;
+        private readonly Dictionary<Tool, int> Weapons = new();
+        private readonly List<Tool> SelectedWeapon = new();
+        private int currentIndex;
+
         // Cooldown vars
         private double cooldownTimer = 0;
         private const double CooldownDuration = 0.2; // 0.2 seconds (200ms) between switches
+
+        private static Game1 myGame;
+
+        public static WeaponInventory instance = new WeaponInventory();
+
+        public static WeaponInventory Instance
+        { get { return instance; } }
 
         /// <summary>
         /// SpriteFactory for all items
         /// </summary>
         /// <param name="content"></param>
-        public void Initialize()
-        {   
+        public void Initialize(Game1 game)
+        {
             // Add all items here (Will be pared down later)
-            Weapons.Add(new Tuple<Tool,int>(Tool.Slingshot,int.MaxValue));
-            Weapons.Add(new Tuple<Tool, int>(Tool.Boomerang, int.MaxValue));
-            Weapons.Add(new Tuple<Tool, int>(Tool.Dynamite, int.MaxValue));
+            if (Weapons.Count <= 0)
+            {
+                Weapons.Add(Tool.Slingshot, int.MaxValue);
+                Weapons.Add(Tool.Boomerang, int.MaxValue);
+                Weapons.Add(Tool.Dynamite, int.MaxValue);
+            }
+            if (SelectedWeapon.Count <= 0)
+            {
+                SelectedWeapon.Add(Tool.Slingshot);
+                SelectedWeapon.Add(Tool.Boomerang);
+                SelectedWeapon.Add(Tool.Dynamite);
+            }
             //Weapons.Add(new Tuple<Tool, int>(Tool.Stick, 0));
-            
+            myGame = game;
         }
 
         public void Update(GameTime gameTime)
@@ -38,23 +56,20 @@ namespace _2D_Game
             }
         }
 
-        public void Add(Tool tool, int ammo)
+        public void AddWeapon(Tool tool, int ammo)
         {
-            Weapons.Add(new Tuple<Tool,int>(tool, ammo));
+            Weapons.Add(tool, ammo);
+            SelectedWeapon.Add(tool);
+        }
+
+        public void AddAmmo(Tool tool, int ammo)
+        {
+            Weapons[tool] += ammo;
         }
 
         public void Remove(Tool tool)
         {
-            Tuple<Tool, int> temp = new Tuple<Tool,int>(Tool.None,0);
-            foreach (Tuple<Tool,int> x in Weapons)
-            {
-                if (x.Item1 == tool)
-                {
-                    temp = x;
-                }
-            }
-            if(Weapons.Contains(temp))
-                Weapons.Remove(temp);
+                Weapons.Remove(tool);
         }
         public void Next()
         {
@@ -73,7 +88,7 @@ namespace _2D_Game
         }
         public Tool GetTop()
         {
-            return Weapons[currentIndex].Item1;
+            return SelectedWeapon[currentIndex];
         }
 
     }

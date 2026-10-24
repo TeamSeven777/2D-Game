@@ -20,16 +20,13 @@ namespace _2D_Game
         private SpriteBatch _spriteBatch;
         public Obstacle block;
         public DefaultPlayer player;
-        private Texture2D spriteSheet;
+        private Texture2D playerSpriteSheet;
         private Queue<Sprite> blockSpriteSet;
         private Texture2D blockSpriteSheet;
-        private Texture2D projectileSpriteSheet;
-        public IProjectileHandler projectileHandler;
+        private Texture2D playerProjectileSpriteSheet;
+        private Texture2D enemyProjectileSpriteSheet;
         private Dictionary<String, IController> controllers;
-  
         private String[] controllerNames;
-        public ItemInventory Inventory { get; private set; }
-        public WeaponInventory Weapons { get; private set; }
         public EnemyManager Enemies;
         private GameTime currentGameTime;
         public GameTime CurrentGameTime => currentGameTime;
@@ -60,9 +57,7 @@ namespace _2D_Game
             RoomCollisionHandler.Instance.Initialize(this);
             DialogueFactory.Instance.WindowSizeX = Window.ClientBounds.Width;
             DialogueFactory.Instance.WindowSizeY = Window.ClientBounds.Height;
-            Inventory = new ItemInventory();
-            Weapons = new WeaponInventory();
-            Weapons.Initialize();
+            WeaponInventory.Instance.Initialize(this);
             Enemies = new EnemyManager();
             blockSpriteSet = new Queue<Sprite>();
             boundaries = new List<Boundary>();
@@ -98,7 +93,7 @@ namespace _2D_Game
             Camera = new Camera(roomWidth, roomHeight, worldWidth, worldHeight);
 
             //spriteSheet = Content.Load<Texture2D>("Sprites/LinkSheet");
-            spriteSheet = Content.Load<Texture2D>("Sprites/Player_Sheet");
+            playerSpriteSheet = Content.Load<Texture2D>("Sprites/Player_Sheet");
             PlayerSpriteFactory.Instance.LoadTextures(Content);
             DialogueFactory.Instance.LoadFonts(Content);
 
@@ -106,7 +101,7 @@ namespace _2D_Game
             Camera.Follow(player.Position);
 
 
-            Inventory.LoadContent(Content, startRoomOrigin);
+            ItemInventory.Instance.LoadContent(Content, roomManager.CurrentRoom);
             
             Enemies.LoadContent(Content, startRoomOrigin);
 
@@ -121,9 +116,10 @@ namespace _2D_Game
             boundaries.Add(new Boundary(new Vector2(worldWidth, 0), new Vector2(worldWidth, worldHeight)));    // right
             boundaries.Add(new Boundary(new Vector2(0, 0), new Vector2(worldWidth, 0)));                       // up
             boundaries.Add(new Boundary(new Vector2(0, worldHeight), new Vector2(worldWidth, worldHeight)));   // down
-            projectileSpriteSheet = Content.Load<Texture2D>("Sprites/playerprojectiles");
-            PlayerProjectileHandler.Instance.Initialize(ref player, projectileSpriteSheet);
-            EnemyProjectileHandler.Instance.Initialize(ref Enemies, ref player, projectileSpriteSheet);
+            playerProjectileSpriteSheet = Content.Load<Texture2D>("Sprites/playerprojectiles");
+            enemyProjectileSpriteSheet = Content.Load<Texture2D>("Sprites/enemy-projectiles");
+            PlayerProjectileHandler.Instance.Initialize(ref player, playerProjectileSpriteSheet);
+            EnemyProjectileHandler.Instance.Initialize(ref Enemies, ref player, enemyProjectileSpriteSheet);
 
             block = new Obstacle(new Vector2(25), startRoomOrigin + middleOfScreen + new Vector2(150, 0), blockSpriteSet);
 
@@ -161,14 +157,13 @@ namespace _2D_Game
             player.Update(gameTime);
             roomManager.Update(gameTime, player.Position);
             PlayerProjectileHandler.Instance.Update(gameTime);
-            EnemyProjectileHandler.Instance.Update(gameTime);
-            Weapons.Update(gameTime);
-            Inventory.Update(gameTime);
+            WeaponInventory.Instance.Update(gameTime);
+            ItemInventory.Instance.Update(gameTime, roomManager.CurrentRoom);
             block.Update(gameTime);
 
                 //~Whatever Else Actions~
                 Enemies.Update(gameTime, player.Position);
-
+                EnemyProjectileHandler.Instance.Update(gameTime);
 
 
                 RoomCollisionHandler.Instance.Update(gameTime);
@@ -204,7 +199,6 @@ namespace _2D_Game
             PlayerProjectileHandler.Instance.Draw(_spriteBatch);
             EnemyProjectileHandler.Instance.Draw(_spriteBatch);
             Enemies.Draw(_spriteBatch);
-            Inventory.Draw(_spriteBatch);
             block.Draw(_spriteBatch);
             foreach(Boundary boundary in boundaries) boundary.Draw(_spriteBatch);
 

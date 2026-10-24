@@ -17,8 +17,8 @@ namespace _2D_Game
         public Vector2 TravelingDirection { get; set; }
         public Vector2 TravelDestination { get; set; }
         public ISprite ProjectileSprite { get; set; }
+        public ISprite ExplosionSprite { get; set; }
         public float DespawnTimer { get; set; }
-        public float ExplodeTimer { get; set;  }
         public ICollisionHandler CollisionHandler { get; set; }
 
         public PlayerProjectileDynamite(Vector2 position, Vector2 travelingDirection, ISprite sprite)
@@ -29,20 +29,18 @@ namespace _2D_Game
             this.ProjectileSprite = sprite;
             this.CollisionHandler = new ProjectileCollisionHandler(this);
             DespawnTimer = 150;
-            ExplodeTimer = 100;
         }
 
         public void Update(GameTime gt)
         {
             if (Position != TravelDestination)
                 Position += TravelingDirection;
-            if (ExplodeTimer > 0) ExplodeTimer--;
-            else
+            if (DespawnTimer == 100)
             {
-                Hitbox = new ProjectileHitBox(new Rectangle((int)Position.X - 50,(int)Position.Y - 50,100,100), HitBoxType.PlayerAttack);
+                Hitbox = new ProjectileHitBox(new Rectangle((int)Position.X - 50,(int)Position.Y - 50,100,100), HitBoxType.PlayerProjectile);
                 RoomCollisionHandler.Instance.Add(this, true);            
             }
-            if (DespawnTimer > 1) DespawnTimer--;
+            if (DespawnTimer > 0) DespawnTimer--;
         }
 
         public void Draw(SpriteBatch sprbatch)

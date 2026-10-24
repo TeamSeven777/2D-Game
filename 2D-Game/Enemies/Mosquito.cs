@@ -46,7 +46,7 @@ namespace _2D_Game
             this.startPosition = startPosition;
             Position = startPosition;
 
-            Health = 3;
+            Health = 10;
             //spin around the middle of the frame instead of the top-left corner
             sprite.Origin = new Vector2(sprite.SourceRectangle.Width / 2, sprite.SourceRectangle.Height / 2);
 
@@ -119,8 +119,6 @@ namespace _2D_Game
                 toPlayer.Normalize(); //turn it into a direction with length 1
                 Position += toPlayer * chaseSpeed;
 
-
-                Random rand = new Random();
                 if (ShootCooldown == 0)
                 {
                     EnemyProjectileHandler.Instance.Add(this);

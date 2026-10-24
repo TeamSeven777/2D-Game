@@ -18,7 +18,7 @@ namespace _2D_Game
 
         public void Execute()
         {
-            myGame.Inventory.Next();
+            ItemInventory.Instance.Next();
         }
     }
 }

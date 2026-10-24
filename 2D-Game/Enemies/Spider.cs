@@ -30,7 +30,10 @@ namespace _2D_Game
         private bool chasing = false;
 
         // Spin attack
-        private float attackRange = 40f;             // how close the player has to be before the spiders arbitrary attack???
+        private float attackRange = 40f; // how close the player has to be before the spiders arbitrary attack???
+
+        //Projectile
+        private double ShootCooldown = 500;
 
         public Spider(AnimatedSprite sprite, Vector2 startPosition)
         {
@@ -38,7 +41,7 @@ namespace _2D_Game
             this.startPosition = startPosition;
             Position = startPosition;
 
-            Health = 3;
+            Health = 10;
             //spin around the middle of the frame instead of the top-left corner
             sprite.Origin = new Vector2(sprite.SourceRectangle.Width / 2, sprite.SourceRectangle.Height / 2);
 
@@ -84,12 +87,20 @@ namespace _2D_Game
                 facingX = toPlayer.X;
                 toPlayer.Normalize(); //turn it into a direction with length 1
                 Position += toPlayer * chaseSpeed;
+
+                if (ShootCooldown == 0)
+                {
+                    EnemyProjectileHandler.Instance.Add(this);
+                    ShootCooldown = 50;
+                }
+                else ShootCooldown--;
+
             }
             else
             {
                 if (chasing)
                 {
-                    //player got away, so patrol from where the mosquito is now
+                    //player got away, so patrol from where the [SPIDER] is now
                     chasing = false;
                     startPosition = Position;
                     elapsedSeconds = 0; //restart the bob at the middle so it doesn't jump

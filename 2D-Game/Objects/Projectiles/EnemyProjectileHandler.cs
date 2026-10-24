@@ -34,10 +34,7 @@ namespace _2D_Game
             CurProjectileSprite = new ISprite[4];
             enemiesRef = enemies;
             this.targetRef = playerRef;
-            //This will change to rotating sprite at some point
-            //CurProjectileSprite[0] = new Sprite(newSprite, Vector2.One, new Rectangle(0, 0, 64, 64), SpriteEffects.None, 0, 360, 2, true, true);
-            CurProjectileSprite[0] = new Sprite(newSprite, Vector2.Zero, new Vector2(1), Color.White, new Rectangle(0, 0, 64, 64));
-            for (int i = 1; i < 3; i++)
+            for (int i = 0; i < 2; i++)
             {
                 //This will be repurposed for switching between the different types
                 CurProjectileSprite[i] = new Sprite(newSprite, Vector2.Zero, new Vector2(1), Color.White, new Rectangle(i * 64, 0, 64, 64));
@@ -52,8 +49,8 @@ namespace _2D_Game
                 projectile.Update(gt);
                 if (projectile.DespawnTimer <= 0) RemoveCount++;
             }
-            if (Cooldown > 0) Cooldown--;
             for (int i = 0; i < RemoveCount; i++) this.Remove();
+            RemoveCount = 0;
         }
 
         public void Draw(SpriteBatch spr)
@@ -73,8 +70,12 @@ namespace _2D_Game
             switch (enemy)
             {
                 case (Mosquito):
-                    ActiveProjectiles.Enqueue(new MosquitoProjectile(enemy.Position, new Vector2((int)targetRef.Position.X, (int)targetRef.Position.Y), CurProjectileSprite[0]));
-                   
+                    ActiveProjectiles.Enqueue(new MosquitoProjectile(enemy.Position, new Vector2((int)targetRef.Position.X, (int)targetRef.Position.Y), CurProjectileSprite[1]));
+                break;
+                case (Spider):
+                    ActiveProjectiles.Enqueue(new SpiderProjectile(enemy.Position, new Vector2((int)targetRef.Position.X, (int)targetRef.Position.Y), CurProjectileSprite[0]));
+                break;
+                default:
                 break;
             }
 

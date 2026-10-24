@@ -66,6 +66,13 @@ namespace _2D_Game
                         //Ouch!
                         player.TakeDamage(1);
                         break;
+                    case (HitBoxType.EnemyProjectile):
+                        player.TakeDamage(1);
+                        //This is DANGEROUS
+                        //One case i can think of is if there are two projectiles active, the player touches the second one, it
+                        //only removes the older one, not the one the player touches
+                        EnemyProjectileHandler.Instance.Remove();
+                        break;
                     case (HitBoxType.Block):
                         if (resultsOfWillCollide.Contains(Side.Left)){
                             player.ToggleAllowedDirection(Direction.Right, false);

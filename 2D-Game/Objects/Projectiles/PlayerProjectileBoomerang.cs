@@ -23,7 +23,7 @@ namespace _2D_Game
         public PlayerProjectileBoomerang(Vector2 position, Vector2 travelingDirection, ISprite sprite)
         {
             this.Position = position;
-            this.Hitbox = new ProjectileHitBox(new Rectangle((int)Position.X - 32, (int)Position.Y - 32, 64, 64), HitBoxType.PlayerAttack);
+            this.Hitbox = new ProjectileHitBox(new Rectangle((int)Position.X - 32, (int)Position.Y - 32, 64, 64), HitBoxType.PlayerProjectile);
             RoomCollisionHandler.Instance.Add(this, true);
             this.CollisionHandler = new ProjectileCollisionHandler(this);
             TravelApex = position + travelingDirection * 50;
@@ -45,6 +45,11 @@ namespace _2D_Game
 
         public void Draw(SpriteBatch sprbatch)
         {
+            //IDK how the rotating sprite draw works so I just did this :p
+            //hopefully it doesn't break anything
+            if (ProjectileSprite.Rotation != 360)
+                ProjectileSprite.Rotation += 0.5f;
+            else ProjectileSprite.Rotation = 0;
             ProjectileSprite.Draw(sprbatch, Position);
         }
     }

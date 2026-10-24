@@ -18,6 +18,7 @@
 /processor:FontDescriptionProcessor
 /processorParam:PremultiplyAlpha=True
 /processorParam:TextureFormat=Compressed
+/processorParam:Version=3.8.5.0
 /build:Fonts/defaultFont.spritefont
 
 #begin Fonts/pixelFont.spritefont
@@ -44,6 +45,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
+/processorParam:Version=3.8.5.0
 /build:Images/Berry.png
 
 #begin Images/boggus.png
@@ -56,6 +58,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
+/processorParam:Version=3.8.5.0
 /build:Images/boggus.png
 
 #begin Images/Explosive.png
@@ -68,6 +71,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
+/processorParam:Version=3.8.5.0
 /build:Images/Explosive.png
 
 #begin Images/FullMap.png
@@ -80,6 +84,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
+/processorParam:Version=3.8.5.0
 /build:Images/FullMap.png
 
 #begin Images/gameBackground.png
@@ -92,6 +97,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
+/processorParam:Version=3.8.5.0
 /build:Images/gameBackground.png
 
 #begin Images/Key.png
@@ -104,6 +110,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
+/processorParam:Version=3.8.5.0
 /build:Images/Key.png
 
 #begin Images/Log.png
@@ -116,6 +123,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
+/processorParam:Version=3.8.5.0
 /build:Images/Log.png
 
 #begin Images/logo.png
@@ -128,6 +136,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
+/processorParam:Version=3.8.5.0
 /build:Images/logo.png
 
 #begin Images/Pebble.png
@@ -140,7 +149,21 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
+/processorParam:Version=3.8.5.0
 /build:Images/Pebble.png
+
+#begin Sprites/enemy-projectiles.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/processorParam:Version=3.8.5.0
+/build:Sprites/enemy-projectiles.png
 
 #begin Sprites/LinkSheet.png
 /importer:TextureImporter
@@ -152,6 +175,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
+/processorParam:Version=3.8.5.0
 /build:Sprites/LinkSheet.png
 
 #begin Sprites/mosquito.png
@@ -164,6 +188,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
+/processorParam:Version=3.8.5.0
 /build:Sprites/mosquito.png
 
 #begin Sprites/Player_Sheet.png
@@ -176,6 +201,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
+/processorParam:Version=3.8.5.0
 /build:Sprites/Player_Sheet.png
 
 #begin Sprites/playerprojectiles.png
@@ -188,6 +214,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
+/processorParam:Version=3.8.5.0
 /build:Sprites/playerprojectiles.png
 
 #begin Sprites/projectileSprites.png
@@ -200,6 +227,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
+/processorParam:Version=3.8.5.0
 /build:Sprites/projectileSprites.png
 
 #begin Sprites/Spider.png
@@ -212,6 +240,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
+/processorParam:Version=3.8.5.0
 /build:Sprites/Spider.png
 
 #begin Sprites/Stick.png
@@ -224,6 +253,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
+/processorParam:Version=3.8.5.0
 /build:Sprites/Stick.png
 
 #begin Sprites/TeamIdles-Sheet.png
@@ -248,18 +278,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Sprites/testblocks.png
-
-#begin Sprites/Test-Ghost-Melee-Attack-N.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
+/processorParam:Version=3.8.5.0
 /build:Sprites/Test-Ghost-Melee-Attack-N.png
 
 #begin Sprites/Test-Ghost-Melee-Idle-N.png
@@ -272,7 +291,21 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
+/processorParam:Version=3.8.5.0
 /build:Sprites/Test-Ghost-Melee-Idle-N.png
+
+#begin Sprites/testblocks.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/processorParam:Version=3.8.5.0
+/build:Sprites/testblocks.png
 
 #begin Sprites/testmosquito.png
 /importer:TextureImporter
@@ -284,6 +317,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
+/processorParam:Version=3.8.5.0
 /build:Sprites/testmosquito.png
 
 #begin Sprites/testspritesheet.png
@@ -296,5 +330,6 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
+/processorParam:Version=3.8.5.0
 /build:Sprites/testspritesheet.png
 
