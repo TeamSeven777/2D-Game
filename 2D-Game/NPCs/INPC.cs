@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace _2D_Game
 {
-    public interface INPC
+    public interface INPC : IInteractable
     {
         Vector2 Position { get; set; }
         public IHitbox Hitbox { get; set; }

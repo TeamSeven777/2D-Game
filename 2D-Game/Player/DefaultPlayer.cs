@@ -104,9 +104,9 @@ namespace _2D_Game
 
         public void MoveLeft()
         {
+            stateMachine.ChangeDirection(Direction.Left);
             if (stateMachine.CanMove && !DisabledDirections.Contains(Direction.Left))
             {                
-                stateMachine.ChangeDirection(Direction.Left);
                 MovingDirections.Add(Direction.Left);
                 if (MovingDirections.Count > 1) NextPosition.X -= (float)(WalkSpeed / Math.Sqrt(2));//normalize diagonal movement
                 else NextPosition.X -= WalkSpeed;
@@ -114,9 +114,9 @@ namespace _2D_Game
         }
         public void MoveRight()
         {
+            stateMachine.ChangeDirection(Direction.Right);
             if (stateMachine.CanMove && !DisabledDirections.Contains(Direction.Right))
             {
-                stateMachine.ChangeDirection(Direction.Right);
                 MovingDirections.Add(Direction.Right);
                 if (MovingDirections.Count > 1) NextPosition.X += (float)(WalkSpeed / Math.Sqrt(2));
                 else NextPosition.X += WalkSpeed;
@@ -124,9 +124,9 @@ namespace _2D_Game
         }
         public void MoveUp()
         {
+            stateMachine.ChangeDirection(Direction.Up);
             if (stateMachine.CanMove && !DisabledDirections.Contains(Direction.Up))
-            {
-                stateMachine.ChangeDirection(Direction.Up);
+            { 
                 MovingDirections.Add(Direction.Up);
                 if (MovingDirections.Count > 1) NextPosition.Y -= (float)(WalkSpeed / Math.Sqrt(2));
                 else NextPosition.Y -= WalkSpeed;
@@ -134,9 +134,9 @@ namespace _2D_Game
         }
         public void MoveDown()
         {
+            stateMachine.ChangeDirection(Direction.Down);
             if (stateMachine.CanMove && !DisabledDirections.Contains(Direction.Down))
             {
-                stateMachine.ChangeDirection(Direction.Down);
                 MovingDirections.Add(Direction.Down);
                 if (MovingDirections.Count > 1) NextPosition.Y += (float)(WalkSpeed / Math.Sqrt(2));
                 else NextPosition.Y += WalkSpeed;

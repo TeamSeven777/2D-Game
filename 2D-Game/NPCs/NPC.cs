@@ -18,9 +18,9 @@ namespace _2D_Game
         public ICollisionHandler CollisionHandler { get; set; }
         private int hbWidth = 30;
         private int hbHeight = 30;
+        private IDialogue npcDialogue;
 
-
-        public NPC(AnimatedSprite sprite, Vector2 startPosition)
+        public NPC(AnimatedSprite sprite, Vector2 startPosition, IDialogue dialogue)
         {
             this.sprite = sprite;
             this.startPosition = startPosition;
@@ -31,6 +31,9 @@ namespace _2D_Game
             Hitbox = new BlockHitBox(new Rectangle((int)(Position.X + sprite.Origin.X - hbWidth / 2), (int)(Position.Y + sprite.Origin.Y - hbHeight / 2), hbWidth, hbHeight));
             CollisionHandler = new BlankCollisionHandler();
             RoomCollisionHandler.Instance.Add(this, true);
+
+            //dialogue
+            npcDialogue = dialogue;
         }
 
         public void Unload()
@@ -40,6 +43,10 @@ namespace _2D_Game
         public void Load()
         {
             RoomCollisionHandler.Instance.Add(this, true);
+        }
+        public void HandleInteraction() { 
+            RoomCollisionHandler.Instance.myGame.CurrentDialogue = npcDialogue;
+            RoomCollisionHandler.Instance.myGame.HandleDialogue();
         }
         
         public void Update(GameTime gameTime)

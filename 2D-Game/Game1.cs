@@ -55,8 +55,6 @@ namespace _2D_Game
         {
             currentGameTime = new GameTime();
             RoomCollisionHandler.Instance.Initialize(this);
-            DialogueFactory.Instance.WindowSizeX = Window.ClientBounds.Width;
-            DialogueFactory.Instance.WindowSizeY = Window.ClientBounds.Height;
             WeaponInventory.Instance.Initialize(this);
             Enemies = new EnemyManager();
             blockSpriteSet = new Queue<Sprite>();
@@ -121,7 +119,7 @@ namespace _2D_Game
             PlayerProjectileHandler.Instance.Initialize(ref player, playerProjectileSpriteSheet);
             EnemyProjectileHandler.Instance.Initialize(ref Enemies, ref player, enemyProjectileSpriteSheet);
 
-            block = new Obstacle(new Vector2(25), startRoomOrigin + middleOfScreen + new Vector2(150, 0), blockSpriteSet);
+            block = new Obstacle(new Vector2(25), startRoomOrigin + middleOfScreen + new Vector2(150, 150), blockSpriteSet);
 
             hitboxMode = new HitboxMode(this);
 
@@ -136,7 +134,9 @@ namespace _2D_Game
             
             RoomCollisionHandler.Instance.HandleCollision();
             currentGameTime = gameTime;
-
+            roomHeight = _spriteBatch.GraphicsDevice.Viewport.Height;
+            roomWidth = _spriteBatch.GraphicsDevice.Viewport.Width;
+            middleOfScreen = new Vector2(roomWidth / 2, roomHeight / 2);
             //Everything we are updating
             //To make it more "fair", everything
             //The player does should come first
@@ -175,6 +175,7 @@ namespace _2D_Game
             {
                 CurrentDialogue.Update(gameTime);
                 player.Update(gameTime);
+                //TODO give roommanager a way so that it can continue to animate just the NPC idles while talking
             }
             else
             {
@@ -214,7 +215,7 @@ namespace _2D_Game
 
             _spriteBatch.Begin(samplerState: SamplerState.PointClamp);
             minimap.Draw(_spriteBatch, player.Position);
-            CurrentDialogue.Draw(_spriteBatch);
+            CurrentDialogue.Draw(_spriteBatch, new Vector2(middleOfScreen.X, middleOfScreen.Y+roomHeight/4)); //draw 3/4 down screen in middle
             _spriteBatch.End();
 
             base.Draw(gameTime);

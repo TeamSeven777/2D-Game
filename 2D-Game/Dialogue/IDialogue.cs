@@ -12,6 +12,6 @@ namespace _2D_Game
 {
         void Update(GameTime gameTime);
         bool Next(); //will either move to next line of dialogue or return false
-        void Draw(SpriteBatch spriteBatch);
+        void Draw(SpriteBatch spriteBatch, Vector2 pos);
 }
 }

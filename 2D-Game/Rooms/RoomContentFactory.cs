@@ -78,26 +78,26 @@ namespace _2D_Game
             {
                 Animation ethanIdle = new(teamSheet, TimeSpan.FromMilliseconds(100), new Vector2(128, 128), Vector2.Zero, teamSheet.Width);
                 AnimatedSprite ethan = new(ethanIdle, teamSheet) { Scale = new Vector2(0.95f) };
-                return new NPC(ethan, position);
+                return new NPC(ethan, position, DialogueFactory.Instance.CreateEthanDialogue());
             }
             else if (type.Equals("Lydia", StringComparison.OrdinalIgnoreCase))
             {
                 Animation lydiaIdle = new(teamSheet, TimeSpan.FromMilliseconds(100), new Vector2(128, 128), new Vector2(0, 128), teamSheet.Width);
                 AnimatedSprite lydia = new(lydiaIdle, teamSheet) { Scale = new Vector2(0.95f) };
-                return new NPC(lydia, position);
+                return new NPC(lydia, position, DialogueFactory.Instance.CreateLydiaDialogue());
             }
             else if (type.Equals("Joe", StringComparison.OrdinalIgnoreCase))
             {
-                Animation joeIdle = new(teamSheet, TimeSpan.FromMilliseconds(100), new Vector2(128, 128), new Vector2(0, 256), teamSheet.Width);
-                AnimatedSprite joe = new(joeIdle, teamSheet) { Scale = new Vector2(0.95f) };
-                return new NPC(joe, position);
+                Animation lilyIdle = new(teamSheet, TimeSpan.FromMilliseconds(100), new Vector2(128, 128), new Vector2(0, 256), teamSheet.Width);
+                AnimatedSprite lily = new(lilyIdle, teamSheet) { Scale = new Vector2(0.95f) };
+                return new NPC(lily, position, DialogueFactory.Instance.CreateLilyDialogue());
             }
             else if (type.Equals("Lily", StringComparison.OrdinalIgnoreCase))
             {
-                Animation lilyIdle = new(teamSheet, TimeSpan.FromMilliseconds(100), new Vector2(128, 128), new Vector2(0, 384), teamSheet.Width);
-                AnimatedSprite lily = new(lilyIdle, teamSheet) { Scale = new Vector2(0.95f) };
-                return new NPC(lily, position);
-            }
+                Animation joeIdle = new(teamSheet, TimeSpan.FromMilliseconds(100), new Vector2(128, 128), new Vector2(0, 384), teamSheet.Width);
+                AnimatedSprite joe = new(joeIdle, teamSheet) { Scale = new Vector2(0.95f) };
+                return new NPC(joe, position, DialogueFactory.Instance.CreateJoeDialogue());
+            }          
 
             return null;
         }

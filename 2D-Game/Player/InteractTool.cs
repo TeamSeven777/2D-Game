@@ -19,30 +19,31 @@ namespace _2D_Game
         private int offsetValueX = 20;
         private int offsetValueHY = 32;
         private Timer punchDelay;
-        private int hbWidth = 32;
-        private int hbLength = 48;
+        private int hbWidthVertical = 64;
+        private int hbWidthHorizontal = 96;
+        private int hbLength = 32;
         private Vector2 Position;
         public InteractTool(PlayerStateMachine playerStateMachine)
-        {
+        {          
             stateMachine = playerStateMachine;
             Position = stateMachine.Position;
             switch (stateMachine.direction)
             {
                 case Direction.Left:
                     playerOffset = new Vector2(-offsetValueX, offsetValueHY);
-                    Hitbox = new PlayerAttackHitBox(new Rectangle((int)Position.X - offsetValueX - hbLength, (int)(Position.Y + offsetValueHY - hbWidth / 2), hbLength, hbWidth), this, stateMachine.direction);
+                    Hitbox = new PlayerAttackHitBox(new Rectangle((int)Position.X - offsetValueX - hbLength, (int)(Position.Y - hbWidthHorizontal / 2+offsetValueHY/2), hbLength, hbWidthHorizontal), this, stateMachine.direction);
                     break;
                 case Direction.Right:
                     playerOffset = new Vector2(offsetValueX, offsetValueHY);
-                    Hitbox = new PlayerAttackHitBox(new Rectangle((int)Position.X + offsetValueX, (int)(Position.Y - hbWidth / 2), hbLength, hbWidth), this, stateMachine.direction);
+                    Hitbox = new PlayerAttackHitBox(new Rectangle((int)Position.X + offsetValueX, (int)(Position.Y - hbWidthHorizontal / 2+offsetValueHY/2), hbLength, hbWidthHorizontal), this, stateMachine.direction);
                     break;
                 case Direction.Up:
                     playerOffset = new Vector2(0, -offsetValueHY);
-                    Hitbox = new PlayerAttackHitBox(new Rectangle((int)Position.X - hbWidth / 2, (int)(Position.Y - offsetValueHY - hbLength), hbWidth, hbLength), this, stateMachine.direction);
+                    Hitbox = new PlayerAttackHitBox(new Rectangle((int)Position.X - hbWidthVertical / 2, (int)(Position.Y - offsetValueHY - hbLength), hbWidthVertical, hbLength), this, stateMachine.direction);
                     break;
                 default: //down
                     playerOffset = new Vector2(0, offsetValueHY);
-                    Hitbox = new PlayerAttackHitBox(new Rectangle((int)Position.X - hbWidth / 2, (int)(Position.Y + offsetValueHY * 2), hbWidth, hbLength), this, stateMachine.direction);
+                    Hitbox = new PlayerAttackHitBox(new Rectangle((int)Position.X - hbWidthVertical / 2, (int)(Position.Y + offsetValueHY * 2), hbWidthVertical, hbLength), this, stateMachine.direction);
                     break;
             }
             direction = stateMachine.direction;
