@@ -28,7 +28,7 @@ namespace _2D_Game
             this.Position = position;
             this.TravelingDirection = travelingDirection;
             this.ProjectileSprite = sprite;
-            this.Hitbox = new ProjectileHitBox(new Rectangle((int)position.X-32,(int)position.Y-32,64,64),HitBoxType.PlayerProjectile);
+            this.Hitbox = new ProjectileHitBox(new Rectangle((int)position.X,(int)position.Y,64,64),HitBoxType.PlayerProjectile);
             this.CollisionHandler = new ProjectileCollisionHandler(this);
             DespawnTimer = 1000;
             RoomCollisionHandler.Instance.Add(this, true);
@@ -37,13 +37,13 @@ namespace _2D_Game
         public void Update(GameTime gt)
         {
             Position += TravelingDirection;
-            Hitbox.BoundingBox = new Rectangle((int)Position.X-32, (int)Position.Y-32, 64, 64);
+            Hitbox.BoundingBox = new Rectangle((int)Position.X, (int)Position.Y, 64, 64);
             if (DespawnTimer > 0) DespawnTimer--;
         }
 
         public void Draw(SpriteBatch sprbatch)
         {
-            ProjectileSprite.Draw(sprbatch, Position);
+            ProjectileSprite.Draw(sprbatch, Position + new Vector2(32));
         }
     }
 }

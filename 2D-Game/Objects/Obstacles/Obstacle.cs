@@ -14,8 +14,8 @@ namespace _2D_Game
         public ICollisionHandler CollisionHandler { get; set; }
         public Vector2 originPos { get; set; }
         public ISprite sprite { get; set; }
-        public Queue<Sprite> spriteSet;
         private bool isReversed = false;
+        private bool doesDamage = false;
         private double cooldownTimer = 0.21;
         private const double CooldownDuration = 0.2; // 0.2 seconds (200ms) between switches
 
@@ -25,32 +25,25 @@ namespace _2D_Game
         /// <param name="boundingBox">In case sprite doesnt match boundaries</param>
         /// <param name="originPos"></param>
         /// <param name="sprite"></param>
-        public Obstacle(Vector2 size, Vector2 originPos, Sprite sprite)
+        public Obstacle(Vector2 size, Vector2 originPos, ISprite sprite, bool doesDamage = false)
         {
             this.originPos = originPos;
-            this.sprite = sprite; 
-            this.Hitbox = new BlockHitBox(new Rectangle((int)originPos.X, (int)originPos.Y, (int)size.X, (int)size.Y));
+            this.sprite = sprite;
+            if (doesDamage == false)
+            {
+                this.Hitbox = new BlockHitBox(new Rectangle(originPos.ToPoint(), size.ToPoint()));
+            }
+            else
+            {
+                this.Hitbox = new BlockHitBox(new Rectangle(originPos.ToPoint(), size.ToPoint()),HitBoxType.HurtBlock);
+            }
             CollisionHandler = new BlankCollisionHandler();
             RoomCollisionHandler.Instance.Add(this, false);
+            this.doesDamage = doesDamage;
 
         }
 
-        /// <summary>
-        /// (DEBUG)Creates an obstacle with <paramref name="boundingBox"/> hitbox at <paramref name="originPos"/>
-        /// with ability to swap sprites
-        /// </summary>
-        /// <param name="boundingBox">In case sprite doesnt match boundaries</param>
-        /// <param name="originPos"></param>
-        /// <param name="sprite"></param>
-        public Obstacle(Vector2 size, Vector2 originPos, Queue<Sprite> sprites)
-        {
-            this.originPos = originPos;
-            spriteSet = sprites;
-            this.sprite = sprites.First();
-            this.Hitbox = new BlockHitBox(new Rectangle((int)originPos.X,(int)originPos.Y,(int)size.X,(int)size.Y));
-            CollisionHandler = new BlankCollisionHandler();
-            RoomCollisionHandler.Instance.Add(this, false);
-        }
+     
 
         public void HandleInteraction() {
             //interaction testing
@@ -58,44 +51,7 @@ namespace _2D_Game
             RoomCollisionHandler.Instance.myGame.HandleDialogue();
         }
 
-        /// <summary>
-        /// (DEBUG) Used to swap test block for another
-        /// </summary>
-        public void NextObstacle()
-        {
-
-            if (spriteSet != null && cooldownTimer > CooldownDuration)
-            {
-                if (isReversed) 
-                { 
-                    spriteSet = new Queue<Sprite>(spriteSet.Reverse());
-                    spriteSet.Enqueue(spriteSet.Dequeue());
-                    isReversed = false;
-                }
-                sprite = spriteSet.First();
-                spriteSet.Enqueue(spriteSet.Dequeue());
-                cooldownTimer = 0;
-            }
-        }
-
-        /// <summary>
-        /// (DEBUG) Used to swap test block for another
-        /// </summary>
-        public void PrevObstacle()
-        {
-            if (spriteSet != null && cooldownTimer > CooldownDuration)
-            {
-                if (!isReversed)
-                {
-                    spriteSet = new Queue<Sprite>(spriteSet.Reverse());
-                    spriteSet.Enqueue(spriteSet.Dequeue());
-                    isReversed = true;
-                }
-                sprite = spriteSet.First();
-                spriteSet.Enqueue(spriteSet.Dequeue());
-                cooldownTimer = 0;
-            }
-        }
+        
 
         /// <summary>
         /// Draws obstacle to screen using <paramref name="sprbatch"/>

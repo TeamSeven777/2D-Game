@@ -29,6 +29,7 @@ namespace _2D_Game
             TravelApex = position + travelingDirection * 50;
             this.TravelingDirection = travelingDirection;
             this.ProjectileSprite = sprite;
+            ProjectileSprite.Position = Hitbox.BoundingBox.Center.ToVector2();
             DespawnTimer = 1000;
            
         }

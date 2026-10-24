@@ -26,7 +26,7 @@ namespace _2D_Game
             this.FrameRate = rate;
 
             int distance = spriteSheet.Width;
-            for (int i = (int)startPoint.X; i <= distance; i += (int)spriteRegion.X)
+            for (int i = (int)startPoint.X; i < distance; i += (int)spriteRegion.X)
             {
                 //Debug.WriteLine("We added a frame");
                 Frames.Enqueue(new Rectangle((int)startPoint.X, (int)startPoint.Y, (int)spriteRegion.X, (int)spriteRegion.Y));

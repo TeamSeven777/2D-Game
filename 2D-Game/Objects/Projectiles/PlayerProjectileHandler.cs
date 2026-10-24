@@ -16,7 +16,6 @@ namespace _2D_Game
         public Queue<IProjectile> ActiveProjectiles { get; set; }
         public GameTime GameTime { get; set; }
         public DefaultPlayer playerRef;
-        public ISprite[] CurProjectileSprite { get; set; }
         public float Cooldown = 0;
         public int RemoveCount = 0;
         private static PlayerProjectileHandler instance = new PlayerProjectileHandler();
@@ -27,19 +26,10 @@ namespace _2D_Game
         {
         }
 
-        public void Initialize(ref DefaultPlayer player, Texture2D newSprite)
+        public void Initialize(ref DefaultPlayer player)
         {
             ActiveProjectiles = new Queue<IProjectile>();
-            CurProjectileSprite = new ISprite[4];
             playerRef = player;
-            //This will change to rotating sprite at some point
-            //CurProjectileSprite[0] = new Sprite(newSprite, Vector2.One, new Rectangle(0, 0, 64, 64), SpriteEffects.None, 0, 360, 2, true, true);
-            CurProjectileSprite[0] = new Sprite(newSprite, Vector2.Zero, new Vector2(1), Color.White, new Rectangle(0, 0, 64, 64));
-            for (int i = 1; i < 3; i++)
-            {
-                //This will be repurposed for switching between the different types
-                CurProjectileSprite[i] = new Sprite(newSprite, Vector2.Zero, new Vector2(1), Color.White, new Rectangle(i * 64, 0, 64, 64));
-            }
 
         }
 
@@ -48,6 +38,7 @@ namespace _2D_Game
             foreach (IProjectile projectile in ActiveProjectiles)
             {
                 projectile.Update(gt);
+                projectile.ProjectileSprite.Update(gt);
                 if (projectile.DespawnTimer <= 0) RemoveCount++;
             }
             if (Cooldown > 0) Cooldown--;
@@ -76,19 +67,19 @@ namespace _2D_Game
                         switch (playerRef.stateMachine.direction)
                         {
                     case (Direction.Down):
-                        ActiveProjectiles.Enqueue(new PlayerProjectilePebble(playerRef.Position, new Vector2(0, 10), CurProjectileSprite[1]));
+                        ActiveProjectiles.Enqueue(new PlayerProjectilePebble(playerRef.Position, new Vector2(0, 10), ProjectileSpriteFactory.Instance.CreatePlayerProjectile(playerRef.CurrentRangedWeapon)));
                         Cooldown = 10;
                         break;
                     case (Direction.Left):
-                        ActiveProjectiles.Enqueue(new PlayerProjectilePebble(playerRef.Position, new Vector2(-10, 0), CurProjectileSprite[1]));
+                        ActiveProjectiles.Enqueue(new PlayerProjectilePebble(playerRef.Position, new Vector2(-10, 0), ProjectileSpriteFactory.Instance.CreatePlayerProjectile(playerRef.CurrentRangedWeapon)));
                         Cooldown = 10;
                         break;
                     case (Direction.Right):
-                        ActiveProjectiles.Enqueue(new PlayerProjectilePebble(playerRef.Position, new Vector2(10, 0), CurProjectileSprite[1]));
+                        ActiveProjectiles.Enqueue(new PlayerProjectilePebble(playerRef.Position, new Vector2(10, 0), ProjectileSpriteFactory.Instance.CreatePlayerProjectile(playerRef.CurrentRangedWeapon)));
                         Cooldown = 10;
                         break;
                     case (Direction.Up):
-                        ActiveProjectiles.Enqueue(new PlayerProjectilePebble(playerRef.Position, new Vector2(0, -10), CurProjectileSprite[1]));
+                        ActiveProjectiles.Enqueue(new PlayerProjectilePebble(playerRef.Position, new Vector2(0, -10), ProjectileSpriteFactory.Instance.CreatePlayerProjectile(playerRef.CurrentRangedWeapon)));
                         Cooldown = 10;
                         break;
                                 
@@ -99,19 +90,19 @@ namespace _2D_Game
                         switch (playerRef.stateMachine.direction)
                         {
                             case (Direction.Down):
-                                ActiveProjectiles.Enqueue(new PlayerProjectileDynamite(playerRef.Position, new Vector2(0, 10), CurProjectileSprite[2]));
+                                ActiveProjectiles.Enqueue(new PlayerProjectileDynamite(playerRef.Position, new Vector2(0, 10), ProjectileSpriteFactory.Instance.CreatePlayerProjectile(playerRef.CurrentRangedWeapon)));
                                 Cooldown = 10;
                                 break;
                             case (Direction.Left):
-                                ActiveProjectiles.Enqueue(new PlayerProjectileDynamite(playerRef.Position, new Vector2(-10, 0), CurProjectileSprite[2]));
+                                ActiveProjectiles.Enqueue(new PlayerProjectileDynamite(playerRef.Position, new Vector2(-10, 0), ProjectileSpriteFactory.Instance.CreatePlayerProjectile(playerRef.CurrentRangedWeapon)));
                                 Cooldown = 10;
                                 break;
                             case (Direction.Right):
-                                ActiveProjectiles.Enqueue(new PlayerProjectileDynamite(playerRef.Position, new Vector2(10, 0), CurProjectileSprite[2]));
+                                ActiveProjectiles.Enqueue(new PlayerProjectileDynamite(playerRef.Position, new Vector2(10, 0), ProjectileSpriteFactory.Instance.CreatePlayerProjectile(playerRef.CurrentRangedWeapon)));
                                 Cooldown = 10;
                                 break;
                             case (Direction.Up):
-                                ActiveProjectiles.Enqueue(new PlayerProjectileDynamite(playerRef.Position, new Vector2(0, -10), CurProjectileSprite[2]));
+                                ActiveProjectiles.Enqueue(new PlayerProjectileDynamite(playerRef.Position, new Vector2(0, -10), ProjectileSpriteFactory.Instance.CreatePlayerProjectile(playerRef.CurrentRangedWeapon)));
                                 Cooldown = 10;
                                 break;
 
@@ -122,19 +113,19 @@ namespace _2D_Game
                         switch (playerRef.stateMachine.direction)
                         {
                             case (Direction.Down):
-                                ActiveProjectiles.Enqueue(new PlayerProjectileBoomerang(playerRef.Position, new Vector2(0, 10), CurProjectileSprite[0]));
+                                ActiveProjectiles.Enqueue(new PlayerProjectileBoomerang(playerRef.Position, new Vector2(0, 10), ProjectileSpriteFactory.Instance.CreatePlayerProjectile(playerRef.CurrentRangedWeapon)));
                                 Cooldown = 10;
                                 break;
                             case (Direction.Left):
-                                ActiveProjectiles.Enqueue(new PlayerProjectileBoomerang(playerRef.Position, new Vector2(-10, 0), CurProjectileSprite[0]));
+                                ActiveProjectiles.Enqueue(new PlayerProjectileBoomerang(playerRef.Position, new Vector2(-10, 0), ProjectileSpriteFactory.Instance.CreatePlayerProjectile(playerRef.CurrentRangedWeapon)));
                                 Cooldown = 10;
                                 break;
                             case (Direction.Right):
-                                ActiveProjectiles.Enqueue(new PlayerProjectileBoomerang(playerRef.Position, new Vector2(10, 0), CurProjectileSprite[0]));
+                                ActiveProjectiles.Enqueue(new PlayerProjectileBoomerang(playerRef.Position, new Vector2(10, 0), ProjectileSpriteFactory.Instance.CreatePlayerProjectile(playerRef.CurrentRangedWeapon)));
                                 Cooldown = 10;
                                 break;
                             case (Direction.Up):
-                                ActiveProjectiles.Enqueue(new PlayerProjectileBoomerang(playerRef.Position, new Vector2(0, -10), CurProjectileSprite[0]));
+                                ActiveProjectiles.Enqueue(new PlayerProjectileBoomerang(playerRef.Position, new Vector2(0, -10), ProjectileSpriteFactory.Instance.CreatePlayerProjectile(playerRef.CurrentRangedWeapon)));
                                 Cooldown = 10;
                                 break;
 

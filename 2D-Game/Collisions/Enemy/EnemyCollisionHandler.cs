@@ -68,6 +68,10 @@ namespace _2D_Game
                         break;
                     case (HitBoxType.PlayerProjectile):
                         enemy.TakeDamage(2);
+                        PlayerProjectileHandler.Instance.Remove();
+                        break;
+                    case (HitBoxType.Explosion):
+                        enemy.TakeDamage(100);
                         break;
                 }
                 

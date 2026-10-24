@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using System.Xml.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
@@ -80,10 +81,9 @@ namespace _2D_Game
 
             foreach (var obsElement in obstaclesElement.Elements("Entity"))
             {
+                string type = obsElement.Attribute("Type")?.Value ?? string.Empty;
                 Vector2 worldPos = CalculateWorldPosition(obsElement, rx, ry);
-                Queue<Sprite> blockSpriteSet = contentFactory.CreateBlockSpriteSet();
-
-                Obstacle block = new(new Vector2(25), worldPos, blockSpriteSet);
+                Obstacle block = (Obstacle)contentFactory.CreateBlock(type, worldPos);
                 room.Obstacles.Add(block);
             }
         }

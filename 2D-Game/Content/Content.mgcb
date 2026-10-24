@@ -26,6 +26,7 @@
 /processor:FontDescriptionProcessor
 /processorParam:PremultiplyAlpha=True
 /processorParam:TextureFormat=Compressed
+/processorParam:Version=3.8.5.0
 /build:Fonts/pixelFont.spritefont
 
 #begin Fonts/Pixelzone-E4MV4.ttf
@@ -33,6 +34,7 @@
 /processor:FontDescriptionProcessor
 /processorParam:PremultiplyAlpha=True
 /processorParam:TextureFormat=Compressed
+/processorParam:Version=3.8.5.0
 /build:Fonts/Pixelzone-E4MV4.ttf
 
 #begin Images/Berry.png
@@ -152,6 +154,19 @@
 /processorParam:Version=3.8.5.0
 /build:Images/Pebble.png
 
+#begin Sprites/bushes.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/processorParam:Version=3.8.5.0
+/build:Sprites/bushes.png
+
 #begin Sprites/enemy-projectiles.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -266,9 +281,23 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
+/processorParam:Version=3.8.5.0
 /build:Sprites/TeamIdles-Sheet.png
 
-#begin Sprites/testblocks.png
+#begin Sprites/tempexplosionsprites.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/processorParam:Version=3.8.5.0
+/build:Sprites/tempexplosionsprites.png
+
+#begin Sprites/Test-Ghost-Melee-Attack-N.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -332,4 +361,17 @@
 /processorParam:TextureFormat=Color
 /processorParam:Version=3.8.5.0
 /build:Sprites/testspritesheet.png
+
+#begin Sprites/trees.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/processorParam:Version=3.8.5.0
+/build:Sprites/trees.png
 

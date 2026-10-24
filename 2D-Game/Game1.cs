@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using _2D_Class;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
@@ -20,11 +21,7 @@ namespace _2D_Game
         private SpriteBatch _spriteBatch;
         public Obstacle block;
         public DefaultPlayer player;
-        private Texture2D playerSpriteSheet;
-        private Queue<Sprite> blockSpriteSet;
         private Texture2D blockSpriteSheet;
-        private Texture2D playerProjectileSpriteSheet;
-        private Texture2D enemyProjectileSpriteSheet;
         private Dictionary<String, IController> controllers;
         private String[] controllerNames;
         public EnemyManager Enemies;
@@ -57,7 +54,6 @@ namespace _2D_Game
             RoomCollisionHandler.Instance.Initialize(this);
             WeaponInventory.Instance.Initialize(this);
             Enemies = new EnemyManager();
-            blockSpriteSet = new Queue<Sprite>();
             boundaries = new List<Boundary>();
 
             PauseGameOn = false;
@@ -83,16 +79,15 @@ namespace _2D_Game
             roomWidth = _spriteBatch.GraphicsDevice.Viewport.Width;
             middleOfScreen = new Vector2(roomWidth / 2, roomHeight / 2);
             minimap = new Minimap(GraphicsDevice, new Point(10, 10), 60, roomWidth, roomHeight);
-            
             worldWidth = roomWidth * 3;
             worldHeight = roomHeight * 3;
             Vector2 startRoomOrigin = new Vector2(0, worldHeight - roomHeight);
             background = Content.Load<Texture2D>("Images/FullMap");
             Camera = new Camera(roomWidth, roomHeight, worldWidth, worldHeight);
 
-            //spriteSheet = Content.Load<Texture2D>("Sprites/LinkSheet");
-            playerSpriteSheet = Content.Load<Texture2D>("Sprites/Player_Sheet");
             PlayerSpriteFactory.Instance.LoadTextures(Content);
+            ProjectileSpriteFactory.Instance.LoadTextures(Content);
+            ObstacleSpriteFactory.Instance.LoadTextures(Content);
             DialogueFactory.Instance.LoadFonts(Content);
 
             player = new DefaultPlayer(startRoomOrigin + middleOfScreen);
@@ -103,23 +98,13 @@ namespace _2D_Game
             
             Enemies.LoadContent(Content, startRoomOrigin);
 
-            blockSpriteSet = new Queue<Sprite>();
-            blockSpriteSheet = Content.Load<Texture2D>("Sprites/testblocks");
-
-
-            blockSpriteSet.Enqueue(new Sprite(blockSpriteSheet, new Rectangle(0, 0, 25, 25)));
-            blockSpriteSet.Enqueue(new Sprite(blockSpriteSheet, new Rectangle(25, 0, 25, 25)));
-            blockSpriteSet.Enqueue(new Sprite(blockSpriteSheet, new Rectangle(50, 0, 25, 25)));
             boundaries.Add(new Boundary(new Vector2(0, 0), new Vector2(0, worldHeight)));                      // left
             boundaries.Add(new Boundary(new Vector2(worldWidth, 0), new Vector2(worldWidth, worldHeight)));    // right
             boundaries.Add(new Boundary(new Vector2(0, 0), new Vector2(worldWidth, 0)));                       // up
             boundaries.Add(new Boundary(new Vector2(0, worldHeight), new Vector2(worldWidth, worldHeight)));   // down
-            playerProjectileSpriteSheet = Content.Load<Texture2D>("Sprites/playerprojectiles");
-            enemyProjectileSpriteSheet = Content.Load<Texture2D>("Sprites/enemy-projectiles");
-            PlayerProjectileHandler.Instance.Initialize(ref player, playerProjectileSpriteSheet);
-            EnemyProjectileHandler.Instance.Initialize(ref Enemies, ref player, enemyProjectileSpriteSheet);
-
-            block = new Obstacle(new Vector2(25), startRoomOrigin + middleOfScreen + new Vector2(150, 150), blockSpriteSet);
+            PlayerProjectileHandler.Instance.Initialize(ref player);
+            EnemyProjectileHandler.Instance.Initialize(ref Enemies, ref player);
+          
 
             hitboxMode = new HitboxMode(this);
 
@@ -159,7 +144,6 @@ namespace _2D_Game
             PlayerProjectileHandler.Instance.Update(gameTime);
             WeaponInventory.Instance.Update(gameTime);
             ItemInventory.Instance.Update(gameTime, roomManager.CurrentRoom);
-            block.Update(gameTime);
 
                 //~Whatever Else Actions~
                 Enemies.Update(gameTime, player.Position);
@@ -195,14 +179,13 @@ namespace _2D_Game
             _spriteBatch.Draw(background, new Rectangle(0, 0, worldWidth, worldHeight), Color.White);
 
             //Everything we are drawing
-            player.Draw(_spriteBatch);
+            
             roomManager.Draw(_spriteBatch);
             PlayerProjectileHandler.Instance.Draw(_spriteBatch);
             EnemyProjectileHandler.Instance.Draw(_spriteBatch);
             Enemies.Draw(_spriteBatch);
-            block.Draw(_spriteBatch);
             foreach(Boundary boundary in boundaries) boundary.Draw(_spriteBatch);
-
+            player.Draw(_spriteBatch);
             //for hitbox debugging
             hitboxMode.DrawHitboxes(_spriteBatch);
             //

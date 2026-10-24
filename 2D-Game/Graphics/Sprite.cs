@@ -44,7 +44,6 @@ namespace _2D_Game
             this.Position = Vector2.Zero;
             SourceRectangle = src;
             Origin = new Vector2(src.Width / 2, src.Height / 2);
-            Origin = new Vector2(0, 0);
             this.Color = Color.White;
             this.Rotation = 0;
             this.LayerDepth = 0;

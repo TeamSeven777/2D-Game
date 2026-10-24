@@ -12,10 +12,10 @@ namespace _2D_Game
         public Rectangle BoundingBox { get; set; }
         public HitBoxType Type { get; set; }
 
-        public BlockHitBox(Rectangle boundingBox)
+        public BlockHitBox(Rectangle boundingBox, HitBoxType type = HitBoxType.Block)
         {
             this.BoundingBox = boundingBox;
-            this.Type = HitBoxType.Block;
+            this.Type = type;
         }
         public HashSet<Side> WillCollide(IHitbox collider)
         {

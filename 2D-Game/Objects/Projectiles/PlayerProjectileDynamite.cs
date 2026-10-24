@@ -17,7 +17,6 @@ namespace _2D_Game
         public Vector2 TravelingDirection { get; set; }
         public Vector2 TravelDestination { get; set; }
         public ISprite ProjectileSprite { get; set; }
-        public ISprite ExplosionSprite { get; set; }
         public float DespawnTimer { get; set; }
         public ICollisionHandler CollisionHandler { get; set; }
 
@@ -25,7 +24,7 @@ namespace _2D_Game
         {
             this.Position = position;
             this.TravelingDirection = travelingDirection;
-            TravelDestination = position + travelingDirection * 7;
+            TravelDestination = position + travelingDirection * 8;
             this.ProjectileSprite = sprite;
             this.CollisionHandler = new ProjectileCollisionHandler(this);
             DespawnTimer = 150;
@@ -37,8 +36,9 @@ namespace _2D_Game
                 Position += TravelingDirection;
             if (DespawnTimer == 100)
             {
-                Hitbox = new ProjectileHitBox(new Rectangle((int)Position.X - 50,(int)Position.Y - 50,100,100), HitBoxType.PlayerProjectile);
-                RoomCollisionHandler.Instance.Add(this, true);            
+                this.ProjectileSprite = ProjectileSpriteFactory.Instance.CreateExplosionAnimation();
+                Hitbox = new ProjectileHitBox(new Rectangle((int)Position.X - 50,(int)Position.Y - 50,100,100), HitBoxType.Explosion);
+                RoomCollisionHandler.Instance.Add(this, true); 
             }
             if (DespawnTimer > 0) DespawnTimer--;
         }

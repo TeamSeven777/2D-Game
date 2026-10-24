@@ -30,6 +30,7 @@
     <Obstacles>
       <Entity Type="Block" X="50" Y="50" />
       <Entity Type="Block" X="75" Y="50" />
+	  <Entity Type="Hurt_Block" X="100" Y="100" />
     </Obstacles>
     <Enemies>
       <Entity Type="Ghost" X="120" Y="150" />

@@ -28,17 +28,11 @@ namespace _2D_Game
         {
         }
 
-        public void Initialize(ref EnemyManager enemies, ref DefaultPlayer playerRef, Texture2D newSprite)
+        public void Initialize(ref EnemyManager enemies, ref DefaultPlayer playerRef)
         {
             ActiveProjectiles = new Queue<IProjectile>();
-            CurProjectileSprite = new ISprite[4];
             enemiesRef = enemies;
             this.targetRef = playerRef;
-            for (int i = 0; i < 2; i++)
-            {
-                //This will be repurposed for switching between the different types
-                CurProjectileSprite[i] = new Sprite(newSprite, Vector2.Zero, new Vector2(1), Color.White, new Rectangle(i * 64, 0, 64, 64));
-            }
 
         }
 
@@ -70,10 +64,10 @@ namespace _2D_Game
             switch (enemy)
             {
                 case (Mosquito):
-                    ActiveProjectiles.Enqueue(new MosquitoProjectile(enemy.Position, new Vector2((int)targetRef.Position.X, (int)targetRef.Position.Y), CurProjectileSprite[1]));
+                    ActiveProjectiles.Enqueue(new MosquitoProjectile(enemy.Position, targetRef.Position, ProjectileSpriteFactory.Instance.CreateEnemyProjectile(enemy)));
                 break;
                 case (Spider):
-                    ActiveProjectiles.Enqueue(new SpiderProjectile(enemy.Position, new Vector2((int)targetRef.Position.X, (int)targetRef.Position.Y), CurProjectileSprite[0]));
+                    ActiveProjectiles.Enqueue(new SpiderProjectile(enemy.Position, targetRef.Position, ProjectileSpriteFactory.Instance.CreateEnemyProjectile(enemy)));
                 break;
                 default:
                 break;

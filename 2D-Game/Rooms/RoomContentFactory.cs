@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using _2D_Class;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
@@ -35,11 +36,14 @@ namespace _2D_Game
             itemTextures["Pebble"] = content.Load<Texture2D>("Images/Pebble2");
         }
 
-        public Queue<Sprite> CreateBlockSpriteSet()
+        public IObstacle CreateBlock(string type, Vector2 position)
         {
-            Queue<Sprite> blockSpriteSet = new();
-            blockSpriteSet.Enqueue(new Sprite(blockSpriteSheet, new Rectangle(0, 0, 25, 25)));
-            return blockSpriteSet;
+            Obstacle block;
+            if (type.Equals("Hurt_Block", StringComparison.OrdinalIgnoreCase))
+                block = new Obstacle(new Vector2(25), position, ObstacleSpriteFactory.Instance.CreateBushSprite(2), true);
+            else
+                block = new Obstacle(new Vector2(25), position, ObstacleSpriteFactory.Instance.CreateOtherSprite(1));
+            return block;
         }
 
         public IEnemy CreateEnemy(string type, Vector2 position)

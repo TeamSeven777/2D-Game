@@ -20,7 +20,7 @@ namespace _2D_Game
 
         public void Execute()
         {
-            myGame.block.PrevObstacle();
+           // myGame.block.PrevObstacle();
 
         }
 
