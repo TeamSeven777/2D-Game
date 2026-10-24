@@ -8,13 +8,14 @@ namespace _2D_Game
         public int RoomX { get; set; }
         public int RoomY { get; set; }
         public List<EntitySpawnData> Enemies { get; set; } = new List<EntitySpawnData>();
+        public List<EntitySpawnData> NPCs { get; set; } = new List<EntitySpawnData>();
         public List<EntitySpawnData> Obstacles { get; set; } = new List<EntitySpawnData>();
         public List<EntitySpawnData> Items { get; set; } = new List<EntitySpawnData>();
     }
 
     public class EntitySpawnData
     {
-        public string Type { get; set; } // ex: "Log", "Block", "Key", "Ghost"
+        public string Type { get; set; } // ex: "Log", "Block", "Joe", "Ghost"
 
         // Coordinate position
         public float X { get; set; }

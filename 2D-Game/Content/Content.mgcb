@@ -26,7 +26,6 @@
 /processor:FontDescriptionProcessor
 /processorParam:PremultiplyAlpha=True
 /processorParam:TextureFormat=Compressed
-/processorParam:Version=3.8.5.0
 /build:Fonts/pixelFont.spritefont
 
 #begin Fonts/Pixelzone-E4MV4.ttf
@@ -34,7 +33,6 @@
 /processor:FontDescriptionProcessor
 /processorParam:PremultiplyAlpha=True
 /processorParam:TextureFormat=Compressed
-/processorParam:Version=3.8.5.0
 /build:Fonts/Pixelzone-E4MV4.ttf
 
 #begin Images/Berry.png
@@ -258,7 +256,19 @@
 /processorParam:Version=3.8.5.0
 /build:Sprites/Stick.png
 
-#begin Sprites/Test-Ghost-Melee-Attack-N.png
+#begin Sprites/TeamIdles-Sheet.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Sprites/TeamIdles-Sheet.png
+
+#begin Sprites/testblocks.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255

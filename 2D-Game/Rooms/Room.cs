@@ -9,6 +9,7 @@ namespace _2D_Game
         public Point GridPosition { get; private set; }
         public List<Obstacle> Obstacles { get; private set; } = new List<Obstacle>();
         public List<IEnemy> Enemies { get; private set; } = new List<IEnemy>(); // Room-specific enemies
+        public List<INPC> NPCs { get; private set; } = new List<INPC>(); // Room-specific NPCs
         public List<WorldItem> Items { get; private set; } = new List<WorldItem>();
         
         
@@ -31,6 +32,9 @@ namespace _2D_Game
                     Enemies.RemoveAt(i);
                 }
             }
+            
+            foreach (var npc in NPCs) 
+                npc.Update(gameTime);
 
             foreach (var item in Items) 
                 item.Update(gameTime);
@@ -43,6 +47,9 @@ namespace _2D_Game
 
             foreach (var enemy in Enemies) 
                 enemy.Draw(spriteBatch);
+
+            foreach (var npc in NPCs)
+                npc.Draw(spriteBatch);
 
             foreach (var item in Items) 
                 item.Draw(spriteBatch);
