@@ -30,7 +30,7 @@ namespace _2D_Game
 
         public override void Use()
         {
-            // Custom logic here:
+            ItemInventory.Instance.Add(this, 1);
             if (CurrentStack > 0) CurrentStack--;
         }
     }
@@ -42,7 +42,7 @@ namespace _2D_Game
 
         public override void Use()
         {
-            // Custom logic here:
+            
             if (CurrentStack > 0) CurrentStack--;
         }
     }
@@ -54,7 +54,7 @@ namespace _2D_Game
 
         public override void Use()
         {
-            // Custom logic here:
+            ItemInventory.Instance.Add(this, 1);
             if (CurrentStack > 0) CurrentStack--;
         }
     }
@@ -66,7 +66,7 @@ namespace _2D_Game
 
         public override void Use()
         {
-            // Custom logic here:
+            WeaponInventory.Instance.AddAmmo(Tool.Dynamite, 10);
             if (CurrentStack > 0) CurrentStack--;
         }
     }
@@ -78,7 +78,7 @@ namespace _2D_Game
 
         public override void Use()
         {
-            // Custom logic here:
+            WeaponInventory.Instance.AddAmmo(Tool.Slingshot,10);
             if (CurrentStack > 0) CurrentStack--;
         }
     }
