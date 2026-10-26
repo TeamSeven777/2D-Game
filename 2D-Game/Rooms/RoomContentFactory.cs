@@ -34,6 +34,7 @@ namespace _2D_Game
             itemTextures["Log"] = content.Load<Texture2D>("Images/Log2");
             itemTextures["Key"] = content.Load<Texture2D>("Images/Key2");
             itemTextures["Pebble"] = content.Load<Texture2D>("Images/Pebble2");
+            itemTextures["SpeedShoes"] = content.Load<Texture2D>("Images/speedshoe");
         }
 
         public IObstacle CreateBlock(string type, Vector2 position)
@@ -124,6 +125,7 @@ namespace _2D_Game
                 "Log" => new LogItem(sprite),
                 "Key" => new KeyItem(sprite),
                 "Pebble" => new PebbleItem(sprite),
+                "SpeedShoes" => new SpeedItem(sprite),
                 _ => null // Unknown type returns null
             };
         }

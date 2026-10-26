@@ -82,4 +82,16 @@ namespace _2D_Game
             if (CurrentStack > 0) CurrentStack--;
         }
     }
+
+    public class SpeedItem : Item
+    {
+        public SpeedItem(Sprite icon) : base("SpeedShoe", icon, 99) { }
+
+        public override void Use()
+        {
+            //Adjusts player's walk speed temporarily using timer class maybe?
+            if (CurrentStack > 0) CurrentStack--;
+        }
+    }
+
 }
