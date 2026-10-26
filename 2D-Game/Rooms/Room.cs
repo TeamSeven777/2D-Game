@@ -54,8 +54,13 @@ namespace _2D_Game
             foreach (var item in Items) 
                 item.Draw(spriteBatch);
         }
-
+        /// <summary>
+        /// Turns on Enemy AI
+        /// </summary>
         public void Activate()   { foreach (var e in Enemies) e.Load(); }
+        /// <summary>
+        /// Turns off Enemy AI
+        /// </summary>
         public void Deactivate() { foreach (var e in Enemies) e.Unload(); }
     }
 }

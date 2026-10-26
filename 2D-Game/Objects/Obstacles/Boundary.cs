@@ -16,6 +16,11 @@ namespace _2D_Game
         public IHitbox Hitbox { get; set; }
         public ICollisionHandler CollisionHandler { get; set; }
 
+        /// <summary>
+        /// Creates a block that spans an area determined by <paramref name="bottomRightCorner"/> and <paramref name="topLeftCorner"/>
+        /// </summary>
+        /// <param name="topLeftCorner"></param>
+        /// <param name="bottomRightCorner"></param>
         public Boundary(Vector2 topLeftCorner, Vector2 bottomRightCorner)
         {
             originPos = topLeftCorner;
@@ -25,6 +30,14 @@ namespace _2D_Game
             sprite = null;
             RoomCollisionHandler.Instance.Add(this, false);
         }
+
+        /// <summary>
+        /// Creates a block that spans an area determined by <paramref name="bottomRightCorner"/> and <paramref name="topLeftCorner"/>
+        /// with a <paramref name="texture"/>
+        /// </summary>
+        /// <param name="topLeftCorner"></param>
+        /// <param name="bottomRightCorner"></param>
+        /// <param name="texture"></param>
         public Boundary(Vector2 topLeftCorner, Vector2 bottomRightCorner, Texture2D texture)
         {
             sprite = new Sprite(texture, topLeftCorner, bottomRightCorner, Color.White);

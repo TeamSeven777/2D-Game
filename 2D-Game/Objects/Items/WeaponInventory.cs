@@ -25,13 +25,9 @@ namespace _2D_Game
         public static WeaponInventory Instance
         { get { return instance; } }
 
-        /// <summary>
-        /// SpriteFactory for all items
-        /// </summary>
-        /// <param name="content"></param>
+    
         public void Initialize(Game1 game)
         {
-            // Add all items here (Will be pared down later)
             if (Weapons.Count <= 0)
             {
                 Weapons.Add(Tool.Slingshot, int.MaxValue);
@@ -44,7 +40,6 @@ namespace _2D_Game
                 SelectedWeapon.Add(Tool.Boomerang);
                 SelectedWeapon.Add(Tool.Dynamite);
             }
-            //Weapons.Add(new Tuple<Tool, int>(Tool.Stick, 0));
             myGame = game;
         }
 
@@ -86,6 +81,10 @@ namespace _2D_Game
             currentIndex = (currentIndex - 1 + Weapons.Count) % Weapons.Count;
             cooldownTimer = CooldownDuration; // Reset timer
         }
+        /// <summary>
+        /// Returns the weapons thats currently selected
+        /// </summary>
+        /// <returns></returns>
         public Tool GetTop()
         {
             return SelectedWeapon[currentIndex];

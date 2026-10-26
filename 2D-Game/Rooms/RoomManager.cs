@@ -18,6 +18,15 @@ namespace _2D_Game
         // Use factory class
         private readonly RoomContentFactory contentFactory = new();
 
+        /// <summary>
+        /// Reads an XML file and creates room structures that contain information about what to spawn
+        /// with a maximum size of <paramref name="height"/> x <paramref name="width"/>
+        /// </summary>
+        /// <param name="filePath"></param>
+        /// <param name="content"></param>
+        /// <param name="blockSheet"></param>
+        /// <param name="width"></param>
+        /// <param name="height"></param>
         public void LoadDungeon(string filePath, ContentManager content, Texture2D blockSheet, int width, int height)
         {
             roomWidth = width;
@@ -74,6 +83,13 @@ namespace _2D_Game
             return float.TryParse(element.Attribute(attrName)?.Value, out float val) ? val : defaultValue;
         }
 
+        /// <summary>
+        /// Creates the respecitve obstacle object for every element in <paramref name="roomElement"/>
+        /// </summary>
+        /// <param name="roomElement"></param>
+        /// <param name="rx"></param>
+        /// <param name="ry"></param>
+        /// <param name="room"></param>
         private void ParseObstacles(XElement roomElement, int rx, int ry, Room room)
         {
             var obstaclesElement = roomElement.Element("Obstacles");
@@ -87,7 +103,13 @@ namespace _2D_Game
                 room.Obstacles.Add(block);
             }
         }
-
+        /// <summary>
+        /// Creates the respecitve enemy object for every element in <paramref name="roomElement"/>
+        /// </summary>
+        /// <param name="roomElement"></param>
+        /// <param name="rx"></param>
+        /// <param name="ry"></param>
+        /// <param name="room"></param>
         private void ParseEnemies(XElement roomElement, int rx, int ry, Room room)
         {
             var enemiesElement = roomElement.Element("Enemies");
@@ -105,7 +127,13 @@ namespace _2D_Game
                 }
             }
         }
-
+        /// <summary>
+        /// Creates the respecitve NPC object for every element in <paramref name="roomElement"/>
+        /// </summary>
+        /// <param name="roomElement"></param>
+        /// <param name="rx"></param>
+        /// <param name="ry"></param>
+        /// <param name="room"></param>
         private void ParseNPCs(XElement roomElement, int rx, int ry, Room room)
         {
             var npcsElement = roomElement.Element("NPCs");
@@ -124,6 +152,13 @@ namespace _2D_Game
             }
         }
 
+        /// <summary>
+        /// Creates the respecitve Item object for every element in <paramref name="roomElement"/>
+        /// </summary>
+        /// <param name="roomElement"></param>
+        /// <param name="rx"></param>
+        /// <param name="ry"></param>
+        /// <param name="room"></param>
         private void ParseItems(XElement roomElement, int rx, int ry, Room room)
         {
             var itemsElement = roomElement.Element("Items");

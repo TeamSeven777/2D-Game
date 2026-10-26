@@ -37,10 +37,29 @@ Nighttime Forest Explorem-up : The Fourest Seven
 A top down perspective game where the protagonist will explore a dark and spooky forest in search of their friends. Facing enemies like spiders, wolves, and mosquitos, the goal is to collect enough goods to make smores with the pals back at the campfire, and make it out alive...
 
 ---
+# Design Philosophy
+### Ideas behind code structure 
+
+When it comes to 
+
+
+
+
+For the spawning of Projectiles, the responsibility of creating them is handled by the respective projectile handlers for the player and enemies. The reason they are separated is for clarity's sake, making it not only easier to debug, but also to create 
+better cohesion of the class. Each class spawns projectiles when the command is called to use a ranged weapon in the case of the player, and when specific enemy types are chasing the player after a short cooldown. As it stands, projectiles are loaded and unloaded
+from a queue, meaning the oldest projectile gets removed first and is typically what hits first, and then updated until it despawns or collides with something, which is handled by a separate collision handler class. There is a flaw with this design however, 
+because the player could get hit by a newer projectile and only the further one gets removed, and therefore we are looking into alternative data structures to read and write this information. The projectiles themselves contain information about what type they are, the 
+direction they are travelling, and how big their hitbox is.
+
+Collisions are handled by independent classes for each "type" of object in the game (i.e. Player, Enemies, Obstacles, Projectiles etc.) They read hitbox classes, which themselves have unique classes for each type of object with slight differences specific to their type
+that constantly check if they are colliding with something else. If the hitboxes return a collision, the collision handler determines the behavior of the objects after the collision, or in some cases before they even happen to cut down on jittery behavior, mainly
+in the case of obstacles that prevent movement.
+
+---
 
 # Game Information 
 
-You play as [PLACEHOLDER] in a [PLACEHOLDER] trying to find [PLACEHOLDER] while collecting [PLACEHOLDER] and dodging [PLACEHOLDER]s
+You play as [PLACEHOLDER] in a Forest Campsite trying to find [PLACEHOLDER] while collecting [PLACEHOLDER] and dodging Ghosts, Spiders, and Mosquitos
 
 | Controls    |   Keys        |
 | ----------- | ------------  |
@@ -48,9 +67,18 @@ You play as [PLACEHOLDER] in a [PLACEHOLDER] trying to find [PLACEHOLDER] while 
 |   S		  | Move Downward |
 |   A         | Move Left     |
 |   D		  | Move Right    |
-|   Z         | 1st Attack    |
-|   1         | 2nd Attack	  |
+|  Space  	  | Interact 	  |
+|   Z         | Fist          |
+|   1         | Stick    	  |
 |   2         | Ranged Attack |
-|   Y, T	  | Next / Previous Block|
-|   I, U      | Next / Previous Item |
-|   P, O	  | Next / Previous Enemy|
+|   Y     	  | Cycle  Weapon |
+|   ESC 	  | Pause 		  |
+|   R         | Restart		  |
+|   Q		  | Quit		  |
+| (DEBUG) H   | Show Hitboxes |
+| (DEBUG) E   | Take Damage   |
+
+
+
+
+

@@ -30,7 +30,7 @@ namespace _2D_Class
         }
         /// <summary>
         /// Creates a tree sprite, where <paramref name="index"/> determines which one
-        /// from the sprite sheet
+        /// from <see cref="TreeSprites"/>
         /// </summary>
         /// <param name="index"></param>
         /// <returns></returns>
@@ -54,7 +54,7 @@ namespace _2D_Class
 
         /// <summary>
         /// Creates a bush sprite, where <paramref name="index"/> determines which one
-        /// from the sprite sheet
+        /// from the <see cref="BushSprites"/>
         /// </summary>
         /// <param name="index"></param>
         /// <returns></returns>
@@ -75,6 +75,13 @@ namespace _2D_Class
             }
             return sprite;
         }
+
+        /// <summary>
+        /// Creates an unspecified object sprite, where <paramref name="index"/> determines which one
+        /// from the <see cref="TestBlockSpriteSheet"/>
+        /// </summary>
+        /// <param name="index"></param>
+        /// <returns></returns>
         public ISprite CreateOtherSprite(int index)
         {
             ISprite sprite;
