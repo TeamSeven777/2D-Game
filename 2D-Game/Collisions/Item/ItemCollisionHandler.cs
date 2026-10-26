@@ -22,6 +22,7 @@ namespace _2D_Game
             {
                 ItemInventory.instance.Add(item.ItemData, 1);
                 ItemInventory.instance.RemoveFromWorld(item);
+                RoomCollisionHandler.Instance.Remove(item);
             }
 
         }
