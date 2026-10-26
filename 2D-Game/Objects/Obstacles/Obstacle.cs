@@ -31,11 +31,11 @@ namespace _2D_Game
             this.sprite = sprite;
             if (doesDamage == false)
             {
-                this.Hitbox = new BlockHitBox(new Rectangle(originPos.ToPoint(), size.ToPoint()));
+                this.Hitbox = new BlockHitBox(new Rectangle(originPos.ToPoint() - size.ToPoint()/2, size.ToPoint()));
             }
             else
             {
-                this.Hitbox = new BlockHitBox(new Rectangle(originPos.ToPoint(), size.ToPoint()),HitBoxType.HurtBlock);
+                this.Hitbox = new BlockHitBox(new Rectangle(originPos.ToPoint() - size.ToPoint()/2, size.ToPoint()),HitBoxType.HurtBlock);
             }
             CollisionHandler = new BlankCollisionHandler();
             RoomCollisionHandler.Instance.Add(this, false);
