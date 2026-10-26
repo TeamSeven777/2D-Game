@@ -49,7 +49,7 @@ You play as [PLACEHOLDER] in a Forest Campsite trying to find [PLACEHOLDER] whil
 |   S, ↓	  | Move Downward |
 |   A, ←      | Move Left     |
 |   D, →	  | Move Right    |
-|  Space  	  | Interact 	  |
+|  Space  	  | Interact w/ NPCs	  |
 |   Z         | Fist          |
 |   1         | Stick    	  |
 |   2         | Ranged Attack |
