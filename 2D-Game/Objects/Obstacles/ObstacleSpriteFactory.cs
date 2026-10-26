@@ -15,6 +15,7 @@ namespace _2D_Class
         Texture2D TestBlockSpriteSheet;
         Texture2D TreeSprites;
         Texture2D BushSprites;
+        Texture2D FirepitSprite;
         private static ObstacleSpriteFactory instance = new ObstacleSpriteFactory();
 
         public static ObstacleSpriteFactory Instance
@@ -27,7 +28,21 @@ namespace _2D_Class
             TestBlockSpriteSheet = content.Load<Texture2D>("Sprites/testblocks");
             TreeSprites = content.Load<Texture2D>("Sprites/trees");
             BushSprites = content.Load<Texture2D>("Sprites/bushes");
+            FirepitSprite = content.Load<Texture2D>("Sprites/FirePit");
         }
+
+        /// <summary>
+        /// Creates a fire pit sprite
+        /// from <see cref="FirepitSprite"/>
+        /// </summary>
+        /// <returns></returns>
+        public ISprite CreateFirepitSprite()
+        {
+            ISprite sprite = new Sprite(FirepitSprite,new Rectangle(0,0,64,64));
+            sprite.Scale = new Vector2(2,2);
+            return sprite;
+        }
+
         /// <summary>
         /// Creates a tree sprite, where <paramref name="index"/> determines which one
         /// from <see cref="TreeSprites"/>

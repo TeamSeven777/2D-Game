@@ -4,6 +4,7 @@
   <Room RoomX="0" RoomY="2">
     <Obstacles>
       <Entity Type="Block" X="150" Y="0" />
+      <Entity Type="Firepit" X="500" Y="550" />
     </Obstacles>
     <Enemies>
       <Entity Type="Ghost" X="200" Y="200" />
