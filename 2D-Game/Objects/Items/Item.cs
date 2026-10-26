@@ -45,7 +45,7 @@ namespace _2D_Game
 
         public override void Use()
         {
-            
+            DefaultPlayer.Instance.Health = DefaultPlayer.Instance.MaxHealth;
             if (CurrentStack > 0) CurrentStack--;
         }
     }
@@ -92,7 +92,7 @@ namespace _2D_Game
 
         public override void Use()
         {
-            //Adjusts player's walk speed temporarily using timer class maybe?
+            DefaultPlayer.Instance.WalkSpeed += 2;
             if (CurrentStack > 0) CurrentStack--;
         }
     }

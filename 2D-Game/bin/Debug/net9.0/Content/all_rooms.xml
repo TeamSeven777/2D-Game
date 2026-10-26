@@ -23,6 +23,7 @@
       <Entity Type="Explosive" X="400" Y="300" />
       <Entity Type="Key" X="200" Y="200" />
       <Entity Type="Pebble" X="400" Y="200" />
+      <Entity Type="SpeedShoes" X="500" Y="200" />
     </Items>
   </Room>
 

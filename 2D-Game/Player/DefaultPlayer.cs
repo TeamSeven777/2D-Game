@@ -11,6 +11,8 @@ namespace _2D_Game
 {
     public class DefaultPlayer : IPlayer, IHitboxOwner
     {
+        public static DefaultPlayer Instance { get; private set; }
+
 
         public PlayerStateMachine stateMachine;
         public Vector2 Position;
@@ -39,6 +41,7 @@ namespace _2D_Game
         /// </summary>
         public DefaultPlayer(Vector2 startPosition)
         {
+            Instance = this;
             WalkSpeed = 5.0f;
             MaxHealth = 3;
             Health = MaxHealth;
