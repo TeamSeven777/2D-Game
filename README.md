@@ -45,10 +45,10 @@ You play as [PLACEHOLDER] in a Forest Campsite trying to find [PLACEHOLDER] whil
 
 | Controls    |   Keys        |
 | ----------- | ------------  |
-|	W		  | Move Upward   |
-|   S		  | Move Downward |
-|   A         | Move Left     |
-|   D		  | Move Right    |
+|	W, ↑      | Move Upward   |
+|   S, ↓	  | Move Downward |
+|   A, ←      | Move Left     |
+|   D, →	  | Move Right    |
 |  Space  	  | Interact 	  |
 |   Z         | Fist          |
 |   1         | Stick    	  |

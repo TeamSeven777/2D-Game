@@ -18,9 +18,13 @@ namespace _2D_Game
             if (controllerMode == ControllerMode.MovementMode)
             {
                 RegisterCommand(Keys.W, new UpCommand(myGame));
+                RegisterCommand(Keys.Up, new UpCommand(myGame));
                 RegisterCommand(Keys.A, new LeftCommand(myGame));
+                RegisterCommand(Keys.Left, new LeftCommand(myGame));
                 RegisterCommand(Keys.D, new RightCommand(myGame));
+                RegisterCommand(Keys.Right, new RightCommand(myGame));
                 RegisterCommand(Keys.S, new DownCommand(myGame));
+                RegisterCommand(Keys.Down, new DownCommand(myGame));
                 RegisterCommand(Keys.Q, new QuitCommand(myGame));
                 RegisterCommand(Keys.R, new ResetCommand(myGame));
                 RegisterCommand(Keys.E, new DamageCommand(myGame));
