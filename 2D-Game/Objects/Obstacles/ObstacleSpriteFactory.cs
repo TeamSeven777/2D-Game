@@ -64,6 +64,7 @@ namespace _2D_Class
                     sprite = new Sprite();
                     break;
             }
+            sprite.Scale = new Vector2(2,2);
             return sprite;
         }
 
@@ -88,6 +89,7 @@ namespace _2D_Class
                     sprite = new Sprite();
                     break;
             }
+            sprite.Scale = new Vector2(2,2);
             return sprite;
         }
 

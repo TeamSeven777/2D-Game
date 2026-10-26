@@ -41,13 +41,29 @@ namespace _2D_Game
         {
             Obstacle block;
             if (type.Equals("Hurt_Block", StringComparison.OrdinalIgnoreCase))
+            {
                 block = new Obstacle(new Vector2(25), position, ObstacleSpriteFactory.Instance.CreateBushSprite(2), true);
+            }
+            else if (type.Equals("Bush", StringComparison.OrdinalIgnoreCase))
+            {
+                block = new Obstacle(new Vector2(64), position, ObstacleSpriteFactory.Instance.CreateBushSprite(1));
+            }
+            else if (type.Equals("Tree1", StringComparison.OrdinalIgnoreCase))
+            {
+                block = new Obstacle(new Vector2(64), position, ObstacleSpriteFactory.Instance.CreateTreeSprite(1));
+            }
+            else if (type.Equals("Tree2", StringComparison.OrdinalIgnoreCase))
+            {
+                block = new Obstacle(new Vector2(64), position, ObstacleSpriteFactory.Instance.CreateTreeSprite(2));
+            }
             else if (type.Equals("Firepit", StringComparison.OrdinalIgnoreCase))
             {
                 block = new Obstacle(new Vector2(64), position, ObstacleSpriteFactory.Instance.CreateFirepitSprite(), false);
             }
             else
+            {
                 block = new Obstacle(new Vector2(25), position, ObstacleSpriteFactory.Instance.CreateOtherSprite(1));
+            }
             return block;
         }
 
