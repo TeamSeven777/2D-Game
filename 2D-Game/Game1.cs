@@ -37,6 +37,7 @@ namespace _2D_Game
         public bool PauseGameOn { get; private set; }
         public bool DialogueMode { get; private set; }
         public IDialogue CurrentDialogue { get; set; }
+        public AudioManager GameAudioManager;
         
         public Game1()
         {
@@ -89,6 +90,7 @@ namespace _2D_Game
             ProjectileSpriteFactory.Instance.LoadTextures(Content);
             ObstacleSpriteFactory.Instance.LoadTextures(Content);
             DialogueFactory.Instance.LoadFonts(Content);
+            GameAudioManager = new AudioManager(Content);
 
             player = new DefaultPlayer(startRoomOrigin + middleOfScreen);
             Camera.Follow(player.Position);
