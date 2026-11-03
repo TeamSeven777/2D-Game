@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <SourceFile>C:/Users/jpfri/source/repos/TeamSeven777/2D-Game/2D-Game/Content/Sprites/enemy-projectiles.png</SourceFile>
-  <SourceTime>2026-10-22T15:33:20.720738-04:00</SourceTime>
-  <DestFile>C:/Users/jpfri/source/repos/TeamSeven777/2D-Game/2D-Game/Content/bin/DesktopGL/Content/Sprites/enemy-projectiles.xnb</DestFile>
-  <DestTime>2026-10-22T15:35:55.8154407-04:00</DestTime>
+  <SourceFile>C:/Users/edwei/OneDrive/Documents/GitHub/2D-Game/2D-Game/Content/Sprites/enemy-projectiles.png</SourceFile>
+  <SourceTime>2026-10-23T14:01:15.0285614-04:00</SourceTime>
+  <DestFile>C:/Users/edwei/OneDrive/Documents/GitHub/2D-Game/2D-Game/Content/bin/DesktopGL/Content/Sprites/enemy-projectiles.xnb</DestFile>
+  <DestTime>2026-11-03T14:29:43.916071-05:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2026-07-15T12:21:24-04:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

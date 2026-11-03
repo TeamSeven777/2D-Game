@@ -12,7 +12,6 @@ namespace _2D_Game
         private readonly int roomWidth, roomHeight;
         private readonly Texture2D pixel;
         private MouseState previousMouse;
-
         public Minimap(GraphicsDevice device, Point topLeft, int cellWidth, int roomWidth, int roomHeight)
         {
             this.roomWidth = roomWidth;
@@ -43,7 +42,6 @@ namespace _2D_Game
             roomCenter = new Vector2(col * roomWidth + roomWidth / 2f, row * roomHeight + roomHeight / 2f);
             return true;
         }
-
         public void Draw(SpriteBatch spriteBatch, Vector2 playerWorldPos)
         {
             // Background

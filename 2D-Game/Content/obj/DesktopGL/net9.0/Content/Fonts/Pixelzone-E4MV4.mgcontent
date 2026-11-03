@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <SourceFile>C:/Users/edwei/OneDrive/Documents/GitHub/2D-Game/2D-Game/Content/Fonts/Pixelzone-E4MV4.ttf</SourceFile>
-  <SourceTime>2026-10-21T14:19:59.2060645-04:00</SourceTime>
+  <SourceTime>2026-10-21T16:10:13.464481-04:00</SourceTime>
   <DestFile>C:/Users/edwei/OneDrive/Documents/GitHub/2D-Game/2D-Game/Content/bin/DesktopGL/Content/Fonts/Pixelzone-E4MV4.xnb</DestFile>
-  <DestTime>2026-10-21T14:22:36.3331246-04:00</DestTime>
+  <DestTime>2026-11-03T14:29:37.7593892-05:00</DestTime>
   <Importer>FontImporter</Importer>
   <ImporterTime>2026-07-15T12:21:24-04:00</ImporterTime>
   <Processor>FontDescriptionProcessor</Processor>

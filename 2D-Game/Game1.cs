@@ -34,6 +34,7 @@ namespace _2D_Game
         private RoomManager roomManager;
         public Camera Camera { get; private set; }
         private Minimap minimap;
+        private GameGPS gameGPS;
         public bool PauseGameOn { get; private set; }
         public bool DialogueMode { get; private set; }
         public IDialogue CurrentDialogue { get; set; }
@@ -76,6 +77,8 @@ namespace _2D_Game
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
+            GameAudioManager = new AudioManager(Content);
+
             roomHeight = _spriteBatch.GraphicsDevice.Viewport.Height;
             roomWidth = _spriteBatch.GraphicsDevice.Viewport.Width;
             middleOfScreen = new Vector2(roomWidth / 2, roomHeight / 2);
@@ -90,10 +93,11 @@ namespace _2D_Game
             ProjectileSpriteFactory.Instance.LoadTextures(Content);
             ObstacleSpriteFactory.Instance.LoadTextures(Content);
             DialogueFactory.Instance.LoadFonts(Content);
-            GameAudioManager = new AudioManager(Content);
+            
 
             player = new DefaultPlayer(startRoomOrigin + middleOfScreen);
             Camera.Follow(player.Position);
+            gameGPS = new GameGPS(player.Position, roomWidth, roomHeight);
 
 
             ItemInventory.Instance.LoadContent(Content, roomManager.CurrentRoom);
@@ -141,11 +145,11 @@ namespace _2D_Game
                     Camera.Follow(player.Position);
                 }
 
-            player.Update(gameTime);
-            roomManager.Update(gameTime, player.Position);
-            PlayerProjectileHandler.Instance.Update(gameTime);
-            WeaponInventory.Instance.Update(gameTime);
-            ItemInventory.Instance.Update(gameTime, roomManager.CurrentRoom);
+                player.Update(gameTime);
+                roomManager.Update(gameTime, player.Position);
+                PlayerProjectileHandler.Instance.Update(gameTime);
+                WeaponInventory.Instance.Update(gameTime);
+                ItemInventory.Instance.Update(gameTime, roomManager.CurrentRoom);
 
                 //~Whatever Else Actions~
                 Enemies.Update(gameTime, player.Position);
@@ -154,7 +158,7 @@ namespace _2D_Game
 
                 RoomCollisionHandler.Instance.Update(gameTime);
                 Camera.Follow(player.Position);
-
+                gameGPS.Update(player.Position);
                 hitboxMode.Update(gameTime);
             }
             else if (DialogueMode)

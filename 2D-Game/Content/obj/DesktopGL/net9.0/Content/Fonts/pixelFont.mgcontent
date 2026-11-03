@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <SourceFile>C:/Users/edwei/OneDrive/Documents/GitHub/2D-Game/2D-Game/Content/Fonts/pixelFont.spritefont</SourceFile>
-  <SourceTime>2026-10-21T14:23:29.5247651-04:00</SourceTime>
+  <SourceTime>2026-10-21T16:10:13.4654823-04:00</SourceTime>
   <DestFile>C:/Users/edwei/OneDrive/Documents/GitHub/2D-Game/2D-Game/Content/bin/DesktopGL/Content/Fonts/pixelFont.xnb</DestFile>
-  <DestTime>2026-10-21T14:23:33.5458431-04:00</DestTime>
+  <DestTime>2026-11-03T14:29:37.7533588-05:00</DestTime>
   <Importer>FontDescriptionImporter</Importer>
   <ImporterTime>2026-07-15T12:21:24-04:00</ImporterTime>
   <Processor>FontDescriptionProcessor</Processor>

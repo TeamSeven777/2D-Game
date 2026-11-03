@@ -19,7 +19,7 @@ namespace _2D_Game
         //gets songs from Playlist and SFX from SFXFactory?
 
         private readonly List<SoundEffectInstance> activeSoundEffectInstances;
-        private Song currentSong;
+        private Song currentSong;     
         private float songVolume;
         private float previousSongVolume;
         public bool SongMuted {  get;  set; }
@@ -30,14 +30,31 @@ namespace _2D_Game
             SoundEffectFactory.Instance.LoadSFX(content, this);
 
         }
-        public void PlaySong(Song song)
+        public void PlaySong(Song song, bool loops)
         {
-            //switch song being played to song (fade out previous?)
+            //switch song being played to song 
+            if (!song.Equals(currentSong)) 
+            {
+                MediaPlayer.Play(song);
+                currentSong = song;
+            }
+            MediaPlayer.IsRepeating = loops;
         }
         public void PlaySoundEffect(SoundEffect soundEffect) 
         { 
             //play sound effect (also handle duplicate sfx in some way (don't play again if already playing?
+            SoundEffectInstance soundEffectInstance = soundEffect.CreateInstance();
+            if (!activeSoundEffectInstances.Contains(soundEffectInstance))
+            {
+                //don't play sound if already playing?
+            }
+            else 
+            {
+                soundEffectInstance.Play();
+                activeSoundEffectInstances.Add(soundEffectInstance);
+            }
         }
+
         public void ToggleMusicMute() {
             if (!SongMuted)
             {
@@ -51,6 +68,20 @@ namespace _2D_Game
                 songVolume = previousSongVolume;
             }
             MediaPlayer.Volume = songVolume;
+        }
+        public void Update() 
+        {
+            //manage active SFX
+            List<SoundEffectInstance> listOfFinishedSFX = new List<SoundEffectInstance>();
+            foreach (SoundEffectInstance soundEffectInstance in activeSoundEffectInstances) { 
+                if(soundEffectInstance.State  != SoundState.Playing) listOfFinishedSFX.Add(soundEffectInstance);
+            }
+            foreach (SoundEffectInstance soundEffectInstance in listOfFinishedSFX)
+            {
+                activeSoundEffectInstances.Remove(soundEffectInstance);
+            }
+
+
         }
 }
 }

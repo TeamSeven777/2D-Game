@@ -167,6 +167,55 @@
 /processorParam:Version=3.8.5.0
 /build:Images/speedshoe.png
 
+#begin Music/cozyFire.wav
+/importer:WavImporter
+/processor:SongProcessor
+/processorParam:Quality=Best
+/processorParam:Version=3.8.5.0
+/build:Music/cozyFire.wav
+
+#begin Music/cozyFire(slow+reverb).wav
+/importer:WavImporter
+/processor:SongProcessor
+/processorParam:Quality=Best
+/processorParam:Version=3.8.5.0
+/build:Music/cozyFire(slow+reverb).wav
+
+#begin Music/endThemeSample1.wav
+/importer:WavImporter
+/processor:SongProcessor
+/processorParam:Quality=Best
+/processorParam:Version=3.8.5.0
+/build:Music/endThemeSample1.wav
+
+#begin Music/lost.wav
+/importer:WavImporter
+/processor:SongProcessor
+/processorParam:Quality=Best
+/processorParam:Version=3.8.5.0
+/build:Music/lost.wav
+
+#begin Music/theDead.wav
+/importer:WavImporter
+/processor:SongProcessor
+/processorParam:Quality=Best
+/processorParam:Version=3.8.5.0
+/build:Music/theDead.wav
+
+#begin Music/titleSample1.wav
+/importer:WavImporter
+/processor:SongProcessor
+/processorParam:Quality=Best
+/processorParam:Version=3.8.5.0
+/build:Music/titleSample1.wav
+
+#begin Music/titleTheme.wav
+/importer:WavImporter
+/processor:SongProcessor
+/processorParam:Quality=Best
+/processorParam:Version=3.8.5.0
+/build:Music/titleTheme.wav
+
 #begin Sprites/bushes.png
 /importer:TextureImporter
 /processor:TextureProcessor
