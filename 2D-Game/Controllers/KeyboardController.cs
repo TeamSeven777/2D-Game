@@ -41,13 +41,23 @@ namespace _2D_Game
                 RegisterCommand(Keys.H, new HitboxModeCommand(myGame));
                 RegisterCommand(Keys.Escape, new PauseMenuCommand(myGame));
                 RegisterCommand(Keys.Space, new InteractCommand(myGame));
+                RegisterCommand(Keys.D0, new ToggleSongMuteCommand(myGame));
+                RegisterCommand(Keys.OemMinus, new DecreaseSongVolumeCommand(myGame));
+                RegisterCommand(Keys.OemPlus, new IncreaseSongVolumeCommand(myGame));
             }
             else if (controllerMode == ControllerMode.DialogueMode)
             {
                 RegisterCommand(Keys.Space, new NextDialogueCommand(myGame));
-            }else if (controllerMode == ControllerMode.PauseMode)
+                RegisterCommand(Keys.D0, new ToggleSongMuteCommand(myGame));
+                RegisterCommand(Keys.OemMinus, new DecreaseSongVolumeCommand(myGame));
+                RegisterCommand(Keys.OemPlus, new IncreaseSongVolumeCommand(myGame));
+            }
+            else if (controllerMode == ControllerMode.PauseMode)
             {
                 RegisterCommand(Keys.Escape, new PauseMenuCommand(myGame));
+                RegisterCommand(Keys.D0, new ToggleSongMuteCommand(myGame));
+                RegisterCommand(Keys.OemMinus, new DecreaseSongVolumeCommand(myGame));
+                RegisterCommand(Keys.OemPlus, new IncreaseSongVolumeCommand(myGame));
             }
         }
         public void RegisterCommand(Keys key, ICommand command)

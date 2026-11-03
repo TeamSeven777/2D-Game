@@ -21,6 +21,7 @@ namespace _2D_Game
         private readonly List<SoundEffectInstance> activeSoundEffectInstances;
         private Song currentSong;     
         private float songVolume;
+        private float songVolumeNotch = .1f;
         private float previousSongVolume;
         public bool SongMuted {  get;  set; }
 
@@ -28,6 +29,8 @@ namespace _2D_Game
             activeSoundEffectInstances = new List<SoundEffectInstance>();
             Playlist.Instance.LoadSongs(content, this);
             SoundEffectFactory.Instance.LoadSFX(content, this);
+            songVolume = 1f;
+            previousSongVolume = 1f;
 
         }
         public void PlaySong(Song song, bool loops)
@@ -68,6 +71,25 @@ namespace _2D_Game
                 songVolume = previousSongVolume;
             }
             MediaPlayer.Volume = songVolume;
+        }
+        public void IncreaseMusicVolume() {
+            float nextVolume = previousSongVolume + songVolumeNotch;
+            if (nextVolume <= 1f)
+            {
+                songVolume = nextVolume;
+                MediaPlayer.Volume = songVolume;
+                previousSongVolume = songVolume;
+            }
+        }
+        public void DecreaseMusicVolume()
+        {
+            float nextVolume = previousSongVolume - songVolumeNotch;
+            if (nextVolume >= -0.1f)
+            {
+                songVolume = nextVolume;
+                MediaPlayer.Volume = songVolume;
+                previousSongVolume = songVolume;
+            }
         }
         public void Update() 
         {

@@ -34,7 +34,7 @@ namespace _2D_Game
                 roomID = xIndex + yIndex * 3; //TODO replace magic nums later
             }
             CurrentRoomID = roomID;
-            Debug.WriteLine(CurrentRoomID);
+            //Debug.WriteLine(CurrentRoomID);
         }
 
         //TODO Update method for handling room update and changes
@@ -46,6 +46,7 @@ namespace _2D_Game
 
         }
         private void UpdateRoomSong() {
+            //so much magic 
             String roomSongTitle = "lost";
             switch (CurrentRoomID)//TODO update to appropriate song (rn just testing all)
             {
