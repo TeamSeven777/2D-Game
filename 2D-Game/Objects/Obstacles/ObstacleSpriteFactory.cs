@@ -16,6 +16,7 @@ namespace _2D_Class
         Texture2D TreeSprites;
         Texture2D BushSprites;
         Texture2D FirepitSprite;
+        Texture2D DoorSprites;
         private static ObstacleSpriteFactory instance = new ObstacleSpriteFactory();
 
         public static ObstacleSpriteFactory Instance
@@ -29,6 +30,7 @@ namespace _2D_Class
             TreeSprites = content.Load<Texture2D>("Sprites/trees");
             BushSprites = content.Load<Texture2D>("Sprites/bushes");
             FirepitSprite = content.Load<Texture2D>("Sprites/FirePit");
+            DoorSprites = content.Load<Texture2D>("Sprites/door");
         }
 
         /// <summary>
@@ -91,6 +93,12 @@ namespace _2D_Class
             }
             sprite.Scale = new Vector2(2,2);
             return sprite;
+        }
+
+        public ISprite CreateDoorSprite()
+        {
+            ISprite sprite;
+            return sprite = new Sprite(DoorSprites, new Rectangle(0, 0, 128, 128));
         }
 
         /// <summary>

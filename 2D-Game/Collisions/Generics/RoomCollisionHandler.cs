@@ -11,8 +11,13 @@ namespace _2D_Game
 {
     public class RoomCollisionHandler
     {
-
+        /// <summary>
+        /// Hitboxes that move
+        /// </summary>
         private Dictionary<IHitboxOwner, IHitbox>  dynamicHitboxes;
+        /// <summary>
+        /// Hitboxes that don't move
+        /// </summary>
         private Dictionary<IHitboxOwner, IHitbox> staticHitboxes;
         private List<Rectangle> temporaryRectangles;
         private Timer tempRectRefreshTimer = new Timer(.1);
@@ -55,6 +60,11 @@ namespace _2D_Game
         {
             temporaryRectangles = new List<Rectangle>();
         }
+        /// <summary>
+        /// Adds <paramref name="hitboxOwner"/>'s hitbox to the Room, and <paramref name="dynamic"/> defines if it moves or not
+        /// </summary>
+        /// <param name="hitboxOwner"></param>
+        /// <param name="dynamic"></param>
         public void Add(IHitboxOwner hitboxOwner, bool dynamic)
         {
             if (dynamic && !dynamicHitboxes.ContainsKey(hitboxOwner)) dynamicHitboxes.Add(hitboxOwner, hitboxOwner.Hitbox);
@@ -105,6 +115,22 @@ namespace _2D_Game
             }
             //TODO
             //call all collision methods and checks from here.
+        }
+
+        public bool Contains(IHitboxOwner hitboxOwner)
+        {
+            if (dynamicHitboxes.ContainsKey(hitboxOwner))
+            {
+                return true;
+            }
+            else if (staticHitboxes.ContainsKey(hitboxOwner))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
 

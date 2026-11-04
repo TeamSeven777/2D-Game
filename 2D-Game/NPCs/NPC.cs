@@ -17,7 +17,7 @@ namespace _2D_Game
         public IHitbox Hitbox { get; set; }
         public ICollisionHandler CollisionHandler { get; set; }
         private int hbWidth = 30;
-        private int hbHeight = 30;
+        private int hbHeight = 60;
         private IDialogue npcDialogue;
 
         public NPC(AnimatedSprite sprite, Vector2 startPosition, IDialogue dialogue)

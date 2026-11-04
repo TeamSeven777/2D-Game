@@ -7,7 +7,7 @@ namespace _2D_Game
     public class Room
     {
         public Point GridPosition { get; private set; }
-        public List<Obstacle> Obstacles { get; private set; } = new List<Obstacle>();
+        public List<IObstacle> Obstacles { get; private set; } = new List<IObstacle>();
         public List<IEnemy> Enemies { get; private set; } = new List<IEnemy>(); // Room-specific enemies
         public List<INPC> NPCs { get; private set; } = new List<INPC>(); // Room-specific NPCs
         public List<WorldItem> Items { get; private set; } = new List<WorldItem>();
@@ -20,8 +20,14 @@ namespace _2D_Game
 
         public void Update(GameTime gameTime, Vector2 playerPosition)
         {
-            foreach (var obstacle in Obstacles) 
-                obstacle.Update(gameTime);
+            for (int i = Obstacles.Count - 1; i >= 0; i--)
+            {
+                Obstacles[i].Update(gameTime);
+                if (Obstacles[i].MarkedForRemoval)
+                {
+                    Obstacles.RemoveAt(i);
+                }
+            }
 
             for (int i = Enemies.Count - 1; i >= 0; i--) 
             {
