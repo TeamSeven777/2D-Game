@@ -43,6 +43,9 @@ namespace _2D_Game
             }
             MediaPlayer.IsRepeating = loops;
         }
+        public void StopSong() { 
+            MediaPlayer.Stop();
+        }
         public void PlaySoundEffect(SoundEffect soundEffect) 
         { 
             //play sound effect (also handle duplicate sfx in some way (don't play again if already playing?

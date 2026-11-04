@@ -9,6 +9,9 @@ using System.Diagnostics;
 
 namespace _2D_Game
 {
+    /// <summary>
+    /// UNUSED CLASS (redundant)
+    /// </summary>
     public class GameGPS
 {
         //a border might work better than this system
@@ -47,34 +50,35 @@ namespace _2D_Game
         }
         private void UpdateRoomSong() {
             //so much magic 
-            String roomSongTitle = "lost";
+            //TODO run a method from some set of room interace
+            SongName roomSongTitle = SongName.Lost;
             switch (CurrentRoomID)//TODO update to appropriate song (rn just testing all)
             {
                 case 7:
-                    roomSongTitle = "cozy fire";
+                    roomSongTitle = SongName.CozyFire;
                     break;
                 case 6:
-                    roomSongTitle = "the dead";
+                    roomSongTitle = SongName.TheDead;
                     break;
                 case 8:
-                    roomSongTitle = "cozy fire SR";
+                    roomSongTitle = SongName.CozyFireSR;
                     break;
                 case 1:
                 case 3:
-                    roomSongTitle = "theme 1";
+                    roomSongTitle = SongName.TitleTheme;
                     break;
                 case 4:
                 case 5:
-                    roomSongTitle = "theme 2";
+                    roomSongTitle = SongName.StarterRoomTheme;
                     break;
                 case 9:
-                    roomSongTitle = "end theme";
+                    roomSongTitle = SongName.EndTheme;
                     break;
                 case 2:
-                    roomSongTitle = "lost";
+                    roomSongTitle = SongName.Lost;
                     break;
                 default:
-                    roomSongTitle = "lost";
+                    roomSongTitle = SongName.Lost;
                     break;
             }
             Playlist.Instance.ChangeSong(roomSongTitle, true);

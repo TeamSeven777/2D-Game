@@ -195,6 +195,13 @@
 /processorParam:Version=3.8.5.0
 /build:Music/lost.wav
 
+#begin Music/ominousLair.wav
+/importer:WavImporter
+/processor:SongProcessor
+/processorParam:Quality=Best
+/processorParam:Version=3.8.5.0
+/build:Music/ominousLair.wav
+
 #begin Music/theDead.wav
 /importer:WavImporter
 /processor:SongProcessor

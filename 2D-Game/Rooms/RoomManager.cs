@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Xml.Linq;
 using Microsoft.Xna.Framework;
@@ -182,7 +183,7 @@ namespace _2D_Game
             int gridX = (int)(playerPosition.X / roomWidth);
             int gridY = (int)(playerPosition.Y / roomHeight);
             Point currentGridPos = new(gridX, gridY);
-
+            
             if (rooms.ContainsKey(currentGridPos) && rooms[currentGridPos] != CurrentRoom)
             {
                 CurrentRoom?.Deactivate();

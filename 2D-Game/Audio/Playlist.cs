@@ -11,7 +11,7 @@ namespace _2D_Game
 {
     public class Playlist
 {
-        private Dictionary<string, Song> _playlist;
+        private Dictionary<SongName, Song> _playlist;
         private static Playlist instance = new Playlist();
 
         private AudioManager myAudioMananger;
@@ -22,17 +22,19 @@ namespace _2D_Game
 
         public void LoadSongs(ContentManager content, AudioManager audioManager) {
             myAudioMananger = audioManager;
-            _playlist = new Dictionary<string, Song>();
-            _playlist.Add("cozy fire", content.Load<Song>("Music/cozyFire"));
-            _playlist.Add("cozy fire SR", content.Load<Song>("Music/cozyFire(slow+reverb)"));
-            _playlist.Add("end theme", content.Load<Song>("Music/endThemeSample1"));
-            _playlist.Add("lost", content.Load<Song>("Music/lost"));
-            _playlist.Add("the dead", content.Load<Song>("Music/theDead"));
-            _playlist.Add("theme 2", content.Load<Song>("Music/titleSample1"));
-            _playlist.Add("theme 1", content.Load<Song>("Music/titleTheme"));
+            _playlist = new Dictionary<SongName, Song>();
+            _playlist.Add(SongName.CozyFire, content.Load<Song>("Music/cozyFire"));
+            _playlist.Add(SongName.CozyFireSR, content.Load<Song>("Music/cozyFire(slow+reverb)"));
+            _playlist.Add(SongName.EndTheme, content.Load<Song>("Music/endThemeSample1"));
+            _playlist.Add(SongName.Lost, content.Load<Song>("Music/lost"));
+            _playlist.Add(SongName.TheDead, content.Load<Song>("Music/theDead"));
+            _playlist.Add(SongName.StarterRoomTheme, content.Load<Song>("Music/titleSample1"));
+            _playlist.Add(SongName.TitleTheme, content.Load<Song>("Music/titleTheme"));
+            _playlist.Add(SongName.OminousLair, content.Load<Song>("Music/ominousLair"));
         }
-        public void ChangeSong(string songName, bool loops) {
+        public void ChangeSong(SongName songName, bool loops) {
             if (_playlist.ContainsKey(songName)) myAudioMananger.PlaySong(_playlist[songName], loops);
+            else myAudioMananger.StopSong();
         }
     }
 }

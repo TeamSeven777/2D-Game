@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Media;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -34,7 +35,7 @@ namespace _2D_Game
         private RoomManager roomManager;
         public Camera Camera { get; private set; }
         private Minimap minimap;
-        private GameGPS gameGPS;
+        //private GameGPS gameGPS;
         public bool PauseGameOn { get; private set; }
         public bool DialogueMode { get; private set; }
         public IDialogue CurrentDialogue { get; set; }
@@ -78,6 +79,7 @@ namespace _2D_Game
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
             GameAudioManager = new AudioManager(Content);
+            
 
             roomHeight = _spriteBatch.GraphicsDevice.Viewport.Height;
             roomWidth = _spriteBatch.GraphicsDevice.Viewport.Width;
@@ -97,7 +99,7 @@ namespace _2D_Game
 
             player = new DefaultPlayer(startRoomOrigin + middleOfScreen);
             Camera.Follow(player.Position);
-            gameGPS = new GameGPS(player.Position, roomWidth, roomHeight);
+           // gameGPS = new GameGPS(player.Position, roomWidth, roomHeight);
 
 
             ItemInventory.Instance.LoadContent(Content, roomManager.CurrentRoom);
@@ -117,6 +119,7 @@ namespace _2D_Game
             
             // Load dungeon rooms and pass viewport dimensions
             roomManager.LoadDungeon("Content/all_rooms.xml", Content, blockSpriteSheet, roomWidth, roomHeight);
+            Playlist.Instance.ChangeSong(SongName.CozyFire, true);
 
         }
 
@@ -158,7 +161,7 @@ namespace _2D_Game
 
                 RoomCollisionHandler.Instance.Update(gameTime);
                 Camera.Follow(player.Position);
-                gameGPS.Update(player.Position);
+                //gameGPS.Update(player.Position);
                 hitboxMode.Update(gameTime);
             }
             else if (DialogueMode)
