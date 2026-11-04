@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Dungeon>
-  <!-- Starting Room (0, 2) -->
+  <!-- Room 0 (0, 2)  -->
   <Room RoomX="0" RoomY="2">
     <Obstacles>
       <Entity Type="Block" X="150" Y="0" />
@@ -31,7 +31,7 @@
     </Items>
   </Room>
 
-  <!-- Adjacent Room (1, 2) -->
+  <!-- Room 7 (1, 2)-->
   <Room RoomX="1" RoomY="2">
     <Obstacles>
       <Entity Type="Block" X="50" Y="50" />
@@ -46,4 +46,28 @@
     <NPCs />
     <Items />
   </Room>
+	
+	<!--Room 8 (2, 2) -->
+	<Room RoomX="2" RoomY="2">
+	</Room>
+	
+	<!--Room 1 (0, 1) -->
+	<Room RoomX="0" RoomY="1">
+	</Room>
+	<!--Room 6 (1, 1) -->
+	<Room RoomX="1" RoomY="1">
+	</Room>
+	<!--Room 5 (2, 1) -->
+	<Room RoomX="2" RoomY="1">
+	</Room>
+	
+	<!--Room 2 (0, 0) -->
+	<Room RoomX="0" RoomY="0">
+	</Room>
+	<!--Room 3 (1, 0) -->
+	<Room RoomX="1" RoomY="0">
+	</Room>
+	<!--Room 4 (2, 0) -->
+	<Room RoomX="2" RoomY="0">
+	</Room>
 </Dungeon>
