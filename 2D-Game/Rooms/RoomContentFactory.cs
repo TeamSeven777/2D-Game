@@ -1,9 +1,10 @@
-using System;
-using System.Collections.Generic;
 using _2D_Class;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using System;
+using System.Collections.Generic;
+using System.Threading;
 
 namespace _2D_Game
 {
@@ -13,12 +14,9 @@ namespace _2D_Game
         private Texture2D ghostSheet, ghostAttackSheet, mosquitoSheet, spiderSheet;
         private Texture2D teamSheet;
         private readonly Dictionary<string, Texture2D> itemTextures = new(StringComparer.OrdinalIgnoreCase);
-        private Texture2D blockSpriteSheet;
 
         public void LoadContent(ContentManager content, Texture2D blockSheet)
         {
-            blockSpriteSheet = blockSheet;
-
             // Enemy sprite sheets
             ghostSheet = content.Load<Texture2D>("Sprites/Test-Ghost-Melee-Idle-N");
             ghostAttackSheet = content.Load<Texture2D>("Sprites/Test-Ghost-Melee-Attack-N");
@@ -39,7 +37,7 @@ namespace _2D_Game
 
         public IObstacle CreateBlock(string type, Vector2 position)
         {
-            Obstacle block;
+            IObstacle block;
             if (type.Equals("Hurt_Block", StringComparison.OrdinalIgnoreCase))
             {
                 block = new Obstacle(new Vector2(25), position, ObstacleSpriteFactory.Instance.CreateBushSprite(2), true);
@@ -62,6 +60,29 @@ namespace _2D_Game
             }
             else
             {
+                block = new Obstacle(new Vector2(25), position, ObstacleSpriteFactory.Instance.CreateOtherSprite(1));
+            }
+            return block;
+        }
+
+        public IObstacle CreateSpecialBlock(string type, Vector2 position, Room CurRoom)
+        {
+            IObstacle block;
+            if (type.Equals("Destructible_Block", StringComparison.OrdinalIgnoreCase))
+            {
+                block = new DestructibleObstacle(new Vector2(25), position, ObstacleSpriteFactory.Instance.CreateOtherSprite(2), CurRoom);
+            }
+            else if(type.Equals("Sign", StringComparison.OrdinalIgnoreCase))
+            {
+                block = new Sign(new Vector2(25), position, ObstacleSpriteFactory.Instance.CreateOtherSprite(1));
+            }
+            else if(type.Equals("Door", StringComparison.OrdinalIgnoreCase))
+            {
+                block = new Door(new Vector2(25), position, ObstacleSpriteFactory.Instance.CreateDoorSprite());
+            }
+            else
+            {
+                //A Block that does nothing
                 block = new Obstacle(new Vector2(25), position, ObstacleSpriteFactory.Instance.CreateOtherSprite(1));
             }
             return block;

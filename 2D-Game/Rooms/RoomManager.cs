@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
@@ -99,7 +100,16 @@ namespace _2D_Game
             {
                 string type = obsElement.Attribute("Type")?.Value ?? string.Empty;
                 Vector2 worldPos = CalculateWorldPosition(obsElement, rx, ry);
-                Obstacle block = (Obstacle)contentFactory.CreateBlock(type, worldPos);
+                IObstacle block;
+                if (!type.Equals("Block", StringComparison.OrdinalIgnoreCase))
+                {
+                    block = contentFactory.CreateSpecialBlock(type, worldPos, room);
+                    
+                }
+                else
+                {
+                    block = contentFactory.CreateBlock(type, worldPos);
+                }
                 room.Obstacles.Add(block);
             }
         }

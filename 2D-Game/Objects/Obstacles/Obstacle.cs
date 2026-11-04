@@ -8,14 +8,14 @@ using System.Threading.Tasks;
 
 namespace _2D_Game
 {
-    public class Obstacle : IObstacle, IHitboxOwner, IInteractable
+    public class Obstacle : IObstacle, IHitboxOwner
     {
         public IHitbox Hitbox { get; set; }
         public ICollisionHandler CollisionHandler { get; set; }
-        public Vector2 originPos { get; set; }
-        public ISprite sprite { get; set; }
-        private bool isReversed = false;
-        private bool doesDamage = false;
+        public Vector2 OriginPos { get; set; }
+        public ISprite Sprite { get; set; }
+        private bool isDestructible = false;
+        public bool MarkedForRemoval { get; set; }
         private double cooldownTimer = 0.21;
         private const double CooldownDuration = 0.2; // 0.2 seconds (200ms) between switches
 
@@ -27,29 +27,24 @@ namespace _2D_Game
         /// <param name="sprite"></param>
         public Obstacle(Vector2 size, Vector2 originPos, ISprite sprite, bool doesDamage = false)
         {
-            this.originPos = originPos;
-            this.sprite = sprite;
+            this.OriginPos = originPos;
+            this.Sprite = sprite;
+            MarkedForRemoval = false;
+
             if (doesDamage == false)
             {
-                this.Hitbox = new BlockHitBox(new Rectangle(originPos.ToPoint() - size.ToPoint()/2, size.ToPoint()));
+                this.Hitbox = new BlockHitBox(new Rectangle(originPos.ToPoint() - size.ToPoint() / 2, size.ToPoint()));
             }
             else
             {
                 this.Hitbox = new BlockHitBox(new Rectangle(originPos.ToPoint() - size.ToPoint()/2, size.ToPoint()),HitBoxType.HurtBlock);
             }
+
             CollisionHandler = new BlankCollisionHandler();
             RoomCollisionHandler.Instance.Add(this, false);
-            this.doesDamage = doesDamage;
 
         }
 
-     
-
-        public void HandleInteraction() {
-            //interaction testing
-            RoomCollisionHandler.Instance.myGame.CurrentDialogue = DialogueFactory.Instance.CreateBlockDialogue();
-            RoomCollisionHandler.Instance.myGame.HandleDialogue();
-        }
 
         
 
@@ -59,7 +54,7 @@ namespace _2D_Game
         /// <param name="sprbatch"></param>
         public void Draw(SpriteBatch sprbatch)
         {
-            sprite.Draw(sprbatch, originPos);
+            Sprite.Draw(sprbatch, OriginPos);
         }
         /// <summary>
         /// Does nothing for now
