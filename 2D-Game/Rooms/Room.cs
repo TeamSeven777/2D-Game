@@ -18,7 +18,7 @@ namespace _2D_Game
         public Room(Point gridPosition)
         {
             GridPosition = gridPosition;
-            DetermineRoomSongName(gridPosition);
+            DetermineRoomSongName(gridPosition);//TODO maybe just load this in via the xml stuff?
 
         }
         private void DetermineRoomSongName(Point gridPos) {

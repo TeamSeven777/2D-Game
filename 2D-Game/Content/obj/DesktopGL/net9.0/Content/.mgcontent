@@ -25,6 +25,9 @@
     <File>C:/Users/edwei/OneDrive/Documents/GitHub/2D-Game/2D-Game/Content/Music/theDead.wav</File>
     <File>C:/Users/edwei/OneDrive/Documents/GitHub/2D-Game/2D-Game/Content/Music/titleSample1.wav</File>
     <File>C:/Users/edwei/OneDrive/Documents/GitHub/2D-Game/2D-Game/Content/Music/titleTheme.wav</File>
+    <File>C:/Users/edwei/OneDrive/Documents/GitHub/2D-Game/2D-Game/Content/SFX/gunshot-meme.mp3</File>
+    <File>C:/Users/edwei/OneDrive/Documents/GitHub/2D-Game/2D-Game/Content/SFX/gunshottttt.mp3</File>
+    <File>C:/Users/edwei/OneDrive/Documents/GitHub/2D-Game/2D-Game/Content/SFX/test-sfx.mp3</File>
     <File>C:/Users/edwei/OneDrive/Documents/GitHub/2D-Game/2D-Game/Content/Sprites/bushes.png</File>
     <File>C:/Users/edwei/OneDrive/Documents/GitHub/2D-Game/2D-Game/Content/Sprites/enemy-projectiles.png</File>
     <File>C:/Users/edwei/OneDrive/Documents/GitHub/2D-Game/2D-Game/Content/Sprites/LinkSheet.png</File>
@@ -44,6 +47,9 @@
     <File>C:/Users/edwei/OneDrive/Documents/GitHub/2D-Game/2D-Game/Content/Sprites/trees.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

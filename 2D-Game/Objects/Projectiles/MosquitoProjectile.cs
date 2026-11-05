@@ -34,6 +34,7 @@ namespace _2D_Game
             Hitbox = new ProjectileHitBox(new Rectangle((int)Position.X-16, (int)Position.Y-16, 32, 32), HitBoxType.EnemyProjectile);
             RoomCollisionHandler.Instance.Add(this, true);
             ProjectileSprite.Rotation = -(float)(Math.PI / 2) + (float)Math.Atan2(target.Y, target.X);
+            SoundEffectFactory.Instance.PlaySoundEffect(SoundName.MosquitoProjectile, true);
 
         }
 

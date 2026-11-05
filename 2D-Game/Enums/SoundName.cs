@@ -1,0 +1,1 @@
+﻿public enum SoundName { StickSwing, MosquitoProjectile, SpiderProjectile} //add SFX names here

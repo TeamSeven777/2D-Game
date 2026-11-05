@@ -223,6 +223,27 @@
 /processorParam:Version=3.8.5.0
 /build:Music/titleTheme.wav
 
+#begin SFX/gunshot-meme.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/processorParam:Version=3.8.5.0
+/build:SFX/gunshot-meme.mp3
+
+#begin SFX/gunshottttt.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/processorParam:Version=3.8.5.0
+/build:SFX/gunshottttt.mp3
+
+#begin SFX/test-sfx.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/processorParam:Version=3.8.5.0
+/build:SFX/test-sfx.mp3
+
 #begin Sprites/bushes.png
 /importer:TextureImporter
 /processor:TextureProcessor

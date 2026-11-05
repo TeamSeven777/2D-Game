@@ -46,18 +46,18 @@ namespace _2D_Game
         public void StopSong() { 
             MediaPlayer.Stop();
         }
-        public void PlaySoundEffect(SoundEffect soundEffect) 
+        public void PlaySoundEffect(SoundEffect soundEffect, bool canOverlap) 
         { 
             //play sound effect (also handle duplicate sfx in some way (don't play again if already playing?
             SoundEffectInstance soundEffectInstance = soundEffect.CreateInstance();
-            if (!activeSoundEffectInstances.Contains(soundEffectInstance))
+            if (activeSoundEffectInstances.Contains(soundEffectInstance) && !canOverlap)
             {
-                //don't play sound if already playing?
+                //don't play sound if cannot overlap with already existing instance
             }
-            else 
+            else //play soundeffect
             {
                 soundEffectInstance.Play();
-                activeSoundEffectInstances.Add(soundEffectInstance);
+                if(!activeSoundEffectInstances.Contains(soundEffectInstance))activeSoundEffectInstances.Add(soundEffectInstance);
             }
         }
 
