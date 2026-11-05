@@ -33,7 +33,7 @@ namespace _2D_Game
 
         public override void Use()
         {
-            ItemInventory.Instance.Add("LogItem", 1);
+            ItemInventory.Instance.Add(this, 1);
             if (CurrentStack > 0) CurrentStack--;
         }
     }
@@ -57,7 +57,7 @@ namespace _2D_Game
 
         public override void Use()
         {
-            ItemInventory.Instance.Add("KeyItem", 1);
+            ItemInventory.Instance.Add(this, 1);
             if (CurrentStack > 0) CurrentStack--;
         }
     }

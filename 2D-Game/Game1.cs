@@ -34,6 +34,7 @@ namespace _2D_Game
         private RoomManager roomManager;
         public Camera Camera { get; private set; }
         private Minimap minimap;
+        private Hotbar hotbar;
         public bool PauseGameOn { get; private set; }
         public bool DialogueMode { get; private set; }
         public IDialogue CurrentDialogue { get; set; }
@@ -79,6 +80,7 @@ namespace _2D_Game
             roomWidth = _spriteBatch.GraphicsDevice.Viewport.Width;
             middleOfScreen = new Vector2(roomWidth / 2, roomHeight / 2);
             minimap = new Minimap(GraphicsDevice, new Point(10, 10), 60, roomWidth, roomHeight);
+            
             worldWidth = roomWidth * 3;
             worldHeight = roomHeight * 3;
             Vector2 startRoomOrigin = new Vector2(0, worldHeight - roomHeight);
@@ -95,7 +97,10 @@ namespace _2D_Game
 
 
             ItemInventory.Instance.LoadContent(Content, roomManager.CurrentRoom);
-            
+
+            //This MUST load after item inventory due to current implementation
+            hotbar = new Hotbar(GraphicsDevice, new Point(GraphicsDevice.Viewport.Width / 2 - 175, 620), 50);
+
             Enemies.LoadContent(Content, startRoomOrigin);
 
             boundaries.Add(new Boundary(new Vector2(0, 0), new Vector2(0, worldHeight)));                      // left
@@ -198,6 +203,7 @@ namespace _2D_Game
 
             _spriteBatch.Begin(samplerState: SamplerState.PointClamp);
             minimap.Draw(_spriteBatch, player.Position);
+            hotbar.Draw(_spriteBatch, player.Position);
             CurrentDialogue.Draw(_spriteBatch, new Vector2(middleOfScreen.X, middleOfScreen.Y+roomHeight/4)); //draw 3/4 down screen in middle
             _spriteBatch.End();
 

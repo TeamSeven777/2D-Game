@@ -13,7 +13,9 @@ namespace _2D_Game
         // Assets
         private Texture2D ghostSheet, ghostAttackSheet, mosquitoSheet, spiderSheet;
         private Texture2D teamSheet;
-        private readonly Dictionary<string, Texture2D> itemTextures = new(StringComparer.OrdinalIgnoreCase);
+        private Texture2D itemSheet;
+        private readonly Dictionary<string, Rectangle> itemTextureIInfo = new(StringComparer.OrdinalIgnoreCase);
+
 
         public void LoadContent(ContentManager content, Texture2D blockSheet)
         {
@@ -27,12 +29,20 @@ namespace _2D_Game
             teamSheet = content.Load<Texture2D>("Sprites/TeamIdles-Sheet");
 
             // Item textures (lookup dictionary)
-            itemTextures["Berry"] = content.Load<Texture2D>("Images/Berry2");
-            itemTextures["Explosive"] = content.Load<Texture2D>("Images/Explosive2");
-            itemTextures["Log"] = content.Load<Texture2D>("Images/Log2");
-            itemTextures["Key"] = content.Load<Texture2D>("Images/Key2");
-            itemTextures["Pebble"] = content.Load<Texture2D>("Images/Pebble2");
-            itemTextures["SpeedShoes"] = content.Load<Texture2D>("Images/speedshoe");
+            itemSheet = content.Load<Texture2D>("Sprites/itemsheet2");
+            Point itemSize = new Point(32, 32);
+            Point itemPos = new Point(0, 0);
+            itemTextureIInfo["Berry"] = new Rectangle(itemPos, itemSize);
+            itemPos.X += 32;
+            itemTextureIInfo["Explosive"] = new Rectangle(itemPos, itemSize);
+            itemPos.X += 32;
+            itemTextureIInfo["Log"] = new Rectangle(itemPos, itemSize);
+            itemPos.X += 32;
+            itemTextureIInfo["Key"] = new Rectangle(itemPos, itemSize);
+            itemPos.X += 32;
+            itemTextureIInfo["Pebble"] = new Rectangle(itemPos, itemSize);
+            itemPos.X += 32;
+            itemTextureIInfo["SpeedShoes"] = new Rectangle(itemPos, itemSize);
         }
 
         public IObstacle CreateBlock(string type, Vector2 position)
@@ -151,22 +161,20 @@ namespace _2D_Game
         public IItem CreateItem(string type)
         {
             // safety check in case you try to load an item whose texture isn't in the itemTextures dictionary
-            if (!itemTextures.TryGetValue(type, out Texture2D texture) || texture == null)
+            if (itemSheet == null)
             {
                 System.Diagnostics.Debug.WriteLine($"[Warning] Missing texture for item type: '{type}'");
                 return null; 
             }
 
-            Sprite sprite = new(texture, new Rectangle(0, 0, texture.Width, texture.Height));
-
             return type switch
             {
-                "Berry" => new BerryItem(sprite),
-                "Explosive" => new ExplosiveItem(sprite),
-                "Log" => new LogItem(sprite),
-                "Key" => new KeyItem(sprite),
-                "Pebble" => new PebbleItem(sprite),
-                "SpeedShoes" => new SpeedItem(sprite),
+                "Berry" => new BerryItem(new Sprite(itemSheet, itemTextureIInfo["Berry"])),
+                "Explosive" => new ExplosiveItem(new Sprite(itemSheet, itemTextureIInfo["Explosive"])),
+                "Log" => new LogItem(new Sprite(itemSheet, itemTextureIInfo["Log"])),
+                "Key" => new KeyItem(new Sprite(itemSheet, itemTextureIInfo["Key"])),
+                "Pebble" => new PebbleItem(new Sprite(itemSheet, itemTextureIInfo["Pebble"])),
+                "SpeedShoes" => new SpeedItem(new Sprite(itemSheet, itemTextureIInfo["SpeedShoes"])),
                 _ => null // Unknown type returns null
             };
         }
