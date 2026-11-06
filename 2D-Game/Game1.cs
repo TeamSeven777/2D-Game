@@ -99,7 +99,7 @@ namespace _2D_Game
             ItemInventory.Instance.LoadContent(Content, roomManager.CurrentRoom);
 
             //This MUST load after item inventory due to current implementation
-            hotbar = new Hotbar(GraphicsDevice, new Point(GraphicsDevice.Viewport.Width / 2 - 175, 620), 50);
+            hotbar = new Hotbar(GraphicsDevice, new Point(GraphicsDevice.Viewport.Width / 2 - 175, 620), new Point(GraphicsDevice.Viewport.Width/2 - 480, 620), 50);
 
             Enemies.LoadContent(Content, startRoomOrigin);
 

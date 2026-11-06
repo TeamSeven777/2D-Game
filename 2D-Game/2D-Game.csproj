@@ -15,6 +15,9 @@
     <None Remove="Icon.bmp" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="bin\Debug\net9.0\Content\all_rooms.xml" />
+  </ItemGroup>
+  <ItemGroup>
     <EmbeddedResource Include="Icon.ico">
       <LogicalName>Icon.ico</LogicalName>
     </EmbeddedResource>

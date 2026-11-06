@@ -10,7 +10,7 @@ namespace _2D_Game
     public class WeaponInventory
     {
         //Weapon, then Ammo
-        private readonly Dictionary<Tool, int> Weapons = new();
+        private Dictionary<Tool, int> Weapons = new();
         private readonly List<Tool> SelectedWeapon = new();
         private int currentIndex;
 
@@ -90,5 +90,15 @@ namespace _2D_Game
             return SelectedWeapon[currentIndex];
         }
 
+        public List<Tool> GetKeys()
+        {
+            List<Tool> keys = new List<Tool>();
+            foreach (Tool x in Weapons.Keys)
+            {
+                keys.Add(x);
+            }
+
+            return keys;
+        }
     }
 }
