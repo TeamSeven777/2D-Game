@@ -45,6 +45,15 @@ namespace _2D_Game
                 RegisterCommand(Keys.OemMinus, new DecreaseSongVolumeCommand(myGame));
                 RegisterCommand(Keys.OemPlus, new IncreaseSongVolumeCommand(myGame));
             }
+            else if (controllerMode == ControllerMode.EndMode)
+            {
+                RegisterCommand(Keys.Q, new QuitCommand(myGame));
+                RegisterCommand(Keys.R, new ResetCommand(myGame));
+            }
+            else if (controllerMode == ControllerMode.StartMode)
+            {
+                RegisterCommand(Keys.X, new StartGameCommand(myGame));
+            }
             else if (controllerMode == ControllerMode.DialogueMode)
             {
                 RegisterCommand(Keys.Space, new NextDialogueCommand(myGame));

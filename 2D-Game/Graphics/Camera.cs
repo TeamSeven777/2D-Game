@@ -5,7 +5,7 @@ namespace _2D_Game
     public class Camera
     {
         private readonly int viewWidth, viewHeight;
-        private readonly int worldWidth, worldHeight;
+        private Rectangle bounds; // the area the camera is allowed to show
 
         // Top-left corner of the camera in world coordinates
         public Vector2 Position { get; private set; }
@@ -17,8 +17,14 @@ namespace _2D_Game
         {
             this.viewWidth = viewWidth;
             this.viewHeight = viewHeight;
-            this.worldWidth = worldWidth;
-            this.worldHeight = worldHeight;
+            bounds = new Rectangle(0, 0,
+                worldWidth, worldHeight);
+        }
+
+        // A one-screen area leaves the camera nowhere to scroll, so it stays still
+        public void SetBounds(Rectangle newBounds)
+        {
+            bounds = newBounds;
         }
 
         // Call once per frame (in Update) with the point to center on, e.g. the player's center
@@ -28,8 +34,8 @@ namespace _2D_Game
             float y = target.Y - viewHeight / 2f;
 
             // Don't scroll past the world edges
-            x = MathHelper.Clamp(x, 0, worldWidth - viewWidth);
-            y = MathHelper.Clamp(y, 0, worldHeight - viewHeight);
+            x = MathHelper.Clamp(x, bounds.Left, bounds.Right - viewWidth);
+            y = MathHelper.Clamp(y, bounds.Top, bounds.Bottom - viewHeight);
 
             Position = new Vector2(x, y);
             Transform = Matrix.CreateTranslation(-x, -y, 0);
