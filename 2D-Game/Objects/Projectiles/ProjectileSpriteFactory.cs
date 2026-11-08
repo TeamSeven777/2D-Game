@@ -16,8 +16,7 @@ namespace _2D_Game
         private Texture2D ExplosionSprites;
         private AnimatedSprite Explosion;
         private Animation ExplosionAnimation;
-        private Texture2D stick;
-        private int spriteSize = 64 * 64; //for player
+        // spriteSize = 64 * 64; //reference for player
         private TimeSpan FrameDelay;
 
         private static ProjectileSpriteFactory instance = new ProjectileSpriteFactory();

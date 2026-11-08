@@ -36,7 +36,7 @@
     <Obstacles>
       <Entity Type="Block" X="50" Y="50" />
       <Entity Type="Block" X="75" Y="50" />
-	    <Entity Type="Hurt_Block" X="100" Y="100" />
+	  <Entity Type="Hurt_Block" X="100" Y="100" />
       <Entity Type="Tree1" X="300" Y="300" />
       <Entity Type="Tree2" X="600" Y="100" />
     </Obstacles>
@@ -46,10 +46,7 @@
     <NPCs />
     <Items />
   </Room>
-	
-	<!--Room 8 (2, 2) -->
-	<Room RoomX="2" RoomY="2">
-	</Room>
+
 	
 	<!--Room 1 (0, 1) -->
 	<Room RoomX="0" RoomY="1">
@@ -70,4 +67,16 @@
 	<!--Room 4 (2, 0) -->
 	<Room RoomX="2" RoomY="0">
 	</Room>
+  
+  <!-- Bottom Right Room (2,2) -->
+  <Room RoomX="2" RoomY="2">
+	<Obstacles>
+		<Entity Type="Destructible_Block" X="100" Y="150"/>
+		<Entity Type="Door" X="150" Y="150"/>
+	</Obstacles>
+	<Enemies/>
+	<NPCs/>
+	<Items/>
+  </Room>
+
 </Dungeon>

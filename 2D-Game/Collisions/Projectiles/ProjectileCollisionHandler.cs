@@ -31,6 +31,13 @@ namespace _2D_Game
                     if (collider.Type == HitBoxType.Block)
                         EnemyProjectileHandler.Instance.Remove();
                 }
+                if(projectile.Hitbox.Type == HitBoxType.Explosion)
+                {
+                    if(collider.Type == HitBoxType.DestructibleBlock)
+                    {
+                        RoomCollisionHandler.Instance.Remove(hbOwner);
+                    }
+                }
             }
         }
     }

@@ -11,10 +11,14 @@ namespace _2D_Game
 {
     public interface IObstacle
     {
-        public Vector2 originPos { get; set; }
-        public ISprite sprite { get; set; }
+        public Vector2 OriginPos { get; set; }
+        public ISprite Sprite { get; set; }
+        public bool MarkedForRemoval { get; set; }
+
 
         public void Update(GameTime gameTime);
+
+        public void Draw(SpriteBatch sprbatch);
 
     }
 }

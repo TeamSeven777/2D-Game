@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
@@ -10,10 +11,11 @@ namespace _2D_Game
 {
     public class Boundary : IObstacle, IHitboxOwner
 {
-        public ISprite sprite { get; set; }
-        public Vector2 originPos {get; set;}
+        public ISprite Sprite { get; set; }
+        public Vector2 OriginPos {get; set;}
         public Vector2 destinationPos { get; set;}
         public IHitbox Hitbox { get; set; }
+        public bool MarkedForRemoval { get; set; }
         public ICollisionHandler CollisionHandler { get; set; }
 
         /// <summary>
@@ -23,11 +25,11 @@ namespace _2D_Game
         /// <param name="bottomRightCorner"></param>
         public Boundary(Vector2 topLeftCorner, Vector2 bottomRightCorner)
         {
-            originPos = topLeftCorner;
+            OriginPos = topLeftCorner;
             destinationPos = bottomRightCorner;
-            Hitbox = new BlockHitBox(new Rectangle(originPos.ToPoint(), destinationPos.ToPoint()));
+            Hitbox = new BlockHitBox(new Rectangle(OriginPos.ToPoint(), destinationPos.ToPoint()));
             CollisionHandler = new BlankCollisionHandler();
-            sprite = null;
+            Sprite = null;
             RoomCollisionHandler.Instance.Add(this, false);
         }
 
@@ -40,10 +42,10 @@ namespace _2D_Game
         /// <param name="texture"></param>
         public Boundary(Vector2 topLeftCorner, Vector2 bottomRightCorner, Texture2D texture)
         {
-            sprite = new Sprite(texture, topLeftCorner, bottomRightCorner, Color.White);
-            originPos = topLeftCorner;
+            Sprite = new Sprite(texture, topLeftCorner, bottomRightCorner, Color.White);
+            OriginPos = topLeftCorner;
             destinationPos = bottomRightCorner;
-            Hitbox = new BlockHitBox(new Rectangle(originPos.ToPoint(), destinationPos.ToPoint()));
+            Hitbox = new BlockHitBox(new Rectangle(OriginPos.ToPoint(), destinationPos.ToPoint()));
             CollisionHandler = new BlankCollisionHandler();
             RoomCollisionHandler.Instance.Add(this, false);
         }
@@ -54,7 +56,7 @@ namespace _2D_Game
         }
         public void Draw(SpriteBatch sprbatch)
         {
-            if(sprite!=null)sprite.Draw(sprbatch, originPos);
+            if(Sprite!=null)Sprite.Draw(sprbatch, OriginPos);
         }
 
     }

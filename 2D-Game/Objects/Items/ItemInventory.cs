@@ -7,8 +7,8 @@ namespace _2D_Game
 {
     public class ItemInventory
     {
-        private readonly Dictionary<IItem, int> items = new Dictionary<IItem, int>();
-        private int currentIndex = 0;
+        private readonly Dictionary<string, int> items = new Dictionary<string, int>();
+        //private int currentIndex = 0;
         private Room roomRef;
         public static ItemInventory instance = new ItemInventory();
         // Cooldown vars
@@ -23,11 +23,14 @@ namespace _2D_Game
             roomRef = room;
             // Add all items to base inventory here
             // For sprint 3, start player with one of each object:
-            items.Add(new LogItem(new Sprite(content.Load<Texture2D>("Images/Log2"))),99);
-            items.Add(new BerryItem(new Sprite(content.Load<Texture2D>("Images/Berry2"))),99);
-            items.Add(new KeyItem(new Sprite(content.Load<Texture2D>("Images/Key2"))),99);
-            items.Add(new ExplosiveItem(new Sprite(content.Load<Texture2D>("Images/Explosive2"))),99);
-            items.Add(new PebbleItem(new Sprite(content.Load<Texture2D>("Images/Pebble2"))),99);
+            if (items.Count == 0)
+            {
+                items.Add("LogItem", 99);
+                items.Add("BerryItem", 99);
+                items.Add("KeyItem", 99);
+                items.Add("ExplosiveItem", 99);
+                items.Add("PebbleItem", 99);
+            }
         }
 
         public void Update(GameTime gameTime, Room room)
@@ -39,7 +42,7 @@ namespace _2D_Game
             }
         }
 
-        public void Add(IItem item, int amount)
+        public void Add(string item, int amount)
         {
             if (!items.ContainsKey(item))
                 items.Add(item, amount);
@@ -47,9 +50,24 @@ namespace _2D_Game
                 items[item] += amount;
         }
 
-        public void Remove(IItem item)
+        public void Remove(string item, int amount)
         {
-            items.Remove(item);
+            if (items[item] - amount >= 0)
+            {
+                items[item] = items[item] - amount;
+            }
+            else
+            {
+                items[item] = 0;
+            }
+        }
+
+        public int GetItemCount(string item)
+        {
+            if (items.ContainsKey(item))
+                return items[item];
+            else
+                return 0;
         }
 
         public void RemoveFromWorld(WorldItem worldItem)
@@ -58,21 +76,6 @@ namespace _2D_Game
                 roomRef.Items.Remove(worldItem);
         }
 
-        public void Next()
-        {
-            if (items.Count == 0 || cooldownTimer > 0) return;
-            
-            currentIndex = (currentIndex + 1) % items.Count;
-            cooldownTimer = CooldownDuration; // Reset timer
-        }
-
-        public void Previous()
-        {
-            if (items.Count == 0 || cooldownTimer > 0) return;
-
-            currentIndex = (currentIndex - 1 + items.Count) % items.Count;
-            cooldownTimer = CooldownDuration; // Reset timer
-        }
 
     }
 }
