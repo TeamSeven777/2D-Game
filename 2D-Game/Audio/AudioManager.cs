@@ -29,8 +29,8 @@ namespace _2D_Game
             activeSoundEffectInstances = new List<SoundEffectInstance>();
             Playlist.Instance.LoadSongs(content, this);
             SoundEffectFactory.Instance.LoadSFX(content, this);
-            songVolume = 1f;
-            previousSongVolume = 1f;
+            songVolume = .5f;
+            previousSongVolume = songVolume;
 
         }
         public void PlaySong(Song song, bool loops)
@@ -43,7 +43,8 @@ namespace _2D_Game
             }
             MediaPlayer.IsRepeating = loops;
         }
-        public void StopSong() { 
+        public void StopSong() {
+            currentSong = null;
             MediaPlayer.Stop();
         }
         public void PlaySoundEffect(SoundEffect soundEffect, bool canOverlap) 
