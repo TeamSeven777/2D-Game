@@ -22,6 +22,7 @@ namespace _2D_Game
 
         // Abstract so subclasses (specific item types) can define custom behavior
         public abstract void Use();
+        public abstract void Collect();
     }
 
 // Specific item subclasses:
@@ -31,10 +32,14 @@ namespace _2D_Game
     {
         public LogItem(Sprite icon) : base("Log", icon, 99) { }
 
-        public override void Use()
+        public override void Collect()
         {
             ItemInventory.Instance.Add(this, 1);
-            if (CurrentStack > 0) CurrentStack--;
+        }
+
+        public override void Use()
+        {
+            ItemInventory.Instance.Remove("Log", 1);
         }
     }
 
@@ -42,23 +47,29 @@ namespace _2D_Game
     public class BerryItem : Item
     {
         public BerryItem(Sprite icon) : base("Berry", icon, 99) { }
-
+        public override void Collect()
+        {
+            ItemInventory.Instance.Add(this, 1);
+        }
         public override void Use()
         {
             DefaultPlayer.Instance.Health = DefaultPlayer.Instance.MaxHealth;
-            if (CurrentStack > 0) CurrentStack--;
+            ItemInventory.Instance.Remove("Berry", 1);
         }
+        
     }
 
     // Key
     public class KeyItem : Item
     {
         public KeyItem(Sprite icon) : base("Key", icon, 99) { }
-
-        public override void Use()
+        public override void Collect()
         {
             ItemInventory.Instance.Add(this, 1);
-            if (CurrentStack > 0) CurrentStack--;
+        }
+        public override void Use()
+        {
+            ItemInventory.Instance.Remove("Key", 1);
         }
     }
 
@@ -66,11 +77,15 @@ namespace _2D_Game
     public class ExplosiveItem : Item
     {
         public ExplosiveItem(Sprite icon) : base("Explosive", icon, 99) { }
-
-        public override void Use()
+        public override void Collect()
         {
             WeaponInventory.Instance.AddAmmo(Tool.Dynamite, 10);
-            if (CurrentStack > 0) CurrentStack--;
+        }
+        public override void Use()
+        {
+            // TODO: removes whole tool, change WeaponInventory to subtract 1 ammo instead
+            WeaponInventory.Instance.Remove(Tool.Dynamite);
+
         }
     }
 
@@ -78,22 +93,27 @@ namespace _2D_Game
     public class PebbleItem : Item
     {
         public PebbleItem(Sprite icon) : base("Pebble", icon, 99) { }
-
-        public override void Use()
+        public override void Collect()
         {
             WeaponInventory.Instance.AddAmmo(Tool.Slingshot,10);
-            if (CurrentStack > 0) CurrentStack--;
+        }
+        public override void Use()
+        {
+            // TODO: removes whole tool, change WeaponInventory to subtract 1 ammo instead
+            WeaponInventory.Instance.Remove(Tool.Slingshot);
         }
     }
 
     public class SpeedItem : Item
     {
         public SpeedItem(Sprite icon) : base("SpeedShoe", icon, 99) { }
-
-        public override void Use()
+        public override void Collect()
         {
             DefaultPlayer.Instance.WalkSpeed += 2;
-            if (CurrentStack > 0) CurrentStack--;
+        }
+        public override void Use()
+        {
+            throw new System.NotImplementedException();
         }
     }
 

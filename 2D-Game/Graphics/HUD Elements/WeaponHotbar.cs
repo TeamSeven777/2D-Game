@@ -15,15 +15,20 @@ namespace _2D_Game
         
         private readonly Texture2D slotTexture;
         private readonly Texture2D selectionTexture;
+        private readonly SpriteFont font;
         private readonly Texture2D pixel;
         
-        private List<Tuple<ISprite, Tool>> weaponsToDraw;
-        private int selectedWeaponIndex = 0;
         private double cooldownTimer = 0;
         private const double CooldownDuration = 0.2;
-        private const int TotalSlots = 3;
 
-        public WeaponHotbar(GraphicsDevice device, Point position, int cellWidth, Texture2D slotTexture = null, Texture2D selectionTexture = null, float slotSpacing = 4f)
+        public WeaponHotbar(
+            GraphicsDevice device, 
+            Point position, 
+            int cellWidth, 
+            SpriteFont font,
+            Texture2D slotTexture = null, 
+            Texture2D selectionTexture = null, 
+            float slotSpacing = 4f)
         {
             this.position = position;
             this.cellWidth = cellWidth;
@@ -31,44 +36,37 @@ namespace _2D_Game
             this.slotSpacing = slotSpacing;
             this.slotTexture = slotTexture;
             this.selectionTexture = selectionTexture;
+            this.font = font;
 
             pixel = new Texture2D(device, 1, 1);
             pixel.SetData(new[] { Color.White });
-
-            weaponsToDraw = new List<Tuple<ISprite, Tool>>
-            {
-                new Tuple<ISprite, Tool>(ProjectileSpriteFactory.Instance.CreatePlayerProjectile(Tool.Slingshot), Tool.Slingshot),
-                new Tuple<ISprite, Tool>(ProjectileSpriteFactory.Instance.CreatePlayerProjectile(Tool.Boomerang), Tool.Boomerang),
-                new Tuple<ISprite, Tool>(ProjectileSpriteFactory.Instance.CreatePlayerProjectile(Tool.Dynamite), Tool.Dynamite)
-            };
         }
 
         public void Update(GameTime gameTime)
         {
             if (cooldownTimer > 0)
                 cooldownTimer -= gameTime.ElapsedGameTime.TotalSeconds;
-
-            // Optional weapon-specific navigation controls if desired
         }
 
         public void Next()
         {
-            if (cooldownTimer > 0) return;
-            selectedWeaponIndex = (selectedWeaponIndex + 1) % TotalSlots;
-            cooldownTimer = CooldownDuration;
+            WeaponInventory.Instance.Next();
         }
 
         public void Previous()
         {
-            if (cooldownTimer > 0) return;
-            selectedWeaponIndex = (selectedWeaponIndex - 1 + TotalSlots) % TotalSlots;
-            cooldownTimer = CooldownDuration;
+            WeaponInventory.Instance.Previous();
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            for (int i = 0; i < TotalSlots; i++)
+            var inventory = WeaponInventory.Instance;
+            List<Tool> weapons = inventory.GetKeys();
+            Tool selectedWeapon = inventory.GetTop();
+
+            for (int i = 0; i < weapons.Count; i++)
             {
+                Tool currentTool = weapons[i];
                 Vector2 slotPos = new Vector2(
                     position.X + (i * (cellWidth + slotSpacing)), 
                     position.Y
@@ -76,14 +74,17 @@ namespace _2D_Game
 
                 Rectangle rect = new Rectangle((int)slotPos.X, (int)slotPos.Y, cellWidth, cellHeight);
 
-                // Background + selection state
-                bool isSelected = (i < weaponsToDraw.Count && weaponsToDraw[i].Item2 == WeaponInventory.Instance.GetTop());
-                
+                // Determine if this slot is currently selected
+                bool isSelected = (currentTool == selectedWeapon);
+
+                // Draw Slot Background & Selection Highlight
                 if (slotTexture != null)
                 {
                     spriteBatch.Draw(slotTexture, rect, Color.White);
                     if (isSelected && selectionTexture != null)
+                    {
                         spriteBatch.Draw(selectionTexture, rect, Color.Yellow * 0.8f);
+                    }
                 }
                 else
                 {
@@ -91,11 +92,26 @@ namespace _2D_Game
                     spriteBatch.Draw(pixel, rect, fillColor);
                 }
 
-                // Draw weapon sprite icon
-                if (i < weaponsToDraw.Count)
+                // Draw Weapon Projectile Sprite Icon
+                ISprite weaponSprite = ProjectileSpriteFactory.Instance.CreatePlayerProjectile(currentTool);
+                if (weaponSprite != null)
                 {
                     Vector2 drawCenter = slotPos + new Vector2(cellWidth / 2f, cellHeight / 2f);
-                    weaponsToDraw[i].Item1.Draw(spriteBatch, drawCenter);
+                    weaponSprite.Draw(spriteBatch, drawCenter);
+                }
+
+                // Draw Ammo Count / Stack Display
+                if (font != null)
+                {
+                    int ammo = inventory.GetAmmo(currentTool);
+                    string ammoText = (ammo == int.MaxValue) ? "inf" : ammo.ToString();
+
+                    // Only draw count if ammo is greater than 1 or infinite
+                    if (ammo > 1 || ammo == int.MaxValue)
+                    {
+                        Vector2 textPosition = slotPos + new Vector2(cellWidth - 18, cellHeight - 22);
+                        spriteBatch.DrawString(font, ammoText, textPosition, Color.White);
+                    }
                 }
             }
         }

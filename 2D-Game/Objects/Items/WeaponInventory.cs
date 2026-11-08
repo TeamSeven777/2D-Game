@@ -30,9 +30,9 @@ namespace _2D_Game
         {
             if (Weapons.Count <= 0)
             {
-                Weapons.Add(Tool.Slingshot, int.MaxValue);
+                Weapons.Add(Tool.Slingshot, 5);
                 Weapons.Add(Tool.Boomerang, int.MaxValue);
-                Weapons.Add(Tool.Dynamite, int.MaxValue);
+                Weapons.Add(Tool.Dynamite, 0);
             }
             if (SelectedWeapon.Count <= 0)
             {
@@ -60,6 +60,15 @@ namespace _2D_Game
         public void AddAmmo(Tool tool, int ammo)
         {
             Weapons[tool] += ammo;
+        }
+
+        public int GetAmmo(Tool tool)
+        {
+            if (Weapons.ContainsKey(tool))
+            {
+                return Weapons[tool];
+            }
+            return 0;
         }
 
         public void Remove(Tool tool)

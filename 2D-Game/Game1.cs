@@ -103,7 +103,7 @@ namespace _2D_Game
             highlightSlot = Content.Load<Texture2D>("Images/HighlightUIBig");
             SpriteFont spriteFont = Content.Load<SpriteFont>("Fonts/pixelFont");
 
-            weaponHotbar = new WeaponHotbar(GraphicsDevice,  new Point(GraphicsDevice.Viewport.Width / 2 - 480, 620), 48);
+            weaponHotbar = new WeaponHotbar(GraphicsDevice,  new Point(GraphicsDevice.Viewport.Width / 2 - 480, 620), 48, spriteFont);
             itemHotbar = new ItemHotbar(GraphicsDevice, new Point(GraphicsDevice.Viewport.Width/2 - 175, 620), 48, 7, inventorySlot, highlightSlot, spriteFont);
 
             Enemies.LoadContent(Content, startRoomOrigin);

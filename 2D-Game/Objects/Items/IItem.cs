@@ -12,6 +12,7 @@ namespace _2D_Game
         int CurrentStack { get; set; }
 
         void Use();
+        void Collect();
 
     }
 }
