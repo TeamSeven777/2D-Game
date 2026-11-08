@@ -93,7 +93,7 @@ namespace _2D_Game
         /// </summary>
         public void Deactivate() { 
             foreach (var e in Enemies) e.Unload();
-            Playlist.Instance.ChangeSong(RoomSongName, true); //RoomSongName should be an empty string (no song will play)
+            Playlist.Instance.ChangeSong(SongName.NONE, true); 
         }
 
         //TODO music changing methods         
