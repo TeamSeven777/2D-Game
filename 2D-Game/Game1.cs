@@ -38,6 +38,10 @@ namespace _2D_Game
         private Texture2D startScreen;
         private Texture2D endScreen;
         private SpriteFont hudFont;
+        private Texture2D bogBackground;
+        private Rectangle bogArea;
+        private Rectangle bogEntrance; //walking into this on the main map teleports the player
+        public bool InBog { get; private set; }
         public const int LogsNeeded = 7;
         public int LogsInFire { get; private set; }
         public bool PauseGameOn { get; private set; }
@@ -70,6 +74,7 @@ namespace _2D_Game
             controllers = new Dictionary<string, IController>();
             State = GameState.Start;
             LogsInFire = 0;
+            InBog = false;
             controllers.Add(controllerNames[0], new KeyboardController(this, ControllerMode.StartMode));
             controllers.Add(controllerNames[1], new GamePadController(PlayerIndex.One, this));
             controllers.Add(controllerNames[2], new MouseController(this));
@@ -94,6 +99,7 @@ namespace _2D_Game
             startScreen = Content.Load<Texture2D>("Images/startScreen");
             endScreen = Content.Load<Texture2D>("Images/endScreen");
             hudFont = Content.Load<SpriteFont>("Fonts/pixelFont");
+            bogBackground = Content.Load<Texture2D>("Images/bog");
             Camera = new Camera(roomWidth, roomHeight, worldWidth, worldHeight);
 
             PlayerSpriteFactory.Instance.LoadTextures(Content);
@@ -113,6 +119,16 @@ namespace _2D_Game
             boundaries.Add(new Boundary(new Vector2(worldWidth, 0), new Vector2(worldWidth, worldHeight)));    // right
             boundaries.Add(new Boundary(new Vector2(0, 0), new Vector2(worldWidth, 0)));                       // up
             boundaries.Add(new Boundary(new Vector2(0, worldHeight), new Vector2(worldWidth, worldHeight)));   // down
+            // Room (4,4) is clear of the oversized right and bottom main map walls
+            bogArea = new Rectangle(4 * roomWidth, 4 * roomHeight, roomWidth, roomHeight);
+            bogEntrance = new Rectangle(worldWidth / 2 - 150, 0, 300, 100); //grass above the top center path
+
+            int wall = 32; //the second Boundary argument is a width and height
+            boundaries.Add(new Boundary(new Vector2(bogArea.Left - wall, bogArea.Top - wall), new Vector2(bogArea.Width + wall * 2, wall)));   // up
+            boundaries.Add(new Boundary(new Vector2(bogArea.Left - wall, bogArea.Bottom), new Vector2(bogArea.Width + wall * 2, wall)));       // down
+            boundaries.Add(new Boundary(new Vector2(bogArea.Left - wall, bogArea.Top), new Vector2(wall, bogArea.Height)));                    // left
+            boundaries.Add(new Boundary(new Vector2(bogArea.Right, bogArea.Top), new Vector2(wall, bogArea.Height)));                          // right
+
             PlayerProjectileHandler.Instance.Initialize(ref player);
             EnemyProjectileHandler.Instance.Initialize(ref Enemies, ref player);
           
@@ -152,13 +168,15 @@ namespace _2D_Game
             }
             if (!PauseGameOn && !DialogueMode) //disable certain updates on Pause. //TODO have another check to determine whether this is due to dialogue or a menu, and update accordingly
             {
-                if (IsActive && minimap.TryGetClickedRoomCenter(out Vector2 roomCenter))
+                if (IsActive && !InBog && minimap.TryGetClickedRoomCenter(out Vector2 roomCenter))
                 {
                     player.Teleport(roomCenter);
                     Camera.Follow(player.Position);
                 }
 
             player.Update(gameTime);
+            if (InBog) CheckBogExits();
+            else if (bogEntrance.Contains(player.Position.ToPoint())) EnterBog();
             roomManager.Update(gameTime, player.Position);
             PlayerProjectileHandler.Instance.Update(gameTime);
             WeaponInventory.Instance.Update(gameTime);
@@ -207,6 +225,7 @@ namespace _2D_Game
              // World: scrolls with the camera
             _spriteBatch.Begin(samplerState: SamplerState.PointClamp, transformMatrix: Camera.Transform);
             _spriteBatch.Draw(background, new Rectangle(0, 0, worldWidth, worldHeight), Color.White);
+            _spriteBatch.Draw(bogBackground, bogArea, Color.White);
 
             //Everything we are drawing
             
@@ -232,7 +251,7 @@ namespace _2D_Game
             _spriteBatch.End();
 
             _spriteBatch.Begin(samplerState: SamplerState.PointClamp);
-            minimap.Draw(_spriteBatch, player.Position);
+            if (!InBog) minimap.Draw(_spriteBatch, player.Position); //the minimap only covers the main 3x3 map
             CurrentDialogue.Draw(_spriteBatch, new Vector2(middleOfScreen.X, middleOfScreen.Y+roomHeight/4)); //draw 3/4 down screen in middle
             _spriteBatch.End();
 
@@ -243,6 +262,50 @@ namespace _2D_Game
         {
             State = GameState.Playing;
             controllers[controllerNames[0]] = new KeyboardController(this, ControllerMode.MovementMode);
+        }
+
+        public void EnterBog()
+        {
+            InBog = true;
+            Camera.SetBounds(bogArea);
+            player.Teleport(new Vector2(bogArea.Center.X, bogArea.Bottom - 140)); //arrive at the bottom center of the bog
+            Camera.Follow(player.Position);
+        }
+
+        /// <summary>
+        /// Right goes to the top, top goes to the left, bottom goes to the right, and left leaves the bog
+        /// </summary>
+        private void CheckBogExits()
+        {
+            const int sideEdge = 40; //how close to a wall counts as reaching that edge
+            const int bottomEdge = 90; //larger because the hitbox extends below the player's position
+            const int arrivalInset = 120; //far enough from each edge that arriving can't trigger another exit
+
+            Vector2 position = player.Position;
+            if (position.X >= bogArea.Right - sideEdge)
+            {
+                player.Teleport(new Vector2(bogArea.Center.X, bogArea.Top + arrivalInset));
+            }
+            else if (position.Y <= bogArea.Top + sideEdge)
+            {
+                player.Teleport(new Vector2(bogArea.Left + arrivalInset, bogArea.Center.Y));
+            }
+            else if (position.Y >= bogArea.Bottom - bottomEdge)
+            {
+                player.Teleport(new Vector2(bogArea.Right - arrivalInset, bogArea.Center.Y));
+            }
+            else if (position.X <= bogArea.Left + sideEdge)
+            {
+                LeaveBog();
+            }
+        }
+
+        public void LeaveBog()
+        {
+            InBog = false;
+            Camera.SetBounds(new Rectangle(0, 0, worldWidth, worldHeight));
+            player.Teleport(new Vector2(worldWidth / 2, 290)); //on the top center path, below the bog entrance
+            Camera.Follow(player.Position);
         }
 
         public void AddLogsToFire(int amount)

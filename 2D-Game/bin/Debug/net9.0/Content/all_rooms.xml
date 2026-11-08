@@ -63,4 +63,12 @@
 	<NPCs/>
 	<Items/>
   </Room>
+
+  <!-- Bog: one-screen area, kept far from the main 3x3 map -->
+  <Room RoomX="4" RoomY="4">
+    <Obstacles/>
+    <Enemies/>
+    <NPCs/>
+    <Items/>
+  </Room>
 </Dungeon>
