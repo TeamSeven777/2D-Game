@@ -36,9 +36,9 @@ namespace _2D_Game
             itemPos.X += 32;
             itemTextureIInfo["Explosive"] = new Rectangle(itemPos, itemSize);
             itemPos.X += 32;
-            itemTextureIInfo["Log"] = new Rectangle(itemPos, itemSize);
-            itemPos.X += 32;
             itemTextureIInfo["Key"] = new Rectangle(itemPos, itemSize);
+            itemPos.X += 32;
+            itemTextureIInfo["Log"] = new Rectangle(itemPos, itemSize);
             itemPos.X += 32;
             itemTextureIInfo["Pebble"] = new Rectangle(itemPos, itemSize);
             itemPos.X += 32;
