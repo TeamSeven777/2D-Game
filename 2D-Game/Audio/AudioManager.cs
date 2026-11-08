@@ -29,8 +29,9 @@ namespace _2D_Game
             activeSoundEffectInstances = new List<SoundEffectInstance>();
             Playlist.Instance.LoadSongs(content, this);
             SoundEffectFactory.Instance.LoadSFX(content, this);
-            songVolume = .5f;
+            songVolume = .2f;
             previousSongVolume = songVolume;
+            MediaPlayer.Volume = songVolume;
 
         }
         public void PlaySong(Song song, bool loops)

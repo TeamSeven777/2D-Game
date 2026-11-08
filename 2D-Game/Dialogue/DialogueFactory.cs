@@ -73,7 +73,15 @@ namespace _2D_Game
             dialogueList.Enqueue("Ya know? The game where you hunt down logs.");
             dialogueList.Enqueue("This fire isn't gonna make itself, you know.\nOf course, unless you use the dev shortcut.");
             dialogueList.Enqueue("Better get going.");
-            Dialogue = new Dialogue(dialogueList, mainFont);//TODO fix position bug with relation to camera (screen scale)
+            Dialogue = new Dialogue(dialogueList, mainFont);
+            return Dialogue;
+        }
+        public IDialogue CreateBogSignDialogue() 
+        {
+            IDialogue Dialogue;
+            Queue<string> dialogueList = new Queue<string>();
+            dialogueList.Enqueue("Here be bog\nin which there be log.\nEnter not this lair\nwithout a pathway there.");
+            Dialogue = new Dialogue(dialogueList, mainFont);
             return Dialogue;
         }
     }
