@@ -332,6 +332,8 @@ namespace _2D_Game
         {
             State = GameState.End;
             controllers[controllerNames[0]] = new KeyboardController(this, ControllerMode.EndMode);
+            roomManager.CurrentRoom.Deactivate();
+            Playlist.Instance.ChangeSong(SongName.EndTheme, true);
         }
 
         public void ResetGame()
