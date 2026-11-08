@@ -90,6 +90,10 @@ namespace _2D_Game
             {
                 block = new Door(new Vector2(25), position, ObstacleSpriteFactory.Instance.CreateDoorSprite());
             }
+            else if(type.Equals("Moveable_Block", StringComparison.OrdinalIgnoreCase))
+            {
+                block = new MoveableObstacle(new Vector2(25), position, ObstacleSpriteFactory.Instance.CreateMoveableBlockSprite());
+            }
             else
             {
                 //A Block that does nothing

@@ -76,6 +76,11 @@ namespace _2D_Game
                     case (HitBoxType.Explosion):
                         player.stateMachine.KillPlayer();
                         break;
+                    case (HitBoxType.HurtBlock):
+                        player.TakeDamage(1);
+                        goto case(HitBoxType.Block);
+                    case (HitBoxType.DestructibleBlock):
+                    case (HitBoxType.MoveableBlock):
                     case (HitBoxType.Block):
                         if (resultsOfWillCollide.Contains(Side.Left)){
                             player.ToggleAllowedDirection(Direction.Right, false);
@@ -98,36 +103,7 @@ namespace _2D_Game
                                 player.Position.Y += player.WalkSpeed;
                         }
                         break;
-                    case (HitBoxType.HurtBlock):
-                        if (resultsOfWillCollide.Contains(Side.Left))
-                        {
-                            player.ToggleAllowedDirection(Direction.Right, false);
-                            if (!resultsOfIsCollide.Contains(Side.None))
-                                player.Position.X -= player.WalkSpeed;
-                                player.TakeDamage(1);
-                        }
-                        if (resultsOfWillCollide.Contains(Side.Right))
-                        {
-                            player.ToggleAllowedDirection(Direction.Left, false);
-                            if (!resultsOfIsCollide.Contains(Side.None))
-                                player.Position.X += player.WalkSpeed;
-                                player.TakeDamage(1);
-                        }
-                        if (resultsOfWillCollide.Contains(Side.Top))
-                        {
-                            player.ToggleAllowedDirection(Direction.Down, false);
-                            if (!resultsOfIsCollide.Contains(Side.None))
-                                player.Position.Y -= player.WalkSpeed;
-                                player.TakeDamage(1);
-                        }
-                        if (resultsOfWillCollide.Contains(Side.Bottom))
-                        {
-                            player.ToggleAllowedDirection(Direction.Up, false);
-                            if (!resultsOfIsCollide.Contains(Side.None))
-                                player.Position.Y += player.WalkSpeed;
-                                player.TakeDamage(1);
-                        }
-                        break;
+                    
                 }
             }
             else// if (player.DisabledDirections.Count > 0 && !player.stateMachine.Moving)
