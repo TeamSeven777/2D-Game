@@ -22,17 +22,8 @@ namespace _2D_Game
         public void LoadContent(ContentManager content, Room room)
         {
             roomRef = room;
-            // Add all items to base inventory here
-            // For sprint 3, start player with one of each object:
-            if (items.Count == 0)
-            {
-                items.Add(new LogItem(new Sprite(content.Load<Texture2D>("Images/Log2"), new Rectangle(0, 0, 32, 32))), 99);
-                items.Add(new BerryItem(new Sprite(content.Load<Texture2D>("Images/Berry2"), new Rectangle(0,0,32,32))), 99);
-                items.Add(new KeyItem(new Sprite(content.Load<Texture2D>("Images/Key2"), new Rectangle(0, 0, 32, 32))), 99);
-                items.Add(new ExplosiveItem(new Sprite(content.Load<Texture2D>("Images/Explosive2"), new Rectangle(0, 0, 32, 32))), 99);
-                items.Add(new PebbleItem(new Sprite(content.Load<Texture2D>("Images/Pebble2"), new Rectangle(0, 0, 32, 32))), 99);
-                items.Add(new SpeedItem(new Sprite(content.Load<Texture2D>("Images/speedshoe"), new Rectangle(0, 0, 32, 32))), 99);
-            }
+            // Add any items to base inventory here if desired
+            
         }
 
         public void Update(GameTime gameTime, Room room)
@@ -61,7 +52,7 @@ namespace _2D_Game
             }
             else
             {
-                items.Add(toAddTo, amount);
+                items.Add(item, amount);
             }
         }
 

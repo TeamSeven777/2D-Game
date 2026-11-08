@@ -34,7 +34,8 @@ namespace _2D_Game
         private RoomManager roomManager;
         public Camera Camera { get; private set; }
         private Minimap minimap;
-        private Hotbar hotbar;
+        private IHotbar weaponHotbar, itemHotbar;
+        private Texture2D inventorySlot, highlightSlot;
         public bool PauseGameOn { get; private set; }
         public bool DialogueMode { get; private set; }
         public IDialogue CurrentDialogue { get; set; }
@@ -98,8 +99,12 @@ namespace _2D_Game
 
             ItemInventory.Instance.LoadContent(Content, roomManager.CurrentRoom);
 
-            //This MUST load after item inventory due to current implementation
-            hotbar = new Hotbar(GraphicsDevice, new Point(GraphicsDevice.Viewport.Width / 2 - 175, 620), new Point(GraphicsDevice.Viewport.Width/2 - 480, 620), 50);
+            inventorySlot = Content.Load<Texture2D>("Images/InventoryBlock2");
+            highlightSlot = Content.Load<Texture2D>("Images/HighlightUIBig");
+            SpriteFont spriteFont = Content.Load<SpriteFont>("Fonts/pixelFont");
+
+            weaponHotbar = new WeaponHotbar(GraphicsDevice,  new Point(GraphicsDevice.Viewport.Width / 2 - 480, 620), 48);
+            itemHotbar = new ItemHotbar(GraphicsDevice, new Point(GraphicsDevice.Viewport.Width/2 - 175, 620), 48, 7, inventorySlot, highlightSlot, spriteFont);
 
             Enemies.LoadContent(Content, startRoomOrigin);
 
@@ -149,6 +154,8 @@ namespace _2D_Game
             PlayerProjectileHandler.Instance.Update(gameTime);
             WeaponInventory.Instance.Update(gameTime);
             ItemInventory.Instance.Update(gameTime, roomManager.CurrentRoom);
+            weaponHotbar.Update(gameTime);
+            itemHotbar.Update(gameTime);
 
                 //~Whatever Else Actions~
                 Enemies.Update(gameTime, player.Position);
@@ -203,7 +210,9 @@ namespace _2D_Game
 
             _spriteBatch.Begin(samplerState: SamplerState.PointClamp);
             minimap.Draw(_spriteBatch, player.Position);
-            hotbar.Draw(_spriteBatch, player.Position);
+            weaponHotbar.Draw(_spriteBatch);
+            itemHotbar.Draw(_spriteBatch);
+
             CurrentDialogue.Draw(_spriteBatch, new Vector2(middleOfScreen.X, middleOfScreen.Y+roomHeight/4)); //draw 3/4 down screen in middle
             _spriteBatch.End();
 
