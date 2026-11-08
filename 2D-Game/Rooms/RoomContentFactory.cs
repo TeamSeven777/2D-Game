@@ -76,6 +76,10 @@ namespace _2D_Game
             {
                 block = new Sign(new Vector2(25), position, ObstacleSpriteFactory.Instance.CreateOtherSprite(1));
             }
+            else if(type.Equals("Firepit", StringComparison.OrdinalIgnoreCase))
+            {
+                block = new Firepit(new Vector2(64), position, ObstacleSpriteFactory.Instance.CreateFirepitSprite());
+            }
             else if(type.Equals("Door", StringComparison.OrdinalIgnoreCase))
             {
                 block = new Door(new Vector2(25), position, ObstacleSpriteFactory.Instance.CreateDoorSprite());

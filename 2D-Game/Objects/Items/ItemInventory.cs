@@ -23,6 +23,7 @@ namespace _2D_Game
             roomRef = room;
             // Add all items to base inventory here
             // For sprint 3, start player with one of each object:
+            items.Clear();
             if (items.Count == 0)
             {
                 items.Add("LogItem", 99);

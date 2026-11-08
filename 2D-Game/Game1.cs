@@ -34,6 +34,12 @@ namespace _2D_Game
         private RoomManager roomManager;
         public Camera Camera { get; private set; }
         private Minimap minimap;
+        public GameState State { get; private set; }
+        private Texture2D startScreen;
+        private Texture2D endScreen;
+        private SpriteFont hudFont;
+        public const int LogsNeeded = 7;
+        public int LogsInFire { get; private set; }
         public bool PauseGameOn { get; private set; }
         public bool DialogueMode { get; private set; }
         public IDialogue CurrentDialogue { get; set; }
@@ -62,7 +68,9 @@ namespace _2D_Game
 
             controllerNames = new String[]{ "keyboard", "gamepad", "mouse"};
             controllers = new Dictionary<string, IController>();
-            controllers.Add(controllerNames[0], new KeyboardController(this, ControllerMode.MovementMode));
+            State = GameState.Start;
+            LogsInFire = 0;
+            controllers.Add(controllerNames[0], new KeyboardController(this, ControllerMode.StartMode));
             controllers.Add(controllerNames[1], new GamePadController(PlayerIndex.One, this));
             controllers.Add(controllerNames[2], new MouseController(this));
 
@@ -83,6 +91,9 @@ namespace _2D_Game
             worldHeight = roomHeight * 3;
             Vector2 startRoomOrigin = new Vector2(0, worldHeight - roomHeight);
             background = Content.Load<Texture2D>("Images/FullMap");
+            startScreen = Content.Load<Texture2D>("Images/startScreen");
+            endScreen = Content.Load<Texture2D>("Images/endScreen");
+            hudFont = Content.Load<SpriteFont>("Fonts/pixelFont");
             Camera = new Camera(roomWidth, roomHeight, worldWidth, worldHeight);
 
             PlayerSpriteFactory.Instance.LoadTextures(Content);
@@ -117,6 +128,14 @@ namespace _2D_Game
         protected override void Update(GameTime gameTime)
         {
             
+            if (State != GameState.Playing)
+            {
+                currentGameTime = gameTime;
+                controllers[controllerNames[0]].Update();
+                base.Update(gameTime);
+                return;
+            }
+
             RoomCollisionHandler.Instance.HandleCollision();
             currentGameTime = gameTime;
             roomHeight = _spriteBatch.GraphicsDevice.Viewport.Height;
@@ -172,6 +191,17 @@ namespace _2D_Game
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
+
+            if (State != GameState.Playing)
+            {
+                _spriteBatch.Begin(samplerState: SamplerState.LinearClamp);
+                Texture2D screen = State == GameState.Start ? startScreen : endScreen;
+                _spriteBatch.Draw(screen, new Rectangle(0, 0, roomWidth, roomHeight), Color.White);
+                _spriteBatch.End();
+                base.Draw(gameTime);
+                return;
+            }
+
             currentGameTime = gameTime;
             
              // World: scrolls with the camera
@@ -194,6 +224,11 @@ namespace _2D_Game
 
             _spriteBatch.Begin(samplerState: SamplerState.PointClamp); // no transform
             // HUD draws here
+            string logCounter = $"({LogsInFire}/{LogsNeeded})";
+            Vector2 logCounterSize = hudFont.MeasureString(logCounter);
+            Vector2 logCounterPos = new Vector2(roomWidth - logCounterSize.X - 16, roomHeight - logCounterSize.Y - 16);
+            _spriteBatch.DrawString(hudFont, logCounter, logCounterPos + new Vector2(2, 2), Color.Black); //shadow so it reads on any background
+            _spriteBatch.DrawString(hudFont, logCounter, logCounterPos, Color.White);
             _spriteBatch.End();
 
             _spriteBatch.Begin(samplerState: SamplerState.PointClamp);
@@ -202,6 +237,24 @@ namespace _2D_Game
             _spriteBatch.End();
 
             base.Draw(gameTime);
+        }
+
+        public void StartGame()
+        {
+            State = GameState.Playing;
+            controllers[controllerNames[0]] = new KeyboardController(this, ControllerMode.MovementMode);
+        }
+
+        public void AddLogsToFire(int amount)
+        {
+            LogsInFire += amount;
+            if (LogsInFire >= LogsNeeded) EndGame();
+        }
+
+        public void EndGame()
+        {
+            State = GameState.End;
+            controllers[controllerNames[0]] = new KeyboardController(this, ControllerMode.EndMode);
         }
 
         public void ResetGame()

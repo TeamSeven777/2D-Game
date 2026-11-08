@@ -22,7 +22,13 @@
       <Entity Type="Joe" X="650" Y="300" />
     </NPCs>
     <Items>
-    <Entity Type="Log" X="600" Y="300" />
+      <Entity Type="Log" X="600" Y="300" />
+      <Entity Type="Log" X="150" Y="400" />
+      <Entity Type="Log" X="300" Y="500" />
+      <Entity Type="Log" X="750" Y="450" />
+      <Entity Type="Log" X="850" Y="300" />
+      <Entity Type="Log" X="900" Y="150" />
+      <Entity Type="Log" X="850" Y="600" />
       <Entity Type="Berry" X="350" Y="200" />
       <Entity Type="Explosive" X="450" Y="300" />
       <Entity Type="Key" X="300" Y="250" />
