@@ -102,7 +102,7 @@ namespace _2D_Game
             worldWidth = roomWidth * 3;
             worldHeight = roomHeight * 3;
             Vector2 startRoomOrigin = new Vector2(0, worldHeight - roomHeight);
-            background = Content.Load<Texture2D>("Images/FullMap");
+            background = Content.Load<Texture2D>("Images/FullMap2");
             startScreen = Content.Load<Texture2D>("Images/startScreen");
             endScreen = Content.Load<Texture2D>("Images/endScreen");
             hudFont = Content.Load<SpriteFont>("Fonts/pixelFont");
