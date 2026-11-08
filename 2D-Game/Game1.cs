@@ -256,11 +256,20 @@ namespace _2D_Game
 
             _spriteBatch.Begin(samplerState: SamplerState.PointClamp); // no transform
             // HUD draws here
-            string logCounter = $"({LogsInFire}/{LogsNeeded})";
+            string logCounter = $" ( {LogsInFire} / {LogsNeeded} ) ";
             Vector2 logCounterSize = hudFont.MeasureString(logCounter);
             Vector2 logCounterPos = new Vector2(roomWidth - logCounterSize.X - 16, roomHeight - logCounterSize.Y - 16);
             _spriteBatch.DrawString(hudFont, logCounter, logCounterPos + new Vector2(2, 2), Color.Black); //shadow so it reads on any background
             _spriteBatch.DrawString(hudFont, logCounter, logCounterPos, Color.White);
+            _spriteBatch.End();
+
+            _spriteBatch.Begin(samplerState: SamplerState.PointClamp); // no transform
+            // HUD draws here
+            string healthCounter = $" ( {player.Health} / {player.MaxHealth} ) ";
+            Vector2 healthCounterSize = hudFont.MeasureString(healthCounter);
+            Vector2 healthCounterPos = new Vector2(roomWidth - healthCounterSize.X - 16, 16);
+            _spriteBatch.DrawString(hudFont, healthCounter, healthCounterPos + new Vector2(1, 1), Color.White); //shadow so it reads on any background
+            _spriteBatch.DrawString(hudFont, healthCounter, healthCounterPos, Color.OrangeRed);
             _spriteBatch.End();
 
             _spriteBatch.Begin(samplerState: SamplerState.PointClamp);

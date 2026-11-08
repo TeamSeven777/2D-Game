@@ -43,7 +43,7 @@ namespace _2D_Game
         {
             Instance = this;
             WalkSpeed = 5.0f;
-            MaxHealth = 3;
+            MaxHealth = 10;
             Health = MaxHealth;
             stateMachine = new PlayerStateMachine(this);
             Position = startPosition;
