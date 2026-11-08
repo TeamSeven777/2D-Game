@@ -147,7 +147,8 @@ namespace _2D_Game
             
             // Load dungeon rooms and pass viewport dimensions
             roomManager.LoadDungeon("Content/all_rooms.xml", Content, blockSpriteSheet, roomWidth, roomHeight);
-            Playlist.Instance.ChangeSong(SongName.CozyFire, true);
+            roomManager.CurrentRoom.Deactivate();
+            Playlist.Instance.ChangeSong(SongName.TitleTheme, true);
 
         }
 
@@ -228,6 +229,7 @@ namespace _2D_Game
                 _spriteBatch.Draw(screen, new Rectangle(0, 0, roomWidth, roomHeight), Color.White);
                 _spriteBatch.End();
                 base.Draw(gameTime);
+                
                 return;
             }
 
@@ -273,6 +275,7 @@ namespace _2D_Game
         {
             State = GameState.Playing;
             controllers[controllerNames[0]] = new KeyboardController(this, ControllerMode.MovementMode);
+            roomManager.CurrentRoom.Activate();
         }
 
         public void EnterBog()

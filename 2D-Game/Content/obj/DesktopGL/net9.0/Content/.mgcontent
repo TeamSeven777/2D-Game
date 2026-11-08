@@ -8,7 +8,9 @@
     <File>C:/Users/edwei/OneDrive/Documents/GitHub/2D-Game/2D-Game/Content/Fonts/pixelFont.spritefont</File>
     <File>C:/Users/edwei/OneDrive/Documents/GitHub/2D-Game/2D-Game/Content/Fonts/Pixelzone-E4MV4.ttf</File>
     <File>C:/Users/edwei/OneDrive/Documents/GitHub/2D-Game/2D-Game/Content/Images/Berry.png</File>
+    <File>C:/Users/edwei/OneDrive/Documents/GitHub/2D-Game/2D-Game/Content/Images/bog.png</File>
     <File>C:/Users/edwei/OneDrive/Documents/GitHub/2D-Game/2D-Game/Content/Images/boggus.png</File>
+    <File>C:/Users/edwei/OneDrive/Documents/GitHub/2D-Game/2D-Game/Content/Images/endScreen.png</File>
     <File>C:/Users/edwei/OneDrive/Documents/GitHub/2D-Game/2D-Game/Content/Images/Explosive.png</File>
     <File>C:/Users/edwei/OneDrive/Documents/GitHub/2D-Game/2D-Game/Content/Images/FullMap.png</File>
     <File>C:/Users/edwei/OneDrive/Documents/GitHub/2D-Game/2D-Game/Content/Images/gameBackground.png</File>
@@ -17,6 +19,7 @@
     <File>C:/Users/edwei/OneDrive/Documents/GitHub/2D-Game/2D-Game/Content/Images/logo.png</File>
     <File>C:/Users/edwei/OneDrive/Documents/GitHub/2D-Game/2D-Game/Content/Images/Pebble.png</File>
     <File>C:/Users/edwei/OneDrive/Documents/GitHub/2D-Game/2D-Game/Content/Images/speedshoe.png</File>
+    <File>C:/Users/edwei/OneDrive/Documents/GitHub/2D-Game/2D-Game/Content/Images/startScreen.png</File>
     <File>C:/Users/edwei/OneDrive/Documents/GitHub/2D-Game/2D-Game/Content/Music/cozyFire.wav</File>
     <File>C:/Users/edwei/OneDrive/Documents/GitHub/2D-Game/2D-Game/Content/Music/cozyFire(slow+reverb).wav</File>
     <File>C:/Users/edwei/OneDrive/Documents/GitHub/2D-Game/2D-Game/Content/Music/endThemeSample1.wav</File>
@@ -30,6 +33,7 @@
     <File>C:/Users/edwei/OneDrive/Documents/GitHub/2D-Game/2D-Game/Content/SFX/gunshottttt.mp3</File>
     <File>C:/Users/edwei/OneDrive/Documents/GitHub/2D-Game/2D-Game/Content/SFX/test-sfx.mp3</File>
     <File>C:/Users/edwei/OneDrive/Documents/GitHub/2D-Game/2D-Game/Content/Sprites/bushes.png</File>
+    <File>C:/Users/edwei/OneDrive/Documents/GitHub/2D-Game/2D-Game/Content/Sprites/door.png</File>
     <File>C:/Users/edwei/OneDrive/Documents/GitHub/2D-Game/2D-Game/Content/Sprites/enemy-projectiles.png</File>
     <File>C:/Users/edwei/OneDrive/Documents/GitHub/2D-Game/2D-Game/Content/Sprites/LinkSheet.png</File>
     <File>C:/Users/edwei/OneDrive/Documents/GitHub/2D-Game/2D-Game/Content/Sprites/mosquito.png</File>
@@ -48,6 +52,10 @@
     <File>C:/Users/edwei/OneDrive/Documents/GitHub/2D-Game/2D-Game/Content/Sprites/trees.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

@@ -50,6 +50,19 @@
 /processorParam:Version=3.8.5.0
 /build:Images/Berry.png
 
+#begin Images/bog.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/processorParam:Version=3.8.5.0
+/build:Images/bog.png
+
 #begin Images/boggus.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -62,6 +75,19 @@
 /processorParam:TextureFormat=Color
 /processorParam:Version=3.8.5.0
 /build:Images/boggus.png
+
+#begin Images/endScreen.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/processorParam:Version=3.8.5.0
+/build:Images/endScreen.png
 
 #begin Images/Explosive.png
 /importer:TextureImporter
@@ -166,6 +192,19 @@
 /processorParam:TextureFormat=Color
 /processorParam:Version=3.8.5.0
 /build:Images/speedshoe.png
+
+#begin Images/startScreen.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/processorParam:Version=3.8.5.0
+/build:Images/startScreen.png
 
 #begin Music/cozyFire.wav
 /importer:WavImporter

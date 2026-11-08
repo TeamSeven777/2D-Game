@@ -136,3 +136,7 @@ C:\Users\edwei\OneDrive\Documents\GitHub\2D-Game\2D-Game\bin\Debug\net9.0\Conten
 C:\Users\edwei\OneDrive\Documents\GitHub\2D-Game\2D-Game\bin\Debug\net9.0\Content\SFX\test-sfx.xnb
 C:\Users\edwei\OneDrive\Documents\GitHub\2D-Game\2D-Game\bin\Debug\net9.0\Content\Music\npcTheme.ogg
 C:\Users\edwei\OneDrive\Documents\GitHub\2D-Game\2D-Game\bin\Debug\net9.0\Content\Music\npcTheme.xnb
+C:\Users\edwei\OneDrive\Documents\GitHub\2D-Game\2D-Game\bin\Debug\net9.0\Content\Sprites\door.xnb
+C:\Users\edwei\OneDrive\Documents\GitHub\2D-Game\2D-Game\bin\Debug\net9.0\Content\Images\endScreen.xnb
+C:\Users\edwei\OneDrive\Documents\GitHub\2D-Game\2D-Game\bin\Debug\net9.0\Content\Images\startScreen.xnb
+C:\Users\edwei\OneDrive\Documents\GitHub\2D-Game\2D-Game\bin\Debug\net9.0\Content\Images\bog.xnb

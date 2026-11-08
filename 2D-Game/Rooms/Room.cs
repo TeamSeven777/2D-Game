@@ -25,15 +25,17 @@ namespace _2D_Game
             int row1 = 0, col1 = 0;
             int row2 = 1, col2 = 1;
             int row3=2, col3=2;
+            Point BogCoords = new Point(4, 4);
             int xCoord = gridPos.X, yCoord = gridPos.Y;
-            RoomSongName = SongName.Lost;
-            if (xCoord == col1) 
+            RoomSongName = SongName.NONE;
+            if (xCoord == col1)
             {
                 if (yCoord == row1) RoomSongName = SongName.StarterRoomTheme; //Room 2
                 else if (yCoord == row2) RoomSongName = SongName.StarterRoomTheme; //Room 1
                 else if (yCoord == row3) RoomSongName = SongName.CozyFire; //Room 0
             }
-            else if (xCoord == col2) {
+            else if (xCoord == col2)
+            {
                 if (yCoord == row1) RoomSongName = SongName.OminousLair; //Room 3
                 else if (yCoord == row2) RoomSongName = SongName.TitleTheme; //Room 6, song TBC
                 else if (yCoord == row3) RoomSongName = SongName.EndTheme; //Room 7, song TBC
@@ -44,6 +46,7 @@ namespace _2D_Game
                 else if (yCoord == row2) RoomSongName = SongName.TheDead; //Room 5
                 else if (yCoord == row3) RoomSongName = SongName.Lost; //Room 8, song TBC
             }
+            else if (gridPos == BogCoords) RoomSongName = SongName.Lost;
         }
 
         public void Update(GameTime gameTime, Vector2 playerPosition)
