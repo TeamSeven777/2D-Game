@@ -13,6 +13,7 @@ namespace _2D_Class
     public class ObstacleSpriteFactory
 {
         Texture2D TestBlockSpriteSheet;
+        Texture2D GravestoneSprite;
         Texture2D TreeSprites;
         Texture2D BushSprites;
         Texture2D FirepitSprite;
@@ -27,6 +28,7 @@ namespace _2D_Class
         public void LoadTextures(ContentManager content)
         {
             TestBlockSpriteSheet = content.Load<Texture2D>("Sprites/testblocks");
+            GravestoneSprite = content.Load<Texture2D>("Sprites/gravestone");
             TreeSprites = content.Load<Texture2D>("Sprites/trees");
             BushSprites = content.Load<Texture2D>("Sprites/bushes");
             FirepitSprite = content.Load<Texture2D>("Sprites/FirePit");
@@ -97,8 +99,13 @@ namespace _2D_Class
 
         public ISprite CreateDoorSprite()
         {
-            ISprite sprite;
-            return sprite = new Sprite(DoorSprites, new Rectangle(0, 0, 128, 128));
+            
+            return new Sprite(DoorSprites, new Rectangle(0, 0, 128, 128));
+        }
+
+        public ISprite CreateMoveableBlockSprite()
+        {
+            return new Sprite(GravestoneSprite, new Rectangle(0, 0, 64, 64));
         }
 
         /// <summary>

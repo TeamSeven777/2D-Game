@@ -27,6 +27,7 @@ namespace _2D_Game
             {
                 //interactTool.Hitbox.BoundingBox = 
                 //Then how the collision should be handled
+
                 switch (collider.Type)
                 {
                     case (HitBoxType.Block):
@@ -34,6 +35,13 @@ namespace _2D_Game
                         {
                             interactTool.hasInteracted = true;
                             interactedObj.HandleInteraction();
+                        }
+                        break;
+                    case (HitBoxType.MoveableBlock):
+                        if (hbOwner is IInteractable interactedObjTwo)
+                        {
+                            interactTool.hasInteracted = true;
+                            interactedObjTwo.HandleInteraction();
                         }
                         break;
                     default:

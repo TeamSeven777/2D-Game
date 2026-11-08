@@ -20,7 +20,7 @@ namespace _2D_Game
             HashSet<Side> resultsOfIsCollide = item.Hitbox.IsCollide(hbOwner.Hitbox);
             if (!resultsOfIsCollide.Contains(Side.None) && hbOwner.Hitbox.Type == HitBoxType.Player)
             {
-                item.ItemData.Use();
+                item.ItemData.Collect();
                 ItemInventory.instance.RemoveFromWorld(item);
                 RoomCollisionHandler.Instance.Remove(item);
             }

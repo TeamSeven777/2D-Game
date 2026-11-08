@@ -35,6 +35,8 @@ namespace _2D_Game
         private RoomManager roomManager;
         public Camera Camera { get; private set; }
         private Minimap minimap;
+        private IHotbar weaponHotbar, itemHotbar;
+        private Texture2D inventorySlot, highlightSlot;
 
         public GameState State { get; private set; }
         private Texture2D startScreen;
@@ -99,6 +101,7 @@ namespace _2D_Game
             roomWidth = _spriteBatch.GraphicsDevice.Viewport.Width;
             middleOfScreen = new Vector2(roomWidth / 2, roomHeight / 2);
             minimap = new Minimap(GraphicsDevice, new Point(10, 10), 60, roomWidth, roomHeight);
+            
             worldWidth = roomWidth * 3;
             worldHeight = roomHeight * 3;
             Vector2 startRoomOrigin = new Vector2(0, worldHeight - roomHeight);
@@ -121,7 +124,14 @@ namespace _2D_Game
 
 
             ItemInventory.Instance.LoadContent(Content, roomManager.CurrentRoom);
-            
+
+            inventorySlot = Content.Load<Texture2D>("Images/InventoryBlock2");
+            highlightSlot = Content.Load<Texture2D>("Images/HighlightUIBig");
+            SpriteFont spriteFont = Content.Load<SpriteFont>("Fonts/pixelFont");
+
+            weaponHotbar = new WeaponHotbar(GraphicsDevice,  new Point(GraphicsDevice.Viewport.Width / 2 - 480, 620), 48, spriteFont);
+            itemHotbar = new ItemHotbar(GraphicsDevice, new Point(GraphicsDevice.Viewport.Width/2 - 175, 620), 48, 7, inventorySlot, highlightSlot, spriteFont);
+
             Enemies.LoadContent(Content, startRoomOrigin);
 
             boundaries.Add(new Boundary(new Vector2(0, 0), new Vector2(0, worldHeight)));                      // left
@@ -192,7 +202,8 @@ namespace _2D_Game
             PlayerProjectileHandler.Instance.Update(gameTime);
             WeaponInventory.Instance.Update(gameTime);
             ItemInventory.Instance.Update(gameTime, roomManager.CurrentRoom);
-
+            weaponHotbar.Update(gameTime);
+            itemHotbar.Update(gameTime);
 
                 //~Whatever Else Actions~
                 Enemies.Update(gameTime, player.Position);
@@ -274,6 +285,9 @@ namespace _2D_Game
 
             _spriteBatch.Begin(samplerState: SamplerState.PointClamp);
             if (!InBog) minimap.Draw(_spriteBatch, player.Position); //the minimap only covers the main 3x3 map
+            weaponHotbar.Draw(_spriteBatch);
+            itemHotbar.Draw(_spriteBatch);
+
             CurrentDialogue.Draw(_spriteBatch, new Vector2(middleOfScreen.X, middleOfScreen.Y+roomHeight/4)); //draw 3/4 down screen in middle
             _spriteBatch.End();
 

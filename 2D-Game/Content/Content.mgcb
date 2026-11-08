@@ -329,7 +329,7 @@
 /processorParam:Version=3.8.5.0
 /build:Sprites/enemy-projectiles.png
 
-#begin Sprites/LinkSheet.png
+#begin Sprites/gravestone.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -340,7 +340,33 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /processorParam:Version=3.8.5.0
-/build:Sprites/LinkSheet.png
+/build:Sprites/gravestone.png
+
+#begin Sprites/itemsheet.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/processorParam:Version=3.8.5.0
+/build:Sprites/itemsheet.png
+
+#begin Sprites/itemsheet2.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/processorParam:Version=3.8.5.0
+/build:Sprites/itemsheet2.png
 
 #begin Sprites/mosquito.png
 /importer:TextureImporter
