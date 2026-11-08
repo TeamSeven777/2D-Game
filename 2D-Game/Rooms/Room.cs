@@ -40,8 +40,8 @@ namespace _2D_Game
             }
             else if (xCoord == col3)
             {
-                if (yCoord == row1) RoomSongName = SongName.CozyFireSR; //Room 4, song TBC
-                else if (yCoord == row2) RoomSongName = SongName.TheDead; //Room 5, song TBC
+                if (yCoord == row1) RoomSongName = SongName.NPCTheme; //Room 4
+                else if (yCoord == row2) RoomSongName = SongName.TheDead; //Room 5
                 else if (yCoord == row3) RoomSongName = SongName.Lost; //Room 8, song TBC
             }
         }

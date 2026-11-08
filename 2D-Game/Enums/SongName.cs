@@ -1,1 +1,1 @@
-﻿public enum SongName { CozyFire, CozyFireSR, EndTheme, Lost, TheDead, TitleTheme, StarterRoomTheme, OminousLair}//names of each song
+﻿public enum SongName { CozyFire, CozyFireSR, EndTheme, Lost, TheDead, TitleTheme, StarterRoomTheme, OminousLair, NPCTheme}//names of each song
