@@ -13,6 +13,7 @@ namespace _2D_Game
         private Dictionary<Tool, int> Weapons = new();
         private readonly List<Tool> SelectedWeapon = new();
         private int currentIndex;
+        public bool UnlimitedAmmo = false;
 
         // Cooldown vars
         private double cooldownTimer = 0;
@@ -57,9 +58,10 @@ namespace _2D_Game
             SelectedWeapon.Add(tool);
         }
 
-        public void AddAmmo(Tool tool, int ammo)
+        public void ChangeAmmo(Tool tool, int ammo)
         {
-            Weapons[tool] += ammo;
+            if(!UnlimitedAmmo)
+                Weapons[tool] += ammo;
         }
 
         public int GetAmmo(Tool tool)

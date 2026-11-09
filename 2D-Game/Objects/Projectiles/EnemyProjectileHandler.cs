@@ -13,7 +13,8 @@ namespace _2D_Game
 {
     public class EnemyProjectileHandler : IProjectileHandler
     {
-        public Queue<IProjectile> ActiveProjectiles { get; set; }
+        public List<IHitboxOwner> InActiveProjectiles { get; set; }
+        public List<IHitboxOwner> ActiveProjectiles { get; set; }
         public GameTime GameTime { get; set; }
         public EnemyManager enemiesRef;
         public DefaultPlayer targetRef;
@@ -30,7 +31,7 @@ namespace _2D_Game
 
         public void Initialize(ref EnemyManager enemies, ref DefaultPlayer playerRef)
         {
-            ActiveProjectiles = new Queue<IProjectile>();
+            ActiveProjectiles = new List<IHitboxOwner>();
             enemiesRef = enemies;
             this.targetRef = playerRef;
 
@@ -38,13 +39,12 @@ namespace _2D_Game
 
         public void Update(GameTime gt)
         {
-            foreach (IProjectile projectile in ActiveProjectiles)
+            for (int i = 0; i < ActiveProjectiles.Count; i++)
             {
-                projectile.Update(gt);
-                if (projectile.DespawnTimer <= 0) RemoveCount++;
+                IProjectile curProjectile = (IProjectile)ActiveProjectiles[i]; 
+                curProjectile.Update(gt);
+                if (curProjectile.DespawnTimer <= 0) ActiveProjectiles.Remove(ActiveProjectiles[i]);
             }
-            for (int i = 0; i < RemoveCount; i++) this.Remove();
-            RemoveCount = 0;
         }
 
         public void Draw(SpriteBatch spr)
@@ -64,10 +64,10 @@ namespace _2D_Game
             switch (enemy)
             {
                 case (Mosquito):
-                    ActiveProjectiles.Enqueue(new MosquitoProjectile(enemy.Position, targetRef.Position, ProjectileSpriteFactory.Instance.CreateEnemyProjectile(enemy)));
+                    ActiveProjectiles.Add(new MosquitoProjectile(enemy.Position, targetRef.Position, ProjectileSpriteFactory.Instance.CreateEnemyProjectile(enemy)));
                 break;
                 case (Spider):
-                    ActiveProjectiles.Enqueue(new SpiderProjectile(enemy.Position, targetRef.Position, ProjectileSpriteFactory.Instance.CreateEnemyProjectile(enemy)));
+                    ActiveProjectiles.Add(new SpiderProjectile(enemy.Position, targetRef.Position, ProjectileSpriteFactory.Instance.CreateEnemyProjectile(enemy)));
                 break;
                 default:
                 break;
@@ -75,11 +75,11 @@ namespace _2D_Game
 
         }
 
-        public void Remove()
+        public void Remove(IHitboxOwner x)
         {
-            if (ActiveProjectiles.Count > 0 && (ActiveProjectiles.Dequeue() is IHitboxOwner hbOwner))
+            if (ActiveProjectiles.Count > 0 && (ActiveProjectiles.IndexOf(x) > 0))
             {
-                RoomCollisionHandler.Instance.Remove(hbOwner);
+                RoomCollisionHandler.Instance.Remove(x);
             }
         }
 

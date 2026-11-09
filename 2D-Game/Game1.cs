@@ -31,11 +31,12 @@ namespace _2D_Game
         public List<Boundary> boundaries;
         private Texture2D background;
         private int worldWidth, worldHeight;
-        private RoomManager roomManager;
+        public RoomManager roomManager;
         public Camera Camera { get; private set; }
         private Minimap minimap;
-        private IHotbar weaponHotbar, itemHotbar;
+        public IHotbar weaponHotbar, itemHotbar;
         private Texture2D inventorySlot, highlightSlot;
+        private PauseMenu pauseMenu;
         public bool PauseGameOn { get; private set; }
         public bool DialogueMode { get; private set; }
         public IDialogue CurrentDialogue { get; set; }
@@ -103,8 +104,9 @@ namespace _2D_Game
             highlightSlot = Content.Load<Texture2D>("Images/HighlightUIBig");
             SpriteFont spriteFont = Content.Load<SpriteFont>("Fonts/pixelFont");
 
-            weaponHotbar = new WeaponHotbar(GraphicsDevice,  new Point(GraphicsDevice.Viewport.Width / 2 - 480, 620), 48, spriteFont);
+            weaponHotbar = new WeaponHotbar(GraphicsDevice,  new Point(GraphicsDevice.Viewport.Width / 2 - 480, 620), 48, 4, inventorySlot, highlightSlot, spriteFont);
             itemHotbar = new ItemHotbar(GraphicsDevice, new Point(GraphicsDevice.Viewport.Width/2 - 175, 620), 48, 7, inventorySlot, highlightSlot, spriteFont);
+            pauseMenu = new PauseMenu(GraphicsDevice,this, new Rectangle(GraphicsDevice.Viewport.Width / 2 - 100, GraphicsDevice.Viewport.Height / 2 - 50, 200, 100), spriteFont);
 
             Enemies.LoadContent(Content, startRoomOrigin);
 
@@ -176,6 +178,7 @@ namespace _2D_Game
             else
             {
                 //no updates aside from controller inputs
+                pauseMenu.Update(gameTime);
             }
             base.Update(gameTime);
 
@@ -212,8 +215,12 @@ namespace _2D_Game
             minimap.Draw(_spriteBatch, player.Position);
             weaponHotbar.Draw(_spriteBatch);
             itemHotbar.Draw(_spriteBatch);
-
+            if (PauseGameOn)
+            {
+                pauseMenu.Draw(_spriteBatch);
+            }
             CurrentDialogue.Draw(_spriteBatch, new Vector2(middleOfScreen.X, middleOfScreen.Y+roomHeight/4)); //draw 3/4 down screen in middle
+
             _spriteBatch.End();
 
             base.Draw(gameTime);

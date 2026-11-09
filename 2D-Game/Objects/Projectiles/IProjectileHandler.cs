@@ -11,7 +11,8 @@ namespace _2D_Game
 {
     public interface IProjectileHandler
     {
-        public Queue<IProjectile> ActiveProjectiles { get; set; }
+        public List<IHitboxOwner> InActiveProjectiles { get; set; }
+        public List<IHitboxOwner> ActiveProjectiles { get; set; }
         public GameTime GameTime { get; set; }
 
         public void Update(GameTime gt);
@@ -20,7 +21,7 @@ namespace _2D_Game
 
         public void Add();
 
-        public void Remove();
+        public void Remove(IHitboxOwner x);
 
         public void Clear();
     }

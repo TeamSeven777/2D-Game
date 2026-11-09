@@ -11,7 +11,7 @@ namespace _2D_Game
         public List<IEnemy> Enemies { get; private set; } = new List<IEnemy>(); // Room-specific enemies
         public List<INPC> NPCs { get; private set; } = new List<INPC>(); // Room-specific NPCs
         public List<WorldItem> Items { get; private set; } = new List<WorldItem>();
-        
+        public bool ToggleAI = false;
         
         public Room(Point gridPosition)
         {
@@ -29,16 +29,18 @@ namespace _2D_Game
                 }
             }
 
-            for (int i = Enemies.Count - 1; i >= 0; i--) 
+            if (!ToggleAI)
             {
-                Enemies[i].Update(gameTime, playerPosition);
-                if (Enemies[i].Health <= 0)
+                for (int i = Enemies.Count - 1; i >= 0; i--)
                 {
-                    Enemies[i].Unload();  
-                    Enemies.RemoveAt(i);
+                    Enemies[i].Update(gameTime, playerPosition);
+                    if (Enemies[i].Health <= 0)
+                    {
+                        Enemies[i].Unload();
+                        Enemies.RemoveAt(i);
+                    }
                 }
             }
-            
             foreach (var npc in NPCs) 
                 npc.Update(gameTime);
 

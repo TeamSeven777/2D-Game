@@ -18,11 +18,16 @@ namespace _2D_Game
         private readonly SpriteFont font;
         private readonly Texture2D pixel;
 
-        private int selectedIndex = 0;
+        public int selectedIndex = 0;
         private double cooldownTimer = 0;
         private const double CooldownDuration = 0.2;
 
-        public ItemHotbar(GraphicsDevice device, Point position, int cellWidth, int totalSlots = 7, Texture2D slotTexture = null, Texture2D selectionTexture = null, SpriteFont font = null, float slotSpacing = 4f)
+        public ItemHotbar(GraphicsDevice device, Point position, int cellWidth, 
+            int totalSlots = 7, 
+            Texture2D slotTexture = null, 
+            Texture2D selectionTexture = null, 
+            SpriteFont font = null, 
+            float slotSpacing = 4f)
         {
             this.position = position;
             this.cellWidth = cellWidth;

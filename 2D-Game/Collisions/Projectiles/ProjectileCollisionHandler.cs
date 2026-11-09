@@ -8,9 +8,9 @@ namespace _2D_Game
 {
     public class ProjectileCollisionHandler : ICollisionHandler 
     {
-        IProjectile projectile;
+        IHitboxOwner projectile;
 
-        public ProjectileCollisionHandler(IProjectile thing)
+        public ProjectileCollisionHandler(IHitboxOwner thing)
         {
             projectile = thing;
         }
@@ -24,12 +24,12 @@ namespace _2D_Game
                 if (projectile.Hitbox.Type == HitBoxType.PlayerProjectile)
                 {
                     if (collider.Type == HitBoxType.Block)
-                        PlayerProjectileHandler.Instance.Remove();
+                        PlayerProjectileHandler.Instance.Remove(projectile);
                 }
                 else if (projectile.Hitbox.Type == HitBoxType.EnemyProjectile)
                 {
                     if (collider.Type == HitBoxType.Block)
-                        EnemyProjectileHandler.Instance.Remove();
+                        EnemyProjectileHandler.Instance.Remove(hbOwner);
                 }
                 if(projectile.Hitbox.Type == HitBoxType.Explosion)
                 {

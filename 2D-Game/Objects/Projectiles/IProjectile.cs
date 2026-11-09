@@ -14,7 +14,6 @@ namespace _2D_Game
     public interface IProjectile
     {
         public Vector2 Position { get; set; }
-
         public Vector2 TravelingDirection { get; set; }
         public IHitbox Hitbox { get; set; }
         public ISprite ProjectileSprite { get; set; }
