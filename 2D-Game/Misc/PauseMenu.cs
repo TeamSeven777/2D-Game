@@ -39,9 +39,11 @@ namespace _2D_Game
            
 
             Screen.SetData([Color.White]);
-            Button1.SetData([Color.White]);
-            Button2.SetData([Color.White]);
-            Button3.SetData([Color.White]);
+            foreach(Tuple<Rectangle,ButtonType,Texture2D> x in ButtonReigons)
+            {
+                x.Item3.SetData([Color.White]);
+            }
+            
         }
 
         public void TryClickBox()
