@@ -53,7 +53,7 @@ namespace _2D_Game
         }
         public override void Use()
         {
-            DefaultPlayer.Instance.Health = DefaultPlayer.Instance.MaxHealth;
+            DefaultPlayer.Instance.Health += 5;
             ItemInventory.Instance.ChangeValue("Berry", -1);
         }
         
@@ -83,9 +83,7 @@ namespace _2D_Game
         }
         public override void Use()
         {
-            // TODO: removes whole tool, change WeaponInventory to subtract 1 ammo instead
-            WeaponInventory.Instance.Remove(Tool.Dynamite);
-
+            throw new System.NotImplementedException();
         }
     }
 
@@ -99,8 +97,7 @@ namespace _2D_Game
         }
         public override void Use()
         {
-            // TODO: removes whole tool, change WeaponInventory to subtract 1 ammo instead
-            WeaponInventory.Instance.Remove(Tool.Slingshot);
+            throw new System.NotImplementedException();
         }
     }
 

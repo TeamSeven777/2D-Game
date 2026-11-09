@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using _2D_Class;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
@@ -17,6 +18,7 @@ namespace _2D_Game
         private const double CooldownDuration = 0.2;
 
         public static ItemInventory instance = new ItemInventory();
+        public static UseItemAnywhere useItemAnywhere = new UseItemAnywhere();
         public static ItemInventory Instance
         { get { return instance; } }
 
@@ -41,6 +43,10 @@ namespace _2D_Game
                 else if (keyboardState.IsKeyDown(Keys.U))
                 {
                     Previous();
+                }
+                if (keyboardState.IsKeyDown(Keys.Space))
+                {
+                    useItemAnywhere.ItemUseHandling();
                 }
             }
         }

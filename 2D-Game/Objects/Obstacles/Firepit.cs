@@ -31,7 +31,11 @@ namespace _2D_Class
             int logsHeld = ItemInventory.Instance.GetItemCount("Log");    
             int logsToAdd = Math.Min(logsHeld, Game1.LogsNeeded - game.LogsInFire);
             if (logsToAdd <= 0) return;
-            ItemInventory.Instance.Remove("Log", logsToAdd);
+                while (logsToAdd > 0)
+                {
+                    selectedItem.Use();
+                    logsToAdd--;
+                }
             game.AddLogsToFire(logsToAdd);
             }
 
