@@ -114,7 +114,7 @@ namespace _2D_Game
         {
             IDialogue Dialogue;
             Queue<string> dialogueList = new Queue<string>();
-            dialogueList.Enqueue("Here les the memory of the unknown\nwho died in the unknown.");
+            dialogueList.Enqueue("Here lies the memory of the unknown\nwho died in the unknown.");
             dialogueList.Enqueue("All that is known is as follows:");
             dialogueList.Enqueue("First is two,\nnext is blue,\nThird is through,\nLast is you.");
             Dialogue = new Dialogue(dialogueList, mainFont);
