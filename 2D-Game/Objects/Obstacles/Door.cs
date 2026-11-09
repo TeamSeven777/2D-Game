@@ -41,7 +41,7 @@ namespace _2D_Class
             if (selectedItem != null && selectedItem.Name.Equals("Key"))
             {
                 RoomCollisionHandler.Instance.Remove(this);
-                ItemInventory.Instance.ChangeValue("Key", -1);
+                selectedItem.Use();
                 IsOpen = true;
                 Sprite.SourceRectangle = new Rectangle(128, 0, 128, 128);
 
