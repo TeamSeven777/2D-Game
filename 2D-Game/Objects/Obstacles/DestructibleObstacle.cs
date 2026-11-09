@@ -28,9 +28,7 @@ namespace _2D_Game
         {
             this.OriginPos = originPos;
             this.Sprite = sprite;
-
             this.Hitbox = new BlockHitBox(new Rectangle(originPos.ToPoint() - size.ToPoint() / 2, size.ToPoint()),HitBoxType.DestructibleBlock);
- 
             CollisionHandler = new BlankCollisionHandler();
             RoomCollisionHandler.Instance.Add(this, true);
         }

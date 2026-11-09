@@ -10,7 +10,7 @@ namespace _2D_Game
     public class WeaponInventory
     {
         //Weapon, then Ammo
-        private readonly Dictionary<Tool, int> Weapons = new();
+        private Dictionary<Tool, int> Weapons = new();
         private readonly List<Tool> SelectedWeapon = new();
         private int currentIndex;
 
@@ -30,9 +30,9 @@ namespace _2D_Game
         {
             if (Weapons.Count <= 0)
             {
-                Weapons.Add(Tool.Slingshot, int.MaxValue);
+                Weapons.Add(Tool.Slingshot, 5);
                 Weapons.Add(Tool.Boomerang, int.MaxValue);
-                Weapons.Add(Tool.Dynamite, int.MaxValue);
+                Weapons.Add(Tool.Dynamite, 0);
             }
             if (SelectedWeapon.Count <= 0)
             {
@@ -60,6 +60,15 @@ namespace _2D_Game
         public void AddAmmo(Tool tool, int ammo)
         {
             Weapons[tool] += ammo;
+        }
+
+        public int GetAmmo(Tool tool)
+        {
+            if (Weapons.ContainsKey(tool))
+            {
+                return Weapons[tool];
+            }
+            return 0;
         }
 
         public void Remove(Tool tool)
@@ -90,5 +99,15 @@ namespace _2D_Game
             return SelectedWeapon[currentIndex];
         }
 
+        public List<Tool> GetKeys()
+        {
+            List<Tool> keys = new List<Tool>();
+            foreach (Tool x in Weapons.Keys)
+            {
+                keys.Add(x);
+            }
+
+            return keys;
+        }
     }
 }

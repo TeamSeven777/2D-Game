@@ -20,7 +20,7 @@ namespace _2D_Game
         public HashSet<Side> WillCollide(IHitbox collider)
         {
             HashSet<Side> result = new HashSet<Side>();
-            result.Add(Side.None);
+            result.Add(Side.SomeSide);
             return result;
         }
         public HashSet<Side> IsCollide(IHitbox collider)
@@ -37,5 +37,6 @@ namespace _2D_Game
                 return result;
             }
         }
+
 }
 }

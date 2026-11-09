@@ -28,12 +28,12 @@ namespace _2D_Class
         public void HandleInteraction()
         {
             Game1 game = RoomCollisionHandler.Instance.myGame;
-            int logsHeld = ItemInventory.Instance.GetItemCount("LogItem");
+            int logsHeld = ItemInventory.Instance.GetItemCount("Log");
             int logsToAdd = Math.Min(logsHeld, Game1.LogsNeeded - game.LogsInFire);
 
             if (logsToAdd <= 0) return;
 
-            ItemInventory.Instance.Remove("LogItem", logsToAdd);
+            ItemInventory.Instance.Remove("Log", logsToAdd);
             game.AddLogsToFire(logsToAdd);
         }
 

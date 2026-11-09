@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
@@ -7,7 +8,7 @@ namespace _2D_Game
 {
     public class ItemInventory
     {
-        private readonly Dictionary<string, int> items = new Dictionary<string, int>();
+        public readonly Dictionary<IItem, int> items = new Dictionary<IItem, int>();
         //private int currentIndex = 0;
         private Room roomRef;
         public static ItemInventory instance = new ItemInventory();
@@ -21,17 +22,8 @@ namespace _2D_Game
         public void LoadContent(ContentManager content, Room room)
         {
             roomRef = room;
-            // Add all items to base inventory here
-            // For sprint 3, start player with one of each object:
-            items.Clear();
-            if (items.Count == 0)
-            {
-                items.Add("LogItem", 99);
-                items.Add("BerryItem", 99);
-                items.Add("KeyItem", 99);
-                items.Add("ExplosiveItem", 99);
-                items.Add("PebbleItem", 99);
-            }
+            // Add any items to base inventory here if desired
+            
         }
 
         public void Update(GameTime gameTime, Room room)
@@ -43,32 +35,65 @@ namespace _2D_Game
             }
         }
 
-        public void Add(string item, int amount)
+        public void Add(IItem item, int amount)
         {
-            if (!items.ContainsKey(item))
-                items.Add(item, amount);
+            //Big nono!
+            IItem toAddTo = null;
+            foreach (KeyValuePair<IItem, int> x in items)
+            {
+                if(x.Key.Name == item.Name)
+                {
+                    toAddTo = x.Key;
+                }
+            }
+            if (toAddTo != null)
+            {
+                items[toAddTo] += amount;
+            }
             else
-                items[item] += amount;
+            {
+                items.Add(item, amount);
+            }
         }
 
         public void Remove(string item, int amount)
         {
-            if (items[item] - amount >= 0)
+            IItem toRemove = null;
+            foreach (KeyValuePair<IItem, int> x in items)
             {
-                items[item] = items[item] - amount;
+                if (x.Key.Name == item)
+                {
+                    toRemove = x.Key;
+                }
             }
-            else
+            if (items.ContainsKey(toRemove))
             {
-                items[item] = 0;
+                items.Remove(toRemove);
             }
+
         }
 
         public int GetItemCount(string item)
         {
-            if (items.ContainsKey(item))
-                return items[item];
-            else
-                return 0;
+            foreach(KeyValuePair<IItem,int> x in items)
+            {
+                if (x.Key.Name.Equals(item))
+                {
+                    return x.Value;
+                }
+            }
+            return 0;
+        }
+
+        public List<IItem> GetKeys()
+        {
+            List<IItem> keys = new List<IItem>();
+            foreach(IItem x in items.Keys)
+            {
+                keys.Add(x);
+            }
+
+            return keys;
         }
 
         public void RemoveFromWorld(WorldItem worldItem)
