@@ -21,8 +21,9 @@ namespace _2D_Game
         //Hitbox
         public IHitbox Hitbox { get; set; }
         public ICollisionHandler CollisionHandler { get; set; }
-        private int hbWidth = 30;
-        private int hbHeight = 30;
+        private int hbWidth = 0;
+        private int hbHeight = 0;
+        private int attackHBsize = 40;
 
         // Chasing
         private float chaseRange = 250f; // how close the player has to be before the mosquito follows
@@ -30,7 +31,9 @@ namespace _2D_Game
         private bool chasing = false;
 
         // Spin attack
-        private float attackRange = 80f;             // how close the player has to be before the mosquito spins
+        private float attackRangeX = 50f;             // how close the player has to be before the mosquito spins
+        private float attackRangeYTop = 50f;
+        private float attackRangeYBottom = 85f;
         private const double SpinDuration = 0.5;     // seconds for one full spin
         private const double SpinCooldown = 1.0;     // seconds to wait after a spin before spinning again
         private bool spinning = false;
@@ -86,28 +89,31 @@ namespace _2D_Game
             {
                 //stay in place and turn one full circle over SpinDuration
                 sprite.Rotation = (float)(spinTimer / SpinDuration * MathHelper.TwoPi);
-                if(spinTimer >= SpinDuration / 2)
+                if (spinTimer < SpinDuration)
                 {
-                    hbWidth = hbHeight = 60;
+                    hbWidth = hbHeight = attackHBsize;
+                    Hitbox.BoundingBox = new Rectangle((int)(Position.X + sprite.Origin.X - hbWidth / 2), (int)(Position.Y + sprite.Origin.Y - hbHeight / 2), hbWidth, hbHeight);
                 }
                 if (spinTimer >= SpinDuration)
                 {
                     spinning = false;
                     spinTimer = 0;
                     sprite.Rotation = 0;
-                    hbWidth = hbHeight = 30;
+                    hbWidth = hbHeight = 0;
                 }
                 sprite.Update(gameTime);
                 return;
             }
 
-            float distance = Vector2.Distance(Position, playerPosition);
-            float facingX;
+            float distance = Vector2.Distance(Position + sprite.Origin, playerPosition);
+            float distanceX = Math.Abs(Position.X + sprite.Origin.X - playerPosition.X);
+            float distanceY = Math.Abs(Position.Y + sprite.Origin.Y - playerPosition.Y);
+            float facingX; float facingY = playerPosition.Y - Position.Y - sprite.Origin.Y;
 
-            if (distance < attackRange)
+            if (distanceX < attackRangeX && ((facingY > 0 && distanceY < attackRangeYTop) || (facingY <0 && distanceY < attackRangeYBottom)))
             {
                 chasing = true;
-                facingX = playerPosition.X - Position.X;
+                facingX = playerPosition.X - Position.X - sprite.Origin.X;
                 //close enough, so spin once the cooldown is over (and hold still until then)
                 if (spinTimer >= SpinCooldown)
                 {
