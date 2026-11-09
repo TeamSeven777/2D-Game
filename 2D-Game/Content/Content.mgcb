@@ -102,6 +102,19 @@
 /processorParam:Version=3.8.5.0
 /build:Images/Explosive.png
 
+#begin Images/fog1.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/processorParam:Version=3.8.5.0
+/build:Images/fog1.png
+
 #begin Images/FullMap.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -290,6 +303,27 @@
 /processorParam:Version=3.8.5.0
 /build:Music/titleTheme.wav
 
+#begin SFX/boomerang.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/processorParam:Version=3.8.5.0
+/build:SFX/boomerang.mp3
+
+#begin SFX/explosion.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/processorParam:Version=3.8.5.0
+/build:SFX/explosion.mp3
+
+#begin SFX/ghostAttack.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/processorParam:Version=3.8.5.0
+/build:SFX/ghostAttack.mp3
+
 #begin SFX/gunshot-meme.mp3
 /importer:Mp3Importer
 /processor:SoundEffectProcessor
@@ -304,6 +338,48 @@
 /processorParam:Version=3.8.5.0
 /build:SFX/gunshottttt.mp3
 
+#begin SFX/mosquito1.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/processorParam:Version=3.8.5.0
+/build:SFX/mosquito1.mp3
+
+#begin SFX/pickup.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/processorParam:Version=3.8.5.0
+/build:SFX/pickup.mp3
+
+#begin SFX/playerDamage.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/processorParam:Version=3.8.5.0
+/build:SFX/playerDamage.mp3
+
+#begin SFX/punch.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/processorParam:Version=3.8.5.0
+/build:SFX/punch.mp3
+
+#begin SFX/speak.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/processorParam:Version=3.8.5.0
+/build:SFX/speak.mp3
+
+#begin SFX/spiderNoise.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/processorParam:Version=3.8.5.0
+/build:SFX/spiderNoise.mp3
+
 #begin SFX/stickswing.mp3
 /importer:Mp3Importer
 /processor:SoundEffectProcessor
@@ -317,6 +393,13 @@
 /processorParam:Quality=Best
 /processorParam:Version=3.8.5.0
 /build:SFX/test-sfx.mp3
+
+#begin SFX/throw.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/processorParam:Version=3.8.5.0
+/build:SFX/throw.mp3
 
 #begin Sprites/bushes.png
 /importer:TextureImporter

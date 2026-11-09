@@ -14,6 +14,7 @@ namespace _2D_Game
         private Texture2D ghostSheet, ghostAttackSheet, mosquitoSheet, spiderSheet;
 
         private Texture2D teamSheet, signTexture;
+        public Texture2D FogTexture { get; private set; }
         private readonly Dictionary<string, Texture2D> itemTextures = new(StringComparer.OrdinalIgnoreCase);
 
         private Texture2D itemSheet;
@@ -32,6 +33,8 @@ namespace _2D_Game
             // NPC sprite sheets
             teamSheet = content.Load<Texture2D>("Sprites/TeamIdles-Sheet");
             signTexture = content.Load<Texture2D>("Sprites/Sign");
+
+            FogTexture = content.Load<Texture2D>("Images/fog1");
 
             // Item textures (lookup dictionary)
             itemSheet = content.Load<Texture2D>("Sprites/itemsheet2");
@@ -87,19 +90,19 @@ namespace _2D_Game
             {
                 block = new DestructibleObstacle(new Vector2(25), position, ObstacleSpriteFactory.Instance.CreateOtherSprite(2), CurRoom);
             }
-            else if(type.Equals("Sign", StringComparison.OrdinalIgnoreCase))
+            else if (type.Equals("Sign", StringComparison.OrdinalIgnoreCase))
             {
                 block = new Sign(new Vector2(25), position, ObstacleSpriteFactory.Instance.CreateOtherSprite(1));
             }
-            else if(type.Equals("Firepit", StringComparison.OrdinalIgnoreCase))
+            else if (type.Equals("Firepit", StringComparison.OrdinalIgnoreCase))
             {
                 block = new Firepit(new Vector2(64), position, ObstacleSpriteFactory.Instance.CreateFirepitSprite());
             }
-            else if(type.Equals("Door", StringComparison.OrdinalIgnoreCase))
+            else if (type.Equals("Door", StringComparison.OrdinalIgnoreCase))
             {
                 block = new Door(new Vector2(25), position, ObstacleSpriteFactory.Instance.CreateDoorSprite());
             }
-            else if(type.Equals("Moveable_Block", StringComparison.OrdinalIgnoreCase))
+            else if (type.Equals("Moveable_Block", StringComparison.OrdinalIgnoreCase))
             {
                 block = new MoveableObstacle(new Vector2(25), position, ObstacleSpriteFactory.Instance.CreateMoveableBlockSprite());
             }
@@ -182,7 +185,7 @@ namespace _2D_Game
             if (itemSheet == null)
             {
                 System.Diagnostics.Debug.WriteLine($"[Warning] Missing texture for item type: '{type}'");
-                return null; 
+                return null;
             }
 
             return type switch
@@ -196,5 +199,7 @@ namespace _2D_Game
                 _ => null // Unknown type returns null
             };
         }
+
+
     }
 }

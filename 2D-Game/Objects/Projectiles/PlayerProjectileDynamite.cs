@@ -38,7 +38,8 @@ namespace _2D_Game
             {
                 this.ProjectileSprite = ProjectileSpriteFactory.Instance.CreateExplosionAnimation();
                 Hitbox = new ProjectileHitBox(new Rectangle((int)Position.X - 50,(int)Position.Y - 50,100,100), HitBoxType.Explosion);
-                RoomCollisionHandler.Instance.Add(this, true); 
+                RoomCollisionHandler.Instance.Add(this, true);
+                SoundEffectFactory.Instance.PlaySoundEffect(SoundName.Explosion, false);
             }
             if (DespawnTimer > 0) DespawnTimer--;
         }

@@ -28,6 +28,8 @@ namespace _2D_Game
     
         public void Initialize(Game1 game)
         {
+            Weapons = new();
+            currentIndex = 0;
             if (Weapons.Count <= 0)
             {
                 Weapons.Add(Tool.Slingshot, 5);

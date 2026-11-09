@@ -1,6 +1,8 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
+using System.Collections.Generic;
+
 
 namespace _2D_Game
 {
@@ -45,8 +47,9 @@ namespace _2D_Game
             RoomCollisionHandler.Instance.Add(this, true);
         }
         public void HandleInteraction() { 
-            RoomCollisionHandler.Instance.myGame.CurrentDialogue = npcDialogue;
+            RoomCollisionHandler.Instance.myGame.CurrentDialogue = new Dialogue(new Queue<string>(npcDialogue.DialogueList), npcDialogue.Font);
             RoomCollisionHandler.Instance.myGame.HandleDialogue();
+            SoundEffectFactory.Instance.PlaySoundEffect(SoundName.Dialogue, true);
         }
         
         public void Update(GameTime gameTime)

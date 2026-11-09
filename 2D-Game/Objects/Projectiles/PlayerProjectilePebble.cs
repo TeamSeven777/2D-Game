@@ -32,6 +32,7 @@ namespace _2D_Game
             this.CollisionHandler = new ProjectileCollisionHandler(this);
             DespawnTimer = 1000;
             RoomCollisionHandler.Instance.Add(this, true);
+            SoundEffectFactory.Instance.PlaySoundEffect(SoundName.ThrowItem, true);
         }
 
         public void Update(GameTime gt)

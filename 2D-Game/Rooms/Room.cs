@@ -9,16 +9,20 @@ namespace _2D_Game
     public class Room
     {
         public Point GridPosition { get; private set; }
+        public Point TopLeft { get; set; }
+        public Point BottomRight { get; set; }
         public List<IObstacle> Obstacles { get; private set; } = new List<IObstacle>();
         public List<IEnemy> Enemies { get; private set; } = new List<IEnemy>(); // Room-specific enemies
         public List<INPC> NPCs { get; private set; } = new List<INPC>(); // Room-specific NPCs
         public List<WorldItem> Items { get; private set; } = new List<WorldItem>();
         public SongName RoomSongName { get; private set; }
+        public Texture2D fogOverlay { get; set;  }
+        private bool fogMode = true;
         
         public Room(Point gridPosition)
         {
             GridPosition = gridPosition;
-            DetermineRoomSongName(gridPosition);//TODO maybe just load this in via the xml stuff?
+            DetermineRoomSongName(gridPosition);//TODO maybe just load this in via the xml stuff?            
 
         }
         private void DetermineRoomSongName(Point gridPos) {
@@ -91,6 +95,8 @@ namespace _2D_Game
 
             foreach (var item in Items) 
                 item.Draw(spriteBatch);
+
+            //if (fogMode) spriteBatch.Draw(fogOverlay, new Rectangle(TopLeft, BottomRight), Color.White); //TODO make this better?
         }
         /// <summary>
         /// Turns on Enemy AI, and room song
@@ -98,13 +104,15 @@ namespace _2D_Game
         public void Activate()   { 
             foreach (var e in Enemies) e.Load();
             Playlist.Instance.ChangeSong(RoomSongName, true);
+            fogMode = false;
         }
         /// <summary>
         /// Turns off Enemy AI
         /// </summary>
         public void Deactivate() { 
             foreach (var e in Enemies) e.Unload();
-            Playlist.Instance.ChangeSong(SongName.NONE, true); 
+            Playlist.Instance.ChangeSong(SongName.NONE, true);
+            fogMode = true;
         }
 
         //TODO music changing methods         

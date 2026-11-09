@@ -12,6 +12,7 @@
     <File>C:/Users/edwei/OneDrive/Documents/GitHub/2D-Game/2D-Game/Content/Images/boggus.png</File>
     <File>C:/Users/edwei/OneDrive/Documents/GitHub/2D-Game/2D-Game/Content/Images/endScreen.png</File>
     <File>C:/Users/edwei/OneDrive/Documents/GitHub/2D-Game/2D-Game/Content/Images/Explosive.png</File>
+    <File>C:/Users/edwei/OneDrive/Documents/GitHub/2D-Game/2D-Game/Content/Images/fog1.png</File>
     <File>C:/Users/edwei/OneDrive/Documents/GitHub/2D-Game/2D-Game/Content/Images/FullMap.png</File>
     <File>C:/Users/edwei/OneDrive/Documents/GitHub/2D-Game/2D-Game/Content/Images/gameBackground.png</File>
     <File>C:/Users/edwei/OneDrive/Documents/GitHub/2D-Game/2D-Game/Content/Images/Key.png</File>
@@ -32,10 +33,20 @@
     <File>C:/Users/edwei/OneDrive/Documents/GitHub/2D-Game/2D-Game/Content/Music/theDead.wav</File>
     <File>C:/Users/edwei/OneDrive/Documents/GitHub/2D-Game/2D-Game/Content/Music/titleSample1.wav</File>
     <File>C:/Users/edwei/OneDrive/Documents/GitHub/2D-Game/2D-Game/Content/Music/titleTheme.wav</File>
+    <File>C:/Users/edwei/OneDrive/Documents/GitHub/2D-Game/2D-Game/Content/SFX/boomerang.mp3</File>
+    <File>C:/Users/edwei/OneDrive/Documents/GitHub/2D-Game/2D-Game/Content/SFX/explosion.mp3</File>
+    <File>C:/Users/edwei/OneDrive/Documents/GitHub/2D-Game/2D-Game/Content/SFX/ghostAttack.mp3</File>
     <File>C:/Users/edwei/OneDrive/Documents/GitHub/2D-Game/2D-Game/Content/SFX/gunshot-meme.mp3</File>
     <File>C:/Users/edwei/OneDrive/Documents/GitHub/2D-Game/2D-Game/Content/SFX/gunshottttt.mp3</File>
+    <File>C:/Users/edwei/OneDrive/Documents/GitHub/2D-Game/2D-Game/Content/SFX/mosquito1.mp3</File>
+    <File>C:/Users/edwei/OneDrive/Documents/GitHub/2D-Game/2D-Game/Content/SFX/pickup.mp3</File>
+    <File>C:/Users/edwei/OneDrive/Documents/GitHub/2D-Game/2D-Game/Content/SFX/playerDamage.mp3</File>
+    <File>C:/Users/edwei/OneDrive/Documents/GitHub/2D-Game/2D-Game/Content/SFX/punch.mp3</File>
+    <File>C:/Users/edwei/OneDrive/Documents/GitHub/2D-Game/2D-Game/Content/SFX/speak.mp3</File>
+    <File>C:/Users/edwei/OneDrive/Documents/GitHub/2D-Game/2D-Game/Content/SFX/spiderNoise.mp3</File>
     <File>C:/Users/edwei/OneDrive/Documents/GitHub/2D-Game/2D-Game/Content/SFX/stickswing.mp3</File>
     <File>C:/Users/edwei/OneDrive/Documents/GitHub/2D-Game/2D-Game/Content/SFX/test-sfx.mp3</File>
+    <File>C:/Users/edwei/OneDrive/Documents/GitHub/2D-Game/2D-Game/Content/SFX/throw.mp3</File>
     <File>C:/Users/edwei/OneDrive/Documents/GitHub/2D-Game/2D-Game/Content/Sprites/bushes.png</File>
     <File>C:/Users/edwei/OneDrive/Documents/GitHub/2D-Game/2D-Game/Content/Sprites/door.png</File>
     <File>C:/Users/edwei/OneDrive/Documents/GitHub/2D-Game/2D-Game/Content/Sprites/enemy-projectiles.png</File>
@@ -59,6 +70,17 @@
     <File>C:/Users/edwei/OneDrive/Documents/GitHub/2D-Game/2D-Game/Content/Sprites/trees.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

@@ -159,6 +159,7 @@ namespace _2D_Game
                 }
                 stateMachine.Damaged = true;
                 hasIFrames = true;
+                SoundEffectFactory.Instance.PlaySoundEffect(SoundName.PlayerDamage, false);
             }
         }
         public void UseTool(Tool tool)

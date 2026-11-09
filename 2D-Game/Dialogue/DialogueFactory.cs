@@ -50,6 +50,7 @@ namespace _2D_Game
             else
             {
                 dialogueList.Enqueue("I'm gonna eventually give you a fishing rod.");
+                dialogueList.Enqueue("blue is down.");
             }
             
             Dialogue = new Dialogue(dialogueList, mainFont);//TODO fix position bug with relation to camera (screen scale)
@@ -70,6 +71,7 @@ namespace _2D_Game
             dialogueList.Enqueue("Something..");
             dialogueList.Enqueue("Something...");
             dialogueList.Enqueue("Code quality");
+            dialogueList.Enqueue("two is up.");
             Dialogue = new Dialogue(dialogueList, mainFont);//TODO fix position bug with relation to camera (screen scale)
             return Dialogue;
         }

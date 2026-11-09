@@ -362,6 +362,7 @@ namespace _2D_Game
         public void ResetGame()
         {
             Initialize();
+            LoadContent();
         }
         public void TogglePause()
         {
@@ -392,6 +393,7 @@ namespace _2D_Game
                     DialogueMode = false;
                     controllers[controllerNames[0]] = new KeyboardController(this, ControllerMode.MovementMode);
                 }
+                else SoundEffectFactory.Instance.PlaySoundEffect(SoundName.Dialogue, true);
             }
         }
     }

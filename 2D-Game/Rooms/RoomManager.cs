@@ -36,6 +36,7 @@ namespace _2D_Game
 
             // Load assets via factory
             contentFactory.LoadContent(content, blockSheet);
+            
 
             XDocument doc = XDocument.Load(filePath);
 
@@ -52,6 +53,9 @@ namespace _2D_Game
                 ParseEnemies(roomElement, rx, ry, room);
                 ParseNPCs(roomElement, rx, ry, room);
                 ParseItems(roomElement, rx, ry, room);
+                room.fogOverlay = contentFactory.FogTexture;
+                room.TopLeft = new Point(gridPos.X * roomWidth, gridPos.Y * roomHeight);
+                room.BottomRight = new Point(room.TopLeft.X + roomWidth, room.TopLeft.Y + roomHeight);
 
                 rooms[gridPos] = room;
             }

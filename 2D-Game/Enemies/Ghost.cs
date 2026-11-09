@@ -107,7 +107,8 @@ namespace _2D_Game
                         attacking = true;
                         attackTimer = 0;
                         attackSprite = new AnimatedSprite(attackSprite);
-                        currentSprite = attackSprite;                       
+                        currentSprite = attackSprite;
+                        SoundEffectFactory.Instance.PlaySoundEffect(SoundName.GhostWail, true);
                     }
                 }
                 else if (distance < chaseRange)

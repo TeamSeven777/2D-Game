@@ -77,7 +77,7 @@ namespace _2D_Game
         {
             roomRef = room;
             // Add any items to base inventory here if desired
-            
+            items = new Dictionary<IItem, int>();
         }
 
 

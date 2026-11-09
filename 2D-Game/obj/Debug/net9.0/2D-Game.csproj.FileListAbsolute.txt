@@ -155,3 +155,14 @@ C:\Users\edwei\OneDrive\Documents\GitHub\2D-Game\2D-Game\bin\Debug\net9.0\Conten
 C:\Users\edwei\OneDrive\Documents\GitHub\2D-Game\2D-Game\bin\Debug\net9.0\Content\Music\eightLeggedDemons.ogg
 C:\Users\edwei\OneDrive\Documents\GitHub\2D-Game\2D-Game\bin\Debug\net9.0\Content\Music\eightLeggedDemons.xnb
 C:\Users\edwei\OneDrive\Documents\GitHub\2D-Game\2D-Game\bin\Debug\net9.0\Content\SFX\stickswing.xnb
+C:\Users\edwei\OneDrive\Documents\GitHub\2D-Game\2D-Game\bin\Debug\net9.0\Content\Images\fog1.xnb
+C:\Users\edwei\OneDrive\Documents\GitHub\2D-Game\2D-Game\bin\Debug\net9.0\Content\SFX\boomerang.xnb
+C:\Users\edwei\OneDrive\Documents\GitHub\2D-Game\2D-Game\bin\Debug\net9.0\Content\SFX\explosion.xnb
+C:\Users\edwei\OneDrive\Documents\GitHub\2D-Game\2D-Game\bin\Debug\net9.0\Content\SFX\ghostAttack.xnb
+C:\Users\edwei\OneDrive\Documents\GitHub\2D-Game\2D-Game\bin\Debug\net9.0\Content\SFX\mosquito1.xnb
+C:\Users\edwei\OneDrive\Documents\GitHub\2D-Game\2D-Game\bin\Debug\net9.0\Content\SFX\pickup.xnb
+C:\Users\edwei\OneDrive\Documents\GitHub\2D-Game\2D-Game\bin\Debug\net9.0\Content\SFX\playerDamage.xnb
+C:\Users\edwei\OneDrive\Documents\GitHub\2D-Game\2D-Game\bin\Debug\net9.0\Content\SFX\punch.xnb
+C:\Users\edwei\OneDrive\Documents\GitHub\2D-Game\2D-Game\bin\Debug\net9.0\Content\SFX\speak.xnb
+C:\Users\edwei\OneDrive\Documents\GitHub\2D-Game\2D-Game\bin\Debug\net9.0\Content\SFX\spiderNoise.xnb
+C:\Users\edwei\OneDrive\Documents\GitHub\2D-Game\2D-Game\bin\Debug\net9.0\Content\SFX\throw.xnb
