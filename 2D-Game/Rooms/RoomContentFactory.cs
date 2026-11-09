@@ -12,9 +12,14 @@ namespace _2D_Game
     {
         // Assets
         private Texture2D ghostSheet, ghostAttackSheet, mosquitoSheet, spiderSheet;
-        private Texture2D teamSheet;
+
+        private Texture2D teamSheet, signTexture;
+        public Texture2D FogTexture { get; private set; }
+        private readonly Dictionary<string, Texture2D> itemTextures = new(StringComparer.OrdinalIgnoreCase);
+
         private Texture2D itemSheet;
         private readonly Dictionary<string, Rectangle> itemTextureIInfo = new(StringComparer.OrdinalIgnoreCase);
+
 
 
         public void LoadContent(ContentManager content, Texture2D blockSheet)
@@ -27,6 +32,9 @@ namespace _2D_Game
 
             // NPC sprite sheets
             teamSheet = content.Load<Texture2D>("Sprites/TeamIdles-Sheet");
+            signTexture = content.Load<Texture2D>("Sprites/Sign");
+
+            FogTexture = content.Load<Texture2D>("Images/fog1");
 
             // Item textures (lookup dictionary)
             itemSheet = content.Load<Texture2D>("Sprites/itemsheet2");
@@ -82,15 +90,19 @@ namespace _2D_Game
             {
                 block = new DestructibleObstacle(new Vector2(25), position, ObstacleSpriteFactory.Instance.CreateOtherSprite(2), CurRoom);
             }
-            else if(type.Equals("Sign", StringComparison.OrdinalIgnoreCase))
+            else if (type.Equals("Sign", StringComparison.OrdinalIgnoreCase))
             {
                 block = new Sign(new Vector2(25), position, ObstacleSpriteFactory.Instance.CreateOtherSprite(1));
             }
-            else if(type.Equals("Door", StringComparison.OrdinalIgnoreCase))
+            else if (type.Equals("Firepit", StringComparison.OrdinalIgnoreCase))
+            {
+                block = new Firepit(new Vector2(64), position, ObstacleSpriteFactory.Instance.CreateFirepitSprite());
+            }
+            else if (type.Equals("Door", StringComparison.OrdinalIgnoreCase))
             {
                 block = new Door(new Vector2(25), position, ObstacleSpriteFactory.Instance.CreateDoorSprite());
             }
-            else if(type.Equals("Moveable_Block", StringComparison.OrdinalIgnoreCase))
+            else if (type.Equals("Moveable_Block", StringComparison.OrdinalIgnoreCase))
             {
                 block = new MoveableObstacle(new Vector2(25), position, ObstacleSpriteFactory.Instance.CreateMoveableBlockSprite());
             }
@@ -132,13 +144,13 @@ namespace _2D_Game
             return null;
         }
 
-        public INPC CreateNPC(string type, Vector2 position)
+        public INPC CreateNPC(string type, Vector2 position, int dialogueIndex)
         {
             if (type.Equals("Ethan", StringComparison.OrdinalIgnoreCase))
             {
                 Animation ethanIdle = new(teamSheet, TimeSpan.FromMilliseconds(100), new Vector2(128, 128), Vector2.Zero, teamSheet.Width);
                 AnimatedSprite ethan = new(ethanIdle, teamSheet) { Scale = new Vector2(0.95f) };
-                return new NPC(ethan, position, DialogueFactory.Instance.CreateEthanDialogue());
+                return new NPC(ethan, position, DialogueFactory.Instance.CreateEthanDialogue(dialogueIndex));
             }
             else if (type.Equals("Lydia", StringComparison.OrdinalIgnoreCase))
             {
@@ -157,9 +169,14 @@ namespace _2D_Game
                 Animation joeIdle = new(teamSheet, TimeSpan.FromMilliseconds(100), new Vector2(128, 128), new Vector2(0, 384), teamSheet.Width);
                 AnimatedSprite joe = new(joeIdle, teamSheet) { Scale = new Vector2(0.95f) };
                 return new NPC(joe, position, DialogueFactory.Instance.CreateJoeDialogue());
-            }          
+            }
+            else
+            {
+                ISprite sign = new Sprite(signTexture, signTexture.Bounds);
+                return new NPC(sign, position, DialogueFactory.Instance.CreateSignDialogue());
+            }
 
-            return null;
+            //return null;
         }
 
         public IItem CreateItem(string type)
@@ -168,7 +185,7 @@ namespace _2D_Game
             if (itemSheet == null)
             {
                 System.Diagnostics.Debug.WriteLine($"[Warning] Missing texture for item type: '{type}'");
-                return null; 
+                return null;
             }
 
             return type switch
@@ -182,5 +199,7 @@ namespace _2D_Game
                 _ => null // Unknown type returns null
             };
         }
+
+
     }
 }

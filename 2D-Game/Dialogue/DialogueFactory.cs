@@ -37,13 +37,22 @@ namespace _2D_Game
             return Dialogue;
         }
         //NPC dialogues
-        public IDialogue CreateEthanDialogue() 
+        public IDialogue CreateEthanDialogue(int dialogueIndex) 
         {
             IDialogue Dialogue;
             Queue<string> dialogueList = new Queue<string>();
-            dialogueList.Enqueue("Congratulations! Now you get to sit through 20 lines of dialogue!");
-            for(int i = 1; i < 21; i++) dialogueList.Enqueue("Waste of time line " + i + ".");
-            dialogueList.Enqueue("Alright goodbye now!");
+            if(dialogueIndex == 0)
+            {
+                dialogueList.Enqueue("Congratulations! Now you get to sit through 20 lines of dialogue!");
+                for (int i = 1; i < 21; i++) dialogueList.Enqueue("Waste of time line " + i + ".");
+                dialogueList.Enqueue("Alright goodbye now!");
+            } 
+            else
+            {
+                dialogueList.Enqueue("I'm gonna eventually give you a fishing rod.");
+                dialogueList.Enqueue("blue is down.");
+            }
+            
             Dialogue = new Dialogue(dialogueList, mainFont);//TODO fix position bug with relation to camera (screen scale)
             return Dialogue;
         }
@@ -62,6 +71,7 @@ namespace _2D_Game
             dialogueList.Enqueue("Something..");
             dialogueList.Enqueue("Something...");
             dialogueList.Enqueue("Code quality");
+            dialogueList.Enqueue("two is up.");
             Dialogue = new Dialogue(dialogueList, mainFont);//TODO fix position bug with relation to camera (screen scale)
             return Dialogue;
         }
@@ -73,7 +83,15 @@ namespace _2D_Game
             dialogueList.Enqueue("Ya know? The game where you hunt down logs.");
             dialogueList.Enqueue("This fire isn't gonna make itself, you know.\nOf course, unless you use the dev shortcut.");
             dialogueList.Enqueue("Better get going.");
-            Dialogue = new Dialogue(dialogueList, mainFont);//TODO fix position bug with relation to camera (screen scale)
+            Dialogue = new Dialogue(dialogueList, mainFont);
+            return Dialogue;
+        }
+        public IDialogue CreateSignDialogue() 
+        {
+            IDialogue Dialogue;
+            Queue<string> dialogueList = new Queue<string>();
+            dialogueList.Enqueue("Here be bog\nin which there be log.\nEnter not this lair\nwithout a pathway there.");
+            Dialogue = new Dialogue(dialogueList, mainFont);
             return Dialogue;
         }
     }

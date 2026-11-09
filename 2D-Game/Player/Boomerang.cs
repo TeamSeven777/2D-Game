@@ -13,6 +13,10 @@ namespace _2D_Game
     {
         public Direction direction { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
+        public Boomerang() 
+        {
+            SoundEffectFactory.Instance.PlaySoundEffect(SoundName.Boomerang, false);
+        }
         public void Draw(SpriteBatch spriteBatch, Vector2 position)
         {
         }
@@ -24,6 +28,7 @@ namespace _2D_Game
 
         public void Update(GameTime gameTime)
         {
+            
         }
     }
 }

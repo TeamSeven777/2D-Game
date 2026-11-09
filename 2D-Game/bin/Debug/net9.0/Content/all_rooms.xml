@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Dungeon>
-  <!-- Starting Room (0, 2) -->
+  <!-- Room 0 (0, 2)  -->
   <Room RoomX="0" RoomY="2">
     <Obstacles>
       <Entity Type="Block" X="150" Y="0" />
@@ -16,13 +16,19 @@
       <Entity Type="Spider" X="200" Y="100" />
     </Enemies>
     <NPCs>
-      <Entity Type="Ethan" X="300" Y="200" />
-      <Entity Type="Lydia" X="600" Y="200" />
-      <Entity Type="Lily" X="250" Y="300" />
-      <Entity Type="Joe" X="650" Y="300" />
+      <Entity Type="Ethan" X="300" Y="200" DialogueIndex="0" />
+      <Entity Type="Lydia" X="600" Y="200" DialogueIndex="0"/>
+      <Entity Type="Lily" X="250" Y="300" DialogueIndex="0"/>
+      <Entity Type="Joe" X="650" Y="300" DialogueIndex="0"/>
     </NPCs>
     <Items>
-    <Entity Type="Log" X="600" Y="300" />
+      <Entity Type="Log" X="600" Y="300" />
+      <Entity Type="Log" X="150" Y="400" />
+      <Entity Type="Log" X="300" Y="500" />
+      <Entity Type="Log" X="750" Y="450" />
+      <Entity Type="Log" X="850" Y="300" />
+      <Entity Type="Log" X="900" Y="150" />
+      <Entity Type="Log" X="850" Y="600" />
       <Entity Type="Berry" X="350" Y="200" />
       <Entity Type="Explosive" X="450" Y="300" />
       <Entity Type="Key" X="300" Y="250" />
@@ -31,7 +37,7 @@
     </Items>
   </Room>
 
-  <!-- Adjacent Room (1, 2) -->
+  <!-- Room 7 (1, 2)-->
   <Room RoomX="1" RoomY="2">
     <Obstacles>
       <Entity Type="Block" X="50" Y="50" />
@@ -42,10 +48,102 @@
     </Obstacles>
     <Enemies>
       <Entity Type="Ghost" X="120" Y="150" />
+      <Entity Type="Spider" X="1000" Y="650" />
+      <Entity Type="Spider" X="200" Y="550" />
+      <Entity Type="Spider" X="400" Y="430" />
+      <Entity Type="Spider" X="350" Y="410" />
+      <Entity Type="Spider" X="250" Y="200" />
+      <Entity Type="Spider" X="400" Y="100" />
+      <Entity Type="Spider" X="100" Y="50" />
+      <Entity Type="Spider" X="150" Y="600" />
+      <Entity Type="Spider" X="450" Y="610" />
+      <Entity Type="Spider" X="500" Y="650" />
+      <Entity Type="Spider" X="550" Y="500" />
+      <Entity Type="Spider" X="600" Y="530" />
+      <Entity Type="Spider" X="650" Y="480" />
+      <Entity Type="Spider" X="700" Y="50" />
+      <Entity Type="Spider" X="750" Y="150" />
+      <Entity Type="Spider" X="800" Y="99" />
+      <Entity Type="Spider" X="850" Y="70" />
+      <Entity Type="Spider" X="900" Y="170" />
+      <Entity Type="Spider" X="950" Y="230" />
+      <Entity Type="Spider" X="720" Y="250" />
+      <Entity Type="Spider" X="770" Y="270" />
+      <Entity Type="Spider" X="620" Y="330" />
+      <Entity Type="Spider" X="420" Y="300" />
+      <Entity Type="Spider" X="470" Y="500" />
+      <Entity Type="Spider" X="870" Y="520" />
+      <Entity Type="Spider" X="820" Y="540" />
+      <Entity Type="Spider" X="920" Y="620" />
+      <Entity Type="Spider" X="970" Y="120" />
+      <Entity Type="Spider" X="220" Y="170" />
+      <Entity Type="Spider" X="370" Y="360" />
     </Enemies>
     <NPCs />
     <Items />
   </Room>
+
+	
+	<!--Room 1 (0, 1) -->
+	<Room RoomX="0" RoomY="1">
+    <Items>
+      <Entity Type="Pebble" X="450" Y="150" />
+      <Entity Type="Pebble" X="600" Y="200" />
+      <Entity Type="Pebble" X="250" Y="300" />
+      <Entity Type="Pebble" X="500" Y="350" />
+      <Entity Type="Pebble" X="150" Y="450" />
+      <Entity Type="Pebble" X="850" Y="500" />
+      <Entity Type="Pebble" X="900" Y="550" />
+      <Entity Type="Pebble" X="300" Y="600" />
+    </Items>
+	</Room>
+	<!--Room 6 (1, 1) -->
+	<Room RoomX="1" RoomY="1">
+	</Room>
+	<!--Room 5 (2, 1) -->
+	<Room RoomX="2" RoomY="1">
+	</Room>
+	
+	<!--Room 2 (0, 0) -->
+	<Room RoomX="0" RoomY="0">
+    <Enemies>
+      <Entity Type="Mosquito" X="100" Y="200" />
+      <Entity Type="Mosquito" X="300" Y="500" />
+      <Entity Type="Mosquito" X="450" Y="350" />
+      <Entity Type="Mosquito" X="800" Y="400" />
+    </Enemies>
+    <Items>
+      <Entity Type="Pebble" X="150" Y="350" />
+      <Entity Type="Pebble" X="200" Y="400" />
+      <Entity Type="Pebble" X="350" Y="200" />
+      <Entity Type="Pebble" X="400" Y="150" />
+      <Entity Type="Pebble" X="550" Y="450" />
+      <Entity Type="Pebble" X="650" Y="300" />
+      <Entity Type="Pebble" X="700" Y="550" />
+      <Entity Type="Pebble" X="800" Y="600" />
+    </Items>
+	</Room>
+	<!--Room 3 (1, 0) -->
+	<Room RoomX="1" RoomY="0">
+		<Enemies>
+      <Entity Type="Mosquito" X="200" Y="100" />
+      <Entity Type="Mosquito" X="100" Y="350" />
+      <Entity Type="Mosquito" X="450" Y="600" />
+      <Entity Type="Mosquito" X="600" Y="200" />
+      <Entity Type="Mosquito" X="450" Y="100" />
+      <Entity Type="Mosquito" X="550" Y="100" />
+      <Entity Type="Ghost" X="500" Y="50" />
+    </Enemies>
+    <NPCs>
+			<Entity Type="Sign" X="600" Y="100" DialogueIndex="0" />
+		</NPCs>
+	</Room>
+	<!--Room 4 (2, 0) -->
+	<Room RoomX="2" RoomY="0">
+		<NPCs>
+			<Entity Type="Ethan" X="300" Y="400" DialogueIndex="1" />
+		</NPCs>
+	</Room>
   
   <!-- Bottom Right Room (2,2) -->
   <Room RoomX="2" RoomY="2">
@@ -58,4 +156,14 @@
 	<NPCs/>
 	<Items/>
   </Room>
+
+
+  <!-- Bog: one-screen area, kept far from the main 3x3 map -->
+  <Room RoomX="4" RoomY="4">
+    <Obstacles/>
+    <Enemies/>
+    <NPCs/>
+    <Items/>
+  </Room>
+
 </Dungeon>

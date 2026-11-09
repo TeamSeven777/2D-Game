@@ -1,6 +1,5 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
 using System.Linq;
 
 namespace _2D_Game
@@ -18,16 +17,7 @@ namespace _2D_Game
         private readonly SpriteFont font;
         private readonly Texture2D pixel;
 
-        public int selectedIndex = 0;
-        private double cooldownTimer = 0;
-        private const double CooldownDuration = 0.2;
-
-        public ItemHotbar(GraphicsDevice device, Point position, int cellWidth, 
-            int totalSlots = 7, 
-            Texture2D slotTexture = null, 
-            Texture2D selectionTexture = null, 
-            SpriteFont font = null, 
-            float slotSpacing = 4f)
+        public ItemHotbar(GraphicsDevice device, Point position, int cellWidth, int totalSlots = 7, Texture2D slotTexture = null, Texture2D selectionTexture = null, SpriteFont font = null, float slotSpacing = 4f)
         {
             this.position = position;
             this.cellWidth = cellWidth;
@@ -44,41 +34,16 @@ namespace _2D_Game
 
         public void Update(GameTime gameTime)
         {
-            if (cooldownTimer > 0)
-                cooldownTimer -= gameTime.ElapsedGameTime.TotalSeconds;
-
-            // temporary(?) keyboard controls for selection cycling
-            var keyboardState = Keyboard.GetState();
-            if (cooldownTimer <= 0)
-            {
-                if (keyboardState.IsKeyDown(Keys.I) || keyboardState.IsKeyDown(Keys.Right))
-                {
-                    Next();
-                }
-                else if (keyboardState.IsKeyDown(Keys.U) || keyboardState.IsKeyDown(Keys.Left))
-                {
-                    Previous();
-                }
-            }
+            
         }
 
-        public void Next()
-        {
-            if (cooldownTimer > 0) return;
-            selectedIndex = (selectedIndex + 1) % totalSlots;
-            cooldownTimer = CooldownDuration;
-        }
-
-        public void Previous()
-        {
-            if (cooldownTimer > 0) return;
-            selectedIndex = (selectedIndex - 1 + totalSlots) % totalSlots;
-            cooldownTimer = CooldownDuration;
-        }
+        public void Next() => ItemInventory.Instance.Next();
+        public void Previous() => ItemInventory.Instance.Previous();
 
         public void Draw(SpriteBatch spriteBatch)
         {
             var inventory = ItemInventory.Instance;
+            int selectedIndex = inventory.GetSelectedIndex();
 
             for (int i = 0; i < totalSlots; i++)
             {
@@ -89,7 +54,7 @@ namespace _2D_Game
 
                 Rectangle rect = new Rectangle((int)slotPos.X, (int)slotPos.Y, cellWidth, cellHeight);
 
-                // Slot background + highlight
+                // Slot Background & Highlight based on global inventory selection
                 if (slotTexture != null)
                 {
                     spriteBatch.Draw(slotTexture, rect, Color.White);
@@ -104,21 +69,19 @@ namespace _2D_Game
                     spriteBatch.Draw(pixel, rect, fillColor);
                 }
 
-                // Pull items from inventory dictionary, picked-up items show up in slots
+                // Draw items from inventory dictionary
                 if (inventory.items != null && i < inventory.items.Count)
                 {
                     var kvp = inventory.items.ElementAt(i);
                     IItem item = kvp.Key;
                     int quantity = kvp.Value;
 
-                    // Draw item icon
                     if (item != null && item.Icon != null)
                     {
                         Vector2 iconPos = slotPos + new Vector2(cellWidth / 2f, cellHeight / 2f);
                         item.Icon.Draw(spriteBatch, iconPos);
                     }
 
-                    // Stack quantity text
                     if (font != null && quantity > 1)
                     {
                         Vector2 textPosition = slotPos + new Vector2(cellWidth - 18, cellHeight - 22);

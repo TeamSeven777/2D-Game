@@ -38,6 +38,7 @@ namespace _2D_Game
 
         // Projectile Attack
         private double ShootCooldown =  10;
+        private Timer soundTimer;
 
 
         public Mosquito(AnimatedSprite sprite, Vector2 startPosition)
@@ -54,6 +55,9 @@ namespace _2D_Game
             Hitbox = new EnemyHitBox(new Rectangle((int)(Position.X + sprite.Origin.X - hbWidth / 2), (int)(Position.Y + sprite.Origin.Y - hbHeight / 2), hbWidth, hbHeight));
             CollisionHandler = new EnemyCollisionHandler(this);
             RoomCollisionHandler.Instance.Add(this, true);
+
+            //Random rand = new Random(); rand.NextDouble() * 3
+            soundTimer = new Timer(2);
         }
 
         public void Unload()
@@ -77,7 +81,7 @@ namespace _2D_Game
         public void Update(GameTime gameTime, Vector2 playerPosition)
         {
             spinTimer += gameTime.ElapsedGameTime.TotalSeconds;
-
+            soundTimer.Update(gameTime);
             if (spinning)
             {
                 //stay in place and turn one full circle over SpinDuration
@@ -151,6 +155,12 @@ namespace _2D_Game
                 IFramesTimer = 0;
                 isDamaged = false;
                 sprite.Color = Color.White;
+            }
+
+            if (soundTimer.Ringing && chasing)
+            {
+                SoundEffectFactory.Instance.PlaySoundEffect(SoundName.MosquitoBuzz, true);
+                soundTimer.Reset();
             }
 
             //sprite sheet row faces left, so flip when moving right

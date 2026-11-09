@@ -1,6 +1,8 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
+using System.Collections.Generic;
+
 
 namespace _2D_Game
 {
@@ -9,7 +11,7 @@ namespace _2D_Game
         public Vector2 Position { get; set; }
         private double IFrames = 0.5;
         private double IFramesTimer = 0;
-        private AnimatedSprite sprite;        
+        private ISprite sprite;        
         private Vector2 startPosition;
         private double elapsedSeconds;
 
@@ -20,7 +22,7 @@ namespace _2D_Game
         private int hbHeight = 60;
         private IDialogue npcDialogue;
 
-        public NPC(AnimatedSprite sprite, Vector2 startPosition, IDialogue dialogue)
+        public NPC(ISprite sprite, Vector2 startPosition, IDialogue dialogue)
         {
             this.sprite = sprite;
             this.startPosition = startPosition;
@@ -45,8 +47,9 @@ namespace _2D_Game
             RoomCollisionHandler.Instance.Add(this, true);
         }
         public void HandleInteraction() { 
-            RoomCollisionHandler.Instance.myGame.CurrentDialogue = npcDialogue;
+            RoomCollisionHandler.Instance.myGame.CurrentDialogue = new Dialogue(new Queue<string>(npcDialogue.DialogueList), npcDialogue.Font);
             RoomCollisionHandler.Instance.myGame.HandleDialogue();
+            SoundEffectFactory.Instance.PlaySoundEffect(SoundName.Dialogue, true);
         }
         
         public void Update(GameTime gameTime)

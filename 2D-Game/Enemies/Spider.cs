@@ -17,6 +17,7 @@ namespace _2D_Game
         private float range = 150f;
         private int direction = -1;
         private double elapsedSeconds;
+        private Timer soundTimer;
 
         //Hitbox
         public IHitbox Hitbox { get; set; }
@@ -28,6 +29,7 @@ namespace _2D_Game
         private float chaseRange = 200f; // how close the player has to be before the spider follows
         private float chaseSpeed = 2f;
         private bool chasing = false;
+
 
         // Spin attack
         private float attackRange = 40f; // how close the player has to be before the spiders arbitrary attack???
@@ -49,6 +51,9 @@ namespace _2D_Game
             Hitbox = new EnemyHitBox(new Rectangle((int)(Position.X + sprite.Origin.X - hbWidth / 2), (int)(Position.Y + sprite.Origin.Y - hbHeight / 2), hbWidth, hbHeight));
             CollisionHandler = new EnemyCollisionHandler(this);
             RoomCollisionHandler.Instance.Add(this, true);
+
+            //Random rand = new Random(); rand.NextDouble() * 3
+            soundTimer = new Timer(3);
         }
 
         public void Unload()
@@ -71,7 +76,7 @@ namespace _2D_Game
         }
         public void Update(GameTime gameTime, Vector2 playerPosition)
         {
-
+            soundTimer.Update(gameTime);
             float distance = Vector2.Distance(Position, playerPosition);
             float facingX;
 
@@ -127,6 +132,11 @@ namespace _2D_Game
             sprite.Effects = facingX > 0 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
             sprite.Update(gameTime);
             Hitbox.BoundingBox = new Rectangle((int)(Position.X + sprite.Origin.X - hbWidth / 2), (int)(Position.Y + sprite.Origin.Y - hbHeight / 2), hbWidth, hbHeight);
+
+            if (soundTimer.Ringing && chasing) {
+                SoundEffectFactory.Instance.PlaySoundEffect(SoundName.SpiderHiss, true);
+                soundTimer.Reset();
+            }
         }
 
         public void Draw(SpriteBatch spriteBatch)

@@ -50,6 +50,19 @@
 /processorParam:Version=3.8.5.0
 /build:Images/Berry.png
 
+#begin Images/bog.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/processorParam:Version=3.8.5.0
+/build:Images/bog.png
+
 #begin Images/boggus.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -63,6 +76,19 @@
 /processorParam:Version=3.8.5.0
 /build:Images/boggus.png
 
+#begin Images/endScreen.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/processorParam:Version=3.8.5.0
+/build:Images/endScreen.png
+
 #begin Images/Explosive.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -75,6 +101,19 @@
 /processorParam:TextureFormat=Color
 /processorParam:Version=3.8.5.0
 /build:Images/Explosive.png
+
+#begin Images/fog1.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/processorParam:Version=3.8.5.0
+/build:Images/fog1.png
 
 #begin Images/FullMap.png
 /importer:TextureImporter
@@ -166,6 +205,201 @@
 /processorParam:TextureFormat=Color
 /processorParam:Version=3.8.5.0
 /build:Images/speedshoe.png
+
+#begin Images/startScreen.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/processorParam:Version=3.8.5.0
+/build:Images/startScreen.png
+
+#begin Music/cozyFire.wav
+/importer:WavImporter
+/processor:SongProcessor
+/processorParam:Quality=Best
+/processorParam:Version=3.8.5.0
+/build:Music/cozyFire.wav
+
+#begin Music/cozyFire(slow+reverb).wav
+/importer:WavImporter
+/processor:SongProcessor
+/processorParam:Quality=Best
+/processorParam:Version=3.8.5.0
+/build:Music/cozyFire(slow+reverb).wav
+
+#begin Music/echoesOfTheBlue.wav
+/importer:WavImporter
+/processor:SongProcessor
+/processorParam:Quality=Best
+/processorParam:Version=3.8.5.0
+/build:Music/echoesOfTheBlue.wav
+
+#begin Music/eightLeggedDemons.wav
+/importer:WavImporter
+/processor:SongProcessor
+/processorParam:Quality=Best
+/processorParam:Version=3.8.5.0
+/build:Music/eightLeggedDemons.wav
+
+#begin Music/endThemeSample1.wav
+/importer:WavImporter
+/processor:SongProcessor
+/processorParam:Quality=Best
+/processorParam:Version=3.8.5.0
+/build:Music/endThemeSample1.wav
+
+#begin Music/lost.wav
+/importer:WavImporter
+/processor:SongProcessor
+/processorParam:Quality=Best
+/processorParam:Version=3.8.5.0
+/build:Music/lost.wav
+
+#begin Music/npcTheme.wav
+/importer:WavImporter
+/processor:SongProcessor
+/processorParam:Quality=Best
+/processorParam:Version=3.8.5.0
+/build:Music/npcTheme.wav
+
+#begin Music/npcTheme(chorus).wav
+/importer:WavImporter
+/processor:SongProcessor
+/processorParam:Quality=Best
+/processorParam:Version=3.8.5.0
+/build:Music/npcTheme(chorus).wav
+
+#begin Music/ominousLair.wav
+/importer:WavImporter
+/processor:SongProcessor
+/processorParam:Quality=Best
+/processorParam:Version=3.8.5.0
+/build:Music/ominousLair.wav
+
+#begin Music/theDead.wav
+/importer:WavImporter
+/processor:SongProcessor
+/processorParam:Quality=Best
+/processorParam:Version=3.8.5.0
+/build:Music/theDead.wav
+
+#begin Music/titleSample1.wav
+/importer:WavImporter
+/processor:SongProcessor
+/processorParam:Quality=Best
+/processorParam:Version=3.8.5.0
+/build:Music/titleSample1.wav
+
+#begin Music/titleTheme.wav
+/importer:WavImporter
+/processor:SongProcessor
+/processorParam:Quality=Best
+/processorParam:Version=3.8.5.0
+/build:Music/titleTheme.wav
+
+#begin SFX/boomerang.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/processorParam:Version=3.8.5.0
+/build:SFX/boomerang.mp3
+
+#begin SFX/explosion.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/processorParam:Version=3.8.5.0
+/build:SFX/explosion.mp3
+
+#begin SFX/ghostAttack.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/processorParam:Version=3.8.5.0
+/build:SFX/ghostAttack.mp3
+
+#begin SFX/gunshot-meme.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/processorParam:Version=3.8.5.0
+/build:SFX/gunshot-meme.mp3
+
+#begin SFX/gunshottttt.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/processorParam:Version=3.8.5.0
+/build:SFX/gunshottttt.mp3
+
+#begin SFX/mosquito1.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/processorParam:Version=3.8.5.0
+/build:SFX/mosquito1.mp3
+
+#begin SFX/pickup.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/processorParam:Version=3.8.5.0
+/build:SFX/pickup.mp3
+
+#begin SFX/playerDamage.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/processorParam:Version=3.8.5.0
+/build:SFX/playerDamage.mp3
+
+#begin SFX/punch.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/processorParam:Version=3.8.5.0
+/build:SFX/punch.mp3
+
+#begin SFX/speak.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/processorParam:Version=3.8.5.0
+/build:SFX/speak.mp3
+
+#begin SFX/spiderNoise.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/processorParam:Version=3.8.5.0
+/build:SFX/spiderNoise.mp3
+
+#begin SFX/stickswing.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/processorParam:Version=3.8.5.0
+/build:SFX/stickswing.mp3
+
+#begin SFX/test-sfx.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/processorParam:Version=3.8.5.0
+/build:SFX/test-sfx.mp3
+
+#begin SFX/throw.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/processorParam:Version=3.8.5.0
+/build:SFX/throw.mp3
 
 #begin Sprites/bushes.png
 /importer:TextureImporter
@@ -296,6 +530,19 @@
 /processorParam:TextureFormat=Color
 /processorParam:Version=3.8.5.0
 /build:Sprites/projectileSprites.png
+
+#begin Sprites/Sign.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/processorParam:Version=3.8.5.0
+/build:Sprites/Sign.png
 
 #begin Sprites/Spider.png
 /importer:TextureImporter

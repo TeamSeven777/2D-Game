@@ -48,7 +48,7 @@ namespace _2D_Game
             CollisionHandler = new BlankCollisionHandler();//temp?
             //RoomCollisionHandler.Instance.Add(this, true);
             punchDelay = new Timer(.3);
-
+            SoundEffectFactory.Instance.PlaySoundEffect(SoundName.Punch, false);
         }
         public Tool GetTool()
         {

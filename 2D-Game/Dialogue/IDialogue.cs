@@ -10,6 +10,8 @@ namespace _2D_Game
 {
     public interface IDialogue
 {
+        public Queue<string> DialogueList { get; set; }
+        public SpriteFont Font { get; set; }
         void Update(GameTime gameTime);
         bool Next(); //will either move to next line of dialogue or return false
         void Draw(SpriteBatch spriteBatch, Vector2 pos);

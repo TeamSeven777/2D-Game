@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Xml.Linq;
 using Microsoft.Xna.Framework;
@@ -35,6 +36,7 @@ namespace _2D_Game
 
             // Load assets via factory
             contentFactory.LoadContent(content, blockSheet);
+            
 
             XDocument doc = XDocument.Load(filePath);
 
@@ -51,6 +53,9 @@ namespace _2D_Game
                 ParseEnemies(roomElement, rx, ry, room);
                 ParseNPCs(roomElement, rx, ry, room);
                 ParseItems(roomElement, rx, ry, room);
+                room.fogOverlay = contentFactory.FogTexture;
+                room.TopLeft = new Point(gridPos.X * roomWidth, gridPos.Y * roomHeight);
+                room.BottomRight = new Point(room.TopLeft.X + roomWidth, room.TopLeft.Y + roomHeight);
 
                 rooms[gridPos] = room;
             }
@@ -153,8 +158,9 @@ namespace _2D_Game
             {
                 string type = npcElement.Attribute("Type")?.Value ?? string.Empty;
                 Vector2 worldPos = CalculateWorldPosition(npcElement, rx, ry);
+                int dialogueIndex = ParseIntAttribute(npcElement, "DialogueIndex", 0);
 
-                INPC npc = contentFactory.CreateNPC(type, worldPos);
+                INPC npc = contentFactory.CreateNPC(type, worldPos, dialogueIndex);
                 if (npc != null)
                 {
                     room.NPCs.Add(npc);
@@ -192,7 +198,7 @@ namespace _2D_Game
             int gridX = (int)(playerPosition.X / roomWidth);
             int gridY = (int)(playerPosition.Y / roomHeight);
             Point currentGridPos = new(gridX, gridY);
-
+            
             if (rooms.ContainsKey(currentGridPos) && rooms[currentGridPos] != CurrentRoom)
             {
                 CurrentRoom?.Deactivate();

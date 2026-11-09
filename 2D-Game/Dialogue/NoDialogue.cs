@@ -10,6 +10,8 @@ namespace _2D_Game
 {
     public class NoDialogue :IDialogue
 {
+        public Queue<string> DialogueList { get; set; }
+        public SpriteFont Font { get; set; }
         public void Update(GameTime gameTime)
         {
 

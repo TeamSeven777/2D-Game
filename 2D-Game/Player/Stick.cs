@@ -55,6 +55,7 @@ namespace _2D_Game
             direction = stateMachine.direction;
             CollisionHandler = new BlankCollisionHandler();//temp?
             RoomCollisionHandler.Instance.Add(this, true);
+            SoundEffectFactory.Instance.PlaySoundEffect(SoundName.StickSwing, false);
 
         }
         //Update and draw methods to interface for separate draw
