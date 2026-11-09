@@ -22,19 +22,19 @@ namespace _2D_Class
             RoomCollisionHandler.Instance.Add(this, false);
         }
 
-        /// <summary>
-        /// Moves every log the player is carrying into the fire
-        /// </summary>
         public void HandleInteraction()
         {
+            var selectedItem = ItemInventory.Instance.GetSelectedItem();
+            if (selectedItem != null && selectedItem.Name.Equals("Log"))
+            {
             Game1 game = RoomCollisionHandler.Instance.myGame;
-            int logsHeld = ItemInventory.Instance.GetItemCount("Log");
+            int logsHeld = ItemInventory.Instance.GetItemCount("Log");    
             int logsToAdd = Math.Min(logsHeld, Game1.LogsNeeded - game.LogsInFire);
-
             if (logsToAdd <= 0) return;
-
             ItemInventory.Instance.Remove("Log", logsToAdd);
             game.AddLogsToFire(logsToAdd);
+            }
+
         }
 
         public void Update(GameTime gameTime)

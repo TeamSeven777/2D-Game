@@ -37,13 +37,14 @@ namespace _2D_Class
         /// </summary>
         public void HandleInteraction()
         {
-            //Gotta find a better way to do this
-            if (ItemInventory.Instance.GetItemCount("Key") > 0)
+            var selectedItem = ItemInventory.Instance.GetSelectedItem();
+            if (selectedItem != null && selectedItem.Name.Equals("Key"))
             {
                 RoomCollisionHandler.Instance.Remove(this);
                 ItemInventory.Instance.Remove("Key",1);
                 IsOpen = true;
                 Sprite.SourceRectangle = new Rectangle(128, 0, 128, 128);
+
             }
         }
 

@@ -21,7 +21,7 @@ namespace _2D_Game
             if (!resultsOfIsCollide.Contains(Side.None) && hbOwner.Hitbox.Type == HitBoxType.Player)
             {
                 item.ItemData.Collect();
-                ItemInventory.instance.RemoveFromWorld(item);
+                ItemInventory.Instance.RemoveFromWorld(item);
                 RoomCollisionHandler.Instance.Remove(item);
             }
 

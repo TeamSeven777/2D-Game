@@ -3,20 +3,74 @@ using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 
 namespace _2D_Game
 {
     public class ItemInventory
     {
-        public readonly Dictionary<IItem, int> items = new Dictionary<IItem, int>();
-        //private int currentIndex = 0;
+       public Dictionary<IItem, int> items = new Dictionary<IItem, int>();
         private Room roomRef;
-        public static ItemInventory instance = new ItemInventory();
-        // Cooldown vars
+        private int selectedIndex = 0;
+        private int totalSlots = 7;
         private double cooldownTimer = 0;
-        private const double CooldownDuration = 0.2; // 0.2 seconds (200ms) between switches
+        private const double CooldownDuration = 0.2;
+
+        public static ItemInventory instance = new ItemInventory();
         public static ItemInventory Instance
         { get { return instance; } }
+
+        public void Update(GameTime gameTime, Room room)
+        {
+            roomRef = room;
+            if (cooldownTimer > 0)
+            {
+                cooldownTimer -= gameTime.ElapsedGameTime.TotalSeconds;
+            }
+
+            if (cooldownTimer > 0)
+                cooldownTimer -= gameTime.ElapsedGameTime.TotalSeconds;
+
+            var keyboardState = Keyboard.GetState();
+            if (cooldownTimer <= 0)
+            {
+                if (keyboardState.IsKeyDown(Keys.I))
+                {
+                    Next();
+                }
+                else if (keyboardState.IsKeyDown(Keys.U))
+                {
+                    Previous();
+                }
+            }
+        }
+
+        public void Next()
+        {
+            if (cooldownTimer > 0) return;
+            selectedIndex = (selectedIndex + 1) % totalSlots;
+            cooldownTimer = CooldownDuration;
+        }
+
+        public void Previous()
+        {
+            if (cooldownTimer > 0) return;
+            selectedIndex = (selectedIndex - 1 + totalSlots) % totalSlots;
+            cooldownTimer = CooldownDuration;
+        }
+
+        public int GetSelectedIndex() => selectedIndex;
+
+        // Returns type of object that UI is highlighting in hotbar
+        public IItem GetSelectedItem()
+        {
+            if (items != null && selectedIndex >= 0 && selectedIndex < items.Count)
+            {
+                return items.ElementAt(selectedIndex).Key;
+            }
+            return null;
+        }
+
 
         // SpriteFactory for all items
         public void LoadContent(ContentManager content, Room room)
@@ -26,14 +80,6 @@ namespace _2D_Game
             
         }
 
-        public void Update(GameTime gameTime, Room room)
-        {
-            roomRef = room;
-            if (cooldownTimer > 0)
-            {
-                cooldownTimer -= gameTime.ElapsedGameTime.TotalSeconds;
-            }
-        }
 
         public void Add(IItem item, int amount)
         {
@@ -84,6 +130,7 @@ namespace _2D_Game
             }
             return 0;
         }
+        
 
         public List<IItem> GetKeys()
         {
@@ -101,7 +148,6 @@ namespace _2D_Game
             if(roomRef != null)
                 roomRef.Items.Remove(worldItem);
         }
-
 
     }
 }
