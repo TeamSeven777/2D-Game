@@ -55,7 +55,7 @@ namespace _2D_Game
                 ParseItems(roomElement, rx, ry, room);
                 room.fogOverlay = contentFactory.FogTexture;
                 room.TopLeft = new Point(gridPos.X * roomWidth, gridPos.Y * roomHeight);
-                room.BottomRight = new Point(room.TopLeft.X + roomWidth, room.TopLeft.Y + roomHeight);
+                room.BottomRight = new Point(roomWidth, roomHeight);
 
                 rooms[gridPos] = room;
             }

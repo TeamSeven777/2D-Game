@@ -75,22 +75,48 @@ namespace _2D_Game
             Dialogue = new Dialogue(dialogueList, mainFont);//TODO fix position bug with relation to camera (screen scale)
             return Dialogue;
         }
-        public IDialogue CreateLydiaDialogue()
+        public IDialogue CreateLydiaDialogue(int dialogueIndex)
         {
             IDialogue Dialogue;
             Queue<string> dialogueList = new Queue<string>();
-            dialogueList.Enqueue("Welcome to the log game!");
-            dialogueList.Enqueue("Ya know? The game where you hunt down logs.");
-            dialogueList.Enqueue("This fire isn't gonna make itself, you know.\nOf course, unless you use the dev shortcut.");
-            dialogueList.Enqueue("Better get going.");
+            if (dialogueIndex == 0)
+            {
+                dialogueList.Enqueue("Welcome to the log game!");
+                dialogueList.Enqueue("Ya know? The game where you hunt down logs.");
+                dialogueList.Enqueue("This fire isn't gonna make itself, you know.\nOf course, unless you use the dev shortcut.");
+                dialogueList.Enqueue("Better get going.");
+            }
+            else
+            {
+                dialogueList.Enqueue("barbecue.");
+                dialogueList.Enqueue("you is right.");
+            }
             Dialogue = new Dialogue(dialogueList, mainFont);
             return Dialogue;
         }
-        public IDialogue CreateSignDialogue() 
+        public IDialogue CreateSignDialogue(int dialogueIndex) 
         {
             IDialogue Dialogue;
             Queue<string> dialogueList = new Queue<string>();
-            dialogueList.Enqueue("Here be bog\nin which there be log.\nEnter not this lair\nwithout a pathway there.");
+            
+            if (dialogueIndex == 0)
+            {
+                dialogueList.Enqueue("Here be bog\nin which there be log.\nEnter not this lair\nwithout a pathway there.");
+            }
+            else
+            {
+                dialogueList.Enqueue("through is down.");
+            }
+            Dialogue = new Dialogue(dialogueList, mainFont);
+            return Dialogue;
+        }
+        public IDialogue CreateGravestoneDialogue()
+        {
+            IDialogue Dialogue;
+            Queue<string> dialogueList = new Queue<string>();
+            dialogueList.Enqueue("Here les the memory of the unknown\nwho died in the unknown.");
+            dialogueList.Enqueue("All that is known is as follows:");
+            dialogueList.Enqueue("First is two,\nnext is blue,\nThird is through,\nLast is you.");
             Dialogue = new Dialogue(dialogueList, mainFont);
             return Dialogue;
         }

@@ -99,7 +99,7 @@ namespace _2D_Game
             foreach (var item in Items) 
                 item.Draw(spriteBatch);
 
-            //if (fogMode) spriteBatch.Draw(fogOverlay, new Rectangle(TopLeft, BottomRight), Color.White); //TODO make this better?
+            if (fogMode) spriteBatch.Draw(fogOverlay, new Rectangle(TopLeft, BottomRight), Color.White); //TODO make this better?
         }
         /// <summary>
         /// Turns on Enemy AI, and room song

@@ -28,7 +28,7 @@ namespace _2D_Class
         public void LoadTextures(ContentManager content)
         {
             TestBlockSpriteSheet = content.Load<Texture2D>("Sprites/testblocks");
-            GravestoneSprite = content.Load<Texture2D>("Sprites/gravestone");
+            GravestoneSprite = content.Load<Texture2D>("Sprites/Gravestone(short)");
             TreeSprites = content.Load<Texture2D>("Sprites/trees");
             BushSprites = content.Load<Texture2D>("Sprites/bushes");
             FirepitSprite = content.Load<Texture2D>("Sprites/FirePit");

@@ -99,9 +99,18 @@
 	</Room>
 	<!--Room 6 (1, 1) -->
 	<Room RoomX="1" RoomY="1">
+		<NPCs>
+			<Entity Type="Sign" X="650" Y="100" DialogueIndex="1" />
+		</NPCs>
 	</Room>
 	<!--Room 5 (2, 1) -->
 	<Room RoomX="2" RoomY="1">
+		<NPCs>
+			<Entity Type="Grave" X="300" Y="200" DialogueIndex="1" />
+		</NPCs>
+		<Obstacles>
+			<Entity Type="Moveable_Block" X="800" Y="400"/>
+		</Obstacles>
 	</Room>
 	
 	<!--Room 2 (0, 0) -->
@@ -122,6 +131,9 @@
       <Entity Type="Pebble" X="700" Y="550" />
       <Entity Type="Pebble" X="800" Y="600" />
     </Items>
+		<NPCs>
+			<Entity Type="Lydia" X="800" Y="400" DialogueIndex="1" />
+		</NPCs>
 	</Room>
 	<!--Room 3 (1, 0) -->
 	<Room RoomX="1" RoomY="0">

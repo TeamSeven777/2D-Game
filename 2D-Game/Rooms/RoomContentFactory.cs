@@ -13,7 +13,7 @@ namespace _2D_Game
         // Assets
         private Texture2D ghostSheet, ghostAttackSheet, mosquitoSheet, spiderSheet;
 
-        private Texture2D teamSheet, signTexture;
+        private Texture2D teamSheet, signTexture, textGraveTexture;
         public Texture2D FogTexture { get; private set; }
         private readonly Dictionary<string, Texture2D> itemTextures = new(StringComparer.OrdinalIgnoreCase);
 
@@ -33,8 +33,9 @@ namespace _2D_Game
             // NPC sprite sheets
             teamSheet = content.Load<Texture2D>("Sprites/TeamIdles-Sheet");
             signTexture = content.Load<Texture2D>("Sprites/Sign");
+            textGraveTexture = content.Load<Texture2D>("Sprites/Gravestone(tall)");
 
-            FogTexture = content.Load<Texture2D>("Images/fog1");
+            FogTexture = content.Load<Texture2D>("Images/Fogclouds");
 
             // Item textures (lookup dictionary)
             itemSheet = content.Load<Texture2D>("Sprites/itemsheet2");
@@ -156,7 +157,7 @@ namespace _2D_Game
             {
                 Animation lydiaIdle = new(teamSheet, TimeSpan.FromMilliseconds(100), new Vector2(128, 128), new Vector2(0, 128), teamSheet.Width);
                 AnimatedSprite lydia = new(lydiaIdle, teamSheet) { Scale = new Vector2(0.95f) };
-                return new NPC(lydia, position, DialogueFactory.Instance.CreateLydiaDialogue());
+                return new NPC(lydia, position, DialogueFactory.Instance.CreateLydiaDialogue(dialogueIndex));
             }
             else if (type.Equals("Joe", StringComparison.OrdinalIgnoreCase))
             {
@@ -170,13 +171,18 @@ namespace _2D_Game
                 AnimatedSprite joe = new(joeIdle, teamSheet) { Scale = new Vector2(0.95f) };
                 return new NPC(joe, position, DialogueFactory.Instance.CreateJoeDialogue());
             }
-            else
+            else if (type.Equals("Sign", StringComparison.OrdinalIgnoreCase))
             {
                 ISprite sign = new Sprite(signTexture, signTexture.Bounds);
-                return new NPC(sign, position, DialogueFactory.Instance.CreateSignDialogue());
+                return new NPC(sign, position, DialogueFactory.Instance.CreateSignDialogue(dialogueIndex));
+            }
+            else if (type.Equals("Grave", StringComparison.OrdinalIgnoreCase))
+            {
+                ISprite sign = new Sprite(textGraveTexture, textGraveTexture.Bounds);
+                return new NPC(sign, position, DialogueFactory.Instance.CreateGravestoneDialogue());
             }
 
-            //return null;
+            return null;
         }
 
         public IItem CreateItem(string type)

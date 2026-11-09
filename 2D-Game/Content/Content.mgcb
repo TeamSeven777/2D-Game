@@ -115,6 +115,19 @@
 /processorParam:Version=3.8.5.0
 /build:Images/fog1.png
 
+#begin Images/Fogclouds.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/processorParam:Version=3.8.5.0
+/build:Images/Fogclouds.png
+
 #begin Images/FullMap.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -452,6 +465,32 @@
 /processorParam:TextureFormat=Color
 /processorParam:Version=3.8.5.0
 /build:Sprites/gravestone.png
+
+#begin Sprites/Gravestone(short).png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/processorParam:Version=3.8.5.0
+/build:Sprites/Gravestone(short).png
+
+#begin Sprites/Gravestone(tall).png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/processorParam:Version=3.8.5.0
+/build:Sprites/Gravestone(tall).png
 
 #begin Sprites/itemsheet.png
 /importer:TextureImporter
