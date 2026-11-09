@@ -86,6 +86,16 @@
 	
 	<!--Room 1 (0, 1) -->
 	<Room RoomX="0" RoomY="1">
+    <Items>
+      <Entity Type="Pebble" X="450" Y="150" />
+      <Entity Type="Pebble" X="600" Y="200" />
+      <Entity Type="Pebble" X="250" Y="300" />
+      <Entity Type="Pebble" X="500" Y="350" />
+      <Entity Type="Pebble" X="150" Y="450" />
+      <Entity Type="Pebble" X="850" Y="500" />
+      <Entity Type="Pebble" X="900" Y="550" />
+      <Entity Type="Pebble" X="300" Y="600" />
+    </Items>
 	</Room>
 	<!--Room 6 (1, 1) -->
 	<Room RoomX="1" RoomY="1">
@@ -96,10 +106,35 @@
 	
 	<!--Room 2 (0, 0) -->
 	<Room RoomX="0" RoomY="0">
+    <Enemies>
+      <Entity Type="Mosquito" X="100" Y="200" />
+      <Entity Type="Mosquito" X="300" Y="500" />
+      <Entity Type="Mosquito" X="450" Y="350" />
+      <Entity Type="Mosquito" X="800" Y="400" />
+    </Enemies>
+    <Items>
+      <Entity Type="Pebble" X="150" Y="350" />
+      <Entity Type="Pebble" X="200" Y="400" />
+      <Entity Type="Pebble" X="350" Y="200" />
+      <Entity Type="Pebble" X="400" Y="150" />
+      <Entity Type="Pebble" X="550" Y="450" />
+      <Entity Type="Pebble" X="650" Y="300" />
+      <Entity Type="Pebble" X="700" Y="550" />
+      <Entity Type="Pebble" X="800" Y="600" />
+    </Items>
 	</Room>
 	<!--Room 3 (1, 0) -->
 	<Room RoomX="1" RoomY="0">
-		<NPCs>
+		<Enemies>
+      <Entity Type="Mosquito" X="200" Y="100" />
+      <Entity Type="Mosquito" X="100" Y="350" />
+      <Entity Type="Mosquito" X="450" Y="600" />
+      <Entity Type="Mosquito" X="600" Y="200" />
+      <Entity Type="Mosquito" X="450" Y="100" />
+      <Entity Type="Mosquito" X="550" Y="100" />
+      <Entity Type="Ghost" X="500" Y="50" />
+    </Enemies>
+    <NPCs>
 			<Entity Type="Sign" X="600" Y="100" DialogueIndex="0" />
 		</NPCs>
 	</Room>
