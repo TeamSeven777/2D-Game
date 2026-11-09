@@ -39,7 +39,7 @@ namespace _2D_Game
 
         public override void Use()
         {
-            ItemInventory.Instance.Remove("Log", 1);
+            ItemInventory.Instance.ChangeValue("Log", -1);
         }
     }
 
@@ -54,7 +54,7 @@ namespace _2D_Game
         public override void Use()
         {
             DefaultPlayer.Instance.Health = DefaultPlayer.Instance.MaxHealth;
-            ItemInventory.Instance.Remove("Berry", 1);
+            ItemInventory.Instance.ChangeValue("Berry", -1);
         }
         
     }
@@ -69,7 +69,7 @@ namespace _2D_Game
         }
         public override void Use()
         {
-            ItemInventory.Instance.Remove("Key", 1);
+            ItemInventory.Instance.ChangeValue("Key", -1);
         }
     }
 
@@ -79,7 +79,7 @@ namespace _2D_Game
         public ExplosiveItem(Sprite icon) : base("Explosive", icon, 99) { }
         public override void Collect()
         {
-            WeaponInventory.Instance.AddAmmo(Tool.Dynamite, 10);
+            WeaponInventory.Instance.ChangeAmmo(Tool.Dynamite, 10);
         }
         public override void Use()
         {
@@ -95,7 +95,7 @@ namespace _2D_Game
         public PebbleItem(Sprite icon) : base("Pebble", icon, 99) { }
         public override void Collect()
         {
-            WeaponInventory.Instance.AddAmmo(Tool.Slingshot,10);
+            WeaponInventory.Instance.ChangeAmmo(Tool.Slingshot,10);
         }
         public override void Use()
         {

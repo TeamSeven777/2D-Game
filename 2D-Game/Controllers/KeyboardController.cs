@@ -39,6 +39,8 @@ namespace _2D_Game
                 RegisterCommand(Keys.D2, new UseRangedWeaponCommand(myGame));
                 RegisterCommand(Keys.D3, new UnEquipCommand(myGame));
                 RegisterCommand(Keys.H, new HitboxModeCommand(myGame));
+                RegisterCommand(Keys.K, new ToggleAICommand(myGame));
+                RegisterCommand(Keys.OemPeriod, new UnlimitedAmmoCommand(myGame));
                 RegisterCommand(Keys.Escape, new PauseMenuCommand(myGame));
                 RegisterCommand(Keys.Space, new InteractCommand(myGame));
                 RegisterCommand(Keys.D0, new ToggleSongMuteCommand(myGame));

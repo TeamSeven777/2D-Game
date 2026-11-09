@@ -18,6 +18,7 @@ namespace _2D_Game
         public SongName RoomSongName { get; private set; }
         public Texture2D fogOverlay { get; set;  }
         private bool fogMode = true;
+        public bool ToggleAI = false;
         
         public Room(Point gridPosition)
         {
@@ -65,16 +66,18 @@ namespace _2D_Game
                 }
             }
 
-            for (int i = Enemies.Count - 1; i >= 0; i--) 
+            if (!ToggleAI)
             {
-                Enemies[i].Update(gameTime, playerPosition);
-                if (Enemies[i].Health <= 0)
+                for (int i = Enemies.Count - 1; i >= 0; i--)
                 {
-                    Enemies[i].Unload();  
-                    Enemies.RemoveAt(i);
+                    Enemies[i].Update(gameTime, playerPosition);
+                    if (Enemies[i].Health <= 0)
+                    {
+                        Enemies[i].Unload();
+                        Enemies.RemoveAt(i);
+                    }
                 }
             }
-            
             foreach (var npc in NPCs) 
                 npc.Update(gameTime);
 

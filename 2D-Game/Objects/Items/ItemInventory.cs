@@ -102,7 +102,7 @@ namespace _2D_Game
             }
         }
 
-        public void Remove(string item, int amount)
+        public void Remove(string item)
         {
             IItem toRemove = null;
             foreach (KeyValuePair<IItem, int> x in items)
@@ -117,6 +117,25 @@ namespace _2D_Game
                 items.Remove(toRemove);
             }
 
+        }
+
+        public void ChangeValue(string item, int amount)
+        {
+            IItem thing = null;
+            foreach (KeyValuePair<IItem, int> x in items)
+            {
+                if (x.Key.Name == item)
+                {
+                    thing = x.Key;
+                }
+            }
+            if (items.ContainsKey(thing))
+            {
+                if ((items[thing] + amount) > 0)
+                    items[thing] += amount;
+                else
+                    items.Remove(thing);
+            }
         }
 
         public int GetItemCount(string item)

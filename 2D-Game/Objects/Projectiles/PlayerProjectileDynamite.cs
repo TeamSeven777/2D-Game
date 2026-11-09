@@ -28,6 +28,7 @@ namespace _2D_Game
             this.ProjectileSprite = sprite;
             this.CollisionHandler = new ProjectileCollisionHandler(this);
             DespawnTimer = 150;
+            WeaponInventory.Instance.ChangeAmmo(Tool.Dynamite,-1);
         }
 
         public void Update(GameTime gt)

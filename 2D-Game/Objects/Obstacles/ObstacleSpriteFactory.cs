@@ -108,6 +108,11 @@ namespace _2D_Class
             return new Sprite(GravestoneSprite, new Rectangle(0, 0, 64, 64));
         }
 
+        public ISprite CreateGraveStoneSprite()
+        {
+            return new Sprite(GravestoneSprite, new Rectangle(0,0, 64, 64));
+        }
+
         /// <summary>
         /// Creates an unspecified object sprite, where <paramref name="index"/> determines which one
         /// from the <see cref="TestBlockSpriteSheet"/>

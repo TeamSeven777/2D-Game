@@ -17,7 +17,7 @@ namespace _2D_Game
         private readonly Texture2D selectionTexture;
         private readonly SpriteFont font;
         private readonly Texture2D pixel;
-        
+
         private double cooldownTimer = 0;
         private const double CooldownDuration = 0.2;
 
@@ -25,10 +25,10 @@ namespace _2D_Game
             GraphicsDevice device, 
             Point position, 
             int cellWidth, 
-            SpriteFont font,
-            Texture2D slotTexture = null, 
-            Texture2D selectionTexture = null, 
-            float slotSpacing = 4f)
+            float slotSpacing = 4f,
+            Texture2D slotTexture = null,
+            Texture2D selectionTexture = null,
+            SpriteFont font= null)
         {
             this.position = position;
             this.cellWidth = cellWidth;
@@ -94,6 +94,11 @@ namespace _2D_Game
 
                 // Draw Weapon Projectile Sprite Icon
                 ISprite weaponSprite = ProjectileSpriteFactory.Instance.CreatePlayerProjectile(currentTool);
+                weaponSprite.Scale = new Vector2(0.5f);
+                if(WeaponInventory.Instance.GetAmmo(currentTool) == 0)
+                {
+                    weaponSprite.Color = Color.Black * 0.2f;
+                }
                 if (weaponSprite != null)
                 {
                     Vector2 drawCenter = slotPos + new Vector2(cellWidth / 2f, cellHeight / 2f);

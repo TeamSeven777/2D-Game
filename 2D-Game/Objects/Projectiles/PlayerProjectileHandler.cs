@@ -13,7 +13,8 @@ namespace _2D_Game
 {
     public class PlayerProjectileHandler : IProjectileHandler
     {
-        public Queue<IProjectile> ActiveProjectiles { get; set; }
+        public List<IHitboxOwner> InActiveProjectiles { get; set; }
+        public List<IHitboxOwner> ActiveProjectiles { get; set; }
         public GameTime GameTime { get; set; }
         public DefaultPlayer playerRef;
         public float Cooldown = 0;
@@ -28,22 +29,21 @@ namespace _2D_Game
 
         public void Initialize(ref DefaultPlayer player)
         {
-            ActiveProjectiles = new Queue<IProjectile>();
+            ActiveProjectiles = new List<IHitboxOwner>();
             playerRef = player;
 
         }
 
         public void Update(GameTime gt)
         {
-            foreach (IProjectile projectile in ActiveProjectiles)
+            for (int i = 0; i < ActiveProjectiles.Count; i++)
             {
-                projectile.Update(gt);
-                projectile.ProjectileSprite.Update(gt);
-                if (projectile.DespawnTimer <= 0) RemoveCount++;
+                IProjectile curProjectile = (IProjectile)ActiveProjectiles[i];
+                curProjectile.Update(gt);
+                curProjectile.ProjectileSprite.Update(gt);
+                if (curProjectile.DespawnTimer <= 0) this.Remove(ActiveProjectiles[i]);
             }
             if (Cooldown > 0) Cooldown--;
-            for (int i = 0; i < RemoveCount; i++) this.Remove();
-            RemoveCount = 0;
         }
 
         public void Draw(SpriteBatch spr)
@@ -61,88 +61,93 @@ namespace _2D_Game
             {
                 switch (playerRef.CurrentRangedWeapon)
                 {
+                    
                     case (Tool.Slingshot):
-
-
-                        switch (playerRef.stateMachine.direction)
-                        {
-                    case (Direction.Down):
-                        ActiveProjectiles.Enqueue(new PlayerProjectilePebble(playerRef.Position, new Vector2(0, 10), ProjectileSpriteFactory.Instance.CreatePlayerProjectile(playerRef.CurrentRangedWeapon)));
-                        Cooldown = 10;
-                        break;
-                    case (Direction.Left):
-                        ActiveProjectiles.Enqueue(new PlayerProjectilePebble(playerRef.Position, new Vector2(-10, 0), ProjectileSpriteFactory.Instance.CreatePlayerProjectile(playerRef.CurrentRangedWeapon)));
-                        Cooldown = 10;
-                        break;
-                    case (Direction.Right):
-                        ActiveProjectiles.Enqueue(new PlayerProjectilePebble(playerRef.Position, new Vector2(10, 0), ProjectileSpriteFactory.Instance.CreatePlayerProjectile(playerRef.CurrentRangedWeapon)));
-                        Cooldown = 10;
-                        break;
-                    case (Direction.Up):
-                        ActiveProjectiles.Enqueue(new PlayerProjectilePebble(playerRef.Position, new Vector2(0, -10), ProjectileSpriteFactory.Instance.CreatePlayerProjectile(playerRef.CurrentRangedWeapon)));
-                        Cooldown = 10;
-                        break;
-                                
+                        if(WeaponInventory.Instance.GetAmmo(Tool.Slingshot) != 0) {
+                            switch (playerRef.stateMachine.direction)
+                            {
+                                case (Direction.Down):
+                                    ActiveProjectiles.Add(new PlayerProjectilePebble(playerRef.Position, new Vector2(0, 10), ProjectileSpriteFactory.Instance.CreatePlayerProjectile(playerRef.CurrentRangedWeapon)));
+                                    Cooldown = 10;
+                                    break;
+                                case (Direction.Left):
+                                    ActiveProjectiles.Add(new PlayerProjectilePebble(playerRef.Position, new Vector2(-10, 0), ProjectileSpriteFactory.Instance.CreatePlayerProjectile(playerRef.CurrentRangedWeapon)));
+                                    Cooldown = 10;
+                                    break;
+                                case (Direction.Right):
+                                    ActiveProjectiles.Add(new PlayerProjectilePebble(playerRef.Position, new Vector2(10, 0), ProjectileSpriteFactory.Instance.CreatePlayerProjectile(playerRef.CurrentRangedWeapon)));
+                                    Cooldown = 10;
+                                    break;
+                                case (Direction.Up):
+                                    ActiveProjectiles.Add(new PlayerProjectilePebble(playerRef.Position, new Vector2(0, -10), ProjectileSpriteFactory.Instance.CreatePlayerProjectile(playerRef.CurrentRangedWeapon)));
+                                    Cooldown = 10;
+                                    break;
+                            }    
 
                         }
                         break;
                     case (Tool.Dynamite):
-                        switch (playerRef.stateMachine.direction)
-                        {
-                            case (Direction.Down):
-                                ActiveProjectiles.Enqueue(new PlayerProjectileDynamite(playerRef.Position, new Vector2(0, 10), ProjectileSpriteFactory.Instance.CreatePlayerProjectile(playerRef.CurrentRangedWeapon)));
-                                Cooldown = 10;
-                                break;
-                            case (Direction.Left):
-                                ActiveProjectiles.Enqueue(new PlayerProjectileDynamite(playerRef.Position, new Vector2(-10, 0), ProjectileSpriteFactory.Instance.CreatePlayerProjectile(playerRef.CurrentRangedWeapon)));
-                                Cooldown = 10;
-                                break;
-                            case (Direction.Right):
-                                ActiveProjectiles.Enqueue(new PlayerProjectileDynamite(playerRef.Position, new Vector2(10, 0), ProjectileSpriteFactory.Instance.CreatePlayerProjectile(playerRef.CurrentRangedWeapon)));
-                                Cooldown = 10;
-                                break;
-                            case (Direction.Up):
-                                ActiveProjectiles.Enqueue(new PlayerProjectileDynamite(playerRef.Position, new Vector2(0, -10), ProjectileSpriteFactory.Instance.CreatePlayerProjectile(playerRef.CurrentRangedWeapon)));
-                                Cooldown = 10;
-                                break;
+                        if (WeaponInventory.Instance.GetAmmo(Tool.Dynamite) != 0) {
+                            switch (playerRef.stateMachine.direction)
+                            {
+                                case (Direction.Down):
+                                    ActiveProjectiles.Add(new PlayerProjectileDynamite(playerRef.Position, new Vector2(0, 10), ProjectileSpriteFactory.Instance.CreatePlayerProjectile(playerRef.CurrentRangedWeapon)));
+                                    Cooldown = 10;
+                                    break;
+                                case (Direction.Left):
+                                    ActiveProjectiles.Add(new PlayerProjectileDynamite(playerRef.Position, new Vector2(-10, 0), ProjectileSpriteFactory.Instance.CreatePlayerProjectile(playerRef.CurrentRangedWeapon)));
+                                    Cooldown = 10;
+                                    break;
+                                case (Direction.Right):
+                                    ActiveProjectiles.Add(new PlayerProjectileDynamite(playerRef.Position, new Vector2(10, 0), ProjectileSpriteFactory.Instance.CreatePlayerProjectile(playerRef.CurrentRangedWeapon)));
+                                    Cooldown = 10;
+                                    break;
+                                case (Direction.Up):
+                                    ActiveProjectiles.Add(new PlayerProjectileDynamite(playerRef.Position, new Vector2(0, -10), ProjectileSpriteFactory.Instance.CreatePlayerProjectile(playerRef.CurrentRangedWeapon)));
+                                    Cooldown = 10;
+                                    break;
 
-
+                            }
                         }
                         break;
                     case (Tool.Boomerang):
-                        switch (playerRef.stateMachine.direction)
+                        if (WeaponInventory.Instance.GetAmmo(Tool.Boomerang) != 0)
                         {
-                            case (Direction.Down):
-                                ActiveProjectiles.Enqueue(new PlayerProjectileBoomerang(playerRef.Position, new Vector2(0, 10), ProjectileSpriteFactory.Instance.CreatePlayerProjectile(playerRef.CurrentRangedWeapon)));
-                                Cooldown = 10;
-                                break;
-                            case (Direction.Left):
-                                ActiveProjectiles.Enqueue(new PlayerProjectileBoomerang(playerRef.Position, new Vector2(-10, 0), ProjectileSpriteFactory.Instance.CreatePlayerProjectile(playerRef.CurrentRangedWeapon)));
-                                Cooldown = 10;
-                                break;
-                            case (Direction.Right):
-                                ActiveProjectiles.Enqueue(new PlayerProjectileBoomerang(playerRef.Position, new Vector2(10, 0), ProjectileSpriteFactory.Instance.CreatePlayerProjectile(playerRef.CurrentRangedWeapon)));
-                                Cooldown = 10;
-                                break;
-                            case (Direction.Up):
-                                ActiveProjectiles.Enqueue(new PlayerProjectileBoomerang(playerRef.Position, new Vector2(0, -10), ProjectileSpriteFactory.Instance.CreatePlayerProjectile(playerRef.CurrentRangedWeapon)));
-                                Cooldown = 10;
-                                break;
+                            switch (playerRef.stateMachine.direction)
+                            {
+                                case (Direction.Down):
+                                    ActiveProjectiles.Add(new PlayerProjectileBoomerang(playerRef.Position, new Vector2(0, 10), ProjectileSpriteFactory.Instance.CreatePlayerProjectile(playerRef.CurrentRangedWeapon)));
+                                    Cooldown = 10;
+                                    break;
+                                case (Direction.Left):
+                                    ActiveProjectiles.Add(new PlayerProjectileBoomerang(playerRef.Position, new Vector2(-10, 0), ProjectileSpriteFactory.Instance.CreatePlayerProjectile(playerRef.CurrentRangedWeapon)));
+                                    Cooldown = 10;
+                                    break;
+                                case (Direction.Right):
+                                    ActiveProjectiles.Add(new PlayerProjectileBoomerang(playerRef.Position, new Vector2(10, 0), ProjectileSpriteFactory.Instance.CreatePlayerProjectile(playerRef.CurrentRangedWeapon)));
+                                    Cooldown = 10;
+                                    break;
+                                case (Direction.Up):
+                                    ActiveProjectiles.Add(new PlayerProjectileBoomerang(playerRef.Position, new Vector2(0, -10), ProjectileSpriteFactory.Instance.CreatePlayerProjectile(playerRef.CurrentRangedWeapon)));
+                                    Cooldown = 10;
+                                    break;
 
 
+                            }
                         }
-                        break;
+                            break;
 
                 }
             }
 
         }
 
-        public void Remove()
+        public void Remove(IHitboxOwner x)
         {
-            if (ActiveProjectiles.Count > 0 && (ActiveProjectiles.Dequeue() is IHitboxOwner hbOwner))
+            if (ActiveProjectiles.Count > 0 && (ActiveProjectiles.IndexOf(x) > 0))
             {
-                RoomCollisionHandler.Instance.Remove(hbOwner);
+                RoomCollisionHandler.Instance.Remove(x);
+                ActiveProjectiles.Remove(x);
             }
         }
 

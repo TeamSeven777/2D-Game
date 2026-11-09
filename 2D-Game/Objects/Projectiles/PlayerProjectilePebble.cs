@@ -33,6 +33,7 @@ namespace _2D_Game
             DespawnTimer = 1000;
             RoomCollisionHandler.Instance.Add(this, true);
             SoundEffectFactory.Instance.PlaySoundEffect(SoundName.ThrowItem, true);
+            WeaponInventory.Instance.ChangeAmmo(Tool.Slingshot, -1);
         }
 
         public void Update(GameTime gt)

@@ -150,6 +150,7 @@
 	<Obstacles>
 		<Entity Type="Destructible_Block" X="100" Y="150"/>
 		<Entity Type="Door" X="150" Y="150"/>
+		<Entity Type="Moveable_Block" X="100" Y="250"/>
 	</Obstacles>
 	<Enemies/>
 	<NPCs/>

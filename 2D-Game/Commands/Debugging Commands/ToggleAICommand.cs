@@ -18,7 +18,10 @@ namespace _2D_Game
 
         public void Execute()
         {
-            myGame.Enemies.ToggleAI();
+            if(!myGame.roomManager.CurrentRoom.ToggleAI)
+                myGame.roomManager.CurrentRoom.ToggleAI = true;
+            else
+                myGame.roomManager.CurrentRoom.ToggleAI = false;
         }
 
     }
