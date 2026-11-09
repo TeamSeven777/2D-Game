@@ -9,7 +9,7 @@ namespace _2D_Game
         public Vector2 Position { get; set; }
         private double IFrames = 0.5;
         private double IFramesTimer = 0;
-        private AnimatedSprite sprite;        
+        private ISprite sprite;        
         private Vector2 startPosition;
         private double elapsedSeconds;
 
@@ -20,7 +20,7 @@ namespace _2D_Game
         private int hbHeight = 60;
         private IDialogue npcDialogue;
 
-        public NPC(AnimatedSprite sprite, Vector2 startPosition, IDialogue dialogue)
+        public NPC(ISprite sprite, Vector2 startPosition, IDialogue dialogue)
         {
             this.sprite = sprite;
             this.startPosition = startPosition;

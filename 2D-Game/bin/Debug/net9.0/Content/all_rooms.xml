@@ -16,10 +16,10 @@
       <Entity Type="Spider" X="200" Y="100" />
     </Enemies>
     <NPCs>
-      <Entity Type="Ethan" X="300" Y="200" />
-      <Entity Type="Lydia" X="600" Y="200" />
-      <Entity Type="Lily" X="250" Y="300" />
-      <Entity Type="Joe" X="650" Y="300" />
+      <Entity Type="Ethan" X="300" Y="200" DialogueIndex="0" />
+      <Entity Type="Lydia" X="600" Y="200" DialogueIndex="0"/>
+      <Entity Type="Lily" X="250" Y="300" DialogueIndex="0"/>
+      <Entity Type="Joe" X="650" Y="300" DialogueIndex="0"/>
     </NPCs>
     <Items>
       <Entity Type="Log" X="600" Y="300" />
@@ -99,9 +99,15 @@
 	</Room>
 	<!--Room 3 (1, 0) -->
 	<Room RoomX="1" RoomY="0">
+		<NPCs>
+			<Entity Type="Sign" X="600" Y="100" DialogueIndex="0" />
+		</NPCs>
 	</Room>
 	<!--Room 4 (2, 0) -->
 	<Room RoomX="2" RoomY="0">
+		<NPCs>
+			<Entity Type="Ethan" X="300" Y="400" DialogueIndex="1" />
+		</NPCs>
 	</Room>
   
   <!-- Bottom Right Room (2,2) -->

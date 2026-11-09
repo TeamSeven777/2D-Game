@@ -15,6 +15,7 @@ namespace _2D_Game
         public Vector2 Position { get; set; }
         public Color Color { get; set; }
         public float Rotation { get; set; }
+        public Vector2 Origin { get; set; }
         public Vector2 Scale {  get; set; }
         public float LayerDepth { get; set; }
         public SpriteEffects Effects { get; set; }

@@ -154,8 +154,9 @@ namespace _2D_Game
             {
                 string type = npcElement.Attribute("Type")?.Value ?? string.Empty;
                 Vector2 worldPos = CalculateWorldPosition(npcElement, rx, ry);
+                int dialogueIndex = ParseIntAttribute(npcElement, "DialogueIndex", 0);
 
-                INPC npc = contentFactory.CreateNPC(type, worldPos);
+                INPC npc = contentFactory.CreateNPC(type, worldPos, dialogueIndex);
                 if (npc != null)
                 {
                     room.NPCs.Add(npc);

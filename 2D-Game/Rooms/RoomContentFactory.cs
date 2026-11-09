@@ -12,7 +12,7 @@ namespace _2D_Game
     {
         // Assets
         private Texture2D ghostSheet, ghostAttackSheet, mosquitoSheet, spiderSheet;
-        private Texture2D teamSheet;
+        private Texture2D teamSheet, signTexture;
         private readonly Dictionary<string, Texture2D> itemTextures = new(StringComparer.OrdinalIgnoreCase);
 
         public void LoadContent(ContentManager content, Texture2D blockSheet)
@@ -25,6 +25,7 @@ namespace _2D_Game
 
             // NPC sprite sheets
             teamSheet = content.Load<Texture2D>("Sprites/TeamIdles-Sheet");
+            signTexture = content.Load<Texture2D>("Sprites/Sign");
 
             // Item textures (lookup dictionary)
             itemTextures["Berry"] = content.Load<Texture2D>("Images/Berry2");
@@ -122,13 +123,13 @@ namespace _2D_Game
             return null;
         }
 
-        public INPC CreateNPC(string type, Vector2 position)
+        public INPC CreateNPC(string type, Vector2 position, int dialogueIndex)
         {
             if (type.Equals("Ethan", StringComparison.OrdinalIgnoreCase))
             {
                 Animation ethanIdle = new(teamSheet, TimeSpan.FromMilliseconds(100), new Vector2(128, 128), Vector2.Zero, teamSheet.Width);
                 AnimatedSprite ethan = new(ethanIdle, teamSheet) { Scale = new Vector2(0.95f) };
-                return new NPC(ethan, position, DialogueFactory.Instance.CreateEthanDialogue());
+                return new NPC(ethan, position, DialogueFactory.Instance.CreateEthanDialogue(dialogueIndex));
             }
             else if (type.Equals("Lydia", StringComparison.OrdinalIgnoreCase))
             {
@@ -147,9 +148,14 @@ namespace _2D_Game
                 Animation joeIdle = new(teamSheet, TimeSpan.FromMilliseconds(100), new Vector2(128, 128), new Vector2(0, 384), teamSheet.Width);
                 AnimatedSprite joe = new(joeIdle, teamSheet) { Scale = new Vector2(0.95f) };
                 return new NPC(joe, position, DialogueFactory.Instance.CreateJoeDialogue());
-            }          
+            }
+            else
+            {
+                ISprite sign = new Sprite(signTexture, signTexture.Bounds);
+                return new NPC(sign, position, DialogueFactory.Instance.CreateSignDialogue());
+            }
 
-            return null;
+            //return null;
         }
 
         public IItem CreateItem(string type)

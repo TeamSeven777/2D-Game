@@ -37,7 +37,7 @@ namespace _2D_Game
             else if (xCoord == col2)
             {
                 if (yCoord == row1) RoomSongName = SongName.OminousLair; //Room 3
-                else if (yCoord == row2) RoomSongName = SongName.TitleTheme; //Room 6, song TBC
+                else if (yCoord == row2) RoomSongName = SongName.EchoesOfTheBlue; //Room 6
                 else if (yCoord == row3) RoomSongName = SongName.EndTheme; //Room 7, song TBC
             }
             else if (xCoord == col3)

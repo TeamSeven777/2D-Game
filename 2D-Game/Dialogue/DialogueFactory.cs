@@ -37,13 +37,21 @@ namespace _2D_Game
             return Dialogue;
         }
         //NPC dialogues
-        public IDialogue CreateEthanDialogue() 
+        public IDialogue CreateEthanDialogue(int dialogueIndex) 
         {
             IDialogue Dialogue;
             Queue<string> dialogueList = new Queue<string>();
-            dialogueList.Enqueue("Congratulations! Now you get to sit through 20 lines of dialogue!");
-            for(int i = 1; i < 21; i++) dialogueList.Enqueue("Waste of time line " + i + ".");
-            dialogueList.Enqueue("Alright goodbye now!");
+            if(dialogueIndex == 0)
+            {
+                dialogueList.Enqueue("Congratulations! Now you get to sit through 20 lines of dialogue!");
+                for (int i = 1; i < 21; i++) dialogueList.Enqueue("Waste of time line " + i + ".");
+                dialogueList.Enqueue("Alright goodbye now!");
+            } 
+            else
+            {
+                dialogueList.Enqueue("I'm gonna eventually give you a fishing rod.");
+            }
+            
             Dialogue = new Dialogue(dialogueList, mainFont);//TODO fix position bug with relation to camera (screen scale)
             return Dialogue;
         }
@@ -76,7 +84,7 @@ namespace _2D_Game
             Dialogue = new Dialogue(dialogueList, mainFont);
             return Dialogue;
         }
-        public IDialogue CreateBogSignDialogue() 
+        public IDialogue CreateSignDialogue() 
         {
             IDialogue Dialogue;
             Queue<string> dialogueList = new Queue<string>();

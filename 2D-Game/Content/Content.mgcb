@@ -220,6 +220,13 @@
 /processorParam:Version=3.8.5.0
 /build:Music/cozyFire(slow+reverb).wav
 
+#begin Music/echoesOfTheBlue.wav
+/importer:WavImporter
+/processor:SongProcessor
+/processorParam:Quality=Best
+/processorParam:Version=3.8.5.0
+/build:Music/echoesOfTheBlue.wav
+
 #begin Music/endThemeSample1.wav
 /importer:WavImporter
 /processor:SongProcessor
@@ -240,6 +247,13 @@
 /processorParam:Quality=Best
 /processorParam:Version=3.8.5.0
 /build:Music/npcTheme.wav
+
+#begin Music/npcTheme(chorus).wav
+/importer:WavImporter
+/processor:SongProcessor
+/processorParam:Quality=Best
+/processorParam:Version=3.8.5.0
+/build:Music/npcTheme(chorus).wav
 
 #begin Music/ominousLair.wav
 /importer:WavImporter
@@ -393,6 +407,19 @@
 /processorParam:TextureFormat=Color
 /processorParam:Version=3.8.5.0
 /build:Sprites/projectileSprites.png
+
+#begin Sprites/Sign.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/processorParam:Version=3.8.5.0
+/build:Sprites/Sign.png
 
 #begin Sprites/Spider.png
 /importer:TextureImporter
