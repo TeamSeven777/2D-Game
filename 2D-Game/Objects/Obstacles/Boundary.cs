@@ -40,9 +40,9 @@ namespace _2D_Game
         /// <param name="topLeftCorner"></param>
         /// <param name="bottomRightCorner"></param>
         /// <param name="texture"></param>
-        public Boundary(Vector2 topLeftCorner, Vector2 bottomRightCorner, Texture2D texture)
+        public Boundary(Vector2 topLeftCorner, Vector2 bottomRightCorner, ISprite texture)
         {
-            Sprite = new Sprite(texture, topLeftCorner, bottomRightCorner, Color.White);
+            this.Sprite = texture;
             OriginPos = topLeftCorner;
             destinationPos = bottomRightCorner;
             Hitbox = new BlockHitBox(new Rectangle(OriginPos.ToPoint(), destinationPos.ToPoint()));

@@ -13,7 +13,7 @@ namespace _2D_Game
     {
         private readonly Dictionary<Point, Room> rooms = new();
         public Room CurrentRoom { get; private set; }
-        
+        string[] names;
         private int roomWidth;
         private int roomHeight;
 
@@ -31,6 +31,8 @@ namespace _2D_Game
         /// <param name="height"></param>
         public void LoadDungeon(string filePath, ContentManager content, Texture2D blockSheet, int width, int height)
         {
+
+            names = ["Door","Sign","Firepit","Door","Moveable_Block","Destructible_Block", "Boundary"];
             roomWidth = width;
             roomHeight = height;
 
@@ -79,6 +81,13 @@ namespace _2D_Game
             return new Vector2((rx * roomWidth) + x, (ry * roomHeight) + y);
         }
 
+        private Vector2 CalculateSize(XElement element)
+        {
+            float x = ParseFloatAttribute(element, "XSize", 0f);
+            float y = ParseFloatAttribute(element, "YSize", 0f);
+            return new Vector2(x,y);
+        }
+
         private static int ParseIntAttribute(XElement element, string attrName, int defaultValue)
         {
             return int.TryParse(element.Attribute(attrName)?.Value, out int val) ? val : defaultValue;
@@ -105,11 +114,15 @@ namespace _2D_Game
             {
                 string type = obsElement.Attribute("Type")?.Value ?? string.Empty;
                 Vector2 worldPos = CalculateWorldPosition(obsElement, rx, ry);
-                IObstacle block;
-                if (!type.Equals("Block", StringComparison.OrdinalIgnoreCase))
+                Vector2 size = Vector2.Zero;
+                if (ParseFloatAttribute(obsElement, "XSize", 0f) != 0f)
                 {
-                    block = contentFactory.CreateSpecialBlock(type, worldPos, room);
-                    
+                    size = CalculateSize(obsElement);
+                }
+                IObstacle block;
+                if (names.Contains(type))
+                {
+                    block = contentFactory.CreateSpecialBlock(type, worldPos, room, size);
                 }
                 else
                 {

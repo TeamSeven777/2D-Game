@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
+//using System.Drawing;
 using System.Threading;
 
 namespace _2D_Game
@@ -83,7 +84,7 @@ namespace _2D_Game
             return block;
         }
 
-        public IObstacle CreateSpecialBlock(string type, Vector2 position, Room CurRoom)
+        public IObstacle CreateSpecialBlock(string type, Vector2 position, Room CurRoom, Vector2 size)
         {
             IObstacle block;
             if (type.Equals("Destructible_Block", StringComparison.OrdinalIgnoreCase))
@@ -108,8 +109,7 @@ namespace _2D_Game
             }
             else
             {
-                //A Block that does nothing
-                block = new Obstacle(new Vector2(25), position, ObstacleSpriteFactory.Instance.CreateOtherSprite(1));
+                block = new Boundary(position, size, ObstacleSpriteFactory.Instance.CreateOtherSprite(1));
             }
             return block;
         }

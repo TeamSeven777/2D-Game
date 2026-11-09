@@ -74,7 +74,7 @@ namespace _2D_Game
                         EnemyProjectileHandler.Instance.Remove(hbOwner);
                         break;
                     case (HitBoxType.Explosion):
-                        player.stateMachine.KillPlayer();
+                        player.TakeDamage(10);
                         break;
                     case (HitBoxType.HurtBlock):
                         player.TakeDamage(1);
