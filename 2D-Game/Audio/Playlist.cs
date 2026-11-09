@@ -33,6 +33,7 @@ namespace _2D_Game
             _playlist.Add(SongName.OminousLair, content.Load<Song>("Music/ominousLair"));
             _playlist.Add(SongName.NPCTheme, content.Load<Song>("Music/npcTheme(chorus)"));
             _playlist.Add(SongName.EchoesOfTheBlue, content.Load<Song>("Music/echoesOfTheBlue"));
+            _playlist.Add(SongName.EightLeggedDemons, content.Load<Song>("Music/eightLeggedDemons"));
         }
         public void ChangeSong(SongName songName, bool loops) {
             if (_playlist.ContainsKey(songName)) myAudioMananger.PlaySong(_playlist[songName], loops);

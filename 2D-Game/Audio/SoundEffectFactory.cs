@@ -24,7 +24,7 @@ namespace _2D_Game
         {
             myAudioMananger = audioManager;
             _soundEffects = new Dictionary<SoundName, SoundEffect>();
-            _soundEffects.Add(SoundName.StickSwing, content.Load<SoundEffect>("SFX/test-sfx"));
+            _soundEffects.Add(SoundName.StickSwing, content.Load<SoundEffect>("SFX/stickswing"));
             _soundEffects.Add(SoundName.MosquitoProjectile, content.Load<SoundEffect>("SFX/gunshottttt"));
             _soundEffects.Add(SoundName.SpiderProjectile, content.Load<SoundEffect>("SFX/gunshot-meme"));
         }
