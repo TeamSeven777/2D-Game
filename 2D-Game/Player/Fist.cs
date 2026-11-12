@@ -18,7 +18,7 @@ namespace _2D_Game
         private int offsetValueX = 20;
         private int offsetValueHY = 32;
         private Timer punchDelay;
-        private int hbWidth = 32;
+        private int hbWidth = 64;
         private int hbLength = 48;
         private Vector2 Position;
         public Fist(PlayerStateMachine playerStateMachine)

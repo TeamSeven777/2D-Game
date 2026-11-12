@@ -30,7 +30,7 @@ namespace _2D_Game
         // Attack timing
         private bool attacking = false;
         private double attackTimer = 0;
-        private float attackRange = 80f;               // how close the player has to be to get hit
+        private float attackRange = 60f;               // how close the player has to be to get hit
         private const double AttackCooldown = 1.0;     // seconds to wait after an attack before attacking again
         private readonly double attackDuration;       // how long one play of the attack animation takes
         private readonly Rectangle attackFirstFrame;

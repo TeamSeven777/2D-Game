@@ -24,7 +24,7 @@ namespace _2D_Game
         {
             this.Position = position;
             this.TravelingDirection = travelingDirection;
-            TravelDestination = position + travelingDirection * 8;
+            TravelDestination = position + travelingDirection * 9;
             this.ProjectileSprite = sprite;
             this.CollisionHandler = new ProjectileCollisionHandler(this);
             DespawnTimer = 150;

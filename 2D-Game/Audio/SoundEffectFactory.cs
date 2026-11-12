@@ -37,6 +37,7 @@ namespace _2D_Game
             _soundEffects.Add(SoundName.Dialogue, content.Load<SoundEffect>("SFX/speak"));
             _soundEffects.Add(SoundName.SpiderHiss, content.Load<SoundEffect>("SFX/spiderNoise"));
             _soundEffects.Add(SoundName.ThrowItem, content.Load<SoundEffect>("SFX/throw"));
+            _soundEffects.Add(SoundName.EatBerry, content.Load<SoundEffect>("SFX/eatberry"));
         }
         public void PlaySoundEffect(SoundName soundName, bool canOverlap) //canOverlap true if can play the same SFX more than once at a time
         {

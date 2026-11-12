@@ -62,7 +62,7 @@ namespace _2D_Game
 
         public void ChangeAmmo(Tool tool, int ammo)
         {
-            if(!UnlimitedAmmo)
+            if (Weapons[tool] + ammo > 0 || UnlimitedAmmo == false)
                 Weapons[tool] += ammo;
         }
 

@@ -21,8 +21,7 @@ namespace _2D_Game
             if (WeaponInventory.Instance.UnlimitedAmmo)
             WeaponInventory.Instance.UnlimitedAmmo = true;
             else
-                WeaponInventory.Instance.UnlimitedAmmo = false;
-
+            WeaponInventory.Instance.UnlimitedAmmo = false;
         }
 
     }

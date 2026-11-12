@@ -33,44 +33,39 @@ namespace _2D_Game
                 //Then how the collision should be handled
                 switch (collider.Type)
                 {
-                    case (HitBoxType.Enemy):
+                    case (HitBoxType.EnemyAttack):
                         int knockback = 16;
+                        goto case (HitBoxType.Enemy);
+                    case (HitBoxType.Enemy):
+                        knockback = 0;
                         //Then which side(s) the collision happened
-                        //TODO update for diagonal
-                        Side firstSide = resultsOfWillCollide.ElementAt(0); //this only checks one side.
-                        switch(firstSide){
-                            case (Side.Left):
-                                player.ToggleAllowedDirection(Direction.Right, false);
-                                //Maybe have some knockback and push the player back a set amount?
-                                if(!player.DisabledDirections.Contains(Direction.Left))player.NextPosition.X = player.Position.X - knockback;//only conduct KB if no block in dir.
-                                break;
-                            case (Side.Right):
-                                player.ToggleAllowedDirection(Direction.Left, false);
-                                if (!player.DisabledDirections.Contains(Direction.Right)) player.NextPosition.X = player.Position.X + knockback;
-                                //player.Position.X = player.Position.X + (int)collider.BoundingBox.Width;
-                                //player.stateMachine.CanMove = true;
-                                break;
-                            case (Side.Top):
-                                player.ToggleAllowedDirection(Direction.Down, false);
-                                if (!player.DisabledDirections.Contains(Direction.Up)) player.NextPosition.Y = player.Position.Y - knockback;
-                                //player.Position.X = player.Position.X - (int)collider.BoundingBox.Height;
-                                //player.stateMachine.CanMove = true;
-                                break;
-                            case (Side.Bottom):
-                                player.ToggleAllowedDirection(Direction.Up, false);
-                                if (!player.DisabledDirections.Contains(Direction.Down)) player.NextPosition.Y = player.Position.Y + knockback;
-                                //player.Position.X = player.Position.X + (int)collider.BoundingBox.Height;
-                                //player.stateMachine.CanMove = true;
-                                break;
+                        foreach (Side x in resultsOfWillCollide)
+                        {
+                            switch (x)
+                            {
+                                case (Side.Left):
+                                    player.ToggleAllowedDirection(Direction.Right, false);
+                                    if (!player.DisabledDirections.Contains(Direction.Left)) player.NextPosition.X = player.Position.X - knockback;//only conduct KB if no block in dir.
+                                    break;
+                                case (Side.Right):
+                                    player.ToggleAllowedDirection(Direction.Left, false);
+                                    if (!player.DisabledDirections.Contains(Direction.Right)) player.NextPosition.X = player.Position.X + knockback;
+                                    break;
+                                case (Side.Top):
+                                    player.ToggleAllowedDirection(Direction.Down, false);
+                                    if (!player.DisabledDirections.Contains(Direction.Up)) player.NextPosition.Y = player.Position.Y - knockback;
+                                    break;
+                                case (Side.Bottom):
+                                    player.ToggleAllowedDirection(Direction.Up, false);
+                                    if (!player.DisabledDirections.Contains(Direction.Down)) player.NextPosition.Y = player.Position.Y + knockback;
+                                    break;
+                            }
+                            player.TakeDamage(1);
                         }
-                        //Ouch!
-                        player.TakeDamage(1);
-                        break;
+                            break;
                     case (HitBoxType.EnemyProjectile):
                         player.TakeDamage(1);
-                        //This is DANGEROUS
-                        //One case i can think of is if there are two projectiles active, the player touches the second one, it
-                        //only removes the older one, not the one the player touches
+                        //This is NO LONGER DANGEROUS
                         EnemyProjectileHandler.Instance.Remove(hbOwner);
                         break;
                     case (HitBoxType.Explosion):
@@ -104,19 +99,6 @@ namespace _2D_Game
                         }
                         break;
                     
-                }
-            }
-            else// if (player.DisabledDirections.Count > 0 && !player.stateMachine.Moving)
-            {
-                // player.DisabledDirections.Clear();
-                switch (collider.Type)
-                {
-                    case(HitBoxType.Block):
-                        //remove?
-                        break;
-                    default:
-                        //nothing to be done
-                        break;
                 }
             }
 

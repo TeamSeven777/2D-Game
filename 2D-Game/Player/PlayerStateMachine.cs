@@ -14,12 +14,12 @@ namespace _2D_Game
         //Here for other animations of the player
         //private enum 
         public IPlayerState CurrPlayerState { get; private set; }
-        private DefaultPlayer player;
+        private DefaultPlayer Player;
         public Vector2 Position { get; private set; }
 
         public PlayerStateMachine(DefaultPlayer myPlayer) {
             Position = myPlayer.Position;
-            player = myPlayer;
+            Player = myPlayer;
             direction = Direction.Down;
             toolEquiped = new NoTool();
             toolUsed = Tool.None;
@@ -37,11 +37,14 @@ namespace _2D_Game
         private bool isDead = false;
         private bool BoggusMode = false;
         public void ChangeDirection(Direction dir) {
-            direction = dir;            
+            if (CanMove)
+            {
+                direction = dir;
+            }
         }
         public void ChangeTool(Tool tool)
         {
-            player.CurrentRangedWeapon = tool;
+            Player.CurrentRangedWeapon = tool;
         }
 
         public void UseTool(Tool tool)
@@ -85,13 +88,13 @@ namespace _2D_Game
             if(CurrPlayerState.GetType() != typeof(DeadPlayerState))CurrPlayerState = new DeadPlayerState(this);
             isDead = true;
             CurrPlayerState.PlayerSprite.Color = Color.Red;
-            player.MoveDown();
+            Player.MoveDown();
         }
         //
 
         public void Update(GameTime gt)
         {
-            Position = player.Position;
+            Position = Player.Position;
             //TODO adjust Player Sprites in State classes to display more appropriately and have the appropriate origins.
             if (direction != previousDirection || Moving != PreviousMoving || toolUsed != previousToolUsed || Damaged != PreviousDamaged) ChangeOccurred = true;
             previousDirection = direction; PreviousMoving = Moving; previousToolUsed = toolUsed; PreviousDamaged = Damaged;
@@ -104,10 +107,10 @@ namespace _2D_Game
                         case (Tool.Stick):
                             CurrPlayerState = new StickPlayerState(this);
                             break;
-                    case (Tool.Interact):
-                        CurrPlayerState = new StickPlayerState(this);
-                        break;
-                    case (Tool.Fist):
+                        case (Tool.Interact):
+                            CurrPlayerState = new StickPlayerState(this);
+                            break;
+                        case (Tool.Fist):
                             CurrPlayerState = new FistPlayerState(this);
                             break;
                         case (Tool.Dynamite):
@@ -131,8 +134,6 @@ namespace _2D_Game
                 else CurrPlayerState.PlayerSprite.Color = Color.White;
                 ChangeOccurred = false;
             }
-
-
 
             CurrPlayerState.Update(gt);
         }
