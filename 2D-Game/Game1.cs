@@ -110,7 +110,7 @@ namespace _2D_Game
             startScreen = Content.Load<Texture2D>("Images/startScreen");
             endScreen = Content.Load<Texture2D>("Images/endScreen");
             hudFont = Content.Load<SpriteFont>("Fonts/pixelFont");
-            bogBackground = Content.Load<Texture2D>("Images/bog");
+            bogBackground = Content.Load<Texture2D>("Images/bogBkg");
             Camera = new Camera(roomWidth, roomHeight, worldWidth, worldHeight);
 
             PlayerSpriteFactory.Instance.LoadTextures(Content);
