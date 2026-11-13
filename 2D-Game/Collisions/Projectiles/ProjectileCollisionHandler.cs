@@ -29,13 +29,13 @@ namespace _2D_Game
                 else if (projectile.Hitbox.Type == HitBoxType.EnemyProjectile)
                 {
                     if (collider.Type == HitBoxType.Block)
-                        EnemyProjectileHandler.Instance.Remove(hbOwner);
+                        EnemyProjectileHandler.Instance.Remove(projectile);
                 }
                 if(projectile.Hitbox.Type == HitBoxType.Explosion)
                 {
                     if(collider.Type == HitBoxType.DestructibleBlock)
                     {
-                        RoomCollisionHandler.Instance.Remove(hbOwner);
+                        RoomCollisionHandler.Instance.Remove(projectile);
                     }
                 }
             }

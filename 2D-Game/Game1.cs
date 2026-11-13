@@ -54,6 +54,7 @@ namespace _2D_Game
         public bool DialogueMode { get; private set; }
         public IDialogue CurrentDialogue { get; set; }
         public AudioManager GameAudioManager;
+        public DeathHandler deathHandler;
         
         public Game1()
         {
@@ -87,6 +88,7 @@ namespace _2D_Game
             controllers.Add(controllerNames[2], new MouseController(this));
 
             roomManager = new RoomManager();
+            deathHandler = new DeathHandler(this);
 
             base.Initialize();
         }
@@ -206,6 +208,7 @@ namespace _2D_Game
             ItemInventory.Instance.Update(gameTime, roomManager.CurrentRoom);
             weaponHotbar.Update(gameTime);
             itemHotbar.Update(gameTime);
+            deathHandler.Update(gameTime);
 
                 //~Whatever Else Actions~
                 Enemies.Update(gameTime, player.Position);
@@ -235,7 +238,6 @@ namespace _2D_Game
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
-
             if (State != GameState.Playing)
             {
                 _spriteBatch.Begin(samplerState: SamplerState.LinearClamp);
@@ -260,7 +262,7 @@ namespace _2D_Game
             PlayerProjectileHandler.Instance.Draw(_spriteBatch);
             EnemyProjectileHandler.Instance.Draw(_spriteBatch);
             Enemies.Draw(_spriteBatch);
-            foreach(Boundary boundary in boundaries) boundary.Draw(_spriteBatch);
+            //foreach(Boundary boundary in boundaries) boundary.Draw(_spriteBatch);
             player.Draw(_spriteBatch);
             //for hitbox debugging
             hitboxMode.DrawHitboxes(_spriteBatch);
@@ -296,6 +298,10 @@ namespace _2D_Game
             }
             CurrentDialogue.Draw(_spriteBatch, new Vector2(middleOfScreen.X, middleOfScreen.Y+roomHeight/4)); //draw 3/4 down screen in middle
 
+            _spriteBatch.End();
+
+            _spriteBatch.Begin(samplerState : SamplerState.PointClamp);
+            deathHandler.Draw(_spriteBatch);
             _spriteBatch.End();
 
             base.Draw(gameTime);

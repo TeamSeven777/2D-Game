@@ -91,9 +91,12 @@ namespace _2D_Game
                     Color fillColor = isSelected ? Color.White * 0.8f : Color.Black * 0.8f;
                     spriteBatch.Draw(pixel, rect, fillColor);
                 }
-
+                ISprite weaponSprite;
                 // Draw Weapon Projectile Sprite Icon
-                ISprite weaponSprite = ProjectileSpriteFactory.Instance.CreatePlayerProjectile(currentTool);
+                if (currentTool != Tool.Slingshot)
+                    weaponSprite = ProjectileSpriteFactory.Instance.CreatePlayerProjectile(currentTool);
+                else
+                    weaponSprite = PlayerSpriteFactory.Instance.CreateTool(currentTool);
                 weaponSprite.Scale = new Vector2(0.5f);
                 if(WeaponInventory.Instance.GetAmmo(currentTool) == 0)
                 {

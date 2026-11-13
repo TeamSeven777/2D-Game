@@ -18,6 +18,7 @@ namespace _2D_Class
         Texture2D BushSprites;
         Texture2D FirepitSprite;
         Texture2D DoorSprites;
+        Texture2D BoulderSprites;
         private static ObstacleSpriteFactory instance = new ObstacleSpriteFactory();
 
         public static ObstacleSpriteFactory Instance
@@ -33,6 +34,7 @@ namespace _2D_Class
             BushSprites = content.Load<Texture2D>("Sprites/bushes");
             FirepitSprite = content.Load<Texture2D>("Sprites/FirePit");
             DoorSprites = content.Load<Texture2D>("Sprites/door");
+            BoulderSprites = content.Load<Texture2D>("Sprites/boulders");
         }
 
         /// <summary>
@@ -137,6 +139,31 @@ namespace _2D_Class
                     sprite = new Sprite(); 
                     break;
             }
+            return sprite;
+        }
+
+        public ISprite CreateBoulderSprite(int index = 0)
+        {
+            ISprite sprite;
+            switch (index)
+            {
+                case (0):
+                    sprite = new Sprite(BoulderSprites, new Rectangle(0, 0, 48, 72));
+                    break;
+                case (1):
+                    sprite = new Sprite(BoulderSprites, new Rectangle(48, 0, 48, 72));
+                    break;
+                case (2):
+                    sprite = new Sprite(BoulderSprites, new Rectangle(96, 0, 48, 72));
+                    break;
+                case (3):
+                    sprite = new Sprite(BoulderSprites, new Rectangle(144, 0, 48, 72));
+                    break;
+                default:
+                    sprite = new Sprite();
+                    break;
+            }
+            sprite.Scale = new Vector2(2f);
             return sprite;
         }
     }

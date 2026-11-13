@@ -43,7 +43,10 @@ namespace _2D_Game
             {
                 IProjectile curProjectile = (IProjectile)ActiveProjectiles[i]; 
                 curProjectile.Update(gt);
-                if (curProjectile.DespawnTimer <= 0) ActiveProjectiles.Remove(ActiveProjectiles[i]);
+                if (curProjectile.DespawnTimer <= 0)
+                {
+                    this.Remove((IHitboxOwner)curProjectile);
+                }
             }
         }
 
@@ -77,9 +80,10 @@ namespace _2D_Game
 
         public void Remove(IHitboxOwner x)
         {
-            if (ActiveProjectiles.Count > 0 && (ActiveProjectiles.IndexOf(x) > 0))
+            if (ActiveProjectiles.Count > 0)
             {
                 RoomCollisionHandler.Instance.Remove(x);
+                ActiveProjectiles.Remove(x);
             }
         }
 

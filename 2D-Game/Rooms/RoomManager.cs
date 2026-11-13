@@ -55,7 +55,7 @@ namespace _2D_Game
                 ParseEnemies(roomElement, rx, ry, room);
                 ParseNPCs(roomElement, rx, ry, room);
                 ParseItems(roomElement, rx, ry, room);
-                room.fogOverlay = contentFactory.FogTexture;
+                room.FogOverlay = contentFactory.CreateFog();
                 room.TopLeft = new Point(gridPos.X * roomWidth, gridPos.Y * roomHeight);
                 room.BottomRight = new Point(roomWidth, roomHeight);
 

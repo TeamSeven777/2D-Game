@@ -17,7 +17,7 @@ namespace _2D_Game
         private Texture2D teamSheet, signTexture, textGraveTexture;
         public Texture2D FogTexture { get; private set; }
         private readonly Dictionary<string, Texture2D> itemTextures = new(StringComparer.OrdinalIgnoreCase);
-
+        private readonly Random random = new();
         private Texture2D itemSheet;
         private readonly Dictionary<string, Rectangle> itemTextureIInfo = new(StringComparer.OrdinalIgnoreCase);
 
@@ -90,7 +90,7 @@ namespace _2D_Game
             IObstacle block;
             if (type.Equals("Destructible_Block", StringComparison.OrdinalIgnoreCase))
             {
-                block = new DestructibleObstacle(new Vector2(25), position, ObstacleSpriteFactory.Instance.CreateOtherSprite(2), CurRoom);
+                block = new DestructibleObstacle(new Vector2(48,72), position, ObstacleSpriteFactory.Instance.CreateBoulderSprite(random.Next(3)), CurRoom);
             }
             else if (type.Equals("Sign", StringComparison.OrdinalIgnoreCase))
             {
@@ -206,6 +206,13 @@ namespace _2D_Game
             };
         }
 
+        public Sprite CreateFog()
+        {   
+            Sprite sprite = new Sprite(FogTexture, FogTexture.Bounds);
+            sprite.Color = Color.White * 0.8f;
+            sprite.Scale = new Vector2(2.25f);
+            return sprite;
+        }
 
     }
 }

@@ -16,15 +16,16 @@ namespace _2D_Game
         public List<INPC> NPCs { get; private set; } = new List<INPC>(); // Room-specific NPCs
         public List<WorldItem> Items { get; private set; } = new List<WorldItem>();
         public SongName RoomSongName { get; private set; }
-        public Texture2D fogOverlay { get; set;  }
+        //public Texture2D fogOverlay;
+        public Sprite FogOverlay;
         private bool fogMode = true;
         public bool ToggleAI = false;
         
         public Room(Point gridPosition)
         {
             GridPosition = gridPosition;
-            DetermineRoomSongName(gridPosition);//TODO maybe just load this in via the xml stuff?            
-
+            DetermineRoomSongName(gridPosition);//TODO maybe just load this in via the xml stuff
+            
         }
         private void DetermineRoomSongName(Point gridPos) {
             int row1 = 0, col1 = 0;
@@ -87,6 +88,10 @@ namespace _2D_Game
 
         public void Draw(SpriteBatch spriteBatch)
         {
+            
+            foreach (var item in Items)
+                item.Draw(spriteBatch);
+
             foreach (var obstacle in Obstacles) 
                 obstacle.Draw(spriteBatch);
 
@@ -96,10 +101,12 @@ namespace _2D_Game
             foreach (var npc in NPCs)
                 npc.Draw(spriteBatch);
 
-            foreach (var item in Items) 
-                item.Draw(spriteBatch);
+            if (fogMode) //spriteBatch.Draw(fogOverlay, new Rectangle(TopLeft, BottomRight), Color.White);
+                         FogOverlay.Draw(spriteBatch, new Vector2(TopLeft.X + FogOverlay.Origin.X + 200, TopLeft.Y + FogOverlay.Origin.Y + 200)); //TODO make this better?
+            // One possible solution would be to draw it attached to the camera, and only have the edges of the screen covered in the fog ~ Joe
+            // P.S. Or if we stick with this, make it a repeating textures so the edges touch, or have it overlap straightup
 
-            if (fogMode) spriteBatch.Draw(fogOverlay, new Rectangle(TopLeft, BottomRight), Color.White); //TODO make this better?
+
         }
         /// <summary>
         /// Turns on Enemy AI, and room song
