@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Numerics;
 using System.Text;
@@ -19,12 +20,24 @@ namespace _2D_Game
         private Texture2D bogBackground;
         private Rectangle bogArea;
         private Rectangle bogEntrance; //walking into this on the main map teleports the player
+        private List<Direction> CorrectSequence;
+        private List<Direction> PlayerSequence;
+        private bool BogSolved = false;
+        private int sequenceCount = 0; //PlayerSequence count
         public bool InBog { get; private set; }
+
+        private WorldItem BogLog = null;
         public Bog(Game1 game1) {
             myGame = game1;
             player = myGame.player;
             Camera = myGame.Camera;
             InBog = false;
+            CorrectSequence = new List<Direction>();
+            CorrectSequence.Add(Direction.Up);
+            CorrectSequence.Add(Direction.Down);
+            CorrectSequence.Add(Direction.Down);
+            CorrectSequence.Add(Direction.Right);
+            PlayerSequence = new List<Direction>();
         }
         public void LoadContent(ContentManager content) {
             bogBackground = content.Load<Texture2D>("Images/bogBkg");
@@ -40,7 +53,20 @@ namespace _2D_Game
             myGame.boundaries.Add(new Boundary(new Vector2(bogArea.Right, bogArea.Top), new Vector2(wall, bogArea.Height)));                          // right
         }
         public void Update(GameTime gt) {
-            if (InBog) CheckBogExits();
+            if (InBog && BogSolved) { 
+                CheckBogExits();
+                if (BogLog != null && BogLog.IsCollected) BogLog = null;
+            }
+            else if (InBog)
+            {
+                CheckBogExits();
+                if (sequenceCount > 0 && sequenceCount < CorrectSequence.Count && PlayerSequence[sequenceCount - 1] != CorrectSequence[sequenceCount - 1]) PlayerSequence = new List<Direction>();
+                else if (sequenceCount == CorrectSequence.Count && PlayerSequence[sequenceCount-1] == CorrectSequence[sequenceCount-1]) {
+                    BogSolved = true;
+                    //TODO needs to create log in center
+                    BogLog = new WorldItem(RoomContentFactory.Instance.CreateItem("Log"), new Vector2(bogArea.Left + bogArea.Width /2, bogArea.Top + bogArea.Height /2));
+                }
+            }
             else if (bogEntrance.Contains(player.Position.ToPoint())) EnterBog();
         }
 
@@ -62,22 +88,34 @@ namespace _2D_Game
             const int arrivalInset = 120; //far enough from each edge that arriving can't trigger another exit
 
             Vector2 position = player.Position;
-            if (position.X >= bogArea.Right - sideEdge)
+            bool exitTaken = true;
+            if (position.X >= bogArea.Right - sideEdge)//right
             {
                 player.Teleport(new Vector2(bogArea.Center.X, bogArea.Top + arrivalInset));
+                PlayerSequence.Add(Direction.Right);
+
             }
-            else if (position.Y <= bogArea.Top + sideEdge)
+            else if (position.Y <= bogArea.Top + sideEdge)//up
             {
                 player.Teleport(new Vector2(bogArea.Left + arrivalInset, bogArea.Center.Y));
+                PlayerSequence.Add(Direction.Up);
             }
-            else if (position.Y >= bogArea.Bottom - bottomEdge)
+            else if (position.Y >= bogArea.Bottom - bottomEdge)//down
             {
                 player.Teleport(new Vector2(bogArea.Right - arrivalInset, bogArea.Center.Y));
+                PlayerSequence.Add(Direction.Down);
             }
-            else if (position.X <= bogArea.Left + sideEdge)
+            else if (position.X <= bogArea.Left + sideEdge)//left
             {
-                LeaveBog();
+                player.Teleport(new Vector2(bogArea.Center.X, bogArea.Bottom - arrivalInset));
+                PlayerSequence.Add(Direction.Left);
             }
+            else {
+                exitTaken = false;
+            }
+
+            if (BogSolved && exitTaken) LeaveBog();
+            sequenceCount = PlayerSequence.Count();
         }
 
         private void LeaveBog()
@@ -89,6 +127,7 @@ namespace _2D_Game
         }
         public void Draw(SpriteBatch spriteBatch) {
             spriteBatch.Draw(bogBackground, bogArea, Color.White);
+            if (BogLog != null && !BogLog.IsCollected) BogLog.Draw(spriteBatch);
         }
     }
 }

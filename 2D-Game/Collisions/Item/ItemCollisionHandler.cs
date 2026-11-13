@@ -23,6 +23,7 @@ namespace _2D_Game
                 item.ItemData.Collect();
                 SoundEffectFactory.Instance.PlaySoundEffect(SoundName.Pickup, true);
                 ItemInventory.Instance.RemoveFromWorld(item);
+                item.IsCollected = true;
                 RoomCollisionHandler.Instance.Remove(item);
             }
 

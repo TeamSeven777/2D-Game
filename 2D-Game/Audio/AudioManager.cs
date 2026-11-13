@@ -22,6 +22,7 @@ namespace _2D_Game
         private Song currentSong;     
         private float songVolume;
         private float songVolumeNotch = .1f;
+        private float sfxVolume = .5f; //tweak as needed
         private float previousSongVolume;
         public bool SongMuted {  get;  set; }
 
@@ -58,7 +59,8 @@ namespace _2D_Game
             }
             else //play soundeffect
             {
-                soundEffectInstance.Play();
+                soundEffectInstance.Volume = sfxVolume;
+                soundEffectInstance.Play();              
                 if(!activeSoundEffectInstances.Contains(soundEffectInstance))activeSoundEffectInstances.Add(soundEffectInstance);
             }
         }

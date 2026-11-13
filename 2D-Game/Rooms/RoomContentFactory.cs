@@ -21,7 +21,12 @@ namespace _2D_Game
         private Texture2D itemSheet;
         private readonly Dictionary<string, Rectangle> itemTextureIInfo = new(StringComparer.OrdinalIgnoreCase);
 
+        private static RoomContentFactory instance = new RoomContentFactory();
 
+        public static RoomContentFactory Instance
+        { get { return instance; } }
+
+        private RoomContentFactory() { }
 
         public void LoadContent(ContentManager content, Texture2D blockSheet)
         {
