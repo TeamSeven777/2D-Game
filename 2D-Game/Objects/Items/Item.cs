@@ -43,6 +43,24 @@ namespace _2D_Game
         }
     }
 
+    // Hotdog
+    public class HotdogItem : Item
+    {
+        public HotdogItem(Sprite icon) : base("Hotdog", icon, 99) { }
+        public override void Collect()
+        {
+            ItemInventory.Instance.Add(this, 1);
+        }
+        public override void Use()
+        {
+            DefaultPlayer.Instance.Health += 7;
+            SoundEffectFactory.Instance.PlaySoundEffect(SoundName.EatBerry, true);
+            DefaultPlayer.Instance.stateMachine.CurrPlayerState.PlayerSprite.Color = Color.LimeGreen;
+            ItemInventory.Instance.ChangeValue("Hotdog", -1);
+        }
+        
+    }
+
     // Berry
     public class BerryItem : Item
     {

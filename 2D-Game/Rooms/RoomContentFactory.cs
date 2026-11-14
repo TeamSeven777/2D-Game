@@ -19,6 +19,7 @@ namespace _2D_Game
         private readonly Dictionary<string, Texture2D> itemTextures = new(StringComparer.OrdinalIgnoreCase);
 
         private Texture2D itemSheet;
+        private Texture2D hotdogTexture;
         private readonly Dictionary<string, Rectangle> itemTextureIInfo = new(StringComparer.OrdinalIgnoreCase);
 
         private static RoomContentFactory instance = new RoomContentFactory();
@@ -58,6 +59,7 @@ namespace _2D_Game
             itemTextureIInfo["Pebble"] = new Rectangle(itemPos, itemSize);
             itemPos.X += 32;
             itemTextureIInfo["SpeedShoes"] = new Rectangle(itemPos, itemSize);
+            hotdogTexture = content.Load<Texture2D>("Images/hotdog");
         }
 
         public IObstacle CreateBlock(string type, Vector2 position)
@@ -192,6 +194,11 @@ namespace _2D_Game
 
         public IItem CreateItem(string type)
         {
+            // Put all non-sheet textures first
+            if (type.Equals("Hotdog"))
+            {
+                return new HotdogItem(new Sprite(hotdogTexture, new Rectangle(0,0,32,32)));
+            }
             // safety check in case you try to load an item whose texture isn't in the itemTextures dictionary
             if (itemSheet == null)
             {

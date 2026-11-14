@@ -22,7 +22,7 @@ namespace _2D_Class
         public void ItemUseHandling()
         {
             var selectedItem = ItemInventory.Instance.GetSelectedItem();
-            if (selectedItem != null && selectedItem.Name.Equals("Berry")) // Specify item names that can be used anywhere here
+            if (selectedItem != null && (selectedItem.Name.Equals("Berry") || selectedItem.Name.Equals("Hotdog"))) // Specify item names that can be used anywhere here
             {
                 selectedItem.Use();
             }
