@@ -1,7 +1,64 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\edwei\\source\\repos\\2D-Game\\",
-  "Documents": [],
+  "WorkspaceRootPath": "C:\\Users\\edwei\\OneDrive\\Documents\\GitHub\\2D-Game\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{1A49DD9B-7888-3C49-8C04-E072500C2AE6}|2D-Game\\2D-Game.csproj|c:\\users\\edwei\\onedrive\\documents\\github\\2d-game\\2d-game\\game1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1A49DD9B-7888-3C49-8C04-E072500C2AE6}|2D-Game\\2D-Game.csproj|solutionrelative:2d-game\\game1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1A49DD9B-7888-3C49-8C04-E072500C2AE6}|2D-Game\\2D-Game.csproj|c:\\users\\edwei\\onedrive\\documents\\github\\2d-game\\2d-game\\collisions\\generics\\roomcollisionhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1A49DD9B-7888-3C49-8C04-E072500C2AE6}|2D-Game\\2D-Game.csproj|solutionrelative:2d-game\\collisions\\generics\\roomcollisionhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1A49DD9B-7888-3C49-8C04-E072500C2AE6}|2D-Game\\2D-Game.csproj|c:\\users\\edwei\\onedrive\\documents\\github\\2d-game\\2d-game\\collisions\\item\\itemcollisionhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1A49DD9B-7888-3C49-8C04-E072500C2AE6}|2D-Game\\2D-Game.csproj|solutionrelative:2d-game\\collisions\\item\\itemcollisionhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1A49DD9B-7888-3C49-8C04-E072500C2AE6}|2D-Game\\2D-Game.csproj|c:\\users\\edwei\\onedrive\\documents\\github\\2d-game\\2d-game\\objects\\items\\worlditem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1A49DD9B-7888-3C49-8C04-E072500C2AE6}|2D-Game\\2D-Game.csproj|solutionrelative:2d-game\\objects\\items\\worlditem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1A49DD9B-7888-3C49-8C04-E072500C2AE6}|2D-Game\\2D-Game.csproj|c:\\users\\edwei\\onedrive\\documents\\github\\2d-game\\2d-game\\enums\\hitboxtype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1A49DD9B-7888-3C49-8C04-E072500C2AE6}|2D-Game\\2D-Game.csproj|solutionrelative:2d-game\\enums\\hitboxtype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1A49DD9B-7888-3C49-8C04-E072500C2AE6}|2D-Game\\2D-Game.csproj|c:\\users\\edwei\\onedrive\\documents\\github\\2d-game\\2d-game\\audio\\soundeffectfactory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1A49DD9B-7888-3C49-8C04-E072500C2AE6}|2D-Game\\2D-Game.csproj|solutionrelative:2d-game\\audio\\soundeffectfactory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1A49DD9B-7888-3C49-8C04-E072500C2AE6}|2D-Game\\2D-Game.csproj|c:\\users\\edwei\\onedrive\\documents\\github\\2d-game\\2d-game\\enums\\soundname.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1A49DD9B-7888-3C49-8C04-E072500C2AE6}|2D-Game\\2D-Game.csproj|solutionrelative:2d-game\\enums\\soundname.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1A49DD9B-7888-3C49-8C04-E072500C2AE6}|2D-Game\\2D-Game.csproj|c:\\users\\edwei\\onedrive\\documents\\github\\2d-game\\2d-game\\objects\\items\\iteminventory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1A49DD9B-7888-3C49-8C04-E072500C2AE6}|2D-Game\\2D-Game.csproj|solutionrelative:2d-game\\objects\\items\\iteminventory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1A49DD9B-7888-3C49-8C04-E072500C2AE6}|2D-Game\\2D-Game.csproj|c:\\users\\edwei\\onedrive\\documents\\github\\2d-game\\2d-game\\rooms\\roommanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1A49DD9B-7888-3C49-8C04-E072500C2AE6}|2D-Game\\2D-Game.csproj|solutionrelative:2d-game\\rooms\\roommanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1A49DD9B-7888-3C49-8C04-E072500C2AE6}|2D-Game\\2D-Game.csproj|c:\\users\\edwei\\onedrive\\documents\\github\\2d-game\\2d-game\\rooms\\room.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1A49DD9B-7888-3C49-8C04-E072500C2AE6}|2D-Game\\2D-Game.csproj|solutionrelative:2d-game\\rooms\\room.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1A49DD9B-7888-3C49-8C04-E072500C2AE6}|2D-Game\\2D-Game.csproj|c:\\users\\edwei\\onedrive\\documents\\github\\2d-game\\2d-game\\rooms\\roomcontentfactory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1A49DD9B-7888-3C49-8C04-E072500C2AE6}|2D-Game\\2D-Game.csproj|solutionrelative:2d-game\\rooms\\roomcontentfactory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1A49DD9B-7888-3C49-8C04-E072500C2AE6}|2D-Game\\2D-Game.csproj|c:\\users\\edwei\\onedrive\\documents\\github\\2d-game\\2d-game\\audio\\audiomanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1A49DD9B-7888-3C49-8C04-E072500C2AE6}|2D-Game\\2D-Game.csproj|solutionrelative:2d-game\\audio\\audiomanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1A49DD9B-7888-3C49-8C04-E072500C2AE6}|2D-Game\\2D-Game.csproj|c:\\users\\edwei\\onedrive\\documents\\github\\2d-game\\2d-game\\bin\\debug\\net9.0\\content\\all_rooms.xml||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{1A49DD9B-7888-3C49-8C04-E072500C2AE6}|2D-Game\\2D-Game.csproj|solutionrelative:2d-game\\bin\\debug\\net9.0\\content\\all_rooms.xml||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1A49DD9B-7888-3C49-8C04-E072500C2AE6}|2D-Game\\2D-Game.csproj|c:\\users\\edwei\\onedrive\\documents\\github\\2d-game\\2d-game\\2d-game.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{1A49DD9B-7888-3C49-8C04-E072500C2AE6}|2D-Game\\2D-Game.csproj|solutionrelative:2d-game\\2d-game.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -9,11 +66,193 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 11,
           "Children": [
             {
               "$type": "Bookmark",
               "Name": "ST:130:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "RoomCollisionHandler.cs",
+              "DocumentMoniker": "C:\\Users\\edwei\\OneDrive\\Documents\\GitHub\\2D-Game\\2D-Game\\Collisions\\Generics\\RoomCollisionHandler.cs",
+              "RelativeDocumentMoniker": "2D-Game\\Collisions\\Generics\\RoomCollisionHandler.cs",
+              "ToolTip": "C:\\Users\\edwei\\OneDrive\\Documents\\GitHub\\2D-Game\\2D-Game\\Collisions\\Generics\\RoomCollisionHandler.cs",
+              "RelativeToolTip": "2D-Game\\Collisions\\Generics\\RoomCollisionHandler.cs",
+              "ViewState": "AgIAABgAAAAAAAAAAAAowCcAAAAqAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-13T22:31:34.368Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "HitboxType.cs",
+              "DocumentMoniker": "C:\\Users\\edwei\\OneDrive\\Documents\\GitHub\\2D-Game\\2D-Game\\Enums\\HitboxType.cs",
+              "RelativeDocumentMoniker": "2D-Game\\Enums\\HitboxType.cs",
+              "ToolTip": "C:\\Users\\edwei\\OneDrive\\Documents\\GitHub\\2D-Game\\2D-Game\\Enums\\HitboxType.cs",
+              "RelativeToolTip": "2D-Game\\Enums\\HitboxType.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAC4AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-13T21:39:51.758Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "SoundName.cs",
+              "DocumentMoniker": "C:\\Users\\edwei\\OneDrive\\Documents\\GitHub\\2D-Game\\2D-Game\\Enums\\SoundName.cs",
+              "RelativeDocumentMoniker": "2D-Game\\Enums\\SoundName.cs",
+              "ToolTip": "C:\\Users\\edwei\\OneDrive\\Documents\\GitHub\\2D-Game\\2D-Game\\Enums\\SoundName.cs",
+              "RelativeToolTip": "2D-Game\\Enums\\SoundName.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAwAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-13T21:27:05.37Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "SoundEffectFactory.cs",
+              "DocumentMoniker": "C:\\Users\\edwei\\OneDrive\\Documents\\GitHub\\2D-Game\\2D-Game\\Audio\\SoundEffectFactory.cs",
+              "RelativeDocumentMoniker": "2D-Game\\Audio\\SoundEffectFactory.cs",
+              "ToolTip": "C:\\Users\\edwei\\OneDrive\\Documents\\GitHub\\2D-Game\\2D-Game\\Audio\\SoundEffectFactory.cs",
+              "RelativeToolTip": "2D-Game\\Audio\\SoundEffectFactory.cs",
+              "ViewState": "AgIAABUAAAAAAAAAAAAowCgAAABrAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-13T21:26:06.06Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "ItemInventory.cs",
+              "DocumentMoniker": "C:\\Users\\edwei\\OneDrive\\Documents\\GitHub\\2D-Game\\2D-Game\\Objects\\Items\\ItemInventory.cs",
+              "RelativeDocumentMoniker": "2D-Game\\Objects\\Items\\ItemInventory.cs",
+              "ToolTip": "C:\\Users\\edwei\\OneDrive\\Documents\\GitHub\\2D-Game\\2D-Game\\Objects\\Items\\ItemInventory.cs",
+              "RelativeToolTip": "2D-Game\\Objects\\Items\\ItemInventory.cs",
+              "ViewState": "AgIAAE8AAAAAAAAAAAAqwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-13T20:55:39.393Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ItemCollisionHandler.cs",
+              "DocumentMoniker": "C:\\Users\\edwei\\OneDrive\\Documents\\GitHub\\2D-Game\\2D-Game\\Collisions\\Item\\ItemCollisionHandler.cs",
+              "RelativeDocumentMoniker": "2D-Game\\Collisions\\Item\\ItemCollisionHandler.cs",
+              "ToolTip": "C:\\Users\\edwei\\OneDrive\\Documents\\GitHub\\2D-Game\\2D-Game\\Collisions\\Item\\ItemCollisionHandler.cs",
+              "RelativeToolTip": "2D-Game\\Collisions\\Item\\ItemCollisionHandler.cs",
+              "ViewState": "AgIAAAQAAAAAAAAAAAAAABUAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-13T20:48:08.288Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "RoomManager.cs",
+              "DocumentMoniker": "C:\\Users\\edwei\\OneDrive\\Documents\\GitHub\\2D-Game\\2D-Game\\Rooms\\RoomManager.cs",
+              "RelativeDocumentMoniker": "2D-Game\\Rooms\\RoomManager.cs",
+              "ToolTip": "C:\\Users\\edwei\\OneDrive\\Documents\\GitHub\\2D-Game\\2D-Game\\Rooms\\RoomManager.cs",
+              "RelativeToolTip": "2D-Game\\Rooms\\RoomManager.cs",
+              "ViewState": "AgIAALkAAAAAAAAAAAAqwMoAAAAnAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-13T20:20:25.618Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "WorldItem.cs",
+              "DocumentMoniker": "C:\\Users\\edwei\\OneDrive\\Documents\\GitHub\\2D-Game\\2D-Game\\Objects\\Items\\WorldItem.cs",
+              "RelativeDocumentMoniker": "2D-Game\\Objects\\Items\\WorldItem.cs",
+              "ToolTip": "C:\\Users\\edwei\\OneDrive\\Documents\\GitHub\\2D-Game\\2D-Game\\Objects\\Items\\WorldItem.cs",
+              "RelativeToolTip": "2D-Game\\Objects\\Items\\WorldItem.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAA2AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-13T20:05:40.894Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "RoomContentFactory.cs",
+              "DocumentMoniker": "C:\\Users\\edwei\\OneDrive\\Documents\\GitHub\\2D-Game\\2D-Game\\Rooms\\RoomContentFactory.cs",
+              "RelativeDocumentMoniker": "2D-Game\\Rooms\\RoomContentFactory.cs",
+              "ToolTip": "C:\\Users\\edwei\\OneDrive\\Documents\\GitHub\\2D-Game\\2D-Game\\Rooms\\RoomContentFactory.cs",
+              "RelativeToolTip": "2D-Game\\Rooms\\RoomContentFactory.cs",
+              "ViewState": "AgIAALoAAAAAAAAAAAAuwBcAAABEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-13T19:39:00.886Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "AudioManager.cs",
+              "DocumentMoniker": "C:\\Users\\edwei\\OneDrive\\Documents\\GitHub\\2D-Game\\2D-Game\\Audio\\AudioManager.cs",
+              "RelativeDocumentMoniker": "2D-Game\\Audio\\AudioManager.cs",
+              "ToolTip": "C:\\Users\\edwei\\OneDrive\\Documents\\GitHub\\2D-Game\\2D-Game\\Audio\\AudioManager.cs",
+              "RelativeToolTip": "2D-Game\\Audio\\AudioManager.cs",
+              "ViewState": "AgIAABQAAAAAAAAAAAAAwB8AAAAYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-13T19:17:14.057Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Game1.cs",
+              "DocumentMoniker": "C:\\Users\\edwei\\OneDrive\\Documents\\GitHub\\2D-Game\\2D-Game\\Game1.cs",
+              "RelativeDocumentMoniker": "2D-Game\\Game1.cs",
+              "ToolTip": "C:\\Users\\edwei\\OneDrive\\Documents\\GitHub\\2D-Game\\2D-Game\\Game1.cs",
+              "RelativeToolTip": "2D-Game\\Game1.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAwEQAAAAbAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-08T22:01:38.37Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "all_rooms.xml",
+              "DocumentMoniker": "C:\\Users\\edwei\\OneDrive\\Documents\\GitHub\\2D-Game\\2D-Game\\bin\\Debug\\net9.0\\Content\\all_rooms.xml",
+              "RelativeDocumentMoniker": "2D-Game\\bin\\Debug\\net9.0\\Content\\all_rooms.xml",
+              "ToolTip": "C:\\Users\\edwei\\OneDrive\\Documents\\GitHub\\2D-Game\\2D-Game\\bin\\Debug\\net9.0\\Content\\all_rooms.xml",
+              "RelativeToolTip": "2D-Game\\bin\\Debug\\net9.0\\Content\\all_rooms.xml",
+              "ViewState": "AgIAAH4AAAAAAAAAAAAAAIkAAAAWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003576|",
+              "WhenOpened": "2026-11-08T22:07:37.377Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Room.cs",
+              "DocumentMoniker": "C:\\Users\\edwei\\OneDrive\\Documents\\GitHub\\2D-Game\\2D-Game\\Rooms\\Room.cs",
+              "RelativeDocumentMoniker": "2D-Game\\Rooms\\Room.cs",
+              "ToolTip": "C:\\Users\\edwei\\OneDrive\\Documents\\GitHub\\2D-Game\\2D-Game\\Rooms\\Room.cs",
+              "RelativeToolTip": "2D-Game\\Rooms\\Room.cs",
+              "ViewState": "AgIAAAUAAAAAAAAAAIAwwBAAAAAUAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-08T22:03:07.245Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "2D-Game.csproj",
+              "DocumentMoniker": "C:\\Users\\edwei\\OneDrive\\Documents\\GitHub\\2D-Game\\2D-Game\\2D-Game.csproj",
+              "RelativeDocumentMoniker": "2D-Game\\2D-Game.csproj",
+              "ToolTip": "C:\\Users\\edwei\\OneDrive\\Documents\\GitHub\\2D-Game\\2D-Game\\2D-Game.csproj",
+              "RelativeToolTip": "2D-Game\\2D-Game.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2026-11-08T22:01:34.966Z",
+              "EditorCaption": ""
             }
           ]
         }

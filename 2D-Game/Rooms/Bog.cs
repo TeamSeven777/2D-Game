@@ -20,22 +20,22 @@ namespace _2D_Game
     public class Bog
 {
         private Game1 myGame;
-        private DefaultPlayer player;
-        private Camera Camera;
+        private DefaultPlayer player; //used from Game1
+        private Camera Camera;//used from Game1
         private Texture2D bogBackground;
         private Rectangle bogArea;
         private Rectangle bogEntrance; //walking into this on the main map teleports the player
-        private List<Direction> CorrectSequence;
-        private List<Direction> PlayerSequence;
-        private PlayerDetector LeftExit, RightExit, UpExit, DownExit;
-        private bool BogSolved = false;
+        private readonly List<Direction> CorrectSequence; //the correct pathway to solve the bog
+        private List<Direction> PlayerSequence; //the recorded pathway of player; resets when wrong direction is taken (unless already solved)
+        private PlayerDetector LeftExit, RightExit, UpExit, DownExit; //loading zones for each direction
+        private bool BogSolved = false; //when bog is solved the log will spawn and the exits will unlock back to the main map
         private int sequenceCount = 0; //PlayerSequence count
-        private int IncorrectCount = 0; private int IncorrectDamageThreshold = 5;
+        private int IncorrectCount = 0; private int IncorrectDamageThreshold = 5; 
         public bool InBog { get; private set; }
         private int offsetY = -100;
         private int offsetX = 50;
-
         private WorldItem BogLog = null;
+
         public Bog(Game1 game1) {
             myGame = game1;
             player = myGame.player;
