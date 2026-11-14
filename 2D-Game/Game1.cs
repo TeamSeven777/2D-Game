@@ -53,7 +53,6 @@ namespace _2D_Game
         public IDialogue CurrentDialogue { get; set; }
         public AudioManager GameAudioManager;
         public DeathHandler deathHandler;
-        
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
@@ -151,6 +150,7 @@ namespace _2D_Game
             bog.LoadContent(Content);
 
             // Load dungeon rooms and pass viewport dimensions
+
             roomManager.LoadDungeon("Content/all_rooms.xml", Content, blockSpriteSheet, roomWidth, roomHeight);
             roomManager.CurrentRoom.Deactivate();
             Playlist.Instance.ChangeSong(SongName.TitleTheme, true);
@@ -320,7 +320,6 @@ namespace _2D_Game
         public void ResetGame()
         {
             Initialize();
-            LoadContent();
         }
         public void TogglePause()
         {
