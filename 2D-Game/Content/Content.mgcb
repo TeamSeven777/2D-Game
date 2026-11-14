@@ -386,6 +386,13 @@
 /processorParam:Version=3.8.5.0
 /build:SFX/punch.mp3
 
+#begin SFX/puzzleSolveJingle1.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/processorParam:Version=3.8.5.0
+/build:SFX/puzzleSolveJingle1.wav
+
 #begin SFX/speak.mp3
 /importer:Mp3Importer
 /processor:SoundEffectProcessor

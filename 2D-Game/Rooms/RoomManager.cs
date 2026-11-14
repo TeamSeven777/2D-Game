@@ -16,9 +16,8 @@ namespace _2D_Game
         string[] names;
         private int roomWidth;
         private int roomHeight;
-
-        // Use factory class
-        private readonly RoomContentFactory contentFactory = new();
+        //content factory
+        private RoomContentFactory contentFactory = RoomContentFactory.Instance;
 
         /// <summary>
         /// Reads an XML file and creates room structures that contain information about what to spawn

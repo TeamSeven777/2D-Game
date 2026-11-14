@@ -1,1 +1,1 @@
-﻿public enum SoundName { StickSwing, MosquitoProjectile, SpiderProjectile, MosquitoBuzz, SpiderHiss, GhostWail, Explosion, Punch, Boomerang, ThrowItem, Pickup, Dialogue, PlayerDamage, EatBerry} //add SFX names here
+﻿public enum SoundName { StickSwing, PuzzleSolve1, MosquitoProjectile, SpiderProjectile, MosquitoBuzz, SpiderHiss, GhostWail, Explosion, Punch, Boomerang, ThrowItem, Pickup, Dialogue, PlayerDamage, EatBerry} //add SFX names here
