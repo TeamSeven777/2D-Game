@@ -16,6 +16,10 @@ namespace _2D_Game
         private double TimeLeft;
         public double StartTime { get; set; }
         public bool Ringing {  get; private set; }
+        /// <summary>
+        /// Creates a timer that lasts <paramref name="timeCount"/> seconds
+        /// </summary>
+        /// <param name="timeCount"></param>
         public Timer(double timeCount) {
             TimeLeft = timeCount;
             StartTime = TimeLeft;
@@ -35,5 +39,7 @@ namespace _2D_Game
             TimeLeft = StartTime;
             Ringing = false;
         }
+
+        
 }
 }

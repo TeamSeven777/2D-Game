@@ -21,7 +21,7 @@ namespace _2D_Game
         public int roomHeight { get; private set;  }
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
-        public Obstacle block;
+        private Stopwatch CurTime;
         public DefaultPlayer player;
         private Texture2D blockSpriteSheet;
         private Dictionary<String, IController> controllers;
@@ -39,7 +39,6 @@ namespace _2D_Game
         private Minimap minimap;
         public IHotbar weaponHotbar, itemHotbar;
         private Texture2D inventorySlot, highlightSlot;
-
         public GameState State { get; private set; }
         private Texture2D startScreen;
         private Texture2D endScreen;
@@ -86,6 +85,7 @@ namespace _2D_Game
 
             roomManager = new RoomManager();
             deathHandler = new DeathHandler(this);
+            CurTime = new Stopwatch();
 
             base.Initialize();
         }
@@ -199,7 +199,7 @@ namespace _2D_Game
             weaponHotbar.Update(gameTime);
             itemHotbar.Update(gameTime);
             deathHandler.Update(gameTime);
-
+            CurTime.Update(gameTime);
                 //~Whatever Else Actions~
                 Enemies.Update(gameTime, player.Position);
                 EnemyProjectileHandler.Instance.Update(gameTime);
@@ -273,9 +273,18 @@ namespace _2D_Game
             // HUD draws here
             string healthCounter = $" ( {player.Health} / {player.MaxHealth} ) ";
             Vector2 healthCounterSize = hudFont.MeasureString(healthCounter);
-            Vector2 healthCounterPos = new Vector2(roomWidth - healthCounterSize.X - 16, 16);
+            Vector2 healthCounterPos = new Vector2(roomWidth - healthCounterSize.X - 16, 32);
             _spriteBatch.DrawString(hudFont, healthCounter, healthCounterPos + new Vector2(1, 1), Color.White); //shadow so it reads on any background
             _spriteBatch.DrawString(hudFont, healthCounter, healthCounterPos, Color.OrangeRed);
+            _spriteBatch.End();
+
+            _spriteBatch.Begin(samplerState: SamplerState.PointClamp); // no transform
+            // HUD draws here
+            string curTime = CurTime.ToString();
+            Vector2 curTimeSize = hudFont.MeasureString(curTime);
+            Vector2 curTimePos = new Vector2(roomWidth - curTimeSize.X - 16, 8);
+            _spriteBatch.DrawString(hudFont, curTime, curTimePos + new Vector2(1, 1), Color.White); //shadow so it reads on any background
+            _spriteBatch.DrawString(hudFont, curTime, curTimePos, Color.OrangeRed);
             _spriteBatch.End();
 
             _spriteBatch.Begin(samplerState: SamplerState.PointClamp);

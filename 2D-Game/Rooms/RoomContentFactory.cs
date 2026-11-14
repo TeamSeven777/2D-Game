@@ -221,7 +221,7 @@ namespace _2D_Game
         public Sprite CreateFog()
         {   
             Sprite sprite = new Sprite(FogTexture, FogTexture.Bounds);
-            sprite.Color = Color.White * 0.8f;
+            sprite.Color = Color.White * 0.95f;
             sprite.Scale = new Vector2(2.25f);
             return sprite;
         }
