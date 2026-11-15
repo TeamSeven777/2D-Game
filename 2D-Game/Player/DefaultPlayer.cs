@@ -162,6 +162,11 @@ namespace _2D_Game
                 SoundEffectFactory.Instance.PlaySoundEffect(SoundName.PlayerDamage, false);
             }
         }
+        public void Heal(int healAmount) 
+        {
+            Health = Health + healAmount;
+            if(Health > MaxHealth) Health = MaxHealth;
+        }
         public void UseTool(Tool tool)
         {
             if (stateMachine.toolUsed == Tool.None) stateMachine.UseTool(tool);

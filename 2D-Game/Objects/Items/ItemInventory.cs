@@ -33,7 +33,7 @@ namespace _2D_Game
             if (cooldownTimer > 0)
                 cooldownTimer -= gameTime.ElapsedGameTime.TotalSeconds;
 
-            var keyboardState = Keyboard.GetState();
+         /*   var keyboardState = Keyboard.GetState(); nono, use commands
             if (cooldownTimer <= 0)
             {
                 if (keyboardState.IsKeyDown(Keys.I))
@@ -48,9 +48,11 @@ namespace _2D_Game
                 {
                     useItemAnywhere.ItemUseHandling();
                 }
-            }
+            }*/
         }
-
+        public void ItemUse() { 
+            useItemAnywhere.ItemUseHandling();
+        }
         public void Next()
         {
             if (cooldownTimer > 0) return;

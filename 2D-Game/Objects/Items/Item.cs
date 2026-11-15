@@ -53,7 +53,7 @@ namespace _2D_Game
         }
         public override void Use()
         {
-            DefaultPlayer.Instance.Health += 7;
+            DefaultPlayer.Instance.Heal(7);
             SoundEffectFactory.Instance.PlaySoundEffect(SoundName.EatBerry, true);
             DefaultPlayer.Instance.stateMachine.CurrPlayerState.PlayerSprite.Color = Color.LimeGreen;
             ItemInventory.Instance.ChangeValue("Hotdog", -1);
@@ -71,7 +71,7 @@ namespace _2D_Game
         }
         public override void Use()
         {
-            DefaultPlayer.Instance.Health += 5;
+            DefaultPlayer.Instance.Heal(5);
             SoundEffectFactory.Instance.PlaySoundEffect(SoundName.EatBerry, true);
             DefaultPlayer.Instance.stateMachine.CurrPlayerState.PlayerSprite.Color = Color.LimeGreen;
             ItemInventory.Instance.ChangeValue("Berry", -1);

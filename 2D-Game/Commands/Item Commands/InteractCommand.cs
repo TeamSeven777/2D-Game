@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using _2D_Class;
+using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,7 +26,11 @@ namespace _2D_Game
         {
             gameTime = myGame.CurrentGameTime.TotalGameTime;
 
-            if (gameTime > previousGameTime) myGame.player.UseTool(Tool.Interact);
+            if (gameTime > previousGameTime)
+            {
+                myGame.player.UseTool(Tool.Interact);
+                ItemInventory.Instance.ItemUse();
+            }
 
             previousGameTime = gameTime + TimeSpan.FromMilliseconds(100);
         }
