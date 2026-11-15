@@ -19,7 +19,7 @@ namespace _2D_Game
         private readonly Dictionary<string, Texture2D> itemTextures = new(StringComparer.OrdinalIgnoreCase);
         private readonly Random random = new();
         private Texture2D itemSheet;
-        private Texture2D hotdogTexture;
+        private Texture2D hotdogTexture, fishingrodTexture;
         private readonly Dictionary<string, Rectangle> itemTextureIInfo = new(StringComparer.OrdinalIgnoreCase);
 
         private static RoomContentFactory instance = new RoomContentFactory();
@@ -60,6 +60,7 @@ namespace _2D_Game
             itemPos.X += 32;
             itemTextureIInfo["SpeedShoes"] = new Rectangle(itemPos, itemSize);
             hotdogTexture = content.Load<Texture2D>("Images/hotdog");
+            fishingrodTexture = content.Load<Texture2D>("Sprites/fishingRod");
         }
 
         public IObstacle CreateBlock(string type, Vector2 position)
@@ -158,7 +159,7 @@ namespace _2D_Game
             {
                 Animation ethanIdle = new(teamSheet, TimeSpan.FromMilliseconds(100), new Vector2(128, 128), Vector2.Zero, teamSheet.Width);
                 AnimatedSprite ethan = new(ethanIdle, teamSheet) { Scale = new Vector2(0.95f) };
-                return new NPC(ethan, position, () => DialogueFactory.Instance.CreateEthanDialogue(dialogueIndex));
+                return new EthanNPC(ethan, position, dialogueIndex);
             }
             else if (type.Equals("Lydia", StringComparison.OrdinalIgnoreCase))
             {
@@ -214,6 +215,8 @@ namespace _2D_Game
                     return new PebbleItem(new Sprite(itemSheet, itemTextureIInfo["Pebble"]));
                 case "speedshoes":
                     return new SpeedItem(new Sprite(itemSheet, itemTextureIInfo["SpeedShoes"]));
+                case "fishingrod":
+                    return new FishingRodItem(new Sprite(fishingrodTexture, new Rectangle(0, 0, 32, 32)));
 
                 default:
                     throw new ArgumentException(

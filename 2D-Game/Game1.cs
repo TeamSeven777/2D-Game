@@ -30,7 +30,7 @@ namespace _2D_Game
         private GameTime currentGameTime;
         public GameTime CurrentGameTime => currentGameTime;
         public HitboxMode hitboxMode;
-        public List<Boundary> boundaries;
+        public List<IObstacle> boundaries;
         private Texture2D background;
         public int worldWidth { get; private set; }
         public int worldHeight { get; private set; }
@@ -68,7 +68,7 @@ namespace _2D_Game
             RoomCollisionHandler.Instance.Initialize(this);
             WeaponInventory.Instance.Initialize(this);
             Enemies = new EnemyManager();
-            boundaries = new List<Boundary>();
+            boundaries = new List<IObstacle>();
 
             PauseGameOn = false;
             CurrentDialogue = new NoDialogue();

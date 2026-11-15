@@ -55,7 +55,7 @@ namespace _2D_Game
             RoomCollisionHandler.Instance.myGame.HandleDialogue();
 
             SoundEffectFactory.Instance.PlaySoundEffect(
-                SoundName.Dialogue, true);
+                SoundName.Dialogue, true);            
         }
         
         public void Update(GameTime gameTime)

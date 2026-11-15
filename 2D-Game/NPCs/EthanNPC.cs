@@ -1,0 +1,78 @@
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using System;
+using System.Collections.Generic;
+
+
+namespace _2D_Game
+{
+    public class EthanNPC : INPC, IHitboxOwner
+    {
+        public Vector2 Position { get; set; }
+        private double IFrames = 0.5;
+        private double IFramesTimer = 0;
+        private ISprite sprite;
+        private Vector2 startPosition;
+        private double elapsedSeconds;
+
+        //Hitbox
+        public IHitbox Hitbox { get; set; }
+        public ICollisionHandler CollisionHandler { get; set; }
+        private int hbWidth = 30;
+        private int hbHeight = 60;
+        private IDialogue EthanDialogue;
+        private int DialogueIndex;
+
+        public EthanNPC(ISprite sprite, Vector2 startPosition, int dialogueIndex)
+        {
+            this.sprite = sprite;
+            this.startPosition = startPosition;
+            Position = startPosition;
+            sprite.Origin = new Vector2(sprite.SourceRectangle.Width / 2, sprite.SourceRectangle.Height / 2);
+
+            //hitbox
+            Hitbox = new BlockHitBox(new Rectangle((int)(Position.X + sprite.Origin.X - hbWidth / 2), (int)(Position.Y + sprite.Origin.Y - hbHeight / 2), hbWidth, hbHeight));
+            CollisionHandler = new BlankCollisionHandler();
+            RoomCollisionHandler.Instance.Add(this, true);
+
+            DialogueIndex = dialogueIndex;
+        }
+
+        public void Unload()
+        {
+            RoomCollisionHandler.Instance.Remove(this);
+        }
+        public void Load()
+        {
+            RoomCollisionHandler.Instance.Add(this, true);
+        }
+        public void HandleInteraction()
+        {
+            RoomCollisionHandler.Instance.myGame.CurrentDialogue =
+                DialogueFactory.Instance.CreateEthanDialogue(DialogueIndex);
+
+            RoomCollisionHandler.Instance.myGame.HandleDialogue();
+
+            SoundEffectFactory.Instance.PlaySoundEffect(
+                SoundName.Dialogue, true);
+
+            if (DialogueIndex == 1) DialogueIndex++; // do not run fishing rod dialogue again.
+        }
+
+        public void Update(GameTime gameTime)
+        {
+            IFramesTimer += gameTime.ElapsedGameTime.TotalSeconds;
+            if (IFramesTimer >= IFrames)
+            {
+                IFramesTimer = 0;
+            }
+            sprite.Update(gameTime);
+        }
+
+        public void Draw(SpriteBatch spriteBatch)
+        {
+            //Position is the top-left corner, so shift by the origin to draw in the same place
+            sprite.Draw(spriteBatch, Position + sprite.Origin * sprite.Scale);
+        }
+    }
+}

@@ -480,6 +480,19 @@
 /processorParam:Version=3.8.5.0
 /build:Sprites/enemy-projectiles.png
 
+#begin Sprites/fishingRod.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/processorParam:Version=3.8.5.0
+/build:Sprites/fishingRod.png
+
 #begin Sprites/gravestone.png
 /importer:TextureImporter
 /processor:TextureProcessor

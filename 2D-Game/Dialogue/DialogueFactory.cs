@@ -1,9 +1,10 @@
-﻿using Microsoft.Xna.Framework.Content;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Intrinsics.X86;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -33,7 +34,7 @@ namespace _2D_Game
             Queue<string> dialogueList = new Queue<string>();
             dialogueList.Enqueue("Hi!");
             dialogueList.Enqueue("I'm a block.");
-            Dialogue = new Dialogue(dialogueList, mainFont);//TODO fix position bug with relation to camera (screen scale)
+            Dialogue = new Dialogue(dialogueList, mainFont);
             return Dialogue;
         }
         //NPC dialogues
@@ -41,19 +42,25 @@ namespace _2D_Game
         {
             IDialogue Dialogue;
             Queue<string> dialogueList = new Queue<string>();
-            if(dialogueIndex == 0)
+            if (dialogueIndex == 0)
             {
                 dialogueList.Enqueue("Congratulations! Now you get to sit through 20 lines of dialogue!");
                 for (int i = 1; i < 21; i++) dialogueList.Enqueue("Waste of time line " + i + ".");
                 dialogueList.Enqueue("Alright goodbye now!");
-            } 
-            else
+            }         
+            else if(dialogueIndex == 1)
             {
-                dialogueList.Enqueue("I'm gonna eventually give you a fishing rod.");
+                dialogueList.Enqueue("You look like you like to fish.");
+                dialogueList.Enqueue("It's dangerous to go alone. Take this.");      
+                return new Dialogue(dialogueList, mainFont, "FishingRod");
+            }
+            else 
+            {
                 dialogueList.Enqueue("blue is down.");
             }
-            
-            Dialogue = new Dialogue(dialogueList, mainFont);//TODO fix position bug with relation to camera (screen scale)
+
+
+            Dialogue = new Dialogue(dialogueList, mainFont);
             return Dialogue;
         }
         public IDialogue CreateJoeDialogue()
@@ -61,7 +68,7 @@ namespace _2D_Game
             IDialogue Dialogue;
             Queue<string> dialogueList = new Queue<string>();
             dialogueList.Enqueue("Ey what up dawg, finish the quest and stuff type");
-            Dialogue = new Dialogue(dialogueList, mainFont);//TODO fix position bug with relation to camera (screen scale)
+            Dialogue = new Dialogue(dialogueList, mainFont);
             return Dialogue;
         }
         public IDialogue CreateLilyDialogue()
@@ -72,7 +79,7 @@ namespace _2D_Game
             dialogueList.Enqueue("Something...");
             dialogueList.Enqueue("Code quality");
             dialogueList.Enqueue("two is up.");
-            Dialogue = new Dialogue(dialogueList, mainFont);//TODO fix position bug with relation to camera (screen scale)
+            Dialogue = new Dialogue(dialogueList, mainFont);
             return Dialogue;
         }
         public IDialogue CreateLydiaDialogue(int dialogueIndex)
@@ -104,6 +111,7 @@ namespace _2D_Game
             }
             else
             {
+                dialogueList.Enqueue("<- Fishing Pond");
                 dialogueList.Enqueue("through is down.");
             }
             Dialogue = new Dialogue(dialogueList, mainFont);
@@ -116,6 +124,17 @@ namespace _2D_Game
             dialogueList.Enqueue("Here lies the memory of the unknown\nwho died in the unknown.");
             dialogueList.Enqueue("All that is known is as follows:");
             dialogueList.Enqueue("First is two,\nnext is blue,\nThird is through,\nLast is you.");
+            Dialogue = new Dialogue(dialogueList, mainFont);
+            return Dialogue;
+        }
+        public IDialogue CreateFishDialogue(int dialogueIndex) 
+        {
+            IDialogue Dialogue;
+            Queue<string> dialogueList = new Queue<string>();
+            if (dialogueIndex == 0) dialogueList.Enqueue("You need a fishing rod to fish.");
+            else if (dialogueIndex == 1) dialogueList.Enqueue("You need bait to use the fishing rod.");
+            else if (dialogueIndex == 2) dialogueList.Enqueue("You caught a log!");
+            else if (dialogueIndex == 3) dialogueList.Enqueue("You caught a hot dog!");
             Dialogue = new Dialogue(dialogueList, mainFont);
             return Dialogue;
         }
