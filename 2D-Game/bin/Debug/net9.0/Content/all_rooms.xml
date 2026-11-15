@@ -100,7 +100,7 @@
 	<!--Room 6 (1, 1) -->
 	<Room RoomX="1" RoomY="1">
 		<NPCs>
-			<Entity Type="Sign" X="650" Y="100" DialogueIndex="1" />
+			<Entity Type="Sign" X="650" Y="200" DialogueIndex="1" />
 		</NPCs>
 	</Room>
 	<!--Room 5 (2, 1) -->

@@ -79,7 +79,7 @@ namespace _2D_Game
             State = GameState.Start;
             LogsInFire = 0;
             controllers.Add(controllerNames[0], new KeyboardController(this, ControllerMode.StartMode));
-            controllers.Add(controllerNames[1], new GamePadController(PlayerIndex.One, this));
+            controllers.Add(controllerNames[1], new GamePadController(PlayerIndex.One, this, ControllerMode.StartMode));
             controllers.Add(controllerNames[2], new MouseController(this));
 
             roomManager = new RoomManager();
@@ -163,7 +163,7 @@ namespace _2D_Game
             if (State != GameState.Playing)
             {
                 currentGameTime = gameTime;
-                controllers[controllerNames[0]].Update();
+                foreach(String controllerType in controllerNames) controllers[controllerType].Update();
                 base.Update(gameTime);
                 return;
             }
@@ -310,6 +310,7 @@ namespace _2D_Game
         {
             State = GameState.Playing;
             controllers[controllerNames[0]] = new KeyboardController(this, ControllerMode.MovementMode);
+            controllers[controllerNames[1]] = new GamePadController(PlayerIndex.One, this, ControllerMode.MovementMode);
             roomManager.CurrentRoom.Activate();
         }
         public void AddLogsToFire(int amount)
@@ -322,6 +323,7 @@ namespace _2D_Game
         {
             State = GameState.End;
             controllers[controllerNames[0]] = new KeyboardController(this, ControllerMode.EndMode);
+            controllers[controllerNames[1]] = new GamePadController(PlayerIndex.One, this, ControllerMode.EndMode);
             roomManager.CurrentRoom.Deactivate();
             Playlist.Instance.ChangeSong(SongName.EndTheme, false);
         }
@@ -336,11 +338,13 @@ namespace _2D_Game
             {
                 PauseGameOn = false;
                 controllers[controllerNames[0]] = new KeyboardController(this, ControllerMode.MovementMode);
+                controllers[controllerNames[1]] = new GamePadController(PlayerIndex.One, this, ControllerMode.MovementMode);
             }
             else
             {
                 PauseGameOn = true;
                 controllers[controllerNames[0]] = new KeyboardController(this, ControllerMode.PauseMode);
+                controllers[controllerNames[1]] = new GamePadController(PlayerIndex.One, this, ControllerMode.PauseMode);
             }
             
         }
@@ -350,6 +354,7 @@ namespace _2D_Game
             {
                 DialogueMode = true;
                 controllers[controllerNames[0]] = new KeyboardController(this, ControllerMode.DialogueMode);
+                controllers[controllerNames[1]] = new GamePadController(PlayerIndex.One, this, ControllerMode.DialogueMode);
             }
             else
             {
@@ -358,6 +363,7 @@ namespace _2D_Game
                     CurrentDialogue = new NoDialogue();
                     DialogueMode = false;
                     controllers[controllerNames[0]] = new KeyboardController(this, ControllerMode.MovementMode);
+                    controllers[controllerNames[1]] = new GamePadController(PlayerIndex.One, this, ControllerMode.MovementMode);
                 }
                 else SoundEffectFactory.Instance.PlaySoundEffect(SoundName.Dialogue, true);
             }

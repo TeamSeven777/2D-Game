@@ -25,8 +25,8 @@ namespace _2D_Game
                 RegisterCommand(Keys.Right, new RightCommand(myGame));
                 RegisterCommand(Keys.S, new DownCommand(myGame));
                 RegisterCommand(Keys.Down, new DownCommand(myGame));
-                RegisterCommand(Keys.Q, new QuitCommand(myGame));
-                RegisterCommand(Keys.R, new ResetCommand(myGame));
+               //RegisterCommand(Keys.Q, new QuitCommand(myGame));
+                //RegisterCommand(Keys.R, new ResetCommand(myGame));
                 RegisterCommand(Keys.E, new DamageCommand(myGame));
                 RegisterCommand(Keys.T, new PreviousBlockCommand(myGame));
                 RegisterCommand(Keys.Y, new SwapRangedWeaponCommand(myGame));
@@ -55,6 +55,7 @@ namespace _2D_Game
             else if (controllerMode == ControllerMode.StartMode)
             {
                 RegisterCommand(Keys.X, new StartGameCommand(myGame));
+                RegisterCommand(Keys.Q, new QuitCommand(myGame));
             }
             else if (controllerMode == ControllerMode.DialogueMode)
             {
@@ -69,6 +70,8 @@ namespace _2D_Game
                 RegisterCommand(Keys.D0, new ToggleSongMuteCommand(myGame));
                 RegisterCommand(Keys.OemMinus, new DecreaseSongVolumeCommand(myGame));
                 RegisterCommand(Keys.OemPlus, new IncreaseSongVolumeCommand(myGame));
+                RegisterCommand(Keys.Q, new QuitCommand(myGame));
+                RegisterCommand(Keys.R, new ResetCommand(myGame));
             }
         }
         public void RegisterCommand(Keys key, ICommand command)

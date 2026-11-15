@@ -12,18 +12,48 @@ namespace _2D_Game
 {
         private PlayerIndex CurIndex;
         private Dictionary<Buttons, ICommand> buttonMappings;
-        public GamePadController(PlayerIndex index, Game1 myGame)
+        public GamePadController(PlayerIndex index, Game1 myGame, ControllerMode controllerMode)
         {
             buttonMappings = new Dictionary<Buttons, ICommand>();
             CurIndex = index;
+            if (controllerMode == ControllerMode.MovementMode)
+            {
+                RegisterCommand(Buttons.DPadDown, new DownCommand(myGame));
+                RegisterCommand(Buttons.DPadUp, new UpCommand(myGame));
+                RegisterCommand(Buttons.DPadRight, new RightCommand(myGame));
+                RegisterCommand(Buttons.DPadLeft, new LeftCommand(myGame));
+                RegisterCommand(Buttons.B, new AttackCommand(myGame));
+                RegisterCommand(Buttons.X, new UseAxeCommand(myGame));
+                RegisterCommand(Buttons.Y, new UseRangedWeaponCommand(myGame));
+                RegisterCommand(Buttons.A, new InteractCommand(myGame));
+                RegisterCommand(Buttons.Start, new PauseMenuCommand(myGame));
+                RegisterCommand(Buttons.Back, new SwapRangedWeaponCommand(myGame));
+                RegisterCommand(Buttons.LeftShoulder, new PreviousItemCommand(myGame));
+                RegisterCommand(Buttons.RightShoulder, new NextItemCommand(myGame));
+            }
+            else if (controllerMode == ControllerMode.EndMode)
+            {
+                RegisterCommand(Buttons.Back, new QuitCommand(myGame));
+                RegisterCommand(Buttons.RightShoulder, new ResetCommand(myGame));
+                RegisterCommand(Buttons.Start, new ResetCommand(myGame));
+            }
+            else if (controllerMode == ControllerMode.StartMode)
+            {
+                RegisterCommand(Buttons.Start, new StartGameCommand(myGame));
+                RegisterCommand(Buttons.Back, new QuitCommand(myGame));
+            }
+            else if (controllerMode == ControllerMode.DialogueMode)
+            {
+                RegisterCommand(Buttons.A, new NextDialogueCommand(myGame));
+            }
+            else if (controllerMode == ControllerMode.PauseMode)
+            {
+                RegisterCommand(Buttons.Start, new PauseMenuCommand(myGame));
+                RegisterCommand(Buttons.Back, new QuitCommand(myGame));
+                RegisterCommand(Buttons.RightShoulder, new ResetCommand(myGame));
+            }
             //gamepad controls
-            RegisterCommand(Buttons.DPadDown, new DownCommand(myGame));
-            RegisterCommand(Buttons.DPadUp, new UpCommand(myGame));
-            RegisterCommand(Buttons.DPadRight, new RightCommand(myGame));
-            RegisterCommand(Buttons.DPadLeft, new LeftCommand(myGame));
-            RegisterCommand(Buttons.X, new AttackCommand(myGame));
-            RegisterCommand(Buttons.Y, new UseAxeCommand(myGame));
-            RegisterCommand(Buttons.RightShoulder, new UseRangedWeaponCommand(myGame));
+
         }
         public void RegisterCommand(Buttons button, ICommand command)
         {
