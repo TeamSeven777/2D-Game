@@ -147,7 +147,7 @@ namespace _2D_Game
         }
         public override void Use()
         {
-            BaitCount = ItemInventory.Instance.GetItemCount("Bait");
+            BaitCount = ItemInventory.Instance.GetItemCount("Hotdog");//TODO update so bait instead of hotdog
             //need to be used over water. and have bait
             if (OverWater && BaitCount > 0) Fish();
             else if (OverWater) //no bait
@@ -166,12 +166,12 @@ namespace _2D_Game
             }
             else 
             {
-                RoomCollisionHandler.Instance.myGame.CurrentDialogue = DialogueFactory.Instance.CreateFishDialogue(2);
+                RoomCollisionHandler.Instance.myGame.CurrentDialogue = DialogueFactory.Instance.CreateFishDialogue(3);
                 RoomCollisionHandler.Instance.myGame.HandleDialogue();
-                ItemInventory.Instance.Add(RoomContentFactory.Instance.CreateItem("Hotdog"), 1);
+                ItemInventory.Instance.Add(RoomContentFactory.Instance.CreateItem("Berry"), 1);//TODO change so it is fish
             }
             //decrement bait
-            ItemInventory.Instance.ChangeValue("Bait", -1);
+            ItemInventory.Instance.ChangeValue("Hotdog", -1);
         }
     }
     // Fishing Bait - mosquito or spider guts?

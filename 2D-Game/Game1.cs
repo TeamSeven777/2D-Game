@@ -137,6 +137,9 @@ namespace _2D_Game
             boundaries.Add(new Boundary(new Vector2(worldWidth, 0), new Vector2(worldWidth, worldHeight)));    // right
             boundaries.Add(new Boundary(new Vector2(0, 0), new Vector2(worldWidth, 0)));                       // up
             boundaries.Add(new Boundary(new Vector2(0, worldHeight), new Vector2(worldWidth, worldHeight)));   // down
+
+            int pondWidth = 200; int pondHeight = 100; int pondX = roomWidth + 200; int pondY = roomHeight + 175;
+            boundaries.Add(new FishZone(new Vector2(pondX, pondY), new Vector2(pondWidth, pondHeight)));//pond TODO add texture
                         
 
             PlayerProjectileHandler.Instance.Initialize(ref player);

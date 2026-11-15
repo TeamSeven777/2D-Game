@@ -134,7 +134,7 @@ namespace _2D_Game
             if (dialogueIndex == 0) dialogueList.Enqueue("You need a fishing rod to fish.");
             else if (dialogueIndex == 1) dialogueList.Enqueue("You need bait to use the fishing rod.");
             else if (dialogueIndex == 2) dialogueList.Enqueue("You caught a log!");
-            else if (dialogueIndex == 3) dialogueList.Enqueue("You caught a hot dog!");
+            else if (dialogueIndex == 3) dialogueList.Enqueue("You caught a fish (well... is that a fish?)!");
             Dialogue = new Dialogue(dialogueList, mainFont);
             return Dialogue;
         }

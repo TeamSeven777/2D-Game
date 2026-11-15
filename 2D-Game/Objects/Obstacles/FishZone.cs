@@ -54,6 +54,7 @@ namespace _2D_Game
             if(ItemInventory.Instance.GetSelectedItem() is FishingRodItem fishingRod)
             {
                 fishingRod.OverWater = true;
+                fishingRod.Use();
             }
             else 
             {
