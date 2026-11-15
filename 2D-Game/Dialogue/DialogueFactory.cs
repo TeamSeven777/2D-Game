@@ -77,7 +77,6 @@ namespace _2D_Game
         }
         public IDialogue CreateLydiaDialogue(int dialogueIndex)
         {
-            IDialogue Dialogue;
             Queue<string> dialogueList = new Queue<string>();
             if (dialogueIndex == 0)
             {
@@ -85,14 +84,14 @@ namespace _2D_Game
                 dialogueList.Enqueue("Ya know? The game where you hunt down logs.");
                 dialogueList.Enqueue("This fire isn't gonna make itself, you know.\nOf course, unless you use the dev shortcut.");
                 dialogueList.Enqueue("Better get going.");
+                return new Dialogue(dialogueList, mainFont);
             }
             else
             {
-                dialogueList.Enqueue("barbecue.");
+                dialogueList.Enqueue("Here, have a hotdog.");
                 dialogueList.Enqueue("you is right.");
+                return new Dialogue(dialogueList, mainFont, "Hotdog");
             }
-            Dialogue = new Dialogue(dialogueList, mainFont);
-            return Dialogue;
         }
         public IDialogue CreateSignDialogue(int dialogueIndex) 
         {

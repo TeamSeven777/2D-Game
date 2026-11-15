@@ -158,65 +158,69 @@ namespace _2D_Game
             {
                 Animation ethanIdle = new(teamSheet, TimeSpan.FromMilliseconds(100), new Vector2(128, 128), Vector2.Zero, teamSheet.Width);
                 AnimatedSprite ethan = new(ethanIdle, teamSheet) { Scale = new Vector2(0.95f) };
-                return new NPC(ethan, position, DialogueFactory.Instance.CreateEthanDialogue(dialogueIndex));
+                return new NPC(ethan, position, () => DialogueFactory.Instance.CreateEthanDialogue(dialogueIndex));
             }
             else if (type.Equals("Lydia", StringComparison.OrdinalIgnoreCase))
             {
                 Animation lydiaIdle = new(teamSheet, TimeSpan.FromMilliseconds(100), new Vector2(128, 128), new Vector2(0, 128), teamSheet.Width);
                 AnimatedSprite lydia = new(lydiaIdle, teamSheet) { Scale = new Vector2(0.95f) };
-                return new NPC(lydia, position, DialogueFactory.Instance.CreateLydiaDialogue(dialogueIndex));
+                return new NPC(lydia, position, () => DialogueFactory.Instance.CreateLydiaDialogue(dialogueIndex));
             }
             else if (type.Equals("Joe", StringComparison.OrdinalIgnoreCase))
             {
                 Animation lilyIdle = new(teamSheet, TimeSpan.FromMilliseconds(100), new Vector2(128, 128), new Vector2(0, 256), teamSheet.Width);
                 AnimatedSprite lily = new(lilyIdle, teamSheet) { Scale = new Vector2(0.95f) };
-                return new NPC(lily, position, DialogueFactory.Instance.CreateLilyDialogue());
+                return new NPC(lily, position, () => DialogueFactory.Instance.CreateLilyDialogue());
             }
             else if (type.Equals("Lily", StringComparison.OrdinalIgnoreCase))
             {
                 Animation joeIdle = new(teamSheet, TimeSpan.FromMilliseconds(100), new Vector2(128, 128), new Vector2(0, 384), teamSheet.Width);
                 AnimatedSprite joe = new(joeIdle, teamSheet) { Scale = new Vector2(0.95f) };
-                return new NPC(joe, position, DialogueFactory.Instance.CreateJoeDialogue());
+                return new NPC(joe, position, () => DialogueFactory.Instance.CreateJoeDialogue());
             }
             else if (type.Equals("Sign", StringComparison.OrdinalIgnoreCase))
             {
                 ISprite sign = new Sprite(signTexture, signTexture.Bounds);
-                return new NPC(sign, position, DialogueFactory.Instance.CreateSignDialogue(dialogueIndex));
+                return new NPC(sign, position, () => DialogueFactory.Instance.CreateSignDialogue(dialogueIndex));
             }
             else if (type.Equals("Grave", StringComparison.OrdinalIgnoreCase))
             {
                 ISprite sign = new Sprite(textGraveTexture, textGraveTexture.Bounds);
-                return new NPC(sign, position, DialogueFactory.Instance.CreateGravestoneDialogue());
+                return new NPC(sign, position, () => DialogueFactory.Instance.CreateGravestoneDialogue());
             }
 
             return null;
         }
 
+                
         public IItem CreateItem(string type)
         {
-            // Put all non-sheet textures first
-            if (type.Equals("Hotdog"))
-            {
-                return new HotdogItem(new Sprite(hotdogTexture, new Rectangle(0,0,32,32)));
-            }
-            // safety check in case you try to load an item whose texture isn't in the itemTextures dictionary
-            if (itemSheet == null)
-            {
-                System.Diagnostics.Debug.WriteLine($"[Warning] Missing texture for item type: '{type}'");
-                return null;
-            }
+            if (string.IsNullOrWhiteSpace(type))
+                throw new ArgumentException("Item type cannot be empty.", nameof(type));
 
-            return type switch
+            switch (type.Trim().ToLowerInvariant())
             {
-                "Berry" => new BerryItem(new Sprite(itemSheet, itemTextureIInfo["Berry"])),
-                "Explosive" => new ExplosiveItem(new Sprite(itemSheet, itemTextureIInfo["Explosive"])),
-                "Log" => new LogItem(new Sprite(itemSheet, itemTextureIInfo["Log"])),
-                "Key" => new KeyItem(new Sprite(itemSheet, itemTextureIInfo["Key"])),
-                "Pebble" => new PebbleItem(new Sprite(itemSheet, itemTextureIInfo["Pebble"])),
-                "SpeedShoes" => new SpeedItem(new Sprite(itemSheet, itemTextureIInfo["SpeedShoes"])),
-                _ => null // Unknown type returns null
-            };
+                case "hotdog":
+                    return new HotdogItem(new Sprite(hotdogTexture, new Rectangle(0, 0, 32, 32)));
+                case "berry":
+                    return new BerryItem(new Sprite(itemSheet, itemTextureIInfo["Berry"]));
+                case "explosive":
+                    return new ExplosiveItem(new Sprite(itemSheet, itemTextureIInfo["Explosive"]));
+                case "log":
+                    return new LogItem(new Sprite(itemSheet, itemTextureIInfo["Log"]));
+                case "key":
+                    return new KeyItem( new Sprite(itemSheet, itemTextureIInfo["Key"]));
+                case "pebble":
+                    return new PebbleItem(new Sprite(itemSheet, itemTextureIInfo["Pebble"]));
+                case "speedshoes":
+                    return new SpeedItem(new Sprite(itemSheet, itemTextureIInfo["SpeedShoes"]));
+
+                default:
+                    throw new ArgumentException(
+                        $"Unknown item type: '{type}'", nameof(type));
+            }
         }
+
 
         public Sprite CreateFog()
         {   

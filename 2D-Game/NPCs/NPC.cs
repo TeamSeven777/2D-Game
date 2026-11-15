@@ -20,9 +20,9 @@ namespace _2D_Game
         public ICollisionHandler CollisionHandler { get; set; }
         private int hbWidth = 30;
         private int hbHeight = 60;
-        private IDialogue npcDialogue;
+        private readonly Func<IDialogue> createDialogue;
 
-        public NPC(ISprite sprite, Vector2 startPosition, IDialogue dialogue)
+        public NPC(ISprite sprite, Vector2 startPosition, Func<IDialogue> createDialogue)
         {
             this.sprite = sprite;
             this.startPosition = startPosition;
@@ -35,7 +35,8 @@ namespace _2D_Game
             RoomCollisionHandler.Instance.Add(this, true);
 
             //dialogue
-            npcDialogue = dialogue;
+            this.createDialogue = createDialogue
+            ?? throw new ArgumentNullException(nameof(createDialogue));
         }
 
         public void Unload()
@@ -46,10 +47,15 @@ namespace _2D_Game
         {
             RoomCollisionHandler.Instance.Add(this, true);
         }
-        public void HandleInteraction() { 
-            RoomCollisionHandler.Instance.myGame.CurrentDialogue = new Dialogue(new Queue<string>(npcDialogue.DialogueList), npcDialogue.Font);
+        public void HandleInteraction()
+        {
+            RoomCollisionHandler.Instance.myGame.CurrentDialogue =
+                createDialogue();
+
             RoomCollisionHandler.Instance.myGame.HandleDialogue();
-            SoundEffectFactory.Instance.PlaySoundEffect(SoundName.Dialogue, true);
+
+            SoundEffectFactory.Instance.PlaySoundEffect(
+                SoundName.Dialogue, true);
         }
         
         public void Update(GameTime gameTime)
