@@ -114,7 +114,7 @@ namespace _2D_Game
                 string type = obsElement.Attribute("Type")?.Value ?? string.Empty;
                 Vector2 worldPos = CalculateWorldPosition(obsElement, rx, ry);
                 Vector2 size = Vector2.Zero;
-                if (ParseFloatAttribute(obsElement, "XSize", 0f) != 0f)
+                if (ParseFloatAttribute(obsElement, "XSize", 0f) != 0f || ParseFloatAttribute(obsElement, "YSize", 0f) != 0f)
                 {
                     size = CalculateSize(obsElement);
                 }

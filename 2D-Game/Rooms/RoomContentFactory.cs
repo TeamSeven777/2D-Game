@@ -110,13 +110,13 @@ namespace _2D_Game
             }
             else if (type.Equals("FenceEW", StringComparison.OrdinalIgnoreCase))
             {
-                for (int i = (int)position.X; i < size.Y; i += ((int)size.Y / 20))
+                for (int i = (int)position.Y; i < (position.Y + size.Y); i += ((int)size.Y / 9))
                 {
-                    fence[count] = new Obstacle(new Vector2(120, 72), new Vector2(position.X, i), ObstacleSpriteFactory.Instance.CreateFenceSprite(2));
+                    fence[count] = new Obstacle(new Vector2(40, 72), new Vector2(position.X, i), ObstacleSpriteFactory.Instance.CreateFenceSprite(2));
                     count++;
                 }
                 if (endCorner)
-                    fence[count] = new Obstacle(new Vector2(40, 72), new Vector2(fence[count].OriginPos.X,fence[count].OriginPos.Y + size.Y/20), ObstacleSpriteFactory.Instance.CreateFenceSprite(3));
+                    fence[count] = new Obstacle(new Vector2(40, 72), new Vector2(fence[count].OriginPos.X,fence[count].OriginPos.Y + size.Y/12), ObstacleSpriteFactory.Instance.CreateFenceSprite(3));
             }
             else
             {
@@ -142,7 +142,7 @@ namespace _2D_Game
             }
             else if (type.Equals("Door", StringComparison.OrdinalIgnoreCase))
             {
-                block = new Door(new Vector2(25), position, ObstacleSpriteFactory.Instance.CreateDoorSprite());
+                block = new Door(new Vector2(128), position, ObstacleSpriteFactory.Instance.CreateDoorSprite());
             }
             else if (type.Equals("Moveable_Block", StringComparison.OrdinalIgnoreCase))
             {

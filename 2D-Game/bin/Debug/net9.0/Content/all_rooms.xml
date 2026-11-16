@@ -236,10 +236,12 @@
   
   <!-- Bottom Right Room (2,2) -->
   <Room RoomX="2" RoomY="2">
-	<Obstacles>
-		<Entity Type="Door" X="0" Y="500"/>
-		<Entity Type="FenceNS" X="0" Y="0" XSize="1120" EndCorners="true"/>
-	</Obstacles>
+	  <Obstacles>
+		  <Entity Type="FenceNS" X="0" Y="0" XSize="1120" EndCorners="true"/>
+		  <Entity Type="FenceEW" X="0" Y="0" YSize="318"  EndCorners="false"/>
+		  <Entity Type="Door" X="0" Y="450"/>
+		  <Entity Type="FenceEW" X="0" Y="532" YSize="318"  EndCorners="false"/>
+	  </Obstacles>
 	<Enemies/>
 	<NPCs/>
 	<Items>

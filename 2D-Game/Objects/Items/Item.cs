@@ -30,7 +30,7 @@ namespace _2D_Game
     // Log
     public class LogItem : Item
     {
-        public LogItem(Sprite icon) : base("Log", icon, maxStackSize) { }
+        public LogItem(Sprite icon) : base("Log", icon, 99) { }
 
         public override void Collect()
         {
@@ -46,7 +46,7 @@ namespace _2D_Game
     // Hotdog
     public class HotdogItem : Item
     {
-        public HotdogItem(Sprite icon) : base("Hotdog", icon, maxStackSize) { }
+        public HotdogItem(Sprite icon) : base("Hotdog", icon, 99) { }
         public override void Collect()
         {
             ItemInventory.Instance.Add(this, 1);
@@ -64,7 +64,7 @@ namespace _2D_Game
     // Berry
     public class BerryItem : Item
     {
-        public BerryItem(Sprite icon) : base("Berry", icon, maxStackSize) { }
+        public BerryItem(Sprite icon) : base("Berry", icon, 99) { }
         public override void Collect()
         {
             ItemInventory.Instance.Add(this, 1);
@@ -82,7 +82,7 @@ namespace _2D_Game
     // Key
     public class KeyItem : Item
     {
-        public KeyItem(Sprite icon) : base("Key", icon, maxStackSize) { }
+        public KeyItem(Sprite icon) : base("Key", icon, 99) { }
         public override void Collect()
         {
             ItemInventory.Instance.Add(this, 1);
@@ -96,7 +96,7 @@ namespace _2D_Game
     // Explosive
     public class ExplosiveItem : Item
     {
-        public ExplosiveItem(Sprite icon) : base("Explosive", icon, maxStackSize) { }
+        public ExplosiveItem(Sprite icon) : base("Explosive", icon, 99) { }
         public override void Collect()
         {
             WeaponInventory.Instance.ChangeAmmo(Tool.Dynamite, 10);
@@ -110,7 +110,7 @@ namespace _2D_Game
     // Pebble
     public class PebbleItem : Item
     {
-        public PebbleItem(Sprite icon) : base("Pebble", icon, maxStackSize) { }
+        public PebbleItem(Sprite icon) : base("Pebble", icon, 99) { }
         public override void Collect()
         {
             WeaponInventory.Instance.ChangeAmmo(Tool.Slingshot,10);
@@ -123,7 +123,7 @@ namespace _2D_Game
 
     public class SpeedItem : Item
     {
-        public SpeedItem(Sprite icon) : base("SpeedShoe", icon, maxStackSize) { }
+        public SpeedItem(Sprite icon) : base("SpeedShoe", icon, 99) { }
         public override void Collect()
         {
             DefaultPlayer.Instance.WalkSpeed += 2;
@@ -137,7 +137,7 @@ namespace _2D_Game
     // Fishing Rod
     public class FishingRodItem : Item
     {
-        public FishingRodItem(Sprite icon) : base("FishingRod", icon, maxStackSize) { }//TODO make this work
+        public FishingRodItem(Sprite icon) : base("FishingRod", icon, 99) { }//TODO make this work
         public bool OverWater { get; set; } = false;
         private int BaitCount = 0;
         private bool LogCaught = false;
@@ -178,7 +178,7 @@ namespace _2D_Game
     // Fishing Bait - mosquito or spider guts?
     public class BaitItem : Item
     {
-        public BaitItem(Sprite icon) : base("Bait", icon, maxStackSize) { }//change
+        public BaitItem(Sprite icon) : base("Bait", icon, 99) { }//change
         public override void Collect()
         {
             ItemInventory.Instance.Add(this, 1);

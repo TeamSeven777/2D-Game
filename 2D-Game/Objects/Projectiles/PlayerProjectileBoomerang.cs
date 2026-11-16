@@ -33,7 +33,7 @@ namespace _2D_Game
             DespawnTimer = 1000;
            
         }
-
+        //TODO: Make it so that 
         public void Update(GameTime gt)
         {
             Hitbox.BoundingBox = new Rectangle((int)Position.X - 32, (int)Position.Y - 32, 64, 64);

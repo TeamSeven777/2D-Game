@@ -31,25 +31,25 @@ namespace _2D_Game
             
             //Ghost: 12 frames of 256x256 in one row
             Texture2D ghostSheet = content.Load<Texture2D>("Sprites/Test-Ghost-Melee-Idle-N");
-            Animation ghostIdle = new Animation(ghostSheet, TimeSpan.FromMilliseconds(100), new Vector2(256, 256), Vector2.Zero, ghostSheet.Width);
+            Animation ghostIdle = new Animation(ghostSheet, TimeSpan.FromMilliseconds(100), new Vector2(256), Vector2.Zero, ghostSheet.Width);
             AnimatedSprite ghostSpr = new AnimatedSprite(ghostIdle, ghostSheet);
             ghostSpr.Scale = new Vector2(0.5f);
 
             //Ghost attack: 24 frames of 256x256 in one row
             Texture2D ghostAttackSheet = content.Load<Texture2D>("Sprites/Test-Ghost-Melee-Attack-N");
-            Animation ghostAttack = new Animation(ghostAttackSheet, TimeSpan.FromMilliseconds(50), new Vector2(256, 256), Vector2.Zero, ghostAttackSheet.Width);
+            Animation ghostAttack = new Animation(ghostAttackSheet, TimeSpan.FromMilliseconds(50), new Vector2(256), Vector2.Zero, ghostAttackSheet.Width);
             AnimatedSprite ghostAttackSpr = new AnimatedSprite(ghostAttack, ghostAttackSheet);
             ghostAttackSpr.Scale = new Vector2(0.5f);
 
             //Mosquito: 6 frames of 96x96 per row, row 1 is the side view
             Texture2D mosquitoSheet = content.Load<Texture2D>("Sprites/mosquito");
-            Animation mosquitoFly = new Animation(mosquitoSheet, TimeSpan.FromMilliseconds(80), new Vector2(96, 96), new Vector2(0, 96), mosquitoSheet.Width);
+            Animation mosquitoFly = new Animation(mosquitoSheet, TimeSpan.FromMilliseconds(80), new Vector2(96), new Vector2(0, 96), mosquitoSheet.Width);
             AnimatedSprite mosquitoSpr = new AnimatedSprite(mosquitoFly, mosquitoSheet);
             mosquitoSpr.Scale = Vector2.One;
 
             //Spider: 6 frames of 96x96 per row, row 1 is the side view
             Texture2D spiderSheet = content.Load<Texture2D>("Sprites/Spider");
-            Animation spiderIdle = new Animation(spiderSheet, TimeSpan.FromMilliseconds(80), new Vector2(64, 64), new Vector2(0, 64), spiderSheet.Width);
+            Animation spiderIdle = new Animation(spiderSheet, TimeSpan.FromMilliseconds(80), new Vector2(64), new Vector2(0, 64), spiderSheet.Width);
             AnimatedSprite spiderSpr = new AnimatedSprite(spiderIdle, spiderSheet);
             spiderSpr.Scale = Vector2.One;
 
