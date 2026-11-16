@@ -72,8 +72,7 @@ namespace _2D_Game
         }
         public void Draw(SpriteBatch sprbatch)
         {
-            if(Sprite!=null)Sprite.Draw(sprbatch, OriginPos);
-            else if(WaterTexture!=null)sprbatch.Draw(WaterTexture, new Rectangle(OriginPos.ToPoint(), destinationPos.ToPoint()), Color.White);
+            if(Sprite!=null)Sprite.Draw(sprbatch, Hitbox.BoundingBox.Center.ToVector2());
         }
 
     }

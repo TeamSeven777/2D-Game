@@ -6,9 +6,12 @@
       <Entity Type="Block" X="150" Y="0" />
       <Entity Type="Firepit" X="500" Y="550" />
       <Entity Type="Tree1" X="10" Y="10" />
+	  <Entity Type="Tree1" X="935" Y="200" />
       <Entity Type="Tree2" X="700" Y="50" />
       <Entity Type="Bush" X="300" Y="10" />
       <Entity Type="Hurt_Block" X="60" Y="600" />
+	  <Entity Type="Boundary" X="980" Y="0" XSize="20" YSize="1000"/>
+	  <Entity Type="Boundary" X="100" Y="0" XSize="20" YSize="1000"/>
     </Obstacles>
     <Enemies>
       <Entity Type="Ghost" X="200" Y="200" />
@@ -22,14 +25,14 @@
       <Entity Type="Joe" X="650" Y="300" DialogueIndex="0"/>
     </NPCs>
     <Items>
-      <Entity Type="Log" X="600" Y="300" />
-      <Entity Type="Log" X="150" Y="400" />
-      <Entity Type="Log" X="300" Y="500" />
-      <Entity Type="Log" X="750" Y="450" />
-      <Entity Type="Log" X="850" Y="300" />
-      <Entity Type="Log" X="900" Y="150" />
       <Entity Type="Log" X="850" Y="600" />
-      <Entity Type="Berry" X="350" Y="200" />
+	  <Entity Type="Log" X="840" Y="600" />
+	  <Entity Type="Log" X="830" Y="600" />
+	  <Entity Type="Log" X="820" Y="600" />
+	  <Entity Type="Log" X="810" Y="600" />
+	  <Entity Type="Log" X="800" Y="600" />
+	  <Entity Type="Log" X="790" Y="600" />
+      <Entity Type="Berry" X="770" Y="200" />
       <Entity Type="Explosive" X="450" Y="300" />
       <Entity Type="Key" X="300" Y="250" />
       <Entity Type="Pebble" X="450" Y="200" />
@@ -102,6 +105,22 @@
 		<NPCs>
 			<Entity Type="Sign" X="650" Y="200" DialogueIndex="1" />
 		</NPCs>
+		<Obstacles>
+			<Entity Type ="Tree1" X="100" Y="600"/>
+			<Entity Type ="Tree1" X="250" Y="600"/>
+			<Entity Type ="Tree2" X="300" Y="600"/>
+			<Entity Type ="Tree1" X="352" Y="600"/>
+			<Entity Type ="Destructible_Block" X="400" Y="600"/>
+			<Entity Type ="Destructible_Block" X="448" Y="600"/>
+			<Entity Type ="Destructible_Block" X="496" Y="600"/>
+			<Entity Type ="Destructible_Block" X="544" Y="600"/>
+			<Entity Type ="Destructible_Block" X="592" Y="600"/>
+			<Entity Type ="Destructible_Block" X="640" Y="600"/>
+			<Entity Type ="Tree1" X="690" Y="600"/>
+			<Entity Type ="Tree2" X="740" Y="600"/>
+			<Entity Type ="Tree2" X="810" Y="600"/>
+			<Entity Type ="Tree2" X="900" Y="600"/>
+		</Obstacles>
 	</Room>
 	<!--Room 5 (2, 1) -->
 	<Room RoomX="2" RoomY="1">
@@ -111,6 +130,9 @@
 		<Obstacles>
 			<Entity Type="Moveable_Block" X="800" Y="400"/>
 		</Obstacles>
+		<Item>
+			<Entity Type="Key" X="800" Y="400"/>
+		</Item>
 	</Room>
 	
 	<!--Room 2 (0, 0) -->
@@ -160,9 +182,8 @@
   <!-- Bottom Right Room (2,2) -->
   <Room RoomX="2" RoomY="2">
 	<Obstacles>
-		<Entity Type="Destructible_Block" X="100" Y="150"/>
-		<Entity Type="Door" X="150" Y="150"/>
-		<Entity Type="Moveable_Block" X="100" Y="250"/>
+		<Entity Type="Door" X="0" Y="500"/>
+		<Entity Type="FenceNS" X="0" Y="0" XSize="1120" EndCorners="true"/>
 	</Obstacles>
 	<Enemies/>
 	<NPCs/>

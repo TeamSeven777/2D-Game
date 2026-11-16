@@ -25,6 +25,8 @@ namespace _2D_Game
         private StatusDisplay _statusDisplay;
         public DefaultPlayer player;
         private Texture2D blockSpriteSheet;
+        private Texture2D fishingHoleSprite;
+        private IObstacle fishingHole;
         private Dictionary<String, IController> controllers;
         private String[] controllerNames;
         public EnemyManager Enemies;
@@ -100,11 +102,13 @@ namespace _2D_Game
             roomHeight = _spriteBatch.GraphicsDevice.Viewport.Height;
             roomWidth = _spriteBatch.GraphicsDevice.Viewport.Width;
             middleOfScreen = new Vector2(roomWidth / 2, roomHeight / 2);
-            minimap = new Minimap(GraphicsDevice, new Point(10, 10), 60, roomWidth, roomHeight);
-            
+            int CellWidth = 60;
+
+            minimap = new Minimap(GraphicsDevice, new Point(10), CellWidth, roomWidth, roomHeight);
             worldWidth = roomWidth * 3;
             worldHeight = roomHeight * 3;
             Vector2 startRoomOrigin = new Vector2(0, worldHeight - roomHeight);
+
             background = Content.Load<Texture2D>("Images/FullMap2");
             startScreen = Content.Load<Texture2D>("Images/startScreen");
             endScreen = Content.Load<Texture2D>("Images/endScreen");
@@ -142,7 +146,8 @@ namespace _2D_Game
             boundaries.Add(new Boundary(new Vector2(0, worldHeight), new Vector2(worldWidth, worldHeight)));   // down
 
             int pondWidth = 200; int pondHeight = 100; int pondX = roomWidth + 200; int pondY = roomHeight + 175;
-            boundaries.Add(new FishZone(new Vector2(pondX, pondY), new Vector2(pondWidth, pondHeight)));//pond TODO add texture
+            fishingHoleSprite = Content.Load<Texture2D>("Sprites/fishinghole");
+            fishingHole = new FishZone(new Vector2(pondX, pondY), new Vector2(pondWidth, pondHeight),new Sprite(fishingHoleSprite, fishingHoleSprite.Bounds));//pond TODO add texture
                         
 
             PlayerProjectileHandler.Instance.Initialize(ref player);
@@ -260,6 +265,7 @@ namespace _2D_Game
             EnemyProjectileHandler.Instance.Draw(_spriteBatch);
             Enemies.Draw(_spriteBatch);
             //foreach(Boundary boundary in boundaries) boundary.Draw(_spriteBatch);
+            fishingHole.Draw(_spriteBatch);
             player.Draw(_spriteBatch);
             //for hitbox debugging
             hitboxMode.DrawHitboxes(_spriteBatch);
@@ -268,29 +274,8 @@ namespace _2D_Game
             _spriteBatch.End();
 
             _spriteBatch.Begin(samplerState: SamplerState.PointClamp); // no transform
-            // HUD draws here
-            //string logCounter = $" ( {LogsInFire} / {LogsNeeded} ) ";
-            //Vector2 logCounterSize = hudFont.MeasureString(logCounter);
-            //Vector2 logCounterPos = new Vector2(roomWidth - logCounterSize.X - 16, roomHeight - logCounterSize.Y - 16);
-            //_spriteBatch.DrawString(hudFont, logCounter, logCounterPos + new Vector2(2, 2), Color.Black); //shadow so it reads on any background
-            //_spriteBatch.DrawString(hudFont, logCounter, logCounterPos, Color.White);
-            //_spriteBatch.End();
-
-            //_spriteBatch.Begin(samplerState: SamplerState.PointClamp); // no transform
-            //// HUD draws here
-            //string healthCounter = $" ( {player.Health} / {player.MaxHealth} ) ";
-            //Vector2 healthCounterSize = hudFont.MeasureString(healthCounter);
-            //Vector2 healthCounterPos = new Vector2(roomWidth - healthCounterSize.X - 16, 32);
-            //_spriteBatch.DrawString(hudFont, healthCounter, healthCounterPos + new Vector2(1, 1), Color.White); //shadow so it reads on any background
-            //_spriteBatch.DrawString(hudFont, healthCounter, healthCounterPos, Color.OrangeRed);
-            ////_spriteBatch.End();
             _statusDisplay.Draw(_spriteBatch);
-            //_spriteBatch.Begin(samplerState: SamplerState.PointClamp); // no transform
-            // HUD draws here
             CurTime.Draw(_spriteBatch);
-            //_spriteBatch.End();
-
-            //_spriteBatch.Begin(samplerState: SamplerState.PointClamp);
             if (!bog.InBog) minimap.Draw(_spriteBatch, player.Position); //the minimap only covers the main 3x3 map
             weaponHotbar.Draw(_spriteBatch);
             itemHotbar.Draw(_spriteBatch);
@@ -299,10 +284,6 @@ namespace _2D_Game
                 pauseMenu.Draw(_spriteBatch);
             }
             CurrentDialogue.Draw(_spriteBatch, new Vector2(middleOfScreen.X, middleOfScreen.Y+roomHeight/4)); //draw 3/4 down screen in middle
-
-           // _spriteBatch.End();
-
-            //_spriteBatch.Begin(samplerState : SamplerState.PointClamp);
             deathHandler.Draw(_spriteBatch);
             _spriteBatch.End();
 
