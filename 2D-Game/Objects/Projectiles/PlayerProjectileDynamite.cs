@@ -21,6 +21,7 @@ namespace _2D_Game
         public ISprite ProjectileSprite { get; set; }
         public float DespawnTimer { get; set; }
         public ICollisionHandler CollisionHandler { get; set; }
+        private const float ExplodeTime = 100;
 
         public PlayerProjectileDynamite(Vector2 position, Vector2 travelingDirection, ISprite sprite)
         {
@@ -37,7 +38,7 @@ namespace _2D_Game
         {
             if (Position != TravelDestination)
                 Position += TravelingDirection;
-            if (DespawnTimer == 100)
+            if (DespawnTimer == ExplodeTime)
             {
                 this.ProjectileSprite = ProjectileSpriteFactory.Instance.CreateExplosionAnimation();
                 Hitbox = new ProjectileHitBox(new Rectangle((int)Position.X - explosionWidth/2, (int)Position.Y - explosionHeight/2,explosionWidth,explosionHeight), HitBoxType.Explosion);

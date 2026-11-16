@@ -13,6 +13,10 @@ namespace _2D_Game
         DefaultPlayer player;
         //some list of hamndler types? later
         //tool classes
+        const int ExplosionDamage = 5;
+        const int EnemyProjectileDamage = 1;
+        const int EnemyBodyDamage = 1;
+        const int EnemyDamageKnockback = 16;
 
         public PlayerCollisionHandler(DefaultPlayer player)
         {
@@ -34,7 +38,7 @@ namespace _2D_Game
                 switch (collider.Type)
                 {
                     case (HitBoxType.EnemyAttack):
-                        int knockback = 16;
+                        int knockback = EnemyDamageKnockback;
                         goto case (HitBoxType.Enemy);
                     case (HitBoxType.Enemy):
                         knockback = 0;
@@ -60,19 +64,19 @@ namespace _2D_Game
                                     if (!player.DisabledDirections.Contains(Direction.Down)) player.NextPosition.Y = player.Position.Y + knockback;
                                     break;
                             }
-                            player.TakeDamage(1);
+                            player.TakeDamage(EnemyBodyDamage);
                         }
                             break;
                     case (HitBoxType.EnemyProjectile):
-                        player.TakeDamage(1);
+                        player.TakeDamage(EnemyProjectileDamage);
                         //This is NO LONGER DANGEROUS
                         EnemyProjectileHandler.Instance.Remove(hbOwner);
                         break;
                     case (HitBoxType.Explosion):
-                        player.TakeDamage(5);
+                        player.TakeDamage(ExplosionDamage);
                         break;
                     case (HitBoxType.HurtBlock):
-                        player.TakeDamage(1);
+                        player.TakeDamage(EnemyBodyDamage);
                         goto case(HitBoxType.Block);
                     case (HitBoxType.DestructibleBlock):
                     case (HitBoxType.MoveableBlock):

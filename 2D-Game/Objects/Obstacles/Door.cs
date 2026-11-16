@@ -43,6 +43,7 @@ namespace _2D_Class
                 RoomCollisionHandler.Instance.Remove(this);
                 selectedItem.Use();
                 IsOpen = true;
+                //Changes sprite to opened version
                 Sprite.SourceRectangle = new Rectangle(128, 0, 128, 128);
 
             }
