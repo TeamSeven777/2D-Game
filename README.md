@@ -41,7 +41,7 @@ A top down perspective game where the protagonist will explore a dark and spooky
 
 # Game Information 
 
-You play as [PLACEHOLDER] in a Forest Campsite trying to find [PLACEHOLDER] while collecting [PLACEHOLDER] and dodging Ghosts, Spiders, and Mosquitos
+You play as ?????? in a Forest Campsite trying to find seven logs while collecting other items and dodging Ghosts, Spiders, and Mosquitos.
 
 | Controls    			|   Keys        |
 | ----------- 			| ------------  |
@@ -69,4 +69,4 @@ You play as [PLACEHOLDER] in a Forest Campsite trying to find [PLACEHOLDER] whil
 Mouse Input - can teleport to a grid by clicking on it in the minimap, and pause menu allows mouse clicks for options
 
 
-
+The majority of the art, music, sounds are all custom-made by members of the team.
