@@ -34,6 +34,7 @@ namespace _2D_Game
             _playlist.Add(SongName.NPCTheme, content.Load<Song>("Music/npcTheme(chorus)"));
             _playlist.Add(SongName.EchoesOfTheBlue, content.Load<Song>("Music/echoesOfTheBlue"));
             _playlist.Add(SongName.EightLeggedDemons, content.Load<Song>("Music/eightLeggedDemons"));
+            _playlist.Add(SongName.Maze, content.Load<Song>("Music/maze"));
         }
         public void ChangeSong(SongName songName, bool loops) {
             if (_playlist.ContainsKey(songName)) myAudioMananger.PlaySong(_playlist[songName], loops);

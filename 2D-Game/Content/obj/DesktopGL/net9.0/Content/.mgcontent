@@ -28,6 +28,7 @@
     <File>C:/Users/edwei/OneDrive/Documents/GitHub/2D-Game/2D-Game/Content/Music/eightLeggedDemons.wav</File>
     <File>C:/Users/edwei/OneDrive/Documents/GitHub/2D-Game/2D-Game/Content/Music/endThemeSample1.wav</File>
     <File>C:/Users/edwei/OneDrive/Documents/GitHub/2D-Game/2D-Game/Content/Music/lost.wav</File>
+    <File>C:/Users/edwei/OneDrive/Documents/GitHub/2D-Game/2D-Game/Content/Music/maze.wav</File>
     <File>C:/Users/edwei/OneDrive/Documents/GitHub/2D-Game/2D-Game/Content/Music/npcTheme.wav</File>
     <File>C:/Users/edwei/OneDrive/Documents/GitHub/2D-Game/2D-Game/Content/Music/npcTheme(chorus).wav</File>
     <File>C:/Users/edwei/OneDrive/Documents/GitHub/2D-Game/2D-Game/Content/Music/ominousLair.wav</File>
@@ -81,6 +82,7 @@
     <File>C:/Users/edwei/OneDrive/Documents/GitHub/2D-Game/2D-Game/Content/Sprites/trees.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

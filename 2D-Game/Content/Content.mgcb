@@ -274,6 +274,13 @@
 /processorParam:Version=3.8.5.0
 /build:Music/lost.wav
 
+#begin Music/maze.wav
+/importer:WavImporter
+/processor:SongProcessor
+/processorParam:Quality=Best
+/processorParam:Version=3.8.5.0
+/build:Music/maze.wav
+
 #begin Music/npcTheme.wav
 /importer:WavImporter
 /processor:SongProcessor

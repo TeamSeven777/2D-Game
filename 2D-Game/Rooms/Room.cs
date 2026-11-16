@@ -50,7 +50,7 @@ namespace _2D_Game
             {
                 if (yCoord == row1) RoomSongName = SongName.NPCTheme; //Room 4
                 else if (yCoord == row2) RoomSongName = SongName.TheDead; //Room 5
-                else if (yCoord == row3) RoomSongName = SongName.Lost; //Room 8, song TBC
+                else if (yCoord == row3) RoomSongName = SongName.Maze; //Room 8
             }
             else if (gridPos == BogCoords) RoomSongName = SongName.Lost;
         }

@@ -179,3 +179,5 @@ C:\Users\edwei\OneDrive\Documents\GitHub\2D-Game\2D-Game\bin\Debug\net9.0\Conten
 C:\Users\edwei\OneDrive\Documents\GitHub\2D-Game\2D-Game\bin\Debug\net9.0\Content\Sprites\fencelong.xnb
 C:\Users\edwei\OneDrive\Documents\GitHub\2D-Game\2D-Game\bin\Debug\net9.0\Content\Sprites\fences.xnb
 C:\Users\edwei\OneDrive\Documents\GitHub\2D-Game\2D-Game\bin\Debug\net9.0\Content\Sprites\fishinghole.xnb
+C:\Users\edwei\OneDrive\Documents\GitHub\2D-Game\2D-Game\bin\Debug\net9.0\Content\Music\maze.ogg
+C:\Users\edwei\OneDrive\Documents\GitHub\2D-Game\2D-Game\bin\Debug\net9.0\Content\Music\maze.xnb
