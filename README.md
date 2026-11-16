@@ -43,24 +43,30 @@ A top down perspective game where the protagonist will explore a dark and spooky
 
 You play as [PLACEHOLDER] in a Forest Campsite trying to find [PLACEHOLDER] while collecting [PLACEHOLDER] and dodging Ghosts, Spiders, and Mosquitos
 
-| Controls    |   Keys        |
-| ----------- | ------------  |
-|	W, ↑      | Move Upward   |
-|   S, ↓	  | Move Downward |
-|   A, ←      | Move Left     |
-|   D, →	  | Move Right    |
-|  Space  	  | Interact w/ NPCs	  |
-|   Z         | Fist          |
-|   1         | Stick    	  |
-|   2         | Ranged Attack |
-|   Y     	  | Cycle  Weapon |
-|   ESC 	  | Pause 		  |
-|   R         | Restart		  |
-|   Q		  | Quit		  |
-| (DEBUG) H   | Show Hitboxes |
-| (DEBUG) E   | Take Damage   |
+| Controls    			|   Keys        |
+| ----------- 			| ------------  |
+|	W, ↑, DPadUp      	| Move Upward   |
+|  	S, ↓, DPadDown	  	| Move Downward |
+|   	A, ←, DPadLeft      	| Move Left     |
+|   	D, →, DPadRight	  	| Move Right    |
+|  	Space, GamePadA  	| Interact (NPCs and other map features)	  |
+|   	Z, GamePadB    		| Fist          |
+|   	1, GamePadX    		| Stick    	  |
+|   	2, GamePadY         	| Ranged Attack |
+|   	Y, GamePadSelect/Back   | Cycle  Weapon |
+|	U, GamePadLB		| Cycle Item Hotbar Left |
+|	I, GamePadRB		| Cycle Item Hotbar Right |
+|   	ESC, GamePadStart	| Pause 		  |
+| (On Pause, End)R, GamePadRB  	| Restart		  |
+| (On Pause, End)Q, GamePadBack	| Quit		  |
+|	(Start)X, GamePadStart	|Start Game|
+| 	(DEBUG) H   		| Show Hitboxes |
+| 	(DEBUG) E   		| Take Damage   |
+|	(DEBUG) 0		|Mute Music|
+|	(DEBUG) - 		|Decrease Music Volume|
+|	(DEBUG) +		|Increase Music Volume|
 
-
+Mouse Input - can teleport to a grid by clicking on it in the minimap, and pause menu allows mouse clicks for options
 
 
 

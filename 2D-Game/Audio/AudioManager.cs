@@ -15,8 +15,7 @@ namespace _2D_Game
 {
     public class AudioManager
 {
-        //TODO fill with audio managing methods
-        //gets songs from Playlist and SFX from SFXFactory?
+        //gets songs from Playlist and SFX from SoundEffectFactory
 
         private readonly List<SoundEffectInstance> activeSoundEffectInstances;
         private Song currentSong;     
@@ -51,7 +50,7 @@ namespace _2D_Game
         }
         public void PlaySoundEffect(SoundEffect soundEffect, bool canOverlap) 
         { 
-            //play sound effect (also handle duplicate sfx in some way (don't play again if already playing?
+            //play sound effect
             SoundEffectInstance soundEffectInstance = soundEffect.CreateInstance();
             if (activeSoundEffectInstances.Contains(soundEffectInstance) && !canOverlap)
             {
