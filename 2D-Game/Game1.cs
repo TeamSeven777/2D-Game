@@ -255,6 +255,7 @@ namespace _2D_Game
             //Everything we are drawing
             
             roomManager.Draw(_spriteBatch);
+            foreach (IObstacle bound in boundaries) bound.Draw(_spriteBatch);
             PlayerProjectileHandler.Instance.Draw(_spriteBatch);
             EnemyProjectileHandler.Instance.Draw(_spriteBatch);
             Enemies.Draw(_spriteBatch);

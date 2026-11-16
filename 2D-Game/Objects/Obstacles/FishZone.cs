@@ -17,6 +17,7 @@ namespace _2D_Game
         public IHitbox Hitbox { get; set; }
         public bool MarkedForRemoval { get; set; }
         public ICollisionHandler CollisionHandler { get; set; }
+        private Texture2D WaterTexture;
 
         /// <summary>
         /// Creates a block that spans an area determined by <paramref name="bottomRightCorner"/> and <paramref name="topLeftCorner"/>
@@ -29,7 +30,10 @@ namespace _2D_Game
             destinationPos = bottomRightCorner;
             Hitbox = new BlockHitBox(new Rectangle(OriginPos.ToPoint(), destinationPos.ToPoint()));
             CollisionHandler = new BlankCollisionHandler();
-            Sprite = null;
+            //Temporary forced texture
+            WaterTexture = new Texture2D(RoomCollisionHandler.Instance.myGame.GraphicsDevice, 1, 1);
+            WaterTexture.SetData(new[] { Color.Aqua });
+         
             RoomCollisionHandler.Instance.Add(this, false);
         }
 
@@ -69,6 +73,7 @@ namespace _2D_Game
         public void Draw(SpriteBatch sprbatch)
         {
             if(Sprite!=null)Sprite.Draw(sprbatch, OriginPos);
+            else if(WaterTexture!=null)sprbatch.Draw(WaterTexture, new Rectangle(OriginPos.ToPoint(), destinationPos.ToPoint()), Color.White);
         }
 
     }
