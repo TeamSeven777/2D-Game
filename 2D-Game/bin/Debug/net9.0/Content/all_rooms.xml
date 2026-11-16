@@ -12,6 +12,7 @@
       <Entity Type="Hurt_Block" X="60" Y="600" />
 	  <Entity Type="Boundary" X="980" Y="0" XSize="20" YSize="1000"/>
 	  <Entity Type="Boundary" X="100" Y="0" XSize="20" YSize="1000"/>
+		<Entity Type="Tree1" X="1050" Y="20" />
     </Obstacles>
     <Enemies>
       <Entity Type="Ghost" X="200" Y="200" />
@@ -102,6 +103,11 @@
       <Entity Type="Pebble" X="300" Y="600" />
       <Entity Type="Log" X="300" Y="500" />
     </Items>
+		<Obstacles>
+			<Entity Type ="Tree2" X="900" Y="200"/>
+			<Entity Type ="Tree1" X="200" Y="400"/>
+			<Entity Type ="Tree1" X="850" Y="550"/>
+		</Obstacles>
 	</Room>
 	<!--Room 6 (1, 1) -->
 	<Room RoomX="1" RoomY="1">
@@ -109,7 +115,10 @@
 			<Entity Type="Sign" X="650" Y="200" DialogueIndex="1" />
 		</NPCs>
 		<Obstacles>
+			<Entity Type ="Tree1" X="800" Y="225"/>
+			<Entity Type ="Tree2" X="50" Y="675"/>
 			<Entity Type ="Tree1" X="100" Y="600"/>
+			<Entity Type ="Tree1" X="175" Y="625"/>
 			<Entity Type ="Tree1" X="250" Y="600"/>
 			<Entity Type ="Tree2" X="300" Y="600"/>
 			<Entity Type ="Tree1" X="352" Y="600"/>
@@ -123,6 +132,7 @@
 			<Entity Type ="Tree2" X="740" Y="600"/>
 			<Entity Type ="Tree2" X="810" Y="600"/>
 			<Entity Type ="Tree2" X="900" Y="600"/>
+			<Entity Type ="Tree2" X="960" Y="650"/>
 		</Obstacles>
 	</Room>
 	<!--Room 5 (2, 1) -->
@@ -185,6 +195,10 @@
 		<NPCs>
 			<Entity Type="Lydia" X="800" Y="400" DialogueIndex="1" />
 		</NPCs>
+		<Obstacles>
+			<Entity Type ="Tree1" X="200" Y="300"/>
+			<Entity Type ="Tree1" X="250" Y="550"/>
+		</Obstacles>
 	</Room>
 	<!--Room 3 (1, 0) -->
 	<Room RoomX="1" RoomY="0">
@@ -197,6 +211,10 @@
       <Entity Type="Mosquito" X="550" Y="100" />
       <Entity Type="Ghost" X="500" Y="50" />
     </Enemies>
+		<Obstacles>
+			<Entity Type ="Tree2" X="900" Y="600"/>
+			<Entity Type ="Tree1" X="250" Y="550"/>
+		</Obstacles>
     <NPCs>
 			<Entity Type="Sign" X="600" Y="100" DialogueIndex="0" />
 		</NPCs>
@@ -236,13 +254,11 @@
     <Enemies>
       <Entity Type="Mosquito" X="300" Y="138" />
       <Entity Type="Mosquito" X="200" Y="273" />
-      <Entity Type="Mosquito" X="650" Y="620" />
-      <Entity Type="Mosquito" X="500" Y="523" />
+      <Entity Type="Mosquito" X="750" Y="620" />
+      <Entity Type="Mosquito" X="800" Y="523" />
     </Enemies>
     <NPCs/>
-    <Items>
-      <Entity Type="Log" X="850" Y="600" />
-    </Items>
+    <Items/>
   </Room>
 
 </Dungeon>

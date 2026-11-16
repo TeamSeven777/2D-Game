@@ -258,14 +258,14 @@ namespace _2D_Game
             bog.Draw(_spriteBatch);
 
             //Everything we are drawing
-            
+            fishingHole.Draw(_spriteBatch);
             roomManager.Draw(_spriteBatch);
             foreach (IObstacle bound in boundaries) bound.Draw(_spriteBatch);
             PlayerProjectileHandler.Instance.Draw(_spriteBatch);
             EnemyProjectileHandler.Instance.Draw(_spriteBatch);
             Enemies.Draw(_spriteBatch);
             //foreach(Boundary boundary in boundaries) boundary.Draw(_spriteBatch);
-            fishingHole.Draw(_spriteBatch);
+            
             player.Draw(_spriteBatch);
             //for hitbox debugging
             hitboxMode.DrawHitboxes(_spriteBatch);

@@ -14,6 +14,8 @@ namespace _2D_Game
     {
         public Vector2 Position { get; set; }
         public IHitbox Hitbox { get; set; }
+        private int explosionWidth = 90;
+        private int explosionHeight = 60;
         public Vector2 TravelingDirection { get; set; }
         public Vector2 TravelDestination { get; set; }
         public ISprite ProjectileSprite { get; set; }
@@ -38,7 +40,7 @@ namespace _2D_Game
             if (DespawnTimer == 100)
             {
                 this.ProjectileSprite = ProjectileSpriteFactory.Instance.CreateExplosionAnimation();
-                Hitbox = new ProjectileHitBox(new Rectangle((int)Position.X - 50,(int)Position.Y - 50,100,100), HitBoxType.Explosion);
+                Hitbox = new ProjectileHitBox(new Rectangle((int)Position.X - explosionWidth/2, (int)Position.Y - explosionHeight/2,explosionWidth,explosionHeight), HitBoxType.Explosion);
                 RoomCollisionHandler.Instance.Add(this, true);
                 SoundEffectFactory.Instance.PlaySoundEffect(SoundName.Explosion, false);
             }
