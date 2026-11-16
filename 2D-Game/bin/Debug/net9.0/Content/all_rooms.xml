@@ -83,7 +83,9 @@
       <Entity Type="Spider" X="370" Y="360" />
     </Enemies>
     <NPCs />
-    <Items />
+    <Items>
+      <Entity Type="Log" X="150" Y="400" />
+    </Items>
   </Room>
 
 	
@@ -98,6 +100,7 @@
       <Entity Type="Pebble" X="850" Y="500" />
       <Entity Type="Pebble" X="900" Y="550" />
       <Entity Type="Pebble" X="300" Y="600" />
+      <Entity Type="Log" X="300" Y="500" />
     </Items>
 	</Room>
 	<!--Room 6 (1, 1) -->
@@ -130,6 +133,16 @@
 		<Obstacles>
 			<Entity Type="Moveable_Block" X="800" Y="400"/>
 		</Obstacles>
+    <Enemies>
+      <Entity Type="Spider" X="600" Y="530" />
+      <Entity Type="Spider" X="650" Y="480" />
+      <Entity Type="Spider" X="700" Y="50" />
+      <Entity Type="Spider" X="920" Y="620" />
+      <Entity Type="Spider" X="970" Y="120" />
+      <Entity Type="Spider" X="220" Y="170" />
+      <Entity Type="Spider" X="370" Y="360" />
+      <Entity Type="Spider" X="900" Y="170" />
+    </Enemies>
 		<Item>
 			<Entity Type="Key" X="800" Y="400"/>
 		</Item>
@@ -152,6 +165,7 @@
       <Entity Type="Pebble" X="650" Y="300" />
       <Entity Type="Pebble" X="700" Y="550" />
       <Entity Type="Pebble" X="800" Y="600" />
+      <Entity Type="Log" X="750" Y="450" />
     </Items>
 		<NPCs>
 			<Entity Type="Lydia" X="800" Y="400" DialogueIndex="1" />
@@ -177,6 +191,9 @@
 		<NPCs>
 			<Entity Type="Ethan" X="300" Y="400" DialogueIndex="1" />
 		</NPCs>
+    <Items>
+      <Entity Type="Log" X="850" Y="300" />
+    </Items>
 	</Room>
   
   <!-- Bottom Right Room (2,2) -->
@@ -187,16 +204,25 @@
 	</Obstacles>
 	<Enemies/>
 	<NPCs/>
-	<Items/>
+	<Items>
+    <Entity Type="Log" X="900" Y="150" />
+  </Items>
   </Room>
 
 
   <!-- Bog: one-screen area, kept far from the main 3x3 map -->
   <Room RoomX="4" RoomY="4">
     <Obstacles/>
-    <Enemies/>
+    <Enemies>
+      <Entity Type="Mosquito" X="300" Y="138" />
+      <Entity Type="Mosquito" X="200" Y="273" />
+      <Entity Type="Mosquito" X="650" Y="620" />
+      <Entity Type="Mosquito" X="500" Y="523" />
+    </Enemies>
     <NPCs/>
-    <Items/>
+    <Items>
+      <Entity Type="Log" X="850" Y="600" />
+    </Items>
   </Room>
 
 </Dungeon>
