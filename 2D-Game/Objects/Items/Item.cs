@@ -86,6 +86,7 @@ namespace _2D_Game
         public override void Collect()
         {
             ItemInventory.Instance.Add(this, 1);
+            SoundEffectFactory.Instance.PlaySoundEffect(SoundName.PuzzleSolve1, false);
         }
         public override void Use()
         {
@@ -163,6 +164,7 @@ namespace _2D_Game
                 RoomCollisionHandler.Instance.myGame.CurrentDialogue = DialogueFactory.Instance.CreateFishDialogue(2);
                 RoomCollisionHandler.Instance.myGame.HandleDialogue();
                 ItemInventory.Instance.Add(RoomContentFactory.Instance.CreateItem("Log"), 1);
+                SoundEffectFactory.Instance.PlaySoundEffect(SoundName.PuzzleSolve1, false);
                 LogCaught = true;
             }
             else 
