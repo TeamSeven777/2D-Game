@@ -187,7 +187,7 @@ namespace _2D_Game
             else if (type.Equals("Grave", StringComparison.OrdinalIgnoreCase))
             {
                 ISprite sign = new Sprite(textGraveTexture, textGraveTexture.Bounds);
-                return new NPC(sign, position, () => DialogueFactory.Instance.CreateGravestoneDialogue());
+                return new NPC(sign, position, () => DialogueFactory.Instance.CreateGravestoneDialogue(dialogueIndex));
             }
 
             return null;

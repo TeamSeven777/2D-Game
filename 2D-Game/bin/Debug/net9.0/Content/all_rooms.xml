@@ -106,11 +106,27 @@
 	<!--Room 5 (2, 1) -->
 	<Room RoomX="2" RoomY="1">
 		<NPCs>
-			<Entity Type="Grave" X="300" Y="200" DialogueIndex="1" />
+			<Entity Type="Grave" X="300" Y="200" DialogueIndex="0" />
+			<Entity Type="Grave" X="200" Y="200" DialogueIndex="1" />
+			<Entity Type="Grave" X="400" Y="200" DialogueIndex="3" />
+			<Entity Type="Grave" X="800" Y="200" DialogueIndex="2" />
+			<Entity Type="Grave" X="800" Y="300" DialogueIndex="2" />
+			<Entity Type="Grave" X="800" Y="500" DialogueIndex="2" />
+			<Entity Type="Grave" X="800" Y="600" DialogueIndex="2" />
 		</NPCs>
 		<Obstacles>
 			<Entity Type="Moveable_Block" X="800" Y="400"/>
 		</Obstacles>
+		<Enemies>
+			<Entity Type="Ghost" X="720" Y="250" />
+			<Entity Type="Ghost" X="220" Y="550" />
+			<Entity Type="Ghost" X="720" Y="550" />
+			<Entity Type="Ghost" X="700" Y="450" />
+			<Entity Type="Ghost" X="800" Y="400" />
+			<Entity Type="Ghost" X="770" Y="300" />
+			<Entity Type="Ghost" X="790" Y="370" />
+			<Entity Type="Ghost" X="220" Y="250" />
+		</Enemies>
 	</Room>
 	
 	<!--Room 2 (0, 0) -->

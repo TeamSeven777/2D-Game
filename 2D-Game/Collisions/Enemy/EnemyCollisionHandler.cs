@@ -14,11 +14,12 @@ namespace _2D_Game
 
         private int knockback = 0;
         private const int stickKnockBack = 25;
-        private const int stickDmg = 2;
+        private const int stickDmg = 1;
         private const int fistKnockBack = 50;
-        private const int fistDmg = 6;
+        private const int fistDmg = 2;
         private const int PebbleDmg = 2;
-        private const int ExplosiveDmg = 100;
+        private const int BoomerangDmg = 1;
+        private const int ExplosiveDmg = 5;
 
 
         public EnemyCollisionHandler(IEnemy thisGuy)
@@ -76,7 +77,9 @@ namespace _2D_Game
                         }
                         break;
                     case (HitBoxType.PlayerProjectile):
-                        enemy.TakeDamage(PebbleDmg);
+                        int projDmg = PebbleDmg;
+                        if(hbOwner is PlayerProjectileBoomerang boomerangProj) projDmg = BoomerangDmg;
+                        enemy.TakeDamage(projDmg);
                         PlayerProjectileHandler.Instance.Remove(hbOwner);
                         break;
                     case (HitBoxType.Explosion):

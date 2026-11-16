@@ -95,11 +95,11 @@ namespace _2D_Game
             foreach (var obstacle in Obstacles) 
                 obstacle.Draw(spriteBatch);
 
-            foreach (var enemy in Enemies) 
-                enemy.Draw(spriteBatch);
-
             foreach (var npc in NPCs)
                 npc.Draw(spriteBatch);
+
+            foreach (var enemy in Enemies) 
+                enemy.Draw(spriteBatch);
 
             if (fogMode) //spriteBatch.Draw(fogOverlay, new Rectangle(TopLeft, BottomRight), Color.White);
                          FogOverlay.Draw(spriteBatch, new Vector2(TopLeft.X + FogOverlay.Origin.X + 200, TopLeft.Y + FogOverlay.Origin.Y + 200)); //TODO make this better?

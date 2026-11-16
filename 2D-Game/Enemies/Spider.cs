@@ -43,7 +43,7 @@ namespace _2D_Game
             this.startPosition = startPosition;
             Position = startPosition;
 
-            Health = 10;
+            Health = 2;
             //spin around the middle of the frame instead of the top-left corner
             sprite.Origin = new Vector2(sprite.SourceRectangle.Width / 2, sprite.SourceRectangle.Height / 2);
 

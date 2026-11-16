@@ -117,13 +117,31 @@ namespace _2D_Game
             Dialogue = new Dialogue(dialogueList, mainFont);
             return Dialogue;
         }
-        public IDialogue CreateGravestoneDialogue()
+        public IDialogue CreateGravestoneDialogue(int dialogueIndex)
         {
             IDialogue Dialogue;
             Queue<string> dialogueList = new Queue<string>();
-            dialogueList.Enqueue("Here lies the memory of the unknown\nwho died in the unknown.");
-            dialogueList.Enqueue("All that is known is as follows:");
-            dialogueList.Enqueue("First is two,\nnext is blue,\nThird is through,\nLast is you.");
+            if (dialogueIndex == 0)
+            {
+                dialogueList.Enqueue("Here lies the memory of the unknown\nwho died in the unknown.");
+                dialogueList.Enqueue("All that is known is as follows:");
+                dialogueList.Enqueue("First is two,\nnext is blue,\nThird is through,\nLast is you.");
+            }
+            else if (dialogueIndex == 1) 
+            {
+                dialogueList.Enqueue("Here lies an explorer who got a head of themself.");
+                dialogueList.Enqueue("(decapitated by ghost)");
+            }
+            else if (dialogueIndex == 2)
+            {
+                dialogueList.Enqueue("Here lies the corpse of a mutilated camper.");
+                dialogueList.Enqueue("(killed by mosquito)");
+            }
+            else if (dialogueIndex == 3)
+            {
+                dialogueList.Enqueue("Here lies the shell of a being.");
+                dialogueList.Enqueue("(killed by spiders)");
+            }
             Dialogue = new Dialogue(dialogueList, mainFont);
             return Dialogue;
         }
