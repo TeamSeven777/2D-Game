@@ -36,6 +36,7 @@ namespace _2D_Game
 
         //Projectile
         private double ShootCooldown = 500;
+        private const double MaxShootCooldown = 500;
 
         public Spider(AnimatedSprite sprite, Vector2 startPosition)
         {
@@ -96,7 +97,7 @@ namespace _2D_Game
                 if (ShootCooldown == 0)
                 {
                     EnemyProjectileHandler.Instance.Add(this);
-                    ShootCooldown = 50;
+                    ShootCooldown = MaxShootCooldown;
                 }
                 else ShootCooldown--;
 

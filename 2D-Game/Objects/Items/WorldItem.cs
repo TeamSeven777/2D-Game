@@ -11,12 +11,14 @@ namespace _2D_Game
         public bool IsCollected { get; set; } = false;
         public IHitbox Hitbox { get; set; }
         public ICollisionHandler CollisionHandler { get; set; }
+        private const int DefaultHitboxHeight = 16;
+        private const int DefaultHitboxWidth = 16;
         public WorldItem(IItem itemData, Vector2 position)
         {
             ItemData = itemData;
             Position = position;
             CollisionHandler = new ItemCollisionHandler(this);
-            Hitbox = new ItemHitbox(new Rectangle((int)Position.X,(int)Position.Y,16,16),HitBoxType.Item);
+            Hitbox = new ItemHitbox(new Rectangle((int)Position.X,(int)Position.Y,DefaultHitboxWidth,DefaultHitboxHeight),HitBoxType.Item);
             RoomCollisionHandler.Instance.Add(this, true);
         }
 

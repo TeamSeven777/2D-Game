@@ -20,6 +20,8 @@ namespace _2D_Game
         public ICollisionHandler CollisionHandler { get; set; }
         private int hbWidth = 50;
         private int hbHeight = 50;
+        private const int neutralHb = 50;
+        private const int attackHb = 100;
 
         // Chasing
         private float chaseRange = 250f; // how close the player has to be before the ghost follows
@@ -83,7 +85,7 @@ namespace _2D_Game
             {
                 if(attackTimer  >= .5)
                 {
-                    hbWidth = hbHeight = 100;//temporary solution for enemyattack hitbox
+                    hbWidth = hbHeight = attackHb;//temporary solution for enemyattack hitbox
                 }
                 //stay in place until the attack animation has played once
                 if (attackTimer >= attackDuration)
@@ -91,7 +93,7 @@ namespace _2D_Game
                     attacking = false;
                     attackTimer = 0;
                     currentSprite = idleSprite;
-                    hbHeight = 50; hbWidth = 50;
+                    hbHeight = hbWidth = neutralHb;
                 }
             }
             else

@@ -41,6 +41,7 @@ namespace _2D_Game
 
         // Projectile Attack
         private double ShootCooldown =  10;
+        private const double MaxShootCooldown = 200;
         private Timer soundTimer;
 
 
@@ -132,7 +133,7 @@ namespace _2D_Game
                 if (ShootCooldown == 0)
                 {
                     EnemyProjectileHandler.Instance.Add(this);
-                    ShootCooldown = 200;
+                    ShootCooldown = MaxShootCooldown;
                 }
                 else ShootCooldown--;
             }
