@@ -24,9 +24,11 @@ namespace _2D_Game
             toolEquiped = new NoTool();
             toolUsed = Tool.None;
             CurrPlayerState = new IdlePlayerState(this);
+            hitboxOwnerRemovalQueue = new Queue<IHitboxOwner>();
         }
         public Direction direction, previousDirection;
-        public ITool toolEquiped;
+        public ITool toolEquiped, previousToolEquiped;
+        private Queue<IHitboxOwner> hitboxOwnerRemovalQueue; 
         public Tool toolUsed, previousToolUsed;
         public bool Damaged{ get; set; }
         private bool PreviousDamaged;
@@ -49,6 +51,7 @@ namespace _2D_Game
 
         public void UseTool(Tool tool)
         {
+            previousToolEquiped = toolEquiped;
             switch (tool)
             {
                 case Tool.Fist:
@@ -74,7 +77,7 @@ namespace _2D_Game
                     break;
             }
             //If tool isn't changed, use previous one
-            previousToolUsed = toolUsed;
+            previousToolUsed = toolUsed;            
             toolUsed = toolEquiped.GetTool();
         }
         public void ToggleBoggle()
@@ -94,12 +97,18 @@ namespace _2D_Game
 
         public void Update(GameTime gt)
         {
+            
             Position = Player.Position;
             //TODO adjust Player Sprites in State classes to display more appropriately and have the appropriate origins.
             if (direction != previousDirection || Moving != PreviousMoving || toolUsed != previousToolUsed || Damaged != PreviousDamaged) ChangeOccurred = true;
             previousDirection = direction; PreviousMoving = Moving; previousToolUsed = toolUsed; PreviousDamaged = Damaged;
             if (toolUsed != Tool.None || Damaged) CanMove = false;
             else CanMove = true;
+            if (ChangeOccurred)//fixes a hitbox removal bug
+            {
+                while (hitboxOwnerRemovalQueue.Count > 0) RoomCollisionHandler.Instance.Remove(hitboxOwnerRemovalQueue.Dequeue()); //attempt to solve rare bug where hitbox doesnt disappear
+                if (toolEquiped is IHitboxOwner pTool) hitboxOwnerRemovalQueue.Enqueue(pTool);
+            }
             if (ChangeOccurred && !isDead)
             {
                     switch (toolUsed)
@@ -128,7 +137,6 @@ namespace _2D_Game
                             break;
                         
                     }
-                 
                 //CurrPlayerState
                 if (Damaged) CurrPlayerState = new DamagedPlayerState(this);
                 else CurrPlayerState.PlayerSprite.Color = Color.White;

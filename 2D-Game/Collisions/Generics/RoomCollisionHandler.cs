@@ -68,7 +68,7 @@ namespace _2D_Game
         public void Add(IHitboxOwner hitboxOwner, bool dynamic)
         {
             if (dynamic && !dynamicHitboxes.ContainsKey(hitboxOwner)) dynamicHitboxes.Add(hitboxOwner, hitboxOwner.Hitbox);
-            else if(!staticHitboxes.ContainsKey(hitboxOwner)) staticHitboxes.Add(hitboxOwner, hitboxOwner.Hitbox);
+            else if(!dynamic && !staticHitboxes.ContainsKey(hitboxOwner)) staticHitboxes.Add(hitboxOwner, hitboxOwner.Hitbox);
         }
         /*
          * Update a specific dynamic Hitbox
@@ -113,8 +113,6 @@ namespace _2D_Game
                 }
                 
             }
-            //TODO
-            //call all collision methods and checks from here.
         }
 
         public bool Contains(IHitboxOwner hitboxOwner)

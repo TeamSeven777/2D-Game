@@ -206,9 +206,14 @@
 		<NPCs>
 			<Entity Type="Ethan" X="300" Y="400" DialogueIndex="1" />
 		</NPCs>
-    <Items>
-      <Entity Type="Log" X="850" Y="300" />
-    </Items>
+		<Items>
+			<Entity Type="Log" X="850" Y="300" />
+		</Items>
+		<Obstacles>
+			<Entity Type ="Tree2" X="900" Y="200"/>
+			<Entity Type ="Tree1" X="800" Y="400"/>
+			<Entity Type ="Tree1" X="850" Y="550"/>
+		</Obstacles>
 	</Room>
   
   <!-- Bottom Right Room (2,2) -->
