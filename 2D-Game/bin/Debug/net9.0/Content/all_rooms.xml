@@ -139,6 +139,9 @@
 		<Obstacles>
 			<Entity Type="Moveable_Block" X="800" Y="400"/>
 		</Obstacles>
+		<Items>
+			<Entity Type="Key" X="800" Y="400"/>
+		</Items>
 		<Enemies>
 			<Entity Type="Ghost" X="720" Y="250" />
 			<Entity Type="Ghost" X="220" Y="550" />
@@ -157,9 +160,7 @@
       <Entity Type="Spider" X="370" Y="360" />
       <Entity Type="Spider" X="900" Y="170" />
     </Enemies>
-		<Item>
-			<Entity Type="Key" X="800" Y="400"/>
-		</Item>
+		
 	</Room>
 	
 	<!--Room 2 (0, 0) -->
