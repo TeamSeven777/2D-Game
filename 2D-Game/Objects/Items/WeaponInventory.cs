@@ -13,6 +13,7 @@ namespace _2D_Game
         private Dictionary<Tool, int> Weapons = new();
         private readonly List<Tool> SelectedWeapon = new();
         private int currentIndex;
+        private const int InitialAmmo = 5;
         public bool UnlimitedAmmo = false;
 
         // Cooldown vars
@@ -33,7 +34,7 @@ namespace _2D_Game
             currentIndex = 0;
             if (Weapons.Count <= 0)
             {
-                Weapons.Add(Tool.Slingshot, 5);
+                Weapons.Add(Tool.Slingshot, InitialAmmo);
                 Weapons.Add(Tool.Boomerang, int.MaxValue);
                 Weapons.Add(Tool.Dynamite, 0);
             }

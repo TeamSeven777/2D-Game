@@ -35,7 +35,7 @@ namespace _2D_Game
                 {
                     if(collider.Type == HitBoxType.DestructibleBlock)
                     {
-                        RoomCollisionHandler.Instance.Remove(projectile);
+                        RoomCollisionHandler.Instance.Remove(hbOwner);
                     }
                 }
             }

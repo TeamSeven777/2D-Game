@@ -22,6 +22,7 @@ namespace _2D_Game
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
         private Stopwatch CurTime;
+        private StatusDisplay _statusDisplay;
         public DefaultPlayer player;
         private Texture2D blockSpriteSheet;
         private Dictionary<String, IController> controllers;
@@ -84,7 +85,7 @@ namespace _2D_Game
 
             roomManager = new RoomManager();
             deathHandler = new DeathHandler(this);
-            CurTime = new Stopwatch();
+            
 
             base.Initialize();
         }
@@ -107,7 +108,8 @@ namespace _2D_Game
             background = Content.Load<Texture2D>("Images/FullMap2");
             startScreen = Content.Load<Texture2D>("Images/startScreen");
             endScreen = Content.Load<Texture2D>("Images/endScreen");
-            hudFont = Content.Load<SpriteFont>("Fonts/pixelFont");            
+            hudFont = Content.Load<SpriteFont>("Fonts/pixelFont");
+            CurTime = new Stopwatch(hudFont);
             Camera = new Camera(roomWidth, roomHeight, worldWidth, worldHeight);
 
             PlayerSpriteFactory.Instance.LoadTextures(Content);
@@ -117,6 +119,7 @@ namespace _2D_Game
             
 
             player = new DefaultPlayer(startRoomOrigin + middleOfScreen);
+            _statusDisplay = new StatusDisplay(this, hudFont);
             Camera.Follow(player.Position);
            // gameGPS = new GameGPS(player.Position, roomWidth, roomHeight);
 
@@ -173,9 +176,7 @@ namespace _2D_Game
 
             RoomCollisionHandler.Instance.HandleCollision();
             currentGameTime = gameTime;
-            roomHeight = _spriteBatch.GraphicsDevice.Viewport.Height;
-            roomWidth = _spriteBatch.GraphicsDevice.Viewport.Width;
-            middleOfScreen = new Vector2(roomWidth / 2, roomHeight / 2);
+
             //Everything we are updating
             //To make it more "fair", everything
             //The player does should come first
@@ -203,15 +204,17 @@ namespace _2D_Game
             itemHotbar.Update(gameTime);
             deathHandler.Update(gameTime);
             CurTime.Update(gameTime);
-                //~Whatever Else Actions~
-                Enemies.Update(gameTime, player.Position);
-                EnemyProjectileHandler.Instance.Update(gameTime);
+            _statusDisplay.Update();
 
+            //~Whatever Else Actions~
+            Enemies.Update(gameTime, player.Position);
+            EnemyProjectileHandler.Instance.Update(gameTime);
 
-                RoomCollisionHandler.Instance.Update(gameTime);
-                Camera.Follow(player.Position);
-                //gameGPS.Update(player.Position);
-                hitboxMode.Update(gameTime);
+                
+            RoomCollisionHandler.Instance.Update(gameTime);
+            Camera.Follow(player.Position);
+            //gameGPS.Update(player.Position);
+            hitboxMode.Update(gameTime);
             }
             else if (DialogueMode)
             {
@@ -265,32 +268,28 @@ namespace _2D_Game
 
             _spriteBatch.Begin(samplerState: SamplerState.PointClamp); // no transform
             // HUD draws here
-            string logCounter = $" ( {LogsInFire} / {LogsNeeded} ) ";
-            Vector2 logCounterSize = hudFont.MeasureString(logCounter);
-            Vector2 logCounterPos = new Vector2(roomWidth - logCounterSize.X - 16, roomHeight - logCounterSize.Y - 16);
-            _spriteBatch.DrawString(hudFont, logCounter, logCounterPos + new Vector2(2, 2), Color.Black); //shadow so it reads on any background
-            _spriteBatch.DrawString(hudFont, logCounter, logCounterPos, Color.White);
-            _spriteBatch.End();
+            //string logCounter = $" ( {LogsInFire} / {LogsNeeded} ) ";
+            //Vector2 logCounterSize = hudFont.MeasureString(logCounter);
+            //Vector2 logCounterPos = new Vector2(roomWidth - logCounterSize.X - 16, roomHeight - logCounterSize.Y - 16);
+            //_spriteBatch.DrawString(hudFont, logCounter, logCounterPos + new Vector2(2, 2), Color.Black); //shadow so it reads on any background
+            //_spriteBatch.DrawString(hudFont, logCounter, logCounterPos, Color.White);
+            //_spriteBatch.End();
 
-            _spriteBatch.Begin(samplerState: SamplerState.PointClamp); // no transform
+            //_spriteBatch.Begin(samplerState: SamplerState.PointClamp); // no transform
+            //// HUD draws here
+            //string healthCounter = $" ( {player.Health} / {player.MaxHealth} ) ";
+            //Vector2 healthCounterSize = hudFont.MeasureString(healthCounter);
+            //Vector2 healthCounterPos = new Vector2(roomWidth - healthCounterSize.X - 16, 32);
+            //_spriteBatch.DrawString(hudFont, healthCounter, healthCounterPos + new Vector2(1, 1), Color.White); //shadow so it reads on any background
+            //_spriteBatch.DrawString(hudFont, healthCounter, healthCounterPos, Color.OrangeRed);
+            ////_spriteBatch.End();
+            _statusDisplay.Draw(_spriteBatch);
+            //_spriteBatch.Begin(samplerState: SamplerState.PointClamp); // no transform
             // HUD draws here
-            string healthCounter = $" ( {player.Health} / {player.MaxHealth} ) ";
-            Vector2 healthCounterSize = hudFont.MeasureString(healthCounter);
-            Vector2 healthCounterPos = new Vector2(roomWidth - healthCounterSize.X - 16, 32);
-            _spriteBatch.DrawString(hudFont, healthCounter, healthCounterPos + new Vector2(1, 1), Color.White); //shadow so it reads on any background
-            _spriteBatch.DrawString(hudFont, healthCounter, healthCounterPos, Color.OrangeRed);
-            _spriteBatch.End();
+            CurTime.Draw(_spriteBatch);
+            //_spriteBatch.End();
 
-            _spriteBatch.Begin(samplerState: SamplerState.PointClamp); // no transform
-            // HUD draws here
-            string curTime = CurTime.ToString();
-            Vector2 curTimeSize = hudFont.MeasureString(curTime);
-            Vector2 curTimePos = new Vector2(roomWidth - curTimeSize.X - 16, 8);
-            _spriteBatch.DrawString(hudFont, curTime, curTimePos + new Vector2(1, 1), Color.White); //shadow so it reads on any background
-            _spriteBatch.DrawString(hudFont, curTime, curTimePos, Color.OrangeRed);
-            _spriteBatch.End();
-
-            _spriteBatch.Begin(samplerState: SamplerState.PointClamp);
+            //_spriteBatch.Begin(samplerState: SamplerState.PointClamp);
             if (!bog.InBog) minimap.Draw(_spriteBatch, player.Position); //the minimap only covers the main 3x3 map
             weaponHotbar.Draw(_spriteBatch);
             itemHotbar.Draw(_spriteBatch);
@@ -300,9 +299,9 @@ namespace _2D_Game
             }
             CurrentDialogue.Draw(_spriteBatch, new Vector2(middleOfScreen.X, middleOfScreen.Y+roomHeight/4)); //draw 3/4 down screen in middle
 
-            _spriteBatch.End();
+           // _spriteBatch.End();
 
-            _spriteBatch.Begin(samplerState : SamplerState.PointClamp);
+            //_spriteBatch.Begin(samplerState : SamplerState.PointClamp);
             deathHandler.Draw(_spriteBatch);
             _spriteBatch.End();
 

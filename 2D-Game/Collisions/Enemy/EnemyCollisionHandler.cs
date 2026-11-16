@@ -12,6 +12,15 @@ namespace _2D_Game
     {
         IEnemy enemy;
 
+        private int knockback = 0;
+        private const int stickKnockBack = 25;
+        private const int stickDmg = 2;
+        private const int fistKnockBack = 50;
+        private const int fistDmg = 6;
+        private const int PebbleDmg = 2;
+        private const int ExplosiveDmg = 100;
+
+
         public EnemyCollisionHandler(IEnemy thisGuy)
         {
             enemy = thisGuy;
@@ -30,11 +39,11 @@ namespace _2D_Game
                 {
                     case (HitBoxType.PlayerAttack):
                         if ((hbOwner is ITool collidedTool) && collidedTool.GetTool() != Tool.Interact) {
-                            int knockback; int dmg = 1;
+                            int knockback; int dmg = stickDmg;
                             if (collidedTool.GetTool() == Tool.Fist)
                             {
-                                knockback = 50;
-                                dmg = 6;
+                                knockback = fistKnockBack;
+                                dmg = fistDmg;
                             }
                             else if (collidedTool.GetTool() == Tool.Stick) knockback = 25;
                             else knockback = 10;
@@ -67,11 +76,11 @@ namespace _2D_Game
                         }
                         break;
                     case (HitBoxType.PlayerProjectile):
-                        enemy.TakeDamage(2);
+                        enemy.TakeDamage(PebbleDmg);
                         PlayerProjectileHandler.Instance.Remove(hbOwner);
                         break;
                     case (HitBoxType.Explosion):
-                        enemy.TakeDamage(100);
+                        enemy.TakeDamage(ExplosiveDmg);
                         break;
                 }
                 
