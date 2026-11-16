@@ -63,7 +63,7 @@ namespace _2D_Game
             fishingrodTexture = content.Load<Texture2D>("Sprites/fishingRod");
         }
 
-        public IObstacle CreateBlock(string type, Vector2 position)
+        public IObstacle CreateBlock(string type, Vector2 position, Vector2 size = new Vector2())
         {
             IObstacle block;
             if (type.Equals("Hurt_Block", StringComparison.OrdinalIgnoreCase))
@@ -92,8 +92,40 @@ namespace _2D_Game
             }
             return block;
         }
+        
+        public IObstacle[] CreateFence(string type, Vector2 position, Vector2 size = new Vector2(), bool endCorner = false)
+        {
+            int count = 0;
+            //This means AT MOST you can have 40 
+            IObstacle[] fence = new IObstacle[144];
+            if (type.Equals("FenceNS", StringComparison.OrdinalIgnoreCase))
+            {
+                for (int i = (int)(position.X); i < (position.X + size.X); i += ((int)size.X / 9))
+                {
+                    fence[count] = new Obstacle(new Vector2(120, 72), new Vector2(i, position.Y), ObstacleSpriteFactory.Instance.CreateFenceSprite(1));
+                    count++;
+                }
+                if (endCorner)
+                    fence[count] = new Obstacle(new Vector2(40,72), new Vector2(fence[count].OriginPos.X+ size.X / 12, fence[count].OriginPos.X), ObstacleSpriteFactory.Instance.CreateFenceSprite(3));
+            }
+            else if (type.Equals("FenceEW", StringComparison.OrdinalIgnoreCase))
+            {
+                for (int i = (int)position.X; i < size.Y; i += ((int)size.Y / 20))
+                {
+                    fence[count] = new Obstacle(new Vector2(120, 72), new Vector2(position.X, i), ObstacleSpriteFactory.Instance.CreateFenceSprite(2));
+                    count++;
+                }
+                if (endCorner)
+                    fence[count] = new Obstacle(new Vector2(40, 72), new Vector2(fence[count].OriginPos.X,fence[count].OriginPos.Y + size.Y/20), ObstacleSpriteFactory.Instance.CreateFenceSprite(3));
+            }
+            else
+            {
+                fence[count] = new Obstacle(new Vector2(40, 72), new Vector2(position.X), ObstacleSpriteFactory.Instance.CreateFenceSprite());
+            }
+            return fence;
+        }
 
-        public IObstacle CreateSpecialBlock(string type, Vector2 position, Room CurRoom, Vector2 size)
+        public IObstacle CreateSpecialBlock(string type, Vector2 position, Room CurRoom, Vector2 size = new Vector2())
         {
             IObstacle block;
             if (type.Equals("Destructible_Block", StringComparison.OrdinalIgnoreCase))
@@ -116,7 +148,7 @@ namespace _2D_Game
             {
                 block = new MoveableObstacle(new Vector2(25), position, ObstacleSpriteFactory.Instance.CreateMoveableBlockSprite());
             }
-            else
+            else 
             {
                 block = new Boundary(position, size, ObstacleSpriteFactory.Instance.CreateOtherSprite(1));
             }

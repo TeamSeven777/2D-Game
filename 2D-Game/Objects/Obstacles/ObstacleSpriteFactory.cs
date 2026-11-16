@@ -19,6 +19,8 @@ namespace _2D_Class
         Texture2D FirepitSprite;
         Texture2D DoorSprites;
         Texture2D BoulderSprites;
+        Texture2D FenceSprites;
+        Texture2D FenceLongSprite;
         private static ObstacleSpriteFactory instance = new ObstacleSpriteFactory();
 
         public static ObstacleSpriteFactory Instance
@@ -35,6 +37,8 @@ namespace _2D_Class
             FirepitSprite = content.Load<Texture2D>("Sprites/FirePit");
             DoorSprites = content.Load<Texture2D>("Sprites/door");
             BoulderSprites = content.Load<Texture2D>("Sprites/boulders");
+            FenceSprites = content.Load<Texture2D>("Sprites/fences");
+            FenceLongSprite = content.Load<Texture2D>("Sprites/fencelong");
         }
 
         /// <summary>
@@ -164,6 +168,34 @@ namespace _2D_Class
                     break;
             }
             sprite.Scale = new Vector2(2f);
+            return sprite;
+        }
+        public ISprite CreateFenceSprite(int index = 0)
+        {
+            ISprite sprite;
+            switch (index)
+            {
+                //N/S facing case
+                case (0):
+                    sprite = new Sprite(FenceSprites, new Rectangle(20, 0, 20, 72));
+                    break;
+                //N/S Long facing case
+                case (1):
+                    sprite = new Sprite(FenceLongSprite, FenceLongSprite.Bounds);
+                    break;
+                //E/W facing case
+                case (2):
+                    sprite = new Sprite(FenceSprites, new Rectangle(40, 0, 20, 72));
+                    break;
+                //corner case
+                case (4):
+                    sprite = new Sprite(FenceSprites, new Rectangle(0, 0, 20, 72));
+                    break;
+                default:
+                    sprite = new Sprite(FenceSprites, new Rectangle(20, 0, 20, 72));
+                    break;
+            }
+            sprite.Scale = new Vector2(2.0f);
             return sprite;
         }
     }

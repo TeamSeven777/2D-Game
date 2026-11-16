@@ -122,12 +122,25 @@ namespace _2D_Game
                 if (names.Contains(type))
                 {
                     block = contentFactory.CreateSpecialBlock(type, worldPos, room, size);
+                    room.Obstacles.Add(block);
+                }
+                else if (type.Contains("Fence"))
+                {
+                    //I think I might be genuinely insane for this, I apologize
+                    IObstacle[] fences = contentFactory.CreateFence(type, worldPos, size, bool.TryParse(obsElement.Attribute("EndCorner")?.Value, out bool val) ? val : false);
+                    int i = 0;
+                    while (fences[i] != null && i < fences.Count() - 1)
+                    {
+                        room.Obstacles.Add(fences[i]);
+                        i++;
+                    }
                 }
                 else
                 {
                     block = contentFactory.CreateBlock(type, worldPos);
+                    room.Obstacles.Add(block);
                 }
-                room.Obstacles.Add(block);
+                
             }
         }
         /// <summary>
