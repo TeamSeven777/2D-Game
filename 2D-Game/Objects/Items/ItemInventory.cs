@@ -29,27 +29,8 @@ namespace _2D_Game
             {
                 cooldownTimer -= gameTime.ElapsedGameTime.TotalSeconds;
             }
-
-            if (cooldownTimer > 0)
-                cooldownTimer -= gameTime.ElapsedGameTime.TotalSeconds;
-
-         /*   var keyboardState = Keyboard.GetState(); nono, use commands
-            if (cooldownTimer <= 0)
-            {
-                if (keyboardState.IsKeyDown(Keys.I))
-                {
-                    Next();
-                }
-                else if (keyboardState.IsKeyDown(Keys.U))
-                {
-                    Previous();
-                }
-                if (keyboardState.IsKeyDown(Keys.Space))
-                {
-                    useItemAnywhere.ItemUseHandling();
-                }
-            }*/
         }
+        
         public void ItemUse() { 
             useItemAnywhere.ItemUseHandling();
         }

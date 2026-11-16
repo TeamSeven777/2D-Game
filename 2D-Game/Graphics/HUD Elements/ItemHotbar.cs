@@ -16,6 +16,7 @@ namespace _2D_Game
         private readonly Texture2D selectionTexture;
         private readonly SpriteFont font;
         private readonly Texture2D pixel;
+        private double cooldownTimer = 0;
 
         public ItemHotbar(GraphicsDevice device, Point position, int cellWidth, int totalSlots = 7, Texture2D slotTexture = null, Texture2D selectionTexture = null, SpriteFont font = null, float slotSpacing = 4f)
         {
@@ -34,7 +35,8 @@ namespace _2D_Game
 
         public void Update(GameTime gameTime)
         {
-            
+            if (cooldownTimer > 0)
+                cooldownTimer -= gameTime.ElapsedGameTime.TotalSeconds;
         }
 
         public void Next() => ItemInventory.Instance.Next();
