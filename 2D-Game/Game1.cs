@@ -15,43 +15,47 @@ namespace _2D_Game
 {
     public class Game1 : Game
     {
-
-        private Vector2 middleOfScreen;
-        public int roomWidth { get; private set; }
-        public int roomHeight { get; private set;  }
-        private GraphicsDeviceManager _graphics;
-        private SpriteBatch _spriteBatch;
-        private Stopwatch CurTime;
-        private StatusDisplay _statusDisplay;
+        public GameInitializer Game1Initializer;
+        public GameLoader Game1Loader;
+        public GameUpdater Game1Updater;
+        public GameDrawer Game1Drawer;
+        //public GameMethods Game1Methods;
+        public Vector2 middleOfScreen;
+        public int roomWidth { get;  set; }
+        public int roomHeight { get; set;  }
+        public GraphicsDeviceManager _graphics;
+        public SpriteBatch _spriteBatch;
+        public Stopwatch CurTime;
+        public StatusDisplay _statusDisplay;
         public DefaultPlayer player;
-        private Texture2D blockSpriteSheet;
-        private Texture2D fishingHoleSprite;
-        private IObstacle fishingHole;
-        private Dictionary<String, IController> controllers;
-        private String[] controllerNames;
+        public Texture2D blockSpriteSheet;
+        public Texture2D fishingHoleSprite;
+        public IObstacle fishingHole;
+        public Dictionary<String, IController> controllers;
+        public String[] controllerNames;
         public EnemyManager Enemies;
-        private GameTime currentGameTime;
+        public GameTime currentGameTime;
         public GameTime CurrentGameTime => currentGameTime;
         public HitboxMode hitboxMode;
         public List<IObstacle> boundaries;
-        private Texture2D background;
-        public int worldWidth { get; private set; }
-        public int worldHeight { get; private set; }
+        public Texture2D background;
+        public int worldWidth { get;  set; }
+        public int worldHeight { get;  set; }
         public RoomManager roomManager;
-        public Camera Camera { get; private set; }
-        private Minimap minimap;
+        public Camera Camera { get;  set; }
+        public Minimap minimap;
         public IHotbar weaponHotbar, itemHotbar;
-        private Texture2D inventorySlot, highlightSlot;
-        public GameState State { get; private set; }
-        private Texture2D startScreen;
-        private Texture2D endScreen;
-        private SpriteFont hudFont;
+        public Texture2D inventorySlot, highlightSlot;
+        public GameState State { get;  set; }
+        public Texture2D startScreen;
+        public Texture2D endScreen;
+        public SpriteFont hudFont;
         public const int LogsNeeded = 7;
-        public int LogsInFire { get; private set; }
-        private Bog bog;
-        private PauseMenu pauseMenu;
-        public bool PauseGameOn { get; private set; }
-        public bool DialogueMode { get; private set; }
+        public int LogsInFire { get;  set; }
+        public Bog bog;
+        public PauseMenu pauseMenu;
+        public bool PauseGameOn { get;  set; }
+        public bool DialogueMode { get; set; }
         public IDialogue CurrentDialogue { get; set; }
         public AudioManager GameAudioManager;
         public DeathHandler deathHandler;
@@ -67,225 +71,33 @@ namespace _2D_Game
 
         protected override void Initialize()
         {
-            currentGameTime = new GameTime();
-            RoomCollisionHandler.Instance.Initialize(this);
-            WeaponInventory.Instance.Initialize(this);
-            Enemies = new EnemyManager();
-            boundaries = new List<IObstacle>();
-
-            PauseGameOn = false;
-            CurrentDialogue = new NoDialogue();
-            DialogueMode = false;
-
-            controllerNames = new String[]{ "keyboard", "gamepad", "mouse"};
-            controllers = new Dictionary<string, IController>();
-            State = GameState.Start;
-            LogsInFire = 0;
-            controllers.Add(controllerNames[0], new KeyboardController(this, ControllerMode.StartMode));
-            controllers.Add(controllerNames[1], new GamePadController(PlayerIndex.One, this, ControllerMode.StartMode));
-            controllers.Add(controllerNames[2], new MouseController(this));
-
-            roomManager = new RoomManager();
-            deathHandler = new DeathHandler(this);
+            Game1Initializer = new GameInitializer(this);
             
-
+            
+            Game1Initializer.Initialize();
+            Game1Loader = new GameLoader(this);
+            Game1Updater = new GameUpdater(this);
+            Game1Drawer = new GameDrawer(this);
             base.Initialize();
         }
 
         protected override void LoadContent()
         {
-            _spriteBatch = new SpriteBatch(GraphicsDevice);
-
-            GameAudioManager = new AudioManager(Content);
-            
-
-            roomHeight = _spriteBatch.GraphicsDevice.Viewport.Height;
-            roomWidth = _spriteBatch.GraphicsDevice.Viewport.Width;
-            middleOfScreen = new Vector2(roomWidth / 2, roomHeight / 2);
-            int CellWidth = 60;
-
-            minimap = new Minimap(GraphicsDevice, new Point(10), CellWidth, roomWidth, roomHeight);
-            worldWidth = roomWidth * 3;
-            worldHeight = roomHeight * 3;
-            Vector2 startRoomOrigin = new Vector2(0, worldHeight - roomHeight);
-
-            background = Content.Load<Texture2D>("Images/FullMap2");
-            startScreen = Content.Load<Texture2D>("Images/startScreen");
-            endScreen = Content.Load<Texture2D>("Images/endScreen");
-            hudFont = Content.Load<SpriteFont>("Fonts/pixelFont");
-            CurTime = new Stopwatch(hudFont);
-            Camera = new Camera(roomWidth, roomHeight, worldWidth, worldHeight);
-
-            PlayerSpriteFactory.Instance.LoadTextures(Content);
-            ProjectileSpriteFactory.Instance.LoadTextures(Content);
-            ObstacleSpriteFactory.Instance.LoadTextures(Content);
-            DialogueFactory.Instance.LoadFonts(Content);
-            
-
-            player = new DefaultPlayer(startRoomOrigin + middleOfScreen);
-            _statusDisplay = new StatusDisplay(this, hudFont);
-            Camera.Follow(player.Position);
-           // gameGPS = new GameGPS(player.Position, roomWidth, roomHeight);
-
-
-            ItemInventory.Instance.LoadContent(Content, roomManager.CurrentRoom);
-
-            inventorySlot = Content.Load<Texture2D>("Images/InventoryBlock2");
-            highlightSlot = Content.Load<Texture2D>("Images/HighlightUIBig");
-            SpriteFont spriteFont = Content.Load<SpriteFont>("Fonts/pixelFont");
-
-            weaponHotbar = new WeaponHotbar(GraphicsDevice,  new Point(GraphicsDevice.Viewport.Width / 2 - 480, 620), 48, 4, inventorySlot, highlightSlot, spriteFont);
-            itemHotbar = new ItemHotbar(GraphicsDevice, new Point(GraphicsDevice.Viewport.Width/2 - 175, 620), 48, 7, inventorySlot, highlightSlot, spriteFont);
-            pauseMenu = new PauseMenu(GraphicsDevice,this, new Rectangle(GraphicsDevice.Viewport.Width / 2 - 100, GraphicsDevice.Viewport.Height / 2 - 50, 200, 100), spriteFont);
-
-            Enemies.LoadContent(Content, startRoomOrigin);
-
-            boundaries.Add(new Boundary(new Vector2(0, 0), new Vector2(0, worldHeight)));                      // left
-            boundaries.Add(new Boundary(new Vector2(worldWidth, 0), new Vector2(worldWidth, worldHeight)));    // right
-            boundaries.Add(new Boundary(new Vector2(0, 0), new Vector2(worldWidth, 0)));                       // up
-            boundaries.Add(new Boundary(new Vector2(0, worldHeight), new Vector2(worldWidth, worldHeight)));   // down
-
-            int pondWidth = 200; int pondHeight = 100; int pondX = roomWidth + 200; int pondY = roomHeight + 175;
-            fishingHoleSprite = Content.Load<Texture2D>("Sprites/fishinghole");
-            fishingHole = new FishZone(new Vector2(pondX, pondY), new Vector2(pondWidth, pondHeight),new Sprite(fishingHoleSprite, fishingHoleSprite.Bounds));//pond TODO add texture
-                        
-
-            PlayerProjectileHandler.Instance.Initialize(ref player);
-            EnemyProjectileHandler.Instance.Initialize(ref Enemies, ref player);
-          
-
-            hitboxMode = new HitboxMode(this);
-
-            //bog loading - needs to be initialized after Player and Camera (constructor uses them)
-            bog = new Bog(this);
-            bog.LoadContent(Content);
-
-            // Load dungeon rooms and pass viewport dimensions
-
-            roomManager.LoadDungeon("Content/all_rooms.xml", Content, blockSpriteSheet, roomWidth, roomHeight);
-            roomManager.CurrentRoom.Deactivate();
-            Playlist.Instance.ChangeSong(SongName.TitleTheme, true);
+            Game1Loader.LoadContent();
 
         }
 
         protected override void Update(GameTime gameTime)
         {
             
-            if (State != GameState.Playing)
-            {
-                currentGameTime = gameTime;
-                foreach(String controllerType in controllerNames) controllers[controllerType].Update();
-                base.Update(gameTime);
-                return;
-            }
-
-            RoomCollisionHandler.Instance.HandleCollision();
-            currentGameTime = gameTime;
-
-            //Everything we are updating
-            //To make it more "fair", everything
-            //The player does should come first
-            //~Player Actions~
-            foreach (String controllerType in controllerNames)
-            {
-                if (controllers[controllerType].Update()) break; //only use one controller type at a time.
-
-            }
-            if (!PauseGameOn && !DialogueMode) //disable certain updates on Pause. //TODO have another check to determine whether this is due to dialogue or a menu, and update accordingly
-            {
-                if (IsActive && !bog.InBog && minimap.TryGetClickedRoomCenter(out Vector2 roomCenter))
-                {
-                    player.Teleport(roomCenter);
-                    Camera.Follow(player.Position);
-                }
-
-            player.Update(gameTime);
-            bog.Update(gameTime);
-            roomManager.Update(gameTime, player.Position);
-            PlayerProjectileHandler.Instance.Update(gameTime);
-            WeaponInventory.Instance.Update(gameTime);
-            ItemInventory.Instance.Update(gameTime, roomManager.CurrentRoom);
-            weaponHotbar.Update(gameTime);
-            itemHotbar.Update(gameTime);
-            deathHandler.Update(gameTime);
-            CurTime.Update(gameTime);
-            _statusDisplay.Update();
-
-            //~Whatever Else Actions~
-            Enemies.Update(gameTime, player.Position);
-            EnemyProjectileHandler.Instance.Update(gameTime);
-
-                
-            RoomCollisionHandler.Instance.Update(gameTime);
-            Camera.Follow(player.Position);
-            //gameGPS.Update(player.Position);
-            hitboxMode.Update(gameTime);
-            }
-            else if (DialogueMode)
-            {
-                CurrentDialogue.Update(gameTime);
-                player.Update(gameTime);
-                //TODO give roommanager a way so that it can continue to animate just the NPC idles while talking
-            }
-            else
-            {
-                //no updates aside from controller inputs
-                pauseMenu.Update(gameTime);
-            }
+            Game1Updater.Update(gameTime);
             base.Update(gameTime);
 
         }
 
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
-            if (State != GameState.Playing)
-            {
-                _spriteBatch.Begin(samplerState: SamplerState.LinearClamp);
-                Texture2D screen = State == GameState.Start ? startScreen : endScreen;
-                _spriteBatch.Draw(screen, new Rectangle(0, 0, roomWidth, roomHeight), Color.White);
-                _spriteBatch.End();
-                base.Draw(gameTime);
-                
-                return;
-            }
-
-            currentGameTime = gameTime;
-            
-             // World: scrolls with the camera
-            _spriteBatch.Begin(samplerState: SamplerState.PointClamp, transformMatrix: Camera.Transform);
-            _spriteBatch.Draw(background, new Rectangle(0, 0, worldWidth, worldHeight), Color.White);
-            bog.Draw(_spriteBatch);
-
-            //Everything we are drawing
-            fishingHole.Draw(_spriteBatch);
-            roomManager.Draw(_spriteBatch);
-            foreach (IObstacle bound in boundaries) bound.Draw(_spriteBatch);
-            PlayerProjectileHandler.Instance.Draw(_spriteBatch);
-            EnemyProjectileHandler.Instance.Draw(_spriteBatch);
-            Enemies.Draw(_spriteBatch);
-            //foreach(Boundary boundary in boundaries) boundary.Draw(_spriteBatch);
-            
-            player.Draw(_spriteBatch);
-            //for hitbox debugging
-            hitboxMode.DrawHitboxes(_spriteBatch);
-            //
-
-            _spriteBatch.End();
-
-            _spriteBatch.Begin(samplerState: SamplerState.PointClamp); // no transform
-            _statusDisplay.Draw(_spriteBatch);
-            CurTime.Draw(_spriteBatch);
-            if (!bog.InBog) minimap.Draw(_spriteBatch, player.Position); //the minimap only covers the main 3x3 map
-            weaponHotbar.Draw(_spriteBatch);
-            itemHotbar.Draw(_spriteBatch);
-            if (PauseGameOn)
-            {
-                pauseMenu.Draw(_spriteBatch);
-            }
-            CurrentDialogue.Draw(_spriteBatch, new Vector2(middleOfScreen.X, middleOfScreen.Y+roomHeight/4)); //draw 3/4 down screen in middle
-            deathHandler.Draw(_spriteBatch);
-            _spriteBatch.End();
+            Game1Drawer.Draw(gameTime);
 
             base.Draw(gameTime);
         }
