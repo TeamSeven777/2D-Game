@@ -29,10 +29,10 @@ namespace _2D_Class
             {
             Game1 game = RoomCollisionHandler.Instance.myGame;
             int logsHeld = ItemInventory.Instance.GetItemCount("Log");    
-            int logsToAdd = Math.Min(logsHeld, Game1.LogsNeeded - game.LogsInFire);
+            int logsToAdd = Math.Min(logsHeld, GameStateManager.LogsNeeded - game.StateManager.LogsInFire);
             if (logsToAdd <= 0) return;
             ItemInventory.Instance.ChangeValue("Log", -logsToAdd);
-            game.AddLogsToFire(logsToAdd);
+            game.StateManager.AddLogsToFire(logsToAdd);
             }
 
         }

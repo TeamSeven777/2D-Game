@@ -34,7 +34,7 @@ namespace _2D_Class
         public void HandleInteraction()
         { 
             RoomCollisionHandler.Instance.myGame.CurrentDialogue = DialogueFactory.Instance.CreateBlockDialogue();
-            RoomCollisionHandler.Instance.myGame.HandleDialogue();
+            RoomCollisionHandler.Instance.myGame.StateManager.HandleDialogue();
         }
 
         public void Update(GameTime gameTime)

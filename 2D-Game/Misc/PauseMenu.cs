@@ -58,7 +58,7 @@ namespace _2D_Game
                         switch (x.Item2)
                         {
                             case (ButtonType.Resume):
-                                MyGame.TogglePause();
+                                MyGame.StateManager.TogglePause();
                                 break;
                             case (ButtonType.Reset):
                                 MyGame.ResetGame();

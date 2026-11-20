@@ -11,7 +11,7 @@ namespace _2D_Game
 
         public void Execute()
         {
-            myGame.StartGame();
+            myGame.StateManager.StartGame();
         }
     }
 }

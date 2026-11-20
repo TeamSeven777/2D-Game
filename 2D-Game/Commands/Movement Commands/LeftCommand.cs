@@ -19,7 +19,7 @@ namespace _2D_Game
 
         public void Execute()
         {
-            if (!myGame.PauseGameOn) myGame.player.MoveLeft();
+            myGame.player.MoveLeft();
         }
 
     }

@@ -25,7 +25,7 @@ namespace _2D_Game
         {
             gameTime = myGame.CurrentGameTime.TotalGameTime;
 
-            if (gameTime > previousGameTime) myGame.HandleDialogue();
+            if (gameTime > previousGameTime) myGame.StateManager.HandleDialogue();
 
             previousGameTime = gameTime + TimeSpan.FromMilliseconds(100);
         }

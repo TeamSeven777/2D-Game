@@ -63,7 +63,7 @@ namespace _2D_Game
             else 
             {
                 RoomCollisionHandler.Instance.myGame.CurrentDialogue = DialogueFactory.Instance.CreateFishDialogue(0);
-                RoomCollisionHandler.Instance.myGame.HandleDialogue();
+                RoomCollisionHandler.Instance.myGame.StateManager.HandleDialogue();
             }
         }
         public void Update(GameTime gt)

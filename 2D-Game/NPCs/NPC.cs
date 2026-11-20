@@ -52,7 +52,7 @@ namespace _2D_Game
             RoomCollisionHandler.Instance.myGame.CurrentDialogue =
                 createDialogue();
 
-            RoomCollisionHandler.Instance.myGame.HandleDialogue();
+            RoomCollisionHandler.Instance.myGame.StateManager.HandleDialogue();
 
             SoundEffectFactory.Instance.PlaySoundEffect(
                 SoundName.Dialogue, true);            

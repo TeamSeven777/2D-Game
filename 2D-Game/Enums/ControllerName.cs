@@ -1,0 +1,1 @@
+﻿public enum ControllerName { Keyboard, GamePad, Mouse}

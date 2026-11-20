@@ -26,13 +26,13 @@ namespace _2D_Game
             Player = MyGame.player;
             HudFont = font;
             HealthString = $" ( {Player.Health} / {Player.MaxHealth} ) ";
-            LogString  = $" ( {MyGame.LogsInFire} / {LogsNeeded} ) ";
+            LogString  = $" ( {MyGame.StateManager.LogsInFire} / {LogsNeeded} ) ";
 
         }
         public void Update()
         {
             HealthString = $" ( {Player.Health} / {Player.MaxHealth} ) ";
-            LogString = $" ( {MyGame.LogsInFire} / {LogsNeeded} ) ";
+            LogString = $" ( {MyGame.StateManager.LogsInFire} / {LogsNeeded} ) ";
         }
 
         public void Draw(SpriteBatch sb)

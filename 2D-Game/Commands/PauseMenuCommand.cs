@@ -24,7 +24,7 @@ namespace _2D_Game
            gameTime = myGame.CurrentGameTime.TotalGameTime;
            if (gameTime > previousGameTime)
            {
-                myGame.TogglePause();
+                myGame.StateManager.TogglePause();
                 //will later bring up the respective UI
            }
            previousGameTime = gameTime + TimeSpan.FromMilliseconds(100);

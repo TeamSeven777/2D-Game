@@ -15,46 +15,37 @@ namespace _2D_Game
 {
     public class Game1 : Game
     {
-
-        private Vector2 middleOfScreen;
+        public Vector2 middleOfScreen { get; private set; }
         public int roomWidth { get; private set; }
         public int roomHeight { get; private set;  }
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
-        private Stopwatch CurTime;
-        private StatusDisplay _statusDisplay;
+        public Stopwatch CurTime { get; private set; }
+        public StatusDisplay _statusDisplay { get; private set;  }
         public DefaultPlayer player;
-        private Texture2D blockSpriteSheet;
-        private Texture2D fishingHoleSprite;
-        private IObstacle fishingHole;
-        private Dictionary<String, IController> controllers;
-        private String[] controllerNames;
+        public IObstacle fishingHole { get; private set; }
         public EnemyManager Enemies;
-        private GameTime currentGameTime;
+        public GameTime currentGameTime { get; private set; }
         public GameTime CurrentGameTime => currentGameTime;
         public HitboxMode hitboxMode;
         public List<IObstacle> boundaries;
-        private Texture2D background;
         public int worldWidth { get; private set; }
         public int worldHeight { get; private set; }
         public RoomManager roomManager;
         public Camera Camera { get; private set; }
-        private Minimap minimap;
+        public Minimap minimap { get; private set; }
         public IHotbar weaponHotbar, itemHotbar;
-        private Texture2D inventorySlot, highlightSlot;
-        public GameState State { get; private set; }
-        private Texture2D startScreen;
-        private Texture2D endScreen;
+        public Texture2D startScreen { get; private set; }
+        public Texture2D endScreen { get; private set; }
+        public Texture2D background { get; private set; }
+        private Texture2D blockSpriteSheet, fishingHoleSprite, inventorySlot, highlightSlot;
         private SpriteFont hudFont;
-        public const int LogsNeeded = 7;
-        public int LogsInFire { get; private set; }
-        private Bog bog;
-        private PauseMenu pauseMenu;
-        public bool PauseGameOn { get; private set; }
-        public bool DialogueMode { get; private set; }
+        public Bog bog { get; private set;  }
+        public PauseMenu pauseMenu { get; private set; }
         public IDialogue CurrentDialogue { get; set; }
         public AudioManager GameAudioManager;
         public DeathHandler deathHandler;
+        public GameStateManager StateManager { get; private set; }
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
@@ -62,7 +53,6 @@ namespace _2D_Game
             _graphics.PreferredBackBufferHeight = 700;
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
-
         }
 
         protected override void Initialize()
@@ -73,22 +63,11 @@ namespace _2D_Game
             Enemies = new EnemyManager();
             boundaries = new List<IObstacle>();
 
-            PauseGameOn = false;
             CurrentDialogue = new NoDialogue();
-            DialogueMode = false;
-
-            controllerNames = new String[]{ "keyboard", "gamepad", "mouse"};
-            controllers = new Dictionary<string, IController>();
-            State = GameState.Start;
-            LogsInFire = 0;
-            controllers.Add(controllerNames[0], new KeyboardController(this, ControllerMode.StartMode));
-            controllers.Add(controllerNames[1], new GamePadController(PlayerIndex.One, this, ControllerMode.StartMode));
-            controllers.Add(controllerNames[2], new MouseController(this));
-
+            StateManager = new GameStateManager(this); // handles state and controllers
             roomManager = new RoomManager();
             deathHandler = new DeathHandler(this);
             
-
             base.Initialize();
         }
 
@@ -97,7 +76,6 @@ namespace _2D_Game
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
             GameAudioManager = new AudioManager(Content);
-            
 
             roomHeight = _spriteBatch.GraphicsDevice.Viewport.Height;
             roomWidth = _spriteBatch.GraphicsDevice.Viewport.Width;
@@ -170,187 +148,22 @@ namespace _2D_Game
 
         protected override void Update(GameTime gameTime)
         {
-            
-            if (State != GameState.Playing)
-            {
-                currentGameTime = gameTime;
-                foreach(String controllerType in controllerNames) controllers[controllerType].Update();
-                base.Update(gameTime);
-                return;
-            }
-
-            RoomCollisionHandler.Instance.HandleCollision();
             currentGameTime = gameTime;
-
-            //Everything we are updating
-            //To make it more "fair", everything
-            //The player does should come first
-            //~Player Actions~
-            foreach (String controllerType in controllerNames)
-            {
-                if (controllers[controllerType].Update()) break; //only use one controller type at a time.
-
-            }
-            if (!PauseGameOn && !DialogueMode) //disable certain updates on Pause. //TODO have another check to determine whether this is due to dialogue or a menu, and update accordingly
-            {
-                if (IsActive && !bog.InBog && minimap.TryGetClickedRoomCenter(out Vector2 roomCenter))
-                {
-                    player.Teleport(roomCenter);
-                    Camera.Follow(player.Position);
-                }
-
-            player.Update(gameTime);
-            bog.Update(gameTime);
-            roomManager.Update(gameTime, player.Position);
-            PlayerProjectileHandler.Instance.Update(gameTime);
-            WeaponInventory.Instance.Update(gameTime);
-            ItemInventory.Instance.Update(gameTime, roomManager.CurrentRoom);
-            weaponHotbar.Update(gameTime);
-            itemHotbar.Update(gameTime);
-            deathHandler.Update(gameTime);
-            CurTime.Update(gameTime);
-            _statusDisplay.Update();
-
-            //~Whatever Else Actions~
-            Enemies.Update(gameTime, player.Position);
-            EnemyProjectileHandler.Instance.Update(gameTime);
-
-                
-            RoomCollisionHandler.Instance.Update(gameTime);
-            Camera.Follow(player.Position);
-            //gameGPS.Update(player.Position);
-            hitboxMode.Update(gameTime);
-            }
-            else if (DialogueMode)
-            {
-                CurrentDialogue.Update(gameTime);
-                player.Update(gameTime);
-                //TODO give roommanager a way so that it can continue to animate just the NPC idles while talking
-            }
-            else
-            {
-                //no updates aside from controller inputs
-                pauseMenu.Update(gameTime);
-            }
+            StateManager.Update(gameTime);
             base.Update(gameTime);
-
         }
 
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
-            if (State != GameState.Playing)
-            {
-                _spriteBatch.Begin(samplerState: SamplerState.LinearClamp);
-                Texture2D screen = State == GameState.Start ? startScreen : endScreen;
-                _spriteBatch.Draw(screen, new Rectangle(0, 0, roomWidth, roomHeight), Color.White);
-                _spriteBatch.End();
-                base.Draw(gameTime);
-                
-                return;
-            }
-
             currentGameTime = gameTime;
-            
-             // World: scrolls with the camera
-            _spriteBatch.Begin(samplerState: SamplerState.PointClamp, transformMatrix: Camera.Transform);
-            _spriteBatch.Draw(background, new Rectangle(0, 0, worldWidth, worldHeight), Color.White);
-            bog.Draw(_spriteBatch);
-
-            //Everything we are drawing
-            fishingHole.Draw(_spriteBatch);
-            roomManager.Draw(_spriteBatch);
-            foreach (IObstacle bound in boundaries) bound.Draw(_spriteBatch);
-            PlayerProjectileHandler.Instance.Draw(_spriteBatch);
-            EnemyProjectileHandler.Instance.Draw(_spriteBatch);
-            Enemies.Draw(_spriteBatch);
-            //foreach(Boundary boundary in boundaries) boundary.Draw(_spriteBatch);
-            
-            player.Draw(_spriteBatch);
-            //for hitbox debugging
-            hitboxMode.DrawHitboxes(_spriteBatch);
-            //
-
-            _spriteBatch.End();
-
-            _spriteBatch.Begin(samplerState: SamplerState.PointClamp); // no transform
-            _statusDisplay.Draw(_spriteBatch);
-            CurTime.Draw(_spriteBatch);
-            if (!bog.InBog) minimap.Draw(_spriteBatch, player.Position); //the minimap only covers the main 3x3 map
-            weaponHotbar.Draw(_spriteBatch);
-            itemHotbar.Draw(_spriteBatch);
-            if (PauseGameOn)
-            {
-                pauseMenu.Draw(_spriteBatch);
-            }
-            CurrentDialogue.Draw(_spriteBatch, new Vector2(middleOfScreen.X, middleOfScreen.Y+roomHeight/4)); //draw 3/4 down screen in middle
-            deathHandler.Draw(_spriteBatch);
-            _spriteBatch.End();
-
+            StateManager.Draw(gameTime, _spriteBatch);
             base.Draw(gameTime);
-        }
-
-        public void StartGame()
-        {
-            State = GameState.Playing;
-            controllers[controllerNames[0]] = new KeyboardController(this, ControllerMode.MovementMode);
-            controllers[controllerNames[1]] = new GamePadController(PlayerIndex.One, this, ControllerMode.MovementMode);
-            roomManager.CurrentRoom.Activate();
-        }
-        public void AddLogsToFire(int amount)
-        {
-            LogsInFire += amount;
-            if (LogsInFire >= LogsNeeded) EndGame();
-        }
-
-        public void EndGame()
-        {
-            State = GameState.End;
-            controllers[controllerNames[0]] = new KeyboardController(this, ControllerMode.EndMode);
-            controllers[controllerNames[1]] = new GamePadController(PlayerIndex.One, this, ControllerMode.EndMode);
-            roomManager.CurrentRoom.Deactivate();
-            Playlist.Instance.ChangeSong(SongName.EndTheme, false);
         }
 
         public void ResetGame()
         {
             Initialize();
-        }
-        public void TogglePause()
-        {
-            if (PauseGameOn)
-            {
-                PauseGameOn = false;
-                controllers[controllerNames[0]] = new KeyboardController(this, ControllerMode.MovementMode);
-                controllers[controllerNames[1]] = new GamePadController(PlayerIndex.One, this, ControllerMode.MovementMode);
-            }
-            else
-            {
-                PauseGameOn = true;
-                controllers[controllerNames[0]] = new KeyboardController(this, ControllerMode.PauseMode);
-                controllers[controllerNames[1]] = new GamePadController(PlayerIndex.One, this, ControllerMode.PauseMode);
-            }
-            
-        }
-        public void HandleDialogue()
-        {
-            if (!DialogueMode)
-            {
-                DialogueMode = true;
-                controllers[controllerNames[0]] = new KeyboardController(this, ControllerMode.DialogueMode);
-                controllers[controllerNames[1]] = new GamePadController(PlayerIndex.One, this, ControllerMode.DialogueMode);
-            }
-            else
-            {
-                if (!CurrentDialogue.Next())
-                {
-                    CurrentDialogue = new NoDialogue();
-                    DialogueMode = false;
-                    controllers[controllerNames[0]] = new KeyboardController(this, ControllerMode.MovementMode);
-                    controllers[controllerNames[1]] = new GamePadController(PlayerIndex.One, this, ControllerMode.MovementMode);
-                }
-                else SoundEffectFactory.Instance.PlaySoundEffect(SoundName.Dialogue, true);
-            }
         }
     }
 }

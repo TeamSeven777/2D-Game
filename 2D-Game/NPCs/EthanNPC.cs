@@ -51,7 +51,7 @@ namespace _2D_Game
             RoomCollisionHandler.Instance.myGame.CurrentDialogue =
                 DialogueFactory.Instance.CreateEthanDialogue(DialogueIndex);
 
-            RoomCollisionHandler.Instance.myGame.HandleDialogue();
+            RoomCollisionHandler.Instance.myGame.StateManager.HandleDialogue();
 
             SoundEffectFactory.Instance.PlaySoundEffect(
                 SoundName.Dialogue, true);
