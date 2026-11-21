@@ -21,21 +21,20 @@ namespace _2D_Game
         //Hitbox
         public IHitbox Hitbox { get; set; }
         public ICollisionHandler CollisionHandler { get; set; }
-        private int hbWidth = 0;
-        private int hbHeight = 0;
-        private int attackHBsize = 40;
+        private int hbWidth = 40;    // always hittable so the player's projectiles can land
+        private int hbHeight = 40;
 
         // Chasing
         private float chaseRange = 250f; // how close the player has to be before the mosquito follows
         private float chaseSpeed = 2f;
         private bool chasing = false;
 
-        // Spin attack
-        private float attackRangeX = 50f;             // how close the player has to be before the mosquito spins
-        private float attackRangeYTop = 50f;
-        private float attackRangeYBottom = 85f;
+        // Keeping distance
+        private float minDistance = 130f;   
+        private float maxDistance = 180f;  
+
+        // Spin (plays every time the mosquito shoots)
         private const double SpinDuration = 0.5;     // seconds for one full spin
-        private const double SpinCooldown = 1.0;     // seconds to wait after a spin before spinning again
         private bool spinning = false;
         private double spinTimer = 0;
 
@@ -84,56 +83,44 @@ namespace _2D_Game
         }
         public void Update(GameTime gameTime, Vector2 playerPosition)
         {
-            spinTimer += gameTime.ElapsedGameTime.TotalSeconds;
             soundTimer.Update(gameTime);
+
             if (spinning)
             {
-                //stay in place and turn one full circle over SpinDuration
+                //turn one full circle over SpinDuration (movement keeps going while spinning)
+                spinTimer += gameTime.ElapsedGameTime.TotalSeconds;
                 sprite.Rotation = (float)(spinTimer / SpinDuration * MathHelper.TwoPi);
-                if (spinTimer < SpinDuration)
-                {
-                    hbWidth = hbHeight = attackHBsize;
-                    Hitbox.BoundingBox = new Rectangle((int)(Position.X + sprite.Origin.X - hbWidth / 2), (int)(Position.Y + sprite.Origin.Y - hbHeight / 2), hbWidth, hbHeight);
-                }
                 if (spinTimer >= SpinDuration)
                 {
                     spinning = false;
                     spinTimer = 0;
                     sprite.Rotation = 0;
-                    hbWidth = hbHeight = 0;
                 }
-                sprite.Update(gameTime);
-                return;
             }
 
             float distance = Vector2.Distance(Position + sprite.Origin, playerPosition);
-            float distanceX = Math.Abs(Position.X + sprite.Origin.X - playerPosition.X);
-            float distanceY = Math.Abs(Position.Y + sprite.Origin.Y - playerPosition.Y);
-            float facingX; float facingY = playerPosition.Y - Position.Y - sprite.Origin.Y;
+            float facingX;
 
-            if (distanceX < attackRangeX && ((facingY > 0 && distanceY < attackRangeYTop) || (facingY <0 && distanceY < attackRangeYBottom)))
+            if (distance < chaseRange)
             {
                 chasing = true;
-                facingX = playerPosition.X - Position.X - sprite.Origin.X;
-                //close enough, so spin once the cooldown is over (and hold still until then)
-                if (spinTimer >= SpinCooldown)
-                {
-                    spinning = true;
-                    spinTimer = 0;
-                }
-            }
-            else if (distance < chaseRange)
-            {
-                chasing = true;
-                Vector2 toPlayer = playerPosition - Position;
-                facingX = toPlayer.X;
-                toPlayer.Normalize(); //turn it into a direction with length 1
-                Position += toPlayer * chaseSpeed;
+                Vector2 toPlayer = playerPosition - (Position + sprite.Origin);
+                facingX = toPlayer.X; //always face the player while chasing
+                if (toPlayer != Vector2.Zero) toPlayer.Normalize(); //turn it into a direction with length 1
 
-                if (ShootCooldown == 0)
+                //hover at a safe distance: back off if too close, move in if too far
+                if (distance < minDistance)
+                    Position -= toPlayer * chaseSpeed;
+                else if (distance > maxDistance)
+                    Position += toPlayer * chaseSpeed;
+
+                if (ShootCooldown <= 0)
                 {
                     EnemyProjectileHandler.Instance.Add(this);
                     ShootCooldown = MaxShootCooldown;
+                    //spin every time a projectile is fired
+                    spinning = true;
+                    spinTimer = 0;
                 }
                 else ShootCooldown--;
             }

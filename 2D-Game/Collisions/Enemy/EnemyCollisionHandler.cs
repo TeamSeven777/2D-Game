@@ -39,6 +39,8 @@ namespace _2D_Game
                 switch (collider.Type)
                 {
                     case (HitBoxType.PlayerAttack):
+                        //Mosquitoes can only be hit by projectiles
+                        if (enemy is Mosquito) break;
                         if ((hbOwner is ITool collidedTool) && collidedTool.GetTool() != Tool.Interact) {
                             int knockback; int dmg = stickDmg;
                             if (collidedTool.GetTool() == Tool.Fist)
