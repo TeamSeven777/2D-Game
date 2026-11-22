@@ -9,13 +9,13 @@ using System.Threading.Tasks;
 
 namespace _2D_Game
 {
-    public class Boomerang : ITool
+    public class Boomerang : IRangedTool
     {
         public Direction direction { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
         public Boomerang() 
         {
-            SoundEffectFactory.Instance.PlaySoundEffect(SoundName.Boomerang, false);
+            
         }
         public void Draw(SpriteBatch spriteBatch, Vector2 position)
         {
@@ -25,7 +25,10 @@ namespace _2D_Game
         {
             return Tool.Boomerang;
         }
-
+        public IProjectile CreateProjectile(Vector2 pos)
+        {
+            return new PlayerProjectileBoomerang(pos, new Vector2(0, 0), ProjectileSpriteFactory.Instance.CreatePlayerProjectile(Tool.Boomerang));
+        }
         public void Update(GameTime gameTime)
         {
             

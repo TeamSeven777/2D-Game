@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace _2D_Game
 {
-    public class Slingshot : ITool, IHitboxOwner
+    public class Slingshot : IRangedTool
     {
         public IHitbox Hitbox {  get; set; }
         public Direction direction { get; set; }
@@ -23,6 +23,11 @@ namespace _2D_Game
         {
 
         }
+        public IProjectile CreateProjectile(Vector2 pos)
+        {
+            return new PlayerProjectilePebble(pos, new Vector2(0, 0), ProjectileSpriteFactory.Instance.CreatePlayerProjectile(Tool.Slingshot));
+        }
+
         public void Draw(SpriteBatch spriteBatch, Vector2 position) { }
     }
 }

@@ -11,7 +11,7 @@ namespace _2D_Game
     {
         //Weapon, then Ammo
         private Dictionary<Tool, int> Weapons = new();
-        private readonly List<Tool> SelectedWeapon = new();
+        private readonly List<IRangedTool> SelectedWeapon = new();
         private int currentIndex;
         private const int InitialAmmo = 5;
         public bool UnlimitedAmmo = false;
@@ -40,9 +40,9 @@ namespace _2D_Game
             }
             if (SelectedWeapon.Count <= 0)
             {
-                SelectedWeapon.Add(Tool.Slingshot);
-                SelectedWeapon.Add(Tool.Boomerang);
-                SelectedWeapon.Add(Tool.Dynamite);
+                SelectedWeapon.Add(new Slingshot());
+                SelectedWeapon.Add(new Boomerang());
+                SelectedWeapon.Add(new Dynamite());
             }
             myGame = game;
         }
@@ -55,10 +55,11 @@ namespace _2D_Game
             }
         }
 
-        public void AddWeapon(Tool tool, int ammo)
+        public void AddWeapon(ITool tool, int ammo, bool isRanged = false)
         {
-            Weapons.Add(tool, ammo);
-            SelectedWeapon.Add(tool);
+            Weapons.Add(tool.GetTool(), ammo);
+            if(isRanged)
+                SelectedWeapon.Add((IRangedTool)tool);
         }
 
         public void ChangeAmmo(Tool tool, int ammo)
@@ -99,7 +100,7 @@ namespace _2D_Game
         /// Returns the weapons thats currently selected
         /// </summary>
         /// <returns></returns>
-        public Tool GetTop()
+        public IRangedTool GetTop()
         {
             return SelectedWeapon[currentIndex];
         }

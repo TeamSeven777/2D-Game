@@ -58,7 +58,7 @@ namespace _2D_Game
             }
         }
 
-        public void Add()
+        public void Add(IProjectile projectile)
         {
 
         }

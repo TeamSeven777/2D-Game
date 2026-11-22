@@ -19,7 +19,7 @@ namespace _2D_Game
 
         public void Draw(SpriteBatch spr);
 
-        public void Add();
+        public void Add(IProjectile projectile);
 
         public void Remove(IHitboxOwner x);
 

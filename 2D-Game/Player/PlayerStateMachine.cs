@@ -44,10 +44,6 @@ namespace _2D_Game
                 direction = dir;
             }
         }
-        public void ChangeTool(Tool tool)
-        {
-            Player.CurrentRangedWeapon = tool;
-        }
 
         public void UseTool(Tool tool)
         {
@@ -67,7 +63,7 @@ namespace _2D_Game
                     toolEquiped = new Boomerang();
                     break;
                 case Tool.Dynamite:
-                    toolEquiped = new Dyanmite();
+                    toolEquiped = new Dynamite();
                     break;
                 case Tool.Interact:
                     toolEquiped = new InteractTool(this);
