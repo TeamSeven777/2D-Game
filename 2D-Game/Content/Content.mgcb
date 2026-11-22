@@ -232,6 +232,20 @@
 /processorParam:Version=3.8.5.0
 /build:Images/startScreen.png
 
+#begin Music/Billie Jean (shortened).mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/processorParam:Version=3.8.5.0
+/build:Music/Billie Jean (shortened).mp3
+
+#begin Music/Billie Jean.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/processorParam:Version=3.8.5.0
+/build:Music/Billie Jean.mp3
+
 #begin Music/cozyFire.wav
 /importer:WavImporter
 /processor:SongProcessor

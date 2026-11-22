@@ -181,3 +181,7 @@ C:\Users\edwei\OneDrive\Documents\GitHub\2D-Game\2D-Game\bin\Debug\net9.0\Conten
 C:\Users\edwei\OneDrive\Documents\GitHub\2D-Game\2D-Game\bin\Debug\net9.0\Content\Sprites\fishinghole.xnb
 C:\Users\edwei\OneDrive\Documents\GitHub\2D-Game\2D-Game\bin\Debug\net9.0\Content\Music\maze.xnb
 C:\Users\edwei\OneDrive\Documents\GitHub\2D-Game\2D-Game\bin\Debug\net9.0\Content\Music\maze.ogg
+C:\Users\edwei\OneDrive\Documents\GitHub\2D-Game\2D-Game\bin\Debug\net9.0\Content\Music\Billie Jean.ogg
+C:\Users\edwei\OneDrive\Documents\GitHub\2D-Game\2D-Game\bin\Debug\net9.0\Content\Music\Billie Jean.xnb
+C:\Users\edwei\OneDrive\Documents\GitHub\2D-Game\2D-Game\bin\Debug\net9.0\Content\Music\Billie Jean (shortened).ogg
+C:\Users\edwei\OneDrive\Documents\GitHub\2D-Game\2D-Game\bin\Debug\net9.0\Content\Music\Billie Jean (shortened).xnb

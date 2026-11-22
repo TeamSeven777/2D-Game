@@ -18,7 +18,7 @@ namespace _2D_Game
         //gets songs from Playlist and SFX from SoundEffectFactory
 
         private readonly List<SoundEffectInstance> activeSoundEffectInstances;
-        private Song currentSong;     
+        private Song currentSong;  private Song previousSong;   
         private float songVolume;
         private float songVolumeNotch = .1f;
         private float sfxVolume = .5f; //tweak as needed
@@ -32,15 +32,27 @@ namespace _2D_Game
             songVolume = .2f;
             previousSongVolume = songVolume;
             MediaPlayer.Volume = songVolume;
-
         }
         public void PlaySong(Song song, bool loops)
         {
             //switch song being played to song 
             if (!song.Equals(currentSong)) 
             {
+                previousSong = currentSong;
                 MediaPlayer.Play(song);
                 currentSong = song;
+            }
+            MediaPlayer.IsRepeating = loops;
+        }
+        public void PlayPreviousSong(bool loops)
+        {
+            //switch song being played to song 
+            if (previousSong != null && !previousSong.Equals(currentSong))
+            {
+                Song temp = previousSong;                
+                MediaPlayer.Play(previousSong);
+                previousSong = currentSong;
+                currentSong = temp;
             }
             MediaPlayer.IsRepeating = loops;
         }

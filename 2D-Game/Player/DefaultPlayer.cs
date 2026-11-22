@@ -35,6 +35,7 @@ namespace _2D_Game
         private bool hasIFrames = false;
         private bool playerDead = false;
         public ITool toolUsed;
+        private Timer MJTimer; private bool MJMode = false;
 
         /// <summary>
         /// Creates a player object with sprites given in playerSpriteSheet
@@ -59,6 +60,7 @@ namespace _2D_Game
             DisabledDirections = new HashSet<Direction>();
             MovingDirections = new HashSet<Direction>();
             toolUsed = new NoTool();
+            MJTimer = new Timer(1.5);
         }
 
         /// <summary>
@@ -73,6 +75,21 @@ namespace _2D_Game
                 Position = NextPosition;
                 if (PreviousPosition != Position) stateMachine.Moving = true;
                 else stateMachine.Moving = false;
+                if (MovingDirections.Count == 2 && (MovingDirections.Contains(Direction.Left) && MovingDirections.Contains(Direction.Right)) || (MovingDirections.Contains(Direction.Up) && MovingDirections.Contains(Direction.Down)))
+                {                    
+                    MJTimer.Update(gt);
+                    if (MJTimer.Ringing)
+                    {
+                        MJMode = true;
+                        Playlist.Instance.ChangeSong(SongName.BillieJean, true);
+                    }
+                }
+                else if(MJMode)
+                {
+                    MJTimer.Reset();
+                    Playlist.Instance.PlayPreviousSong(true);
+                    MJMode = false;
+                }
 
                 //Player will be damaged based on duration
                 if (hasIFrames)
