@@ -12,7 +12,7 @@ namespace _2D_Game
     /*
      * Create a list of hitboxes to display visually, for debugging purposes.
      */
-    public class HitboxMode
+    public class HitboxDisplayMode
 {
         private Game1 myGame;
         private List<IHitbox> boxes;
@@ -22,7 +22,7 @@ namespace _2D_Game
         private bool HitboxesOn = false;
         private Color hitboxColor;
         
-        public HitboxMode(Game1 game) {
+        public HitboxDisplayMode(Game1 game) {
             hitboxTexture = new Texture2D(game.GraphicsDevice, 1, 1);
             hitboxTexture.SetData<Color>(new Color[] { Color.White });
             myGame = game;
