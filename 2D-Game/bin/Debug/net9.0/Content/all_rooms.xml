@@ -241,6 +241,7 @@
 		  <Entity Type="FenceEW" X="0" Y="0" YSize="318"  EndCorners="false"/>
 		  <Entity Type="Door" X="0" Y="450"/>
 		  <Entity Type="FenceEW" X="0" Y="532" YSize="318"  EndCorners="false"/>
+		  <Entity Type="Hurt_Block" X="100" Y="100" />
 	  </Obstacles>
 	<Enemies/>
 	<NPCs/>

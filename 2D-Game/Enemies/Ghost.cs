@@ -18,9 +18,9 @@ namespace _2D_Game
         //Hitbox
         public IHitbox Hitbox { get; set; }
         public ICollisionHandler CollisionHandler { get; set; }
-        private int hbWidth = 50;
-        private int hbHeight = 50;
-        private const int neutralHb = 50;
+        private int hbWidth = 25;
+        private int hbHeight = 25;
+        private const int neutralHb = 25;
         private const int attackHb = 100;
 
         // Chasing
