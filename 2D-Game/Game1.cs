@@ -160,7 +160,6 @@ namespace _2D_Game
             StateManager.Draw(gameTime, _spriteBatch);
             base.Draw(gameTime);
         }
-
         public void ResetGame()
         {
             Initialize();
