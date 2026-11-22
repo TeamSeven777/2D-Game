@@ -38,7 +38,7 @@ namespace _2D_Class
         public void HandleInteraction()
         {
             var selectedItem = ItemInventory.Instance.GetSelectedItem();
-            if (selectedItem != null && selectedItem.Name.Equals("Key"))
+            if (selectedItem != null && selectedItem.Name.Equals("Key") && !IsOpen)
             {
                 RoomCollisionHandler.Instance.Remove(this);
                 selectedItem.Use();

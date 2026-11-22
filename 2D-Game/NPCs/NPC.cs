@@ -13,7 +13,6 @@ namespace _2D_Game
         private double IFramesTimer = 0;
         private ISprite sprite;        
         private Vector2 startPosition;
-        private double elapsedSeconds;
 
         //Hitbox
         public IHitbox Hitbox { get; set; }

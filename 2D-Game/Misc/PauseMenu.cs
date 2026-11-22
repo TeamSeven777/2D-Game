@@ -15,11 +15,11 @@ namespace _2D_Game
 {
         GraphicsDevice GD;
         Game1 MyGame;
-        Texture2D Button1;
-        Texture2D Button2;
-        Texture2D Button3;
-        Rectangle ExitButtonReigon;
-        Rectangle ResetButtonReigon;
+       // Texture2D Button1;
+        //Texture2D Button2;
+        //Texture2D Button3;
+        //Rectangle ExitButtonReigon;
+       // Rectangle ResetButtonReigon;
         List<Tuple<Rectangle,ButtonType, Texture2D>> ButtonReigons;
         Texture2D Screen;
         SpriteFont font;

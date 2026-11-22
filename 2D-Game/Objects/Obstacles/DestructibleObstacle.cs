@@ -15,7 +15,7 @@ namespace _2D_Game
         public Vector2 OriginPos { get; set; }
         public ISprite Sprite { get; set; }
         public bool MarkedForRemoval { get; set; }
-        private double cooldownTimer = 0.21;
+        //private double cooldownTimer = 0.21;
         private const double CooldownDuration = 0.2; // 0.2 seconds (200ms) between switches
 
         /// <summary>

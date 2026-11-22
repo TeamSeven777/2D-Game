@@ -31,19 +31,22 @@ namespace _2D_Game
             HudFont = font;
         }
         public void Update(GameTime gt) {
-            milliseconds += gt.ElapsedGameTime.TotalMilliseconds;
-            if(milliseconds >= 99)
+            if (Active)
             {
-                milliseconds = 0;
-            }
+                milliseconds += gt.ElapsedGameTime.TotalMilliseconds;
+                if (milliseconds >= 99)
+                {
+                    milliseconds = 0;
+                }
 
-            seconds += gt.ElapsedGameTime.TotalSeconds;
-            if(seconds >= 60)
-            {
-                seconds = 0;
-            }
+                seconds += gt.ElapsedGameTime.TotalSeconds;
+                if (seconds >= 60)
+                {
+                    seconds = 0;
+                }
 
-            minutes = gt.TotalGameTime.Minutes;
+                minutes = gt.TotalGameTime.Minutes;
+            }
         }
 
         public void Draw(SpriteBatch sb)

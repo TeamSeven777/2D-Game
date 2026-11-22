@@ -13,14 +13,12 @@ namespace _2D_Game
         private double IFramesTimer = 0;
         private ISprite sprite;
         private Vector2 startPosition;
-        private double elapsedSeconds;
 
         //Hitbox
         public IHitbox Hitbox { get; set; }
         public ICollisionHandler CollisionHandler { get; set; }
         private int hbWidth = 30;
         private int hbHeight = 60;
-        private IDialogue EthanDialogue;
         private int DialogueIndex;
 
         public EthanNPC(ISprite sprite, Vector2 startPosition, int dialogueIndex)

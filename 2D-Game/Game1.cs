@@ -139,7 +139,7 @@ namespace _2D_Game
             bog.LoadContent(Content);
 
             // Load dungeon rooms and pass viewport dimensions
-
+            blockSpriteSheet = null;
             roomManager.LoadDungeon("Content/all_rooms.xml", Content, blockSpriteSheet, roomWidth, roomHeight);
             roomManager.CurrentRoom.Deactivate();
             Playlist.Instance.ChangeSong(SongName.TitleTheme, true);
