@@ -126,43 +126,11 @@ namespace _2D_Game
                 {
                 //Time since the last frame was updated
                 //sprite.Rotation = (float)(spinTimer / SpinDuration * MathHelper.TwoPi);
-                    float endInRadians = MathHelper.ToRadians(EndingDegree);
-                    //If the time that has passed is = or greater than the framerate
-                    //Its time to update the rotation
-                    if (Clockwise && Rotation < endInRadians)
-                        {
-                        //Subtract the rate at which the animation plays
-                        //From the time checking variable
-                        Rotation += RotationSpeed;
-
-                        //The helper variable FrameIndex is used to pause progress on a loop and return
-                        //If needed
-                        if (Rotation >= endInRadians && Loops)
-                        {
-                            Rotation = MathHelper.ToRadians(StartingDegree);
-                        }
-                        else if (Rotation >= endInRadians && !Loops)
-                        {
-                            Paused = true;
-                        }
-                    }
-                    else if (!Clockwise && Rotation > endInRadians)
-                    {
-                        //Subtract the rate at which the animation plays
-                        //From the time checking variable
-                        Rotation -= RotationSpeed;
-
-                        //The helper variable FrameIndex is used to pause progress on a loop and return
-                        //If needed
-                        if (Rotation <= endInRadians && Loops)
-                        {
-                            Rotation = MathHelper.ToRadians(StartingDegree);
-                        }
-                        else if (Rotation <= endInRadians && !Loops)
-                        {
-                            Paused = true;
-                        }
-                    }
+                float endInRadians = MathHelper.ToRadians(EndingDegree);
+                //If the time that has passed is = or greater than the framerate
+                //Its time to update the rotation
+                if (Clockwise && Rotation < endInRadians) RotateClockwise(endInRadians);
+                else if (!Clockwise && Rotation > endInRadians) RotateCounterClockwise(endInRadians);                                          
             }
             }
             /// <summary>
@@ -175,6 +143,41 @@ namespace _2D_Game
 
                 if(!Paused)spriteBatch.Draw(this.Content, position, SourceRectangle, Color, Rotation, Origin, Scale, Effects, LayerDepth);
 
+            }
+
+            private void RotateClockwise(float endInRadians) 
+            {
+                //Subtract the rate at which the animation plays
+                //From the time checking variable
+                Rotation += RotationSpeed;
+
+                //The helper variable FrameIndex is used to pause progress on a loop and return
+                //If needed
+                if (Rotation >= endInRadians && Loops)
+                {
+                    Rotation = MathHelper.ToRadians(StartingDegree);
+                }
+                else if (Rotation >= endInRadians && !Loops)
+                {
+                    Paused = true;
+                }
+            }
+            private void RotateCounterClockwise(float endInRadians) 
+            {
+                //Subtract the rate at which the animation plays
+                //From the time checking variable
+                Rotation -= RotationSpeed;
+
+                //The helper variable FrameIndex is used to pause progress on a loop and return
+                //If needed
+                if (Rotation <= endInRadians && Loops)
+                {
+                    Rotation = MathHelper.ToRadians(StartingDegree);
+                }
+                else if (Rotation <= endInRadians && !Loops)
+                {
+                    Paused = true;
+                }
             }
         }
     }

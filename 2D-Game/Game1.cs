@@ -27,7 +27,7 @@ namespace _2D_Game
         public EnemyManager Enemies;
         public GameTime currentGameTime { get; private set; }
         public GameTime CurrentGameTime => currentGameTime;
-        public HitboxMode hitboxMode;
+        public HitboxDisplayMode hitboxMode;
         public List<IObstacle> boundaries;
         public int worldWidth { get; private set; }
         public int worldHeight { get; private set; }
@@ -132,7 +132,7 @@ namespace _2D_Game
             EnemyProjectileHandler.Instance.Initialize(ref Enemies, ref player);
           
 
-            hitboxMode = new HitboxMode(this);
+            hitboxMode = new HitboxDisplayMode(this);
 
             //bog loading - needs to be initialized after Player and Camera (constructor uses them)
             bog = new Bog(this);
@@ -160,7 +160,6 @@ namespace _2D_Game
             StateManager.Draw(gameTime, _spriteBatch);
             base.Draw(gameTime);
         }
-
         public void ResetGame()
         {
             Initialize();
