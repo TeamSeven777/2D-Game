@@ -38,7 +38,7 @@ namespace _2D_Game
         public Texture2D startScreen { get; private set; }
         public Texture2D endScreen { get; private set; }
         public Texture2D background { get; private set; }
-        private Texture2D blockSpriteSheet, fishingHoleSprite, inventorySlot, highlightSlot;
+        private Texture2D fishingHoleSprite, inventorySlot, highlightSlot;
         private SpriteFont hudFont;
         public Bog bog { get; private set;  }
         public PauseMenu pauseMenu { get; private set; }
@@ -139,8 +139,7 @@ namespace _2D_Game
             bog.LoadContent(Content);
 
             // Load dungeon rooms and pass viewport dimensions
-            blockSpriteSheet = null;
-            roomManager.LoadDungeon("Content/all_rooms.xml", Content, blockSpriteSheet, roomWidth, roomHeight);
+            roomManager.LoadDungeon("Content/all_rooms.xml", Content, roomWidth, roomHeight);
             roomManager.CurrentRoom.Deactivate();
             Playlist.Instance.ChangeSong(SongName.TitleTheme, true);
 

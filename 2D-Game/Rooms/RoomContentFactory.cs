@@ -29,7 +29,7 @@ namespace _2D_Game
 
         private RoomContentFactory() { }
 
-        public void LoadContent(ContentManager content, Texture2D blockSheet)
+        public void LoadContent(ContentManager content)
         {
             // Enemy sprite sheets
             ghostSheet = content.Load<Texture2D>("Sprites/Test-Ghost-Melee-Idle-N");

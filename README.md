@@ -41,7 +41,7 @@ A top down perspective game where the protagonist will explore a dark and spooky
 
 # Game Information 
 
-You play as ?????? in a Forest Campsite trying to find seven logs while collecting other items and dodging Ghosts, Spiders, and Mosquitos.
+You play as Dr. Boggus in a Forest Campsite trying to find seven logs while collecting other items and battling Ghosts, Spiders, and Mosquitos.
 
 | Controls    			|   Keys        |
 | ----------- 			| ------------  |

@@ -62,7 +62,7 @@ namespace _2D_Game
         {
             var inventory = WeaponInventory.Instance;
             List<Tool> weapons = inventory.GetKeys();
-            Tool selectedWeapon = inventory.GetTop();
+            Tool selectedWeapon = inventory.GetTop().GetTool();
 
             for (int i = 0; i < weapons.Count; i++)
             {

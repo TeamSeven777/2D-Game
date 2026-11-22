@@ -26,8 +26,9 @@ namespace _2D_Game
 
             if (gameTime > previousGameTime)
             {
-                myGame.player.UseTool(myGame.player.CurrentRangedWeapon);
-                PlayerProjectileHandler.Instance.Add();
+                myGame.player.UseTool(myGame.player.CurrentRangedWeapon.GetTool());
+                if(WeaponInventory.Instance.GetAmmo(myGame.player.CurrentRangedWeapon.GetTool()) > 0)
+                    PlayerProjectileHandler.Instance.Add(myGame.player.CurrentRangedWeapon.CreateProjectile(myGame.player.Position));
             }
 
             previousGameTime = gameTime + TimeSpan.FromMilliseconds(100);

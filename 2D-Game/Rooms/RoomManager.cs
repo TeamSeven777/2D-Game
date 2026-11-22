@@ -28,7 +28,7 @@ namespace _2D_Game
         /// <param name="blockSheet"></param>
         /// <param name="width"></param>
         /// <param name="height"></param>
-        public void LoadDungeon(string filePath, ContentManager content, Texture2D blockSheet, int width, int height)
+        public void LoadDungeon(string filePath, ContentManager content, int width, int height)
         {
 
             names = ["Door","Sign","Firepit","Door","Moveable_Block","Destructible_Block", "Boundary"];
@@ -36,7 +36,7 @@ namespace _2D_Game
             roomHeight = height;
 
             // Load assets via factory
-            contentFactory.LoadContent(content, blockSheet);
+            contentFactory.LoadContent(content);
             
 
             XDocument doc = XDocument.Load(filePath);

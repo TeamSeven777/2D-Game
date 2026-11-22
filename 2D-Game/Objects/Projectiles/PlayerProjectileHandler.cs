@@ -55,92 +55,33 @@ namespace _2D_Game
         }
 
 
-        public void Add()
+        public void Add(IProjectile projectile)
         {
-            if (Cooldown == 0)
-            {
-                switch (playerRef.CurrentRangedWeapon)
-                {
-                    
-                    case (Tool.Slingshot):
-                        if(WeaponInventory.Instance.GetAmmo(Tool.Slingshot) != 0) {
+            Vector2 TravelingDirection;
                             switch (playerRef.stateMachine.direction)
                             {
                                 case (Direction.Down):
-                                    ActiveProjectiles.Add(new PlayerProjectilePebble(playerRef.Position, new Vector2(0, 10), ProjectileSpriteFactory.Instance.CreatePlayerProjectile(playerRef.CurrentRangedWeapon)));
-                                    Cooldown = 10;
+                                    TravelingDirection = new Vector2(0, -10);
                                     break;
                                 case (Direction.Left):
-                                    ActiveProjectiles.Add(new PlayerProjectilePebble(playerRef.Position, new Vector2(-10, 0), ProjectileSpriteFactory.Instance.CreatePlayerProjectile(playerRef.CurrentRangedWeapon)));
-                                    Cooldown = 10;
+                                    TravelingDirection = new Vector2(-10,0);   
                                     break;
                                 case (Direction.Right):
-                                    ActiveProjectiles.Add(new PlayerProjectilePebble(playerRef.Position, new Vector2(10, 0), ProjectileSpriteFactory.Instance.CreatePlayerProjectile(playerRef.CurrentRangedWeapon)));
-                                    Cooldown = 10;
+                                    TravelingDirection = new Vector2(10,0);
                                     break;
                                 case (Direction.Up):
-                                    ActiveProjectiles.Add(new PlayerProjectilePebble(playerRef.Position, new Vector2(0, -10), ProjectileSpriteFactory.Instance.CreatePlayerProjectile(playerRef.CurrentRangedWeapon)));
-                                    Cooldown = 10;
+                                    TravelingDirection = new Vector2(0, 10);
                                     break;
-                            }    
-
-                        }
-                        break;
-                    case (Tool.Dynamite):
-                        if (WeaponInventory.Instance.GetAmmo(Tool.Dynamite) != 0) {
-                            switch (playerRef.stateMachine.direction)
-                            {
-                                case (Direction.Down):
-                                    ActiveProjectiles.Add(new PlayerProjectileDynamite(playerRef.Position, new Vector2(0, 10), ProjectileSpriteFactory.Instance.CreatePlayerProjectile(playerRef.CurrentRangedWeapon)));
-                                    Cooldown = 10;
+                                default:
+                                    TravelingDirection = new Vector2(0, 0);
                                     break;
-                                case (Direction.Left):
-                                    ActiveProjectiles.Add(new PlayerProjectileDynamite(playerRef.Position, new Vector2(-10, 0), ProjectileSpriteFactory.Instance.CreatePlayerProjectile(playerRef.CurrentRangedWeapon)));
-                                    Cooldown = 10;
-                                    break;
-                                case (Direction.Right):
-                                    ActiveProjectiles.Add(new PlayerProjectileDynamite(playerRef.Position, new Vector2(10, 0), ProjectileSpriteFactory.Instance.CreatePlayerProjectile(playerRef.CurrentRangedWeapon)));
-                                    Cooldown = 10;
-                                    break;
-                                case (Direction.Up):
-                                    ActiveProjectiles.Add(new PlayerProjectileDynamite(playerRef.Position, new Vector2(0, -10), ProjectileSpriteFactory.Instance.CreatePlayerProjectile(playerRef.CurrentRangedWeapon)));
-                                    Cooldown = 10;
-                                    break;
-
                             }
-                        }
-                        break;
-                    case (Tool.Boomerang):
-                        if (WeaponInventory.Instance.GetAmmo(Tool.Boomerang) != 0)
-                        {
-                            switch (playerRef.stateMachine.direction)
-                            {
-                                case (Direction.Down):
-                                    ActiveProjectiles.Add(new PlayerProjectileBoomerang(playerRef.Position, new Vector2(0, 10), ProjectileSpriteFactory.Instance.CreatePlayerProjectile(playerRef.CurrentRangedWeapon)));
-                                    Cooldown = 10;
-                                    break;
-                                case (Direction.Left):
-                                    ActiveProjectiles.Add(new PlayerProjectileBoomerang(playerRef.Position, new Vector2(-10, 0), ProjectileSpriteFactory.Instance.CreatePlayerProjectile(playerRef.CurrentRangedWeapon)));
-                                    Cooldown = 10;
-                                    break;
-                                case (Direction.Right):
-                                    ActiveProjectiles.Add(new PlayerProjectileBoomerang(playerRef.Position, new Vector2(10, 0), ProjectileSpriteFactory.Instance.CreatePlayerProjectile(playerRef.CurrentRangedWeapon)));
-                                    Cooldown = 10;
-                                    break;
-                                case (Direction.Up):
-                                    ActiveProjectiles.Add(new PlayerProjectileBoomerang(playerRef.Position, new Vector2(0, -10), ProjectileSpriteFactory.Instance.CreatePlayerProjectile(playerRef.CurrentRangedWeapon)));
-                                    Cooldown = 10;
-                                    break;
-
-
-                            }
-                        }
-                            break;
-
-                }
-            }
-
+            projectile.TravelingDirection = TravelingDirection;
+            ActiveProjectiles.Add((IHitboxOwner)projectile);
+            Cooldown = 10;
         }
+
+                
 
         public void Remove(IHitboxOwner x)
         {

@@ -31,7 +31,8 @@ namespace _2D_Game
             this.ProjectileSprite = sprite;
             ProjectileSprite.Position = Hitbox.BoundingBox.Center.ToVector2();
             DespawnTimer = 1000;
-           
+            SoundEffectFactory.Instance.PlaySoundEffect(SoundName.Boomerang, false);
+
         }
         //TODO: Make it so that 
         public void Update(GameTime gt)
