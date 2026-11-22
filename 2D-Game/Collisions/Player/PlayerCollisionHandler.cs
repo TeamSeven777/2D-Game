@@ -29,7 +29,7 @@ namespace _2D_Game
         public void HandleCollision(IHitboxOwner hbOwner)
         {
             IHitbox collider = hbOwner.Hitbox;
-            HashSet<Side> resultsOfWillCollide = player.Hitbox.WillCollide(collider);//fix to use willcollide for raycasting, and Is for the standard hitbox.
+            HashSet<Side> resultsOfWillCollide = player.Hitbox.WillCollide(collider);
             HashSet<Side> resultsOfIsCollide = player.Hitbox.IsCollide(collider);
             //First determines if a collision will happen
             if (!resultsOfWillCollide.Contains(Side.None))
@@ -37,36 +37,11 @@ namespace _2D_Game
                 //Then how the collision should be handled
                 switch (collider.Type)
                 {
-                    case (HitBoxType.EnemyAttack):
-                        int knockback = EnemyDamageKnockback;
+                    case (HitBoxType.EnemyAttack):                        
                         goto case (HitBoxType.Enemy);
                     case (HitBoxType.Enemy):
-                        knockback = 0;
-                        //Then which side(s) the collision happened
-                        foreach (Side x in resultsOfWillCollide)
-                        {
-                            switch (x)
-                            {
-                                case (Side.Left):
-                                    player.ToggleAllowedDirection(Direction.Right, false);
-                                    if (!player.DisabledDirections.Contains(Direction.Left)) player.NextPosition.X = player.Position.X - knockback;//only conduct KB if no block in dir.
-                                    break;
-                                case (Side.Right):
-                                    player.ToggleAllowedDirection(Direction.Left, false);
-                                    if (!player.DisabledDirections.Contains(Direction.Right)) player.NextPosition.X = player.Position.X + knockback;
-                                    break;
-                                case (Side.Top):
-                                    player.ToggleAllowedDirection(Direction.Down, false);
-                                    if (!player.DisabledDirections.Contains(Direction.Up)) player.NextPosition.Y = player.Position.Y - knockback;
-                                    break;
-                                case (Side.Bottom):
-                                    player.ToggleAllowedDirection(Direction.Up, false);
-                                    if (!player.DisabledDirections.Contains(Direction.Down)) player.NextPosition.Y = player.Position.Y + knockback;
-                                    break;
-                            }
-                            player.TakeDamage(EnemyBodyDamage);
-                        }
-                            break;
+                        HandleEnemyCollision(hbOwner);
+                        break;
                     case (HitBoxType.EnemyProjectile):
                         player.TakeDamage(EnemyProjectileDamage);
                         //This is NO LONGER DANGEROUS
@@ -81,32 +56,74 @@ namespace _2D_Game
                     case (HitBoxType.DestructibleBlock):
                     case (HitBoxType.MoveableBlock):
                     case (HitBoxType.Block):
-                        if (resultsOfWillCollide.Contains(Side.Left)){
-                            player.ToggleAllowedDirection(Direction.Right, false);
-                            if (!resultsOfIsCollide.Contains(Side.None))
-                                player.Position.X -= player.WalkSpeed;
-                        }
-                        if (resultsOfWillCollide.Contains(Side.Right)){
-                            player.ToggleAllowedDirection(Direction.Left, false);
-                            if (!resultsOfIsCollide.Contains(Side.None))
-                                player.Position.X += player.WalkSpeed;
-                        }
-                        if (resultsOfWillCollide.Contains(Side.Top)){
-                            player.ToggleAllowedDirection(Direction.Down, false);
-                            if (!resultsOfIsCollide.Contains(Side.None))
-                                player.Position.Y -= player.WalkSpeed;
-                        }
-                        if (resultsOfWillCollide.Contains(Side.Bottom)){
-                            player.ToggleAllowedDirection(Direction.Up, false);
-                            if (!resultsOfIsCollide.Contains(Side.None))
-                                player.Position.Y += player.WalkSpeed;
-                        }
+                        HandleBlockCollision(hbOwner);
                         break;
                     
                 }
             }
 
 
+        }
+
+        private void HandleEnemyCollision(IHitboxOwner hbOwner)
+        {
+            IHitbox collider = hbOwner.Hitbox;
+            int knockback = EnemyDamageKnockback;
+            HashSet<Side> resultsOfWillCollide = player.Hitbox.WillCollide(collider);
+            //Then which side(s) the collision happened
+            foreach (Side x in resultsOfWillCollide)
+            {
+                switch (x)
+                {
+                    case (Side.Left):
+                        player.ToggleAllowedDirection(Direction.Right, false);
+                        if (!player.DisabledDirections.Contains(Direction.Left)) player.NextPosition.X = player.Position.X - knockback;//only conduct KB if no block in dir.
+                        break;
+                    case (Side.Right):
+                        player.ToggleAllowedDirection(Direction.Left, false);
+                        if (!player.DisabledDirections.Contains(Direction.Right)) player.NextPosition.X = player.Position.X + knockback;
+                        break;
+                    case (Side.Top):
+                        player.ToggleAllowedDirection(Direction.Down, false);
+                        if (!player.DisabledDirections.Contains(Direction.Up)) player.NextPosition.Y = player.Position.Y - knockback;
+                        break;
+                    case (Side.Bottom):
+                        player.ToggleAllowedDirection(Direction.Up, false);
+                        if (!player.DisabledDirections.Contains(Direction.Down)) player.NextPosition.Y = player.Position.Y + knockback;
+                        break;
+                }
+                player.TakeDamage(EnemyBodyDamage);
+            }
+        }
+        private void HandleBlockCollision(IHitboxOwner hbOwner)
+        {
+            IHitbox collider = hbOwner.Hitbox;
+            HashSet<Side> resultsOfWillCollide = player.Hitbox.WillCollide(collider);
+            HashSet<Side> resultsOfIsCollide = player.Hitbox.IsCollide(collider);
+            if (resultsOfWillCollide.Contains(Side.Left))
+            {
+                player.ToggleAllowedDirection(Direction.Right, false);
+                if (!resultsOfIsCollide.Contains(Side.None))
+                    player.Position.X -= player.WalkSpeed;
+            }
+            if (resultsOfWillCollide.Contains(Side.Right))
+            {
+                player.ToggleAllowedDirection(Direction.Left, false);
+                if (!resultsOfIsCollide.Contains(Side.None))
+                    player.Position.X += player.WalkSpeed;
+            }
+            if (resultsOfWillCollide.Contains(Side.Top))
+            {
+                player.ToggleAllowedDirection(Direction.Down, false);
+                if (!resultsOfIsCollide.Contains(Side.None))
+                    player.Position.Y -= player.WalkSpeed;
+            }
+            if (resultsOfWillCollide.Contains(Side.Bottom))
+            {
+                player.ToggleAllowedDirection(Direction.Up, false);
+                if (!resultsOfIsCollide.Contains(Side.None))
+                    player.Position.Y += player.WalkSpeed;
+            }
         }
     }
 }
