@@ -69,6 +69,11 @@ namespace _2D_Game
         {
             IHitbox collider = hbOwner.Hitbox;
             int knockback = EnemyDamageKnockback;
+            if (!player.TakeDamage(EnemyBodyDamage))
+            {
+                knockback = 0; //if IFrames, no more knockback.
+                if (hbOwner is IEnemy enemy) enemy.Delay((float)player.IFrames);//stop enemy action until IFrames end.
+            }
             HashSet<Side> resultsOfWillCollide = player.Hitbox.WillCollide(collider);
             //Then which side(s) the collision happened
             foreach (Side x in resultsOfWillCollide)
@@ -92,7 +97,6 @@ namespace _2D_Game
                         if (!player.DisabledDirections.Contains(Direction.Down)) player.NextPosition.Y = player.Position.Y + knockback;
                         break;
                 }
-                player.TakeDamage(EnemyBodyDamage);
             }
         }
         private void HandleBlockCollision(IHitboxOwner hbOwner)

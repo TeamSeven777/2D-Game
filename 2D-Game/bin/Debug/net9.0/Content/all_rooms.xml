@@ -241,12 +241,150 @@
 		  <Entity Type="FenceEW" X="0" Y="0" YSize="318"  EndCorners="false"/>
 		  <Entity Type="Door" X="0" Y="450"/>
 		  <Entity Type="FenceEW" X="0" Y="532" YSize="318"  EndCorners="false"/>
-		  <Entity Type="Hurt_Block" X="100" Y="100" />
+		  <Entity Type="Hurt_Block" X="25" Y="350" />
+		  <Entity Type="Hurt_Block" X="25" Y="300" />
+		  <Entity Type="Hurt_Block" X="25" Y="250" />
+		  <Entity Type="Hurt_Block" X="25" Y="200" />
+		  <Entity Type="Hurt_Block" X="25" Y="150" />
+		  <Entity Type="Hurt_Block" X="25" Y="90" />
+		  <Entity Type="Hurt_Block" X="75" Y="90" />
+		  <Entity Type="Hurt_Block" X="125" Y="90" />
+		  <Entity Type="Hurt_Block" X="175" Y="90" />
+		  <Entity Type="Hurt_Block" X="225" Y="90" />
+		  <Entity Type="Hurt_Block" X="275" Y="90" />
+		  <Entity Type="Hurt_Block" X="325" Y="90" />
+		  <Entity Type="Hurt_Block" X="375" Y="90" />
+		  <Entity Type="Hurt_Block" X="425" Y="90" />
+		  <Entity Type="Hurt_Block" X="475" Y="90" />
+		  <Entity Type="Hurt_Block" X="475" Y="150" />
+		  <Entity Type="Hurt_Block" X="475" Y="200" />
+		  <Entity Type="Hurt_Block" X="475" Y="250" />
+		  <Entity Type="Hurt_Block" X="475" Y="300" />
+		  <Entity Type="Hurt_Block" X="475" Y="350" />
+		  <Entity Type="Hurt_Block" X="475" Y="400" />
+		  <Entity Type="Hurt_Block" X="475" Y="450" />
+		  <Entity Type="Hurt_Block" X="475" Y="500" />
+		  <Entity Type="Hurt_Block" X="425" Y="300" />
+		  <Entity Type="Hurt_Block" X="375" Y="300" />
+		  <Entity Type="Hurt_Block" X="25" Y="700" />
+		  <Entity Type="Hurt_Block" X="25" Y="650" />
+		  <Entity Type="Hurt_Block" X="25" Y="600" />
+		  <Entity Type="Hurt_Block" X="75" Y="700" />
+		  <Entity Type="Hurt_Block" X="125" Y="700" />
+		  <Entity Type="Hurt_Block" X="175" Y="700" />
+		  <Entity Type="Hurt_Block" X="225" Y="700" />
+		  <Entity Type="Hurt_Block" X="275" Y="700" />
+		  <Entity Type="Hurt_Block" X="325" Y="700" />
+		  <Entity Type="Hurt_Block" X="375" Y="700" />
+		  <Entity Type="Hurt_Block" X="425" Y="700" />
+		  <Entity Type="Hurt_Block" X="475" Y="700" />
+		  <Entity Type="Hurt_Block" X="525" Y="700" />
+		  <Entity Type="Hurt_Block" X="575" Y="700" />
+		  <Entity Type="Hurt_Block" X="625" Y="700" />
+		  <Entity Type="Hurt_Block" X="675" Y="700" />
+		  <Entity Type="Hurt_Block" X="725" Y="700" />
+		  <Entity Type="Hurt_Block" X="775" Y="700" />
+		  <Entity Type="Hurt_Block" X="825" Y="700" />
+		  <Entity Type="Hurt_Block" X="875" Y="700" />
+		  <Entity Type="Hurt_Block" X="925" Y="700" />
+		  <Entity Type="Hurt_Block" X="975" Y="700" />
+		  <Entity Type="Hurt_Block" X="1025" Y="700" />
+		  <Entity Type="Hurt_Block" X="1075" Y="700" />		  
+		  <Entity Type="Hurt_Block" X="175" Y="350" />
+		  <Entity Type="Hurt_Block" X="175" Y="300" />
+		  <Entity Type="Hurt_Block" X="175" Y="260" />
+		  <Entity Type="Hurt_Block" X="175" Y="450" />
+		  <Entity Type="Hurt_Block" X="175" Y="400" />
+		  <Entity Type="Hurt_Block" X="175" Y="500" />
+		  <Entity Type="Hurt_Block" X="225" Y="500" />
+		  <Entity Type="Hurt_Block" X="275" Y="500" />
+		  <Entity Type="Hurt_Block" X="325" Y="500" />
+		  <Entity Type="Hurt_Block" X="325" Y="550" />
+		  <Entity Type="Hurt_Block" X="325" Y="600" />
+		  <Entity Type="Hurt_Block" X="325" Y="650" />
+
+
+		  <Entity Type="Hurt_Block" X="575" Y="200" />
+		  <Entity Type="Hurt_Block" X="575" Y="250" />
+		  <Entity Type="Hurt_Block" X="575" Y="300" />
+		  <Entity Type="Hurt_Block" X="575" Y="350" />
+		  <Entity Type="Hurt_Block" X="575" Y="400" />
+		  <Entity Type="Hurt_Block" X="575" Y="450" />
+		  <Entity Type="Hurt_Block" X="575" Y="500" />
+		  <Entity Type="Hurt_Block" X="575" Y="550" />
+		  <Entity Type="Hurt_Block" X="575" Y="600" />
+		  <Entity Type="Hurt_Block" X="575" Y="650" />
+
+		  <Entity Type="Hurt_Block" X="675" Y="150" />
+		  <Entity Type="Hurt_Block" X="675" Y="90" />
+		  <Entity Type="Hurt_Block" X="675" Y="200" />
+		  <Entity Type="Hurt_Block" X="675" Y="250" />
+		  <Entity Type="Hurt_Block" X="675" Y="300" />
+		  <Entity Type="Hurt_Block" X="675" Y="340" />
+
+		  <Entity Type="Hurt_Block" X="675" Y="660" />
+		  <Entity Type="Hurt_Block" X="675" Y="500" />
+		  <Entity Type="Hurt_Block" X="675" Y="550" />
+		  <Entity Type="Hurt_Block" X="675" Y="600" />
+		  
+		  <Entity Type="Hurt_Block" X="775" Y="200" />
+		  <Entity Type="Hurt_Block" X="775" Y="250" />
+		  <Entity Type="Hurt_Block" X="775" Y="300" />
+		  <Entity Type="Hurt_Block" X="775" Y="350" />
+		  <Entity Type="Hurt_Block" X="775" Y="400" />
+		  <Entity Type="Hurt_Block" X="775" Y="450" />
+		  <Entity Type="Hurt_Block" X="775" Y="500" />
+		  <Entity Type="Hurt_Block" X="775" Y="540" />
+
+		  <Entity Type="Hurt_Block" X="875" Y="150" />
+		  <Entity Type="Hurt_Block" X="875" Y="90" />
+		  <Entity Type="Hurt_Block" X="875" Y="200" />
+		  <Entity Type="Hurt_Block" X="875" Y="250" />
+		  <Entity Type="Hurt_Block" X="875" Y="300" />
+		  <Entity Type="Hurt_Block" X="875" Y="350" />
+		  <Entity Type="Hurt_Block" X="875" Y="400" />
+		  <Entity Type="Hurt_Block" X="875" Y="450" />
+		  <Entity Type="Hurt_Block" X="875" Y="500" />
+		  <Entity Type="Hurt_Block" X="825" Y="540" />
+		  <Entity Type="Hurt_Block" X="875" Y="540" />
+
+		  <Entity Type="Hurt_Block" X="925" Y="150" />
+		  <Entity Type="Hurt_Block" X="925" Y="90" />
+		  <Entity Type="Hurt_Block" X="925" Y="200" />
+		  <Entity Type="Hurt_Block" X="925" Y="250" />
+		  <Entity Type="Hurt_Block" X="925" Y="300" />
+		  <Entity Type="Hurt_Block" X="925" Y="350" />
+		  <Entity Type="Hurt_Block" X="925" Y="400" />
+		  <Entity Type="Hurt_Block" X="925" Y="450" />
+		  <Entity Type="Hurt_Block" X="925" Y="500" />
+		  <Entity Type="Hurt_Block" X="925" Y="540" />
+
+		  <Entity Type="Hurt_Block" X="1075" Y="90" />
+		  <Entity Type="Hurt_Block" X="1075" Y="150" />
+		  <Entity Type="Hurt_Block" X="1075" Y="200" />
+		  <Entity Type="Hurt_Block" X="1075" Y="250" />
+		  <Entity Type="Hurt_Block" X="1075" Y="300" />
+		  <Entity Type="Hurt_Block" X="1075" Y="350" />
+		  <Entity Type="Hurt_Block" X="1075" Y="400" />
+		  <Entity Type="Hurt_Block" X="1075" Y="450" />
+		  <Entity Type="Hurt_Block" X="1075" Y="500" />
+		  <Entity Type="Hurt_Block" X="1075" Y="550" />
+		  <Entity Type="Hurt_Block" X="1075" Y="600" />
+		  <Entity Type="Hurt_Block" X="1075" Y="650" />
+
+		  <Entity Type="Hurt_Block" X="1025" Y="200" />
+
+		  <Entity Type="Hurt_Block" X="975" Y="350" />
+
+		  <Entity Type="Hurt_Block" X="1025" Y="500" />
+		  <Entity Type="Hurt_Block" X="1025" Y="550" />
+		  <Entity Type="Hurt_Block" X="1025" Y="600" />
+		  <Entity Type="Hurt_Block" X="1025" Y="650" />
 	  </Obstacles>
 	<Enemies/>
 	<NPCs/>
 	<Items>
-    <Entity Type="Log" X="900" Y="150" />
+    <Entity Type="Log" X="1000" Y="100" />
   </Items>
   </Room>
 

@@ -37,7 +37,7 @@ namespace _2D_Game
         //Projectile
         private double ShootCooldown = 500;
         private const double MaxShootCooldown = 500;
-
+        private Timer ActionDelay;
         public Spider(AnimatedSprite sprite, Vector2 startPosition)
         {
             this.sprite = sprite;
@@ -47,7 +47,7 @@ namespace _2D_Game
             Health = 2;
             //spin around the middle of the frame instead of the top-left corner
             sprite.Origin = new Vector2(sprite.SourceRectangle.Width / 2, sprite.SourceRectangle.Height / 2);
-
+            ActionDelay = null;
             //hitbox
             Hitbox = new EnemyHitBox(new Rectangle((int)(Position.X + sprite.Origin.X - hbWidth / 2), (int)(Position.Y + sprite.Origin.Y - hbHeight / 2), hbWidth, hbHeight));
             CollisionHandler = new EnemyCollisionHandler(this);
@@ -80,47 +80,49 @@ namespace _2D_Game
             soundTimer.Update(gameTime);
             float distance = Vector2.Distance(Position, playerPosition);
             float facingX;
-
-            if (distance < attackRange)
+            if (ActionDelay == null || ActionDelay.Ringing)
             {
-                chasing = true;
-                facingX = playerPosition.X - Position.X;
-            }
-            else if (distance < chaseRange)
-            {
-                chasing = true;
-                Vector2 toPlayer = playerPosition - Position;
-                facingX = toPlayer.X;
-                toPlayer.Normalize(); //turn it into a direction with length 1
-                Position += toPlayer * chaseSpeed;
-
-                if (ShootCooldown == 0)
+                if (distance < attackRange)
                 {
-                    EnemyProjectileHandler.Instance.Add(this);
-                    ShootCooldown = MaxShootCooldown;
+                    chasing = true;
+                    facingX = playerPosition.X - Position.X;
                 }
-                else ShootCooldown--;
-
-            }
-            else
-            {
-                if (chasing)
+                else if (distance < chaseRange)
                 {
-                    //player got away, so patrol from where the [SPIDER] is now
-                    chasing = false;
-                    startPosition = Position;
-                    elapsedSeconds = 0; //restart the bob at the middle so it doesn't jump
+                    chasing = true;
+                    Vector2 toPlayer = playerPosition - Position;
+                    facingX = toPlayer.X;
+                    toPlayer.Normalize(); //turn it into a direction with length 1
+                    Position += toPlayer * chaseSpeed;
+
+                    if (ShootCooldown == 0)
+                    {
+                        EnemyProjectileHandler.Instance.Add(this);
+                        ShootCooldown = MaxShootCooldown;
+                    }
+                    else ShootCooldown--;
+
                 }
-                elapsedSeconds += gameTime.ElapsedGameTime.TotalSeconds;
+                else
+                {
+                    if (chasing)
+                    {
+                        //player got away, so patrol from where the [SPIDER] is now
+                        chasing = false;
+                        startPosition = Position;
+                        elapsedSeconds = 0; //restart the bob at the middle so it doesn't jump
+                    }
+                    elapsedSeconds += gameTime.ElapsedGameTime.TotalSeconds;
 
-                float x = Position.X + speed * direction;
-                if (Math.Abs(x - startPosition.X) >= range)
-                    direction *= -1;
-                float y = startPosition.Y + (float)Math.Sin(elapsedSeconds * 4) * 20f;
-                Position = new Vector2(x, y);
-                facingX = direction;
+                    float x = Position.X + speed * direction;
+                    if (Math.Abs(x - startPosition.X) >= range)
+                        direction *= -1;
+                    float y = startPosition.Y + (float)Math.Sin(elapsedSeconds * 4) * 20f;
+                    Position = new Vector2(x, y);
+                    facingX = direction;
+                }
+                sprite.Effects = facingX > 0 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
             }
-
             IFramesTimer += gameTime.ElapsedGameTime.TotalSeconds;
             if (IFramesTimer >= IFrames)
             {
@@ -128,9 +130,9 @@ namespace _2D_Game
                 isDamaged = false;
                 sprite.Color = Color.White;
             }
-
+            if (ActionDelay != null) ActionDelay.Update(gameTime);
             //sprite sheet row faces left, so flip when moving right
-            sprite.Effects = facingX > 0 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
+            
             sprite.Update(gameTime);
             Hitbox.BoundingBox = new Rectangle((int)(Position.X + sprite.Origin.X - hbWidth / 2), (int)(Position.Y + sprite.Origin.Y - hbHeight / 2), hbWidth, hbHeight);
 
@@ -144,6 +146,10 @@ namespace _2D_Game
         {
             //Position is the top-left corner, so shift by the origin to draw in the same place
             sprite.Draw(spriteBatch, Position + sprite.Origin * sprite.Scale);
+        }
+        public void Delay(float time)
+        {
+            ActionDelay = new Timer(time);
         }
     }
 }

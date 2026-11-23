@@ -33,7 +33,7 @@ namespace _2D_Game
         private bool attacking = false;
         private double attackTimer = 0;
         private float attackRange = 60f;               // how close the player has to be to get hit
-        private const double AttackCooldown = 1.0;     // seconds to wait after an attack before attacking again
+        private const double AttackCooldown = 2.0;     // seconds to wait after an attack before attacking again
         private readonly double attackDuration;       // how long one play of the attack animation takes
         private readonly Rectangle attackFirstFrame;
 
@@ -41,6 +41,7 @@ namespace _2D_Game
         private double IFrames = 1;
         private double IFramesTimer = 0;
         private bool isDamaged = false;
+        private Timer ActionDelay;
 
         public Ghost(AnimatedSprite idleSprite, AnimatedSprite attackSprite, Vector2 startPosition)
         {
@@ -53,7 +54,7 @@ namespace _2D_Game
 
             attackFirstFrame = attackSprite.Animation.Frames.Peek();
             attackDuration = attackSprite.Animation.Frames.Count * attackSprite.Animation.FrameRate.TotalSeconds;
-
+            ActionDelay = null;
             Hitbox = new EnemyHitBox(new Rectangle((int)Position.X-hbWidth/2, (int)Position.Y-hbHeight/2, hbWidth, hbHeight));
             CollisionHandler = new EnemyCollisionHandler(this);
             RoomCollisionHandler.Instance.Add(this, true);
@@ -80,60 +81,63 @@ namespace _2D_Game
         public void Update(GameTime gameTime, Vector2 playerPosition)
         {
             attackTimer += gameTime.ElapsedGameTime.TotalSeconds;
-
-            if (attacking)
+            if (ActionDelay == null || ActionDelay.Ringing)
             {
-                if(attackTimer  >= .5)
+                
+                if (attacking)
                 {
-                    hbWidth = hbHeight = attackHb;//temporary solution for enemyattack hitbox
-                }
-                //stay in place until the attack animation has played once
-                if (attackTimer >= attackDuration)
-                {
-                    attacking = false;
-                    attackTimer = 0;
-                    currentSprite = idleSprite;
-                    hbHeight = hbWidth = neutralHb;
-                }
-            }
-            else
-            {
-                float distance = Vector2.Distance(Position, playerPosition);
-
-                if (distance < attackRange)
-                {
-                    chasing = true;
-                    //close enough to hit, so attack once the cooldown is over (and hold still until then)
-                    if (attackTimer >= AttackCooldown)
+                    if (attackTimer >= .5)
                     {
-                        attacking = true;
-                        attackTimer = 0;
-                        attackSprite = new AnimatedSprite(attackSprite);
-                        currentSprite = attackSprite;
-                        SoundEffectFactory.Instance.PlaySoundEffect(SoundName.GhostWail, true);
+                        hbWidth = hbHeight = attackHb;//temporary solution for enemyattack hitbox
                     }
-                }
-                else if (distance < chaseRange)
-                {
-                    chasing = true;
-                    Vector2 toPlayer = playerPosition - Position;
-                    toPlayer.Normalize(); //turn it into a direction with length 1
-                    Position += toPlayer * chaseSpeed;
+                    //stay in place until the attack animation has played once
+                    if (attackTimer >= attackDuration)
+                    {
+                        attacking = false;
+                        attackTimer = 0;
+                        currentSprite = idleSprite;
+                        hbHeight = hbWidth = neutralHb;
+                    }
                 }
                 else
                 {
-                    if (chasing)
-                    {
-                        //player got away, so patrol from where the ghost is now
-                        chasing = false;
-                        startPosition = Position;
-                    }
-                    Position += new Vector2(speed * direction, 0);
-                    if (Math.Abs(Position.X - startPosition.X) >= range)
-                        direction *= -1;
-                }
-            }
+                    float distance = Vector2.Distance(Position, playerPosition);
 
+                    if (distance < attackRange)
+                    {
+                        chasing = true;
+                        //close enough to hit, so attack once the cooldown is over (and hold still until then)
+                        if (attackTimer >= AttackCooldown)
+                        {
+                            attacking = true;
+                            attackTimer = 0;
+                            attackSprite = new AnimatedSprite(attackSprite);
+                            currentSprite = attackSprite;
+                            SoundEffectFactory.Instance.PlaySoundEffect(SoundName.GhostWail, true);
+                        }
+                    }
+                    else if (distance < chaseRange)
+                    {
+                        chasing = true;
+                        Vector2 toPlayer = playerPosition - Position;
+                        toPlayer.Normalize(); //turn it into a direction with length 1
+                        Position += toPlayer * chaseSpeed;
+                    }
+                    else
+                    {
+                        if (chasing)
+                        {
+                            //player got away, so patrol from where the ghost is now
+                            chasing = false;
+                            startPosition = Position;
+                        }
+                        Position += new Vector2(speed * direction, 0);
+                        if (Math.Abs(Position.X - startPosition.X) >= range)
+                            direction *= -1;
+                    }
+                }
+                
+            }
             IFramesTimer += gameTime.ElapsedGameTime.TotalSeconds;
             if (IFramesTimer >= IFrames)
             {
@@ -141,7 +145,7 @@ namespace _2D_Game
                 isDamaged = false;
                 currentSprite.Color = Color.White;
             }
-
+            if (ActionDelay != null) ActionDelay.Update(gameTime);
             Hitbox.BoundingBox = new Rectangle((int)Position.X - hbWidth / 2, (int)Position.Y - hbHeight / 2, hbWidth, hbHeight);
             currentSprite.Update(gameTime);
         }
@@ -151,5 +155,9 @@ namespace _2D_Game
             currentSprite.Draw(spriteBatch, Position);
         }
 
+        public void Delay(float time)
+        {
+            ActionDelay = new Timer(time);
+        }
     }
 }

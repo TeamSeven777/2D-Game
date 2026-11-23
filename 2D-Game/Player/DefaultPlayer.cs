@@ -29,7 +29,7 @@ namespace _2D_Game
         public WeaponInventory Weapons { get; set; }
         public ISet<Direction> DisabledDirections;
         public ISet<Direction> MovingDirections;
-        private double IFrames = 1;
+        public double IFrames { get; private set; } = 1;
         private double IFramesTimer = 0;
         private double HitFrames = 0.5;
         private bool hasIFrames = false;
@@ -163,8 +163,8 @@ namespace _2D_Game
             }
         }
 
-        public void TakeDamage(int attackPoints)
-        {
+        public bool TakeDamage(int attackPoints)
+        {               
             if (!stateMachine.Damaged && !hasIFrames)
             {
                 Health = Health - attackPoints;
@@ -177,7 +177,9 @@ namespace _2D_Game
                 stateMachine.Damaged = true;
                 hasIFrames = true;
                 SoundEffectFactory.Instance.PlaySoundEffect(SoundName.PlayerDamage, false);
+                return true; //player took damage
             }
+            return false; //player did not take damaged (has I Frames)
         }
         public void Heal(int healAmount) 
         {
