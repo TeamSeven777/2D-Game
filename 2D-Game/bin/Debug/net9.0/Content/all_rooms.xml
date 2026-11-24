@@ -33,7 +33,6 @@
 	  <Entity Type="Log" X="810" Y="600" />
 	  <Entity Type="Log" X="800" Y="600" />
 	  <Entity Type="Log" X="790" Y="600" />
-      <Entity Type="Berry" X="770" Y="200" />
       <Entity Type="Explosive" X="450" Y="300" />
       <Entity Type="Key" X="300" Y="250" />
       <Entity Type="Pebble" X="450" Y="200" />
@@ -102,11 +101,16 @@
       <Entity Type="Pebble" X="900" Y="550" />
       <Entity Type="Pebble" X="300" Y="600" />
       <Entity Type="Log" X="300" Y="500" />
+      <Entity Type="Berry" X="350" Y="350" />
+      <Entity Type="Berry" X="200" Y="200" />
+      <Entity Type="Berry" X="210" Y="315" />
+
     </Items>
 		<Obstacles>
 			<Entity Type ="Tree2" X="900" Y="200"/>
 			<Entity Type ="Tree1" X="200" Y="400"/>
 			<Entity Type ="Tree1" X="850" Y="550"/>
+			<Entity Type="BerryBush" X="300" Y="200" />
 		</Obstacles>
 	</Room>
 	<!--Room 6 (1, 1) -->
@@ -226,11 +230,15 @@
 		</NPCs>
 		<Items>
 			<Entity Type="Log" X="850" Y="300" />
+			<Entity Type="Berry" X="780" Y="200" />
+			<Entity Type="Berry" X="700" Y="150" />
+			<Entity Type="Berry" X="815" Y="250" />
 		</Items>
 		<Obstacles>
 			<Entity Type ="Tree2" X="900" Y="200"/>
 			<Entity Type ="Tree1" X="800" Y="400"/>
 			<Entity Type ="Tree1" X="850" Y="550"/>
+			<Entity Type="BerryBush" X="800" Y="100" />
 		</Obstacles>
 	</Room>
   

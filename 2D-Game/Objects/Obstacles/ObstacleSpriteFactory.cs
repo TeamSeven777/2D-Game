@@ -21,6 +21,7 @@ namespace _2D_Class
         Texture2D BoulderSprites;
         Texture2D FenceSprites;
         Texture2D FenceLongSprite;
+        Texture2D BerryBushSprite;
         private static ObstacleSpriteFactory instance = new ObstacleSpriteFactory();
 
         public static ObstacleSpriteFactory Instance
@@ -39,6 +40,7 @@ namespace _2D_Class
             BoulderSprites = content.Load<Texture2D>("Sprites/boulders");
             FenceSprites = content.Load<Texture2D>("Sprites/fences");
             FenceLongSprite = content.Load<Texture2D>("Sprites/fencelong");
+            BerryBushSprite = content.Load<Texture2D>("Sprites/BerryBush2");
         }
 
         /// <summary>
@@ -94,6 +96,9 @@ namespace _2D_Class
                     break;
                 case (2):
                     sprite = new Sprite(BushSprites, new Rectangle(32, 48, 32, 32));
+                    break;
+                case (3):
+                    sprite = new Sprite(BerryBushSprite, new Rectangle(0, 0, 64, 64));
                     break;
                 default:
                     sprite = new Sprite();

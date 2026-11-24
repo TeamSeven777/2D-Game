@@ -74,6 +74,10 @@ namespace _2D_Game
             {
                 block = new Obstacle(new Vector2(64), position, ObstacleSpriteFactory.Instance.CreateBushSprite(1));
             }
+            else if (type.Equals("BerryBush", StringComparison.OrdinalIgnoreCase))
+            {
+                block = new Obstacle(new Vector2(64), position, ObstacleSpriteFactory.Instance.CreateBushSprite(3));
+            }
             else if (type.Equals("Tree1", StringComparison.OrdinalIgnoreCase))
             {
                 block = new Obstacle(new Vector2(64), position, ObstacleSpriteFactory.Instance.CreateTreeSprite(1));

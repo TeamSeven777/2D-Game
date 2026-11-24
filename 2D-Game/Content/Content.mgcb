@@ -18,7 +18,6 @@
 /processor:FontDescriptionProcessor
 /processorParam:PremultiplyAlpha=True
 /processorParam:TextureFormat=Compressed
-/processorParam:Version=3.8.5.0
 /build:Fonts/defaultFont.spritefont
 
 #begin Fonts/pixelFont.spritefont
@@ -26,7 +25,6 @@
 /processor:FontDescriptionProcessor
 /processorParam:PremultiplyAlpha=True
 /processorParam:TextureFormat=Compressed
-/processorParam:Version=3.8.5.0
 /build:Fonts/pixelFont.spritefont
 
 #begin Fonts/Pixelzone-E4MV4.ttf
@@ -34,7 +32,6 @@
 /processor:FontDescriptionProcessor
 /processorParam:PremultiplyAlpha=True
 /processorParam:TextureFormat=Compressed
-/processorParam:Version=3.8.5.0
 /build:Fonts/Pixelzone-E4MV4.ttf
 
 #begin Images/Berry.png
@@ -47,7 +44,6 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/processorParam:Version=3.8.5.0
 /build:Images/Berry.png
 
 #begin Images/bog.png
@@ -60,7 +56,6 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/processorParam:Version=3.8.5.0
 /build:Images/bog.png
 
 #begin Images/boggus.png
@@ -73,7 +68,6 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/processorParam:Version=3.8.5.0
 /build:Images/boggus.png
 
 #begin Images/endScreen.png
@@ -86,7 +80,6 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/processorParam:Version=3.8.5.0
 /build:Images/endScreen.png
 
 #begin Images/Explosive.png
@@ -99,7 +92,6 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/processorParam:Version=3.8.5.0
 /build:Images/Explosive.png
 
 #begin Images/fog1.png
@@ -112,7 +104,6 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/processorParam:Version=3.8.5.0
 /build:Images/fog1.png
 
 #begin Images/Fogclouds.png
@@ -125,7 +116,6 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/processorParam:Version=3.8.5.0
 /build:Images/Fogclouds.png
 
 #begin Images/FullMap.png
@@ -138,7 +128,6 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/processorParam:Version=3.8.5.0
 /build:Images/FullMap.png
 
 #begin Images/gameBackground.png
@@ -151,7 +140,6 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/processorParam:Version=3.8.5.0
 /build:Images/gameBackground.png
 
 #begin Images/Key.png
@@ -164,7 +152,6 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/processorParam:Version=3.8.5.0
 /build:Images/Key.png
 
 #begin Images/Log.png
@@ -177,7 +164,6 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/processorParam:Version=3.8.5.0
 /build:Images/Log.png
 
 #begin Images/logo.png
@@ -190,7 +176,6 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/processorParam:Version=3.8.5.0
 /build:Images/logo.png
 
 #begin Images/Pebble.png
@@ -203,7 +188,6 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/processorParam:Version=3.8.5.0
 /build:Images/Pebble.png
 
 #begin Images/speedshoe.png
@@ -216,7 +200,6 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/processorParam:Version=3.8.5.0
 /build:Images/speedshoe.png
 
 #begin Images/startScreen.png
@@ -229,225 +212,229 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/processorParam:Version=3.8.5.0
 /build:Images/startScreen.png
 
 #begin Music/Billie Jean (shortened).mp3
 /importer:Mp3Importer
 /processor:SongProcessor
 /processorParam:Quality=Best
-/processorParam:Version=3.8.5.0
 /build:Music/Billie Jean (shortened).mp3
 
 #begin Music/Billie Jean.mp3
 /importer:Mp3Importer
 /processor:SongProcessor
 /processorParam:Quality=Best
-/processorParam:Version=3.8.5.0
 /build:Music/Billie Jean.mp3
-
-#begin Music/cozyFire.wav
-/importer:WavImporter
-/processor:SongProcessor
-/processorParam:Quality=Best
-/processorParam:Version=3.8.5.0
-/build:Music/cozyFire.wav
 
 #begin Music/cozyFire(slow+reverb).wav
 /importer:WavImporter
 /processor:SongProcessor
 /processorParam:Quality=Best
-/processorParam:Version=3.8.5.0
 /build:Music/cozyFire(slow+reverb).wav
+
+#begin Music/cozyFire.wav
+/importer:WavImporter
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Music/cozyFire.wav
 
 #begin Music/echoesOfTheBlue.wav
 /importer:WavImporter
 /processor:SongProcessor
 /processorParam:Quality=Best
-/processorParam:Version=3.8.5.0
 /build:Music/echoesOfTheBlue.wav
 
 #begin Music/eightLeggedDemons.wav
 /importer:WavImporter
 /processor:SongProcessor
 /processorParam:Quality=Best
-/processorParam:Version=3.8.5.0
 /build:Music/eightLeggedDemons.wav
 
 #begin Music/endThemeSample1.wav
 /importer:WavImporter
 /processor:SongProcessor
 /processorParam:Quality=Best
-/processorParam:Version=3.8.5.0
 /build:Music/endThemeSample1.wav
 
 #begin Music/lost.wav
 /importer:WavImporter
 /processor:SongProcessor
 /processorParam:Quality=Best
-/processorParam:Version=3.8.5.0
 /build:Music/lost.wav
 
 #begin Music/maze.wav
 /importer:WavImporter
 /processor:SongProcessor
 /processorParam:Quality=Best
-/processorParam:Version=3.8.5.0
 /build:Music/maze.wav
-
-#begin Music/npcTheme.wav
-/importer:WavImporter
-/processor:SongProcessor
-/processorParam:Quality=Best
-/processorParam:Version=3.8.5.0
-/build:Music/npcTheme.wav
 
 #begin Music/npcTheme(chorus).wav
 /importer:WavImporter
 /processor:SongProcessor
 /processorParam:Quality=Best
-/processorParam:Version=3.8.5.0
 /build:Music/npcTheme(chorus).wav
+
+#begin Music/npcTheme.wav
+/importer:WavImporter
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Music/npcTheme.wav
 
 #begin Music/ominousLair.wav
 /importer:WavImporter
 /processor:SongProcessor
 /processorParam:Quality=Best
-/processorParam:Version=3.8.5.0
 /build:Music/ominousLair.wav
 
 #begin Music/theDead.wav
 /importer:WavImporter
 /processor:SongProcessor
 /processorParam:Quality=Best
-/processorParam:Version=3.8.5.0
 /build:Music/theDead.wav
 
 #begin Music/titleSample1.wav
 /importer:WavImporter
 /processor:SongProcessor
 /processorParam:Quality=Best
-/processorParam:Version=3.8.5.0
 /build:Music/titleSample1.wav
 
 #begin Music/titleTheme.wav
 /importer:WavImporter
 /processor:SongProcessor
 /processorParam:Quality=Best
-/processorParam:Version=3.8.5.0
 /build:Music/titleTheme.wav
 
 #begin SFX/boomerang.mp3
 /importer:Mp3Importer
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
-/processorParam:Version=3.8.5.0
 /build:SFX/boomerang.mp3
 
 #begin SFX/eatberry.mp3
 /importer:Mp3Importer
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
-/processorParam:Version=3.8.5.0
 /build:SFX/eatberry.mp3
 
 #begin SFX/explosion.mp3
 /importer:Mp3Importer
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
-/processorParam:Version=3.8.5.0
 /build:SFX/explosion.mp3
 
 #begin SFX/ghostAttack.mp3
 /importer:Mp3Importer
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
-/processorParam:Version=3.8.5.0
 /build:SFX/ghostAttack.mp3
 
 #begin SFX/gunshot-meme.mp3
 /importer:Mp3Importer
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
-/processorParam:Version=3.8.5.0
 /build:SFX/gunshot-meme.mp3
 
 #begin SFX/gunshottttt.mp3
 /importer:Mp3Importer
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
-/processorParam:Version=3.8.5.0
 /build:SFX/gunshottttt.mp3
 
 #begin SFX/mosquito1.mp3
 /importer:Mp3Importer
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
-/processorParam:Version=3.8.5.0
 /build:SFX/mosquito1.mp3
 
 #begin SFX/pickup.mp3
 /importer:Mp3Importer
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
-/processorParam:Version=3.8.5.0
 /build:SFX/pickup.mp3
 
 #begin SFX/playerDamage.mp3
 /importer:Mp3Importer
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
-/processorParam:Version=3.8.5.0
 /build:SFX/playerDamage.mp3
 
 #begin SFX/punch.mp3
 /importer:Mp3Importer
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
-/processorParam:Version=3.8.5.0
 /build:SFX/punch.mp3
 
 #begin SFX/puzzleSolveJingle1.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
-/processorParam:Version=3.8.5.0
 /build:SFX/puzzleSolveJingle1.wav
 
 #begin SFX/speak.mp3
 /importer:Mp3Importer
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
-/processorParam:Version=3.8.5.0
 /build:SFX/speak.mp3
 
 #begin SFX/spiderNoise.mp3
 /importer:Mp3Importer
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
-/processorParam:Version=3.8.5.0
 /build:SFX/spiderNoise.mp3
 
 #begin SFX/stickswing.mp3
 /importer:Mp3Importer
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
-/processorParam:Version=3.8.5.0
 /build:SFX/stickswing.mp3
 
 #begin SFX/test-sfx.mp3
 /importer:Mp3Importer
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
-/processorParam:Version=3.8.5.0
 /build:SFX/test-sfx.mp3
 
 #begin SFX/throw.mp3
 /importer:Mp3Importer
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
-/processorParam:Version=3.8.5.0
 /build:SFX/throw.mp3
+
+#begin Sprites/BerryBush.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Sprites/BerryBush.png
+
+#begin Sprites/BerryBush2.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Sprites/BerryBush2.png
+
+#begin Sprites/BerryBushSmall.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Sprites/BerryBushSmall.png
 
 #begin Sprites/boulders.png
 /importer:TextureImporter
@@ -459,7 +446,6 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/processorParam:Version=3.8.5.0
 /build:Sprites/boulders.png
 
 #begin Sprites/bushes.png
@@ -472,7 +458,6 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/processorParam:Version=3.8.5.0
 /build:Sprites/bushes.png
 
 #begin Sprites/door.png
@@ -485,7 +470,6 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/processorParam:Version=3.8.5.0
 /build:Sprites/door.png
 
 #begin Sprites/enemy-projectiles.png
@@ -498,7 +482,6 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/processorParam:Version=3.8.5.0
 /build:Sprites/enemy-projectiles.png
 
 #begin Sprites/fencelong.png
@@ -511,7 +494,6 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/processorParam:Version=3.8.5.0
 /build:Sprites/fencelong.png
 
 #begin Sprites/fences.png
@@ -524,7 +506,6 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/processorParam:Version=3.8.5.0
 /build:Sprites/fences.png
 
 #begin Sprites/fishinghole.png
@@ -537,7 +518,6 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/processorParam:Version=3.8.5.0
 /build:Sprites/fishinghole.png
 
 #begin Sprites/fishingRod.png
@@ -550,21 +530,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/processorParam:Version=3.8.5.0
 /build:Sprites/fishingRod.png
-
-#begin Sprites/gravestone.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/processorParam:Version=3.8.5.0
-/build:Sprites/gravestone.png
 
 #begin Sprites/Gravestone(short).png
 /importer:TextureImporter
@@ -576,7 +542,6 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/processorParam:Version=3.8.5.0
 /build:Sprites/Gravestone(short).png
 
 #begin Sprites/Gravestone(tall).png
@@ -589,8 +554,19 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/processorParam:Version=3.8.5.0
 /build:Sprites/Gravestone(tall).png
+
+#begin Sprites/gravestone.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Sprites/gravestone.png
 
 #begin Sprites/itemsheet.png
 /importer:TextureImporter
@@ -602,7 +578,6 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/processorParam:Version=3.8.5.0
 /build:Sprites/itemsheet.png
 
 #begin Sprites/itemsheet2.png
@@ -615,7 +590,6 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/processorParam:Version=3.8.5.0
 /build:Sprites/itemsheet2.png
 
 #begin Sprites/mosquito.png
@@ -628,7 +602,6 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/processorParam:Version=3.8.5.0
 /build:Sprites/mosquito.png
 
 #begin Sprites/Player_Sheet.png
@@ -641,7 +614,6 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/processorParam:Version=3.8.5.0
 /build:Sprites/Player_Sheet.png
 
 #begin Sprites/playerprojectiles.png
@@ -654,7 +626,6 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/processorParam:Version=3.8.5.0
 /build:Sprites/playerprojectiles.png
 
 #begin Sprites/projectileSprites.png
@@ -667,7 +638,6 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/processorParam:Version=3.8.5.0
 /build:Sprites/projectileSprites.png
 
 #begin Sprites/Sign.png
@@ -680,7 +650,6 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/processorParam:Version=3.8.5.0
 /build:Sprites/Sign.png
 
 #begin Sprites/slingshot.png
@@ -693,7 +662,6 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/processorParam:Version=3.8.5.0
 /build:Sprites/slingshot.png
 
 #begin Sprites/Spider.png
@@ -706,7 +674,6 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/processorParam:Version=3.8.5.0
 /build:Sprites/Spider.png
 
 #begin Sprites/Stick.png
@@ -719,7 +686,6 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/processorParam:Version=3.8.5.0
 /build:Sprites/Stick.png
 
 #begin Sprites/TeamIdles-Sheet.png
@@ -732,7 +698,6 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/processorParam:Version=3.8.5.0
 /build:Sprites/TeamIdles-Sheet.png
 
 #begin Sprites/tempexplosionsprites.png
@@ -745,8 +710,19 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/processorParam:Version=3.8.5.0
 /build:Sprites/tempexplosionsprites.png
+
+#begin Sprites/testblocks.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Sprites/testblocks.png
 
 #begin Sprites/Test-Ghost-Melee-Attack-N.png
 /importer:TextureImporter
@@ -758,7 +734,6 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/processorParam:Version=3.8.5.0
 /build:Sprites/Test-Ghost-Melee-Attack-N.png
 
 #begin Sprites/Test-Ghost-Melee-Idle-N.png
@@ -771,21 +746,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/processorParam:Version=3.8.5.0
 /build:Sprites/Test-Ghost-Melee-Idle-N.png
-
-#begin Sprites/testblocks.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/processorParam:Version=3.8.5.0
-/build:Sprites/testblocks.png
 
 #begin Sprites/testmosquito.png
 /importer:TextureImporter
@@ -797,7 +758,6 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/processorParam:Version=3.8.5.0
 /build:Sprites/testmosquito.png
 
 #begin Sprites/testspritesheet.png
@@ -810,7 +770,6 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/processorParam:Version=3.8.5.0
 /build:Sprites/testspritesheet.png
 
 #begin Sprites/trees.png
@@ -823,6 +782,5 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/processorParam:Version=3.8.5.0
 /build:Sprites/trees.png
 
